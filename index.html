@@ -160,6 +160,8 @@
   }
   .waitlist input:focus{border-color:var(--accent)}
   .waitlist .fine{color:#5E7291;font-size:12px;margin-top:12px}
+  .waitlist .fs-success{color:var(--green);font-weight:700;font-size:15px;margin-top:14px;line-height:1.45}
+  .waitlist .fs-error{color:#FF8A80;font-weight:600;font-size:14px;margin-top:14px}
 
   /* footer */
   footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center}
@@ -291,8 +293,8 @@
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <button class="btn btn-primary" type="submit" data-fs-submit-btn>Join the waitlist</button>
       </form>
-      <p class="fine" data-fs-success hidden style="color:var(--green)">You're on the list. One email at launch — nothing else.</p>
-      <p class="fine" data-fs-error hidden style="color:#EF5350">Something went wrong — please try again.</p>
+      <p class="fs-success" data-fs-success hidden>You're on the list! One email at launch — nothing else. We'll see you at the dock.</p>
+      <p class="fs-error" data-fs-error hidden>Something went wrong — please try again.</p>
       <p class="fine">No spam. One email at launch. Unsubscribe anytime.</p>
     </div>
   </div>
