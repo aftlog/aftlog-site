@@ -286,14 +286,23 @@
     <div class="waitlist">
       <h3>Be first on the dock</h3>
       <p>We're building AftLog now. Join the waitlist and we'll email you the day it's ready — plus early access to the seasonal checklists while you wait.</p>
-      <form action="mailto:hello@aftlog.com" method="get" enctype="text/plain">
-        <input type="email" name="subject" placeholder="Your email — waitlist for AftLog" required>
-        <button class="btn btn-primary" type="submit">Join the waitlist</button>
+      <form id="waitlist-form" action="https://formspree.io/f/xoeaezwv" method="POST">
+        <input type="email" name="email" placeholder="Your email — waitlist for AftLog" required data-fs-field>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn btn-primary" type="submit" data-fs-submit-btn>Join the waitlist</button>
       </form>
+      <p class="fine" data-fs-success hidden style="color:var(--green)">You're on the list. One email at launch — nothing else.</p>
+      <p class="fine" data-fs-error hidden style="color:#EF5350">Something went wrong — please try again.</p>
       <p class="fine">No spam. One email at launch. Unsubscribe anytime.</p>
     </div>
   </div>
 </section>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#waitlist-form', formId: 'xoeaezwv' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <footer>
   <div class="wrap">
