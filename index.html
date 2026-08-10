@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AftLog — keeping your boat shipshape</title>
+<meta name="description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time $29, no subscription.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="apple-touch-icon" href="images/favicon-180.png">
@@ -11,17 +12,15 @@
 <meta property="og:description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time $29, no subscription.">
 <meta property="og:image" content="https://aftlog.com/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time price, no subscription.">
 <style>
   :root{
-    --bg:#0A0A0C;
-    --card:#16161A;
-    --card2:#1D1D22;
-    --line:#2C2C33;
+    --bg:#0B0B0D;
+    --card:#141417;
+    --line:#232329;
     --accent:#E02020;
-    --accent-bright:#FF4B4B;
+    --accent2:#FF4B4B;
     --text:#FFFFFF;
-    --muted:#9B9BA4;
+    --muted:#9A9AA3;
     --maxw:960px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -33,157 +32,146 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
   /* header */
   header{
     border-bottom:1px solid var(--line);
-    background:rgba(10,22,40,.92);
+    background:rgba(11,11,13,.92);
     position:sticky;top:0;z-index:10;
-    backdrop-filter:blur(6px);
+    backdrop-filter:blur(8px);
   }
   .header-inner{
-    max-width:var(--maxw);margin:0 auto;padding:12px 20px;
+    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
     display:flex;align-items:center;justify-content:space-between;
   }
-  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.4px}
-  .logo .mark{
-    width:92px;height:92px;border-radius:20px;
-    background:#FFFFFF;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;padding:10px;
-    box-shadow:0 4px 18px rgba(0,0,0,.5);
-  }
-  .logo .mark img{width:100%;height:100%;object-fit:contain}
+  .logo img{height:64px;width:auto;display:block}
   nav a{
-    color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px;
+    color:var(--muted);text-decoration:none;font-size:14.5px;margin-left:26px;
     transition:color .15s;
   }
-  nav a:hover{color:var(--accent)}
+  nav a:hover{color:var(--accent2)}
   @media(max-width:640px){ nav a{display:none} }
 
   /* hero */
   .hero{
-    padding:72px 20px 56px;text-align:center;
-    background:
-      radial-gradient(ellipse at 20% 0%, rgba(224,32,32,.14), transparent 55%),
-      radial-gradient(ellipse at 80% 100%, rgba(224,32,32,.06), transparent 50%);
+    padding:72px 24px 64px;text-align:center;
   }
+  .hero .logo-big{height:210px;width:auto;margin:0 auto 28px;display:block}
   .hero .kicker{
-    display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent-bright);border:1px solid rgba(224,32,32,.5);border-radius:999px;
-    padding:6px 14px;margin-bottom:22px;font-weight:600;
+    display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent2);border:1px solid rgba(224,32,32,.5);border-radius:999px;
+    padding:7px 16px;margin-bottom:26px;font-weight:700;
   }
   .hero h1{
-    font-size:clamp(30px, 4.6vw, 46px);
-    line-height:1.12;font-weight:800;letter-spacing:-.5px;
-    max-width:760px;margin:0 auto;
+    font-size:clamp(38px, 6vw, 62px);
+    line-height:1.05;font-weight:800;letter-spacing:-.02em;
+    max-width:820px;margin:0 auto;
   }
-  .hero h1 .hl{color:var(--accent-bright)}
+  .hero h1 .hl{color:var(--accent2)}
   .hero p.sub{
-    color:var(--muted);font-size:clamp(15px,1.4vw,17px);
-    max-width:620px;margin:18px auto 0;
+    color:var(--muted);font-size:clamp(16px,1.6vw,19px);
+    max-width:640px;margin:22px auto 0;line-height:1.55;
   }
-  .cta-row{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta-row{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .btn{
     display:inline-flex;align-items:center;gap:8px;
-    height:52px;padding:0 26px;border-radius:12px;
-    font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer;
-    transition:transform .1s, box-shadow .15s;
+    height:54px;padding:0 30px;border-radius:999px;
+    font-size:15.5px;font-weight:700;text-decoration:none;border:none;cursor:pointer;
+    transition:transform .12s, box-shadow .15s;
   }
   .btn:hover{transform:translateY(-2px)}
   .btn-primary{background:var(--accent);color:#FFFFFF}
-  .btn-primary:hover{box-shadow:0 8px 24px rgba(224,32,32,.4)}
+  .btn-primary:hover{box-shadow:0 10px 28px rgba(224,32,32,.35)}
   .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
-  .hero .fine{color:#5E7291;font-size:12.5px;margin-top:14px}
+  .btn-ghost:hover{border-color:var(--accent2);color:var(--accent2)}
+  .hero .fine{color:#6E6E77;font-size:13px;margin-top:18px}
 
   /* sections */
-  section{padding:60px 20px}
+  section{padding:80px 24px}
   .sec-label{
-    font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
-    font-weight:700;margin-bottom:10px;
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);
+    font-weight:700;margin-bottom:12px;
   }
-  h2{font-size:clamp(24px,3.2vw,32px);font-weight:800;letter-spacing:-.3px}
-  .sec-intro{color:var(--muted);font-size:15.5px;max-width:640px;margin-top:10px}
+  h2{font-size:clamp(26px,3.4vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .sec-intro{color:var(--muted);font-size:16px;max-width:640px;margin-top:12px;line-height:1.6}
 
   /* pain */
   .pain{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:30px}
+  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:34px}
   .pain-card{
-    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;
+    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;
+    transition:border-color .15s, transform .12s;
   }
-  .pain-card .num{color:var(--accent);font-weight:800;font-size:13px}
-  .pain-card h3{font-size:16px;margin:8px 0 6px;font-weight:700}
-  .pain-card p{color:var(--muted);font-size:14px}
+  .pain-card:hover{border-color:rgba(224,32,32,.5);transform:translateY(-3px)}
+  .pain-card .num{color:var(--accent2);font-weight:800;font-size:13px;letter-spacing:.1em}
+  .pain-card h3{font-size:17px;margin:10px 0 6px;font-weight:700}
+  .pain-card p{color:var(--muted);font-size:14.5px}
 
   /* features */
-  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:30px}
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:34px}
   .feat{
-    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;
-    transition:border-color .15s;
+    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;
+    transition:border-color .15s, transform .12s;
   }
-  .feat:hover{border-color:rgba(224,32,32,.55)}
+  .feat:hover{border-color:rgba(224,32,32,.55);transform:translateY(-3px)}
   .feat .ic{
-    width:44px;height:44px;border-radius:11px;margin-bottom:14px;
+    width:46px;height:46px;border-radius:14px;margin-bottom:16px;
     display:flex;align-items:center;justify-content:center;
     background:rgba(224,32,32,.12);border:1px solid rgba(224,32,32,.35);
   }
-  .feat .ic svg{width:22px;height:22px;stroke:var(--accent)}
-  .feat h3{font-size:16.5px;font-weight:700}
-  .feat p{color:var(--muted);font-size:14px;margin-top:6px}
+  .feat .ic svg{width:22px;height:22px;stroke:var(--accent2)}
+  .feat h3{font-size:17px;font-weight:700}
+  .feat p{color:var(--muted);font-size:14.5px;margin-top:8px;line-height:1.55}
 
-  /* pricing */
-  .price{
-    text-align:center;
-  }
+  /* price */
+  .price{text-align:center}
   .price-card{
-    max-width:440px;margin:34px auto 0;
+    max-width:460px;margin:36px auto 0;
     background:var(--card);border:1px solid rgba(224,32,32,.5);
-    border-radius:18px;padding:34px 28px;
+    border-radius:22px;padding:40px 32px;
   }
-  .price-card .amt{font-size:44px;font-weight:800;color:var(--accent-bright)}
+  .price-card .amt{font-size:52px;font-weight:800;color:var(--accent2);letter-spacing:-.02em}
   .price-card .per{color:var(--muted);font-size:14px}
-  .price-card ul{list-style:none;margin:20px 0 24px;text-align:left}
-  .price-card li{color:#C7D6EC;font-size:14.5px;padding:6px 0 6px 28px;position:relative}
+  .price-card ul{list-style:none;margin:24px 0 28px;text-align:left}
+  .price-card li{color:#D6D6DC;font-size:15px;padding:8px 0 8px 32px;position:relative}
   .price-card li::before{
-    content:"";position:absolute;left:0;top:12px;
-    width:16px;height:16px;border-radius:50%;
+    content:"";position:absolute;left:0;top:14px;
+    width:17px;height:17px;border-radius:50%;
     border:2px solid var(--accent);background:rgba(224,32,32,.15);
   }
-  .price-card .note{color:#5E7291;font-size:12.5px;margin-top:14px}
+  .price-card .note{color:#6E6E77;font-size:13px;margin-top:16px}
 
   /* waitlist */
   .waitlist{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;
-    padding:38px 28px;text-align:center;max-width:560px;margin:40px auto 0;
+    background:var(--card);border:1px solid var(--line);border-radius:22px;
+    padding:44px 32px;text-align:center;max-width:600px;margin:44px auto 0;
   }
-  .waitlist h3{font-size:20px;font-weight:800}
-  .waitlist p{color:var(--muted);font-size:14px;margin:8px 0 22px}
+  .waitlist h3{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .waitlist p{color:var(--muted);font-size:15px;margin:10px 0 26px}
   .waitlist form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .waitlist input{
-    flex:1;min-width:220px;height:52px;padding:0 18px;border-radius:12px;
-    background:#0B0B0F;border:1px solid var(--line);color:var(--text);font-size:15px;outline:none;
+    flex:1;min-width:240px;height:54px;padding:0 22px;border-radius:999px;
+    background:#0B0B0F;border:1px solid var(--line);color:var(--text);font-size:15.5px;outline:none;
+    transition:border-color .15s;
   }
-  .waitlist input:focus{border-color:var(--accent-bright)}
-  .waitlist .fine{color:#5E7291;font-size:12px;margin-top:12px}
-  .waitlist .fs-success{color:#FFFFFF;font-weight:700;font-size:15px;margin-top:14px;line-height:1.45}
-  .waitlist .fs-error{color:#FF6B6B;font-weight:600;font-size:14px;margin-top:14px}
+  .waitlist input:focus{border-color:var(--accent2)}
+  .waitlist .fs-success{color:#FFFFFF;font-weight:700;font-size:15px;margin-top:16px;line-height:1.45}
+  .waitlist .fs-error{color:#FF6B6B;font-weight:600;font-size:14px;margin-top:16px}
+  .waitlist .fine{color:#6E6E77;font-size:12.5px;margin-top:16px}
 
   /* footer */
-  footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center}
-  footer p{color:#5E7291;font-size:13px}
-  footer a{color:var(--muted);text-decoration:none;margin:0 10px;font-size:13px}
-  footer a:hover{color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:32px 24px;text-align:center}
+  footer p{color:#6E6E77;font-size:13.5px}
+  footer a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13.5px}
+  footer a:hover{color:var(--accent2)}
 </style>
 </head>
 <body>
 
 <header>
   <div class="header-inner">
-    <div class="logo">
-      <div class="mark"><img src="images/aftlog-logo.png" alt="AftLog"></div>
-    </div>
+    <div class="logo"><img src="images/aftlog-logo.png" alt="AftLog"></div>
     <nav>
       <a href="#pain">Why it exists</a>
       <a href="#features">Features</a>
@@ -194,7 +182,8 @@
 
 <section class="hero">
   <div class="wrap">
-    <span class="kicker">Boat owner's logbook — keeping your boat shipshape</span>
+    <img class="logo-big" src="images/aftlog-logo.png" alt="AftLog">
+    <span class="kicker">Boat owner's logbook</span>
     <h1>Every hour, every tank, every service — <span class="hl">one place, even offline</span></h1>
     <p class="sub">AftLog is the maintenance logbook your boat deserves: engine hours, fuel, service history, and seasonal checklists — with reminders that actually fire, and AI that explains what that noise was.</p>
     <div class="cta-row">
@@ -251,11 +240,6 @@
         <p>Commissioning in spring, winterization in fall — prebuilt checklists for your engine type, with photos and receipts attached.</p>
       </div>
       <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></div>
-        <h3>Boat &amp; trailer profile</h3>
-        <p>Registration, insurance, trailer bearings, spare parts. Everything a buyer or a mechanic will ever ask about, one tap away.</p>
-      </div>
-      <div class="feat">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 015.4 2c0 2-3 2-3 4M12 18h.01"/></svg></div>
         <h3>AI diagnostics</h3>
         <p>"Outboard won't idle after winter storage." Describes symptoms, gets likely causes ranked by what your log shows, in plain language.</p>
@@ -264,6 +248,11 @@
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></div>
         <h3>Sync, export, back up</h3>
         <p>Offline-first on device. Sync across phone and tablet when you choose. Export the whole log to PDF or CSV — yours forever.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
+        <h3>Symptom decoder</h3>
+        <p>"Why won't it start?" Pick your engine and the symptom — get ranked causes, fix steps, and when to call a mechanic.</p>
       </div>
     </div>
   </div>
@@ -306,18 +295,17 @@
   </div>
 </section>
 
+<footer>
+  <div class="wrap">
+    <p><a href="#pain">Why it exists</a><a href="#features">Features</a><a href="#price">Pricing</a></p>
+    <p style="margin-top:12px">AftLog — keeping your boat shipshape. Built for the 11 months a year your boat is more project than boat.</p>
+  </div>
+</footer>
+
 <script>
   window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
   formspree('initForm', { formElement: '#waitlist-form', formId: 'xoeaezwv' });
 </script>
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-
-<footer>
-  <div class="wrap">
-    <p><a href="#pain">Why it exists</a><a href="#features">Features</a><a href="#price">Pricing</a></p>
-    <p style="margin-top:10px">AftLog — built for the 11 months a year your boat is more project than boat.</p>
-  </div>
-</footer>
-
 </body>
 </html>
