@@ -4,17 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AftLog — keeping your boat shipshape</title>
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+<link rel="apple-touch-icon" href="images/favicon-180.png">
+<meta property="og:title" content="AftLog — keeping your boat shipshape">
+<meta property="og:description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time $29, no subscription.">
+<meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time price, no subscription.">
 <style>
   :root{
-    --bg:#0A1628;
-    --card:#0E1D33;
-    --card2:#13253F;
-    --line:#1F3552;
-    --accent:#00BCD4;
-    --green:#76FF03;
+    --bg:#0A0A0C;
+    --card:#16161A;
+    --card2:#1D1D22;
+    --line:#2C2C33;
+    --accent:#E02020;
+    --accent-bright:#FF4B4B;
     --text:#FFFFFF;
-    --muted:#8FA3BF;
+    --muted:#9B9BA4;
     --maxw:960px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -41,11 +48,13 @@
   }
   .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.4px}
   .logo .mark{
-    width:34px;height:34px;border-radius:9px;
-    background:linear-gradient(135deg,#00BCD4,#007C8C);
+    width:44px;height:44px;border-radius:12px;
+    background:#FFFFFF;
     display:flex;align-items:center;justify-content:center;
+    overflow:hidden;padding:5px;
+    box-shadow:0 2px 10px rgba(0,0,0,.4);
   }
-  .logo .mark svg{width:20px;height:20px;stroke:#04222B}
+  .logo .mark img{width:100%;height:100%;object-fit:contain}
   nav a{
     color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px;
     transition:color .15s;
@@ -57,12 +66,12 @@
   .hero{
     padding:72px 20px 56px;text-align:center;
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(0,188,212,.12), transparent 55%),
-      radial-gradient(ellipse at 80% 100%, rgba(118,255,3,.07), transparent 50%);
+      radial-gradient(ellipse at 20% 0%, rgba(224,32,32,.14), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(224,32,32,.06), transparent 50%);
   }
   .hero .kicker{
     display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent);border:1px solid rgba(0,188,212,.4);border-radius:999px;
+    color:var(--accent-bright);border:1px solid rgba(224,32,32,.5);border-radius:999px;
     padding:6px 14px;margin-bottom:22px;font-weight:600;
   }
   .hero h1{
@@ -70,7 +79,7 @@
     line-height:1.12;font-weight:800;letter-spacing:-.5px;
     max-width:760px;margin:0 auto;
   }
-  .hero h1 .hl{color:var(--accent)}
+  .hero h1 .hl{color:var(--accent-bright)}
   .hero p.sub{
     color:var(--muted);font-size:clamp(15px,1.4vw,17px);
     max-width:620px;margin:18px auto 0;
@@ -83,10 +92,10 @@
     transition:transform .1s, box-shadow .15s;
   }
   .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:var(--accent);color:#04222B}
-  .btn-primary:hover{box-shadow:0 8px 24px rgba(0,188,212,.35)}
+  .btn-primary{background:var(--accent);color:#FFFFFF}
+  .btn-primary:hover{box-shadow:0 8px 24px rgba(224,32,32,.4)}
   .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn-ghost:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
   .hero .fine{color:#5E7291;font-size:12.5px;margin-top:14px}
 
   /* sections */
@@ -99,7 +108,7 @@
   .sec-intro{color:var(--muted);font-size:15.5px;max-width:640px;margin-top:10px}
 
   /* pain */
-  .pain{background:#08111F;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pain{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:30px}
   .pain-card{
     background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;
@@ -114,11 +123,11 @@
     background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;
     transition:border-color .15s;
   }
-  .feat:hover{border-color:rgba(0,188,212,.5)}
+  .feat:hover{border-color:rgba(224,32,32,.55)}
   .feat .ic{
     width:44px;height:44px;border-radius:11px;margin-bottom:14px;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(0,188,212,.12);border:1px solid rgba(0,188,212,.3);
+    background:rgba(224,32,32,.12);border:1px solid rgba(224,32,32,.35);
   }
   .feat .ic svg{width:22px;height:22px;stroke:var(--accent)}
   .feat h3{font-size:16.5px;font-weight:700}
@@ -126,23 +135,21 @@
 
   /* pricing */
   .price{
-    background:
-      radial-gradient(ellipse at 50% 120%, rgba(118,255,3,.08), transparent 60%);
     text-align:center;
   }
   .price-card{
     max-width:440px;margin:34px auto 0;
-    background:var(--card);border:1px solid rgba(118,255,3,.4);
+    background:var(--card);border:1px solid rgba(224,32,32,.5);
     border-radius:18px;padding:34px 28px;
   }
-  .price-card .amt{font-size:44px;font-weight:800;color:var(--green)}
+  .price-card .amt{font-size:44px;font-weight:800;color:var(--accent-bright)}
   .price-card .per{color:var(--muted);font-size:14px}
   .price-card ul{list-style:none;margin:20px 0 24px;text-align:left}
   .price-card li{color:#C7D6EC;font-size:14.5px;padding:6px 0 6px 28px;position:relative}
   .price-card li::before{
     content:"";position:absolute;left:0;top:12px;
     width:16px;height:16px;border-radius:50%;
-    border:2px solid var(--green);background:rgba(118,255,3,.15);
+    border:2px solid var(--accent);background:rgba(224,32,32,.15);
   }
   .price-card .note{color:#5E7291;font-size:12.5px;margin-top:14px}
 
@@ -156,12 +163,12 @@
   .waitlist form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .waitlist input{
     flex:1;min-width:220px;height:52px;padding:0 18px;border-radius:12px;
-    background:#0A1628;border:1px solid var(--line);color:var(--text);font-size:15px;outline:none;
+    background:#0B0B0F;border:1px solid var(--line);color:var(--text);font-size:15px;outline:none;
   }
-  .waitlist input:focus{border-color:var(--accent)}
+  .waitlist input:focus{border-color:var(--accent-bright)}
   .waitlist .fine{color:#5E7291;font-size:12px;margin-top:12px}
-  .waitlist .fs-success{color:var(--green);font-weight:700;font-size:15px;margin-top:14px;line-height:1.45}
-  .waitlist .fs-error{color:#FF8A80;font-weight:600;font-size:14px;margin-top:14px}
+  .waitlist .fs-success{color:#FFFFFF;font-weight:700;font-size:15px;margin-top:14px;line-height:1.45}
+  .waitlist .fs-error{color:#FF6B6B;font-weight:600;font-size:14px;margin-top:14px}
 
   /* footer */
   footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center}
@@ -175,8 +182,7 @@
 <header>
   <div class="header-inner">
     <div class="logo">
-      <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></div>
-      AftLog
+      <div class="mark"><img src="images/aftlog-logo.png" alt="AftLog"></div>
     </div>
     <nav>
       <a href="#pain">Why it exists</a>
