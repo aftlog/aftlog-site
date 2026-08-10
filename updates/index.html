@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Updates — AftLog</title>
+<meta name="description" content="Progress updates for AftLog, the offline-first boat maintenance logbook.">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
+<link rel="apple-touch-icon" href="../images/favicon-180.png">
+<meta property="og:title" content="Updates — AftLog">
+<meta property="og:description" content="Progress updates for AftLog, the offline-first boat maintenance logbook.">
+<meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --card:#141417;
+    --line:#232329;
+    --accent:#E02020;
+    --accent2:#FF4B4B;
+    --text:#FFFFFF;
+    --muted:#9A9AA3;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  header{
+    border-bottom:1px solid var(--line);
+    background:rgba(11,11,13,.92);
+    position:sticky;top:0;z-index:10;
+    backdrop-filter:blur(8px);
+  }
+  .header-inner{
+    max-width:960px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo img{height:64px;width:auto;display:block}
+  nav a{
+    color:var(--muted);text-decoration:none;font-size:14.5px;margin-left:26px;
+    transition:color .15s;
+  }
+  nav a:hover{color:var(--accent2)}
+  nav a.on{color:var(--accent2)}
+  @media(max-width:640px){ nav a{display:none} }
+
+  .page{padding:56px 24px 40px}
+  .sec-label{
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);
+    font-weight:700;margin-bottom:12px;
+  }
+  h1{font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .intro{color:var(--muted);font-size:16px;margin-top:14px;max-width:620px}
+
+  .entry{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px 28px;margin-top:22px;
+  }
+  .entry .date{color:var(--accent2);font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .entry h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin:8px 0 10px}
+  .entry p{color:var(--muted);font-size:14.5px;line-height:1.6}
+  .entry ul{list-style:none;margin-top:10px}
+  .entry li{color:#D6D6DC;font-size:14.5px;padding:5px 0 5px 24px;position:relative}
+  .entry li::before{
+    content:"";position:absolute;left:0;top:13px;
+    width:10px;height:10px;border-radius:50%;
+    background:var(--accent);
+  }
+
+  .coming{
+    margin-top:36px;background:var(--card);border:1px solid rgba(224,32,32,.4);
+    border-radius:18px;padding:26px 28px;
+  }
+  .coming h2{font-size:18px;font-weight:800}
+  .coming p{color:var(--muted);font-size:14px;margin-top:8px}
+
+  footer{border-top:1px solid var(--line);padding:32px 24px;text-align:center}
+  footer p{color:#6E6E77;font-size:13.5px}
+  footer a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13.5px}
+  footer a:hover{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><a href="/"><img src="../images/aftlog-logo.png" alt="AftLog"></a></div>
+    <nav>
+      <a href="/#pain">Why it exists</a>
+      <a href="/#features">Features</a>
+      <a href="/#price">Pricing</a>
+      <a class="on" href="/updates/">Updates</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page">
+  <div class="wrap">
+    <div class="sec-label">AftLog</div>
+    <h1>Updates</h1>
+    <p class="intro">Progress notes as we build AftLog. Newest first. No hype, just what's actually happening.</p>
+
+    <div class="entry">
+      <div class="date">Aug 10, 2026</div>
+      <h2>Site is live and the waitlist is open</h2>
+      <p>AftLog is real: name locked, domain secured, and the $29 one-time price is on the table. Here's what's happened so far:</p>
+      <ul>
+        <li>Name, brand, and tagline locked — "Keeping your boat shipshape!"</li>
+        <li>aftlog.com registered and the landing page is live</li>
+        <li>Foundations done the right way: distribution gated on build quality, keystore secured, repos organized, decisions written down before code</li>
+        <li>Research confirmed the gap: no dominant boat-maintenance app, and boat owners are searching for checklists, logs, and "why won't my engine start" answers</li>
+        <li>Waitlist open at $29 one-time — no subscription, no ads, ever</li>
+      </ul>
+      <p>Next: the 2-week waitlist window tells us if this is the app boat owners want. Meanwhile we start the content: winterize checklists, used-boat inspection guides, and the buying quiz that helps you pick the right boat in the first place.</p>
+    </div>
+
+    <div class="coming">
+      <h2>What's coming</h2>
+      <p>Phase 1 — the MVP: engine hours and fuel log, service history with intervals, reminders that fire on hours and seasons, spring/winterize checklists, offline-first, 5 languages, free tier + $29 Pro.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/#pain">Why it exists</a><a href="/#features">Features</a><a href="/#price">Pricing</a><a href="/updates/">Updates</a></p>
+    <p style="margin-top:12px">AftLog — keeping your boat shipshape.</p>
+  </div>
+</footer>
+
+</body>
+</html>
