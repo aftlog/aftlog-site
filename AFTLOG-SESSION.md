@@ -6,7 +6,7 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
-- **Keystore USB backup DONE 2026-08-11** — copied to USB drive `F:` (label AFTLOG-KEYS). Verified: SHA-256 identical across all 3 copies, opens with pass password, alias `aftlog`, fingerprint matches DECISIONS.md. Off-machine copy exists ✅
+- **Keystore USB backup DONE 2026-08-11** — copied to USB drive `F:` (label AFTLOG-KEYS). Verified: SHA-256 identical across all 3 copies, opens with pass password, alias `aftlog`, fingerprint matches DECISIONS.md. Off-machine copy exists ✅. Password also written on paper with the USB. Full redundancy: key×3 + password×3 (pass/paper/USB).
 - **Gate 0 waitlist running** — landing page live at aftlog.com (waitlist formspree `xoeaezwv`). 2-week email count decides MVP go/no-go. Countdown started 2026-08-10.
 - **Version discipline not yet applied** — app still `1.0.0+1` after many dev iterations. Per standards every change bumps; decide the AftLog release versioning approach before the first release build (suggest: keep dev iteration at 1.0.x, bump when features settle).
 - **AI needs a key** — real Gemini answers require `--dart-define=GEMINI_API_KEY=...` at build (same pass entry as CatchTales). Offline fallback answers work without it.
