@@ -31,6 +31,7 @@
 - **Feature lane rule (Decision #10, LOCKED — Louis's call):** the two apps advertise each other; no duplicate features. CatchTales lane = weather/maps/lakes/launches/regulations; AftLog lane = boat care/maintenance/safety/ownership. AftLog hands off weather via CTA ("Check conditions before you launch →") instead of building it.
 - Spec updated: new §5.31–5.34 (Beginner Mode, Emergency, Health Score, Progress tracker), nudges in §5.7, weather risk removed, Phase 1 MVP = 5–7 weeks with beginner layer, §6 out-of-scope + Phase 2 updated for the lane rule.
 - "Ask a Mechanic" bounty marketplace: researched (JustAnswer is the existing analog); **deferred** — marketplace chicken-and-egg, revisit post-traction.
+- **Used-boat buying inspection built (v1.0.6 → v1.0.10):** onboarding path "I'm buying a used boat" + 13-section template; guided wizard (Step N of M, section progress, Back/Next); Pass/Attention/Fail ratings; multi-photo evidence + full-screen zoom viewer (DB v7); live summary card; report engine (score/stars/risk/heuristic repairs/offer range/BUY-CONSIDER-WALK-AWAY) + shareable PDF + Save to My Boats; reset button; inline glossary ? (shared glossary data, 14 new inspection terms); back-nav fix for onboarding-created checklists; CoPilot review incorporated (step flow, section progress, multi-photo, enlarge viewer, live summary) — deferred: visual examples content, dynamic template table + section columns (logged as inspection v2 in spec §5.35; YAGNI until a second inspection type exists).
 
 ### Current state
 | Item | Value |
