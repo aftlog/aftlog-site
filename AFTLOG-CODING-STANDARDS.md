@@ -25,15 +25,16 @@
 
 | Rule | Details |
 |------|---------|
-| **Every change bumps the version** | No exceptions. One `pubspec.yaml`, one version across flavors. |
-| **Features = minor bump** | e.g. 1.0.0 → 1.1.0. Patch for fixes. |
+| **Every change bumps the version** | No exceptions. One `pubspec.yaml`, one version (`X.Y.Z+N`). **`./build.sh` auto-bumps patch + build number on every build** — never hand-bump; never raw `flutter build` for anything real. |
+| **Features = minor bump** | e.g. 1.0.x → 1.1.0 (manual). Patch bumps are automatic via build.sh. MVP public launch = 1.1.0 (DECISIONS.md #11). |
 | **Rule 3 — always together** | Every app change also updates: What's New, Help text, Translations (en/fr/es/de/uk), Version, Website. |
 | **Distribution** | Direct APK + Play internal/closed testing track ONLY. Public Play launch is gated on Louis's sign-off — never a date. |
 | **gh release from the RIGHT repo** | `cd ~/aftlog-site` for site releases; `cd ~/aftlog-app` for app. (CatchTales scar: released into the wrong repo once.) |
 
 ## 3. Build workflow
 
-- Build with API keys from `pass` (dart-defines) — never raw `flutter build` for anything real.
+- **Always `./build.sh`** — auto-bumps version, injects Gemini key (env → pass → .env), obfuscates, signs with `aftlog-release.keystore` (key.properties, gitignored), renames APK to `AftLog-vX.Y.Z.apk`. Never raw `flutter build` for anything real.
+- Debug signing is FORBIDDEN for release builds (aftlog-release.keystore only — Play updates require it).
 - Obfuscate + split-debug-info on release builds (Crashlytics symbol upload).
 - Verify version in the built APK (`aapt dump badging`).
 - Install via adb chunked push (Samsung stall fix) when sideloading.
