@@ -41,11 +41,11 @@
 | App | v1.0.0+1, skeleton complete, on phone |
 
 ### Next steps (suggested order)
-1. **Landing-page copy refresh** — lead with Beginner Mode / first-time boater angle (helps Gate 0 conversion NOW)
-2. **Version discipline** — pick the versioning approach (still 1.0.0+1; standing reminder)
+1. ~~Landing-page copy refresh~~ ✅ **DONE 2026-08-12** — beginner section live on aftlog.com (Health Score, Emergency, Know Your Boat, pre-departure, launch helper, Beginner Mode)
+2. ~~Version discipline~~ ✅ **DONE 2026-08-12** — Decision #11: build.sh auto-bumps patch+build per build; release signing switched debug→aftlog-release.keystore (latent gap fixed); v1.0.0+1 → 1.0.1+2, first properly-signed APK verified (fingerprint match)
 3. **Build the beginner layer** — Beginner Mode shell first (mode toggle + simplified dashboard), then Health Score, Emergency button, nudges, progress tracker
 4. **Louis's blanks** — intervals, checklist items, symptom causes, glossary, prices, quiz weights (drafted placeholders in code/data)
-5. **AI key at build** — `--dart-define=GEMINI_API_KEY` (pass entry same as CatchTales) for real AI answers
+5. **AI key at build** — verify env/pass path works (`api/gemini`); build.sh falls back to offline answers if missing
 6. Full translation pass (Rule 3) at release; scheduled due-soon notifications wiring
 
 ---
