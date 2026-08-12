@@ -23,6 +23,33 @@
 
 ---
 
+## 2026-08-12 — Session 2 — Advisor input triaged + decisions locked
+
+### What we did
+- **5 real fishermen ("the advisors") reviewed the concept** (met 2026-08-11); their full pitch-style doc pasted into session. Raw reference saved at `~/aftlog/ADVISOR-INPUT-2026-08-12.md` (de-duplicated).
+- **Triage (Decision #9, LOCKED):** most of their proposal already exists in AftLog (profiles, checklists, symptom decoder, AI assistant, intervals, winterization, cost insights — they validated the roadmap). **6 genuinely-new ideas adopted into MVP:** Beginner Mode (mode choice + simplified dashboard + toggle), Emergency "What to do if…" button with GPS share, Boat Health Score, behavior-based nudges, progress tracker — and first-time Launch Helper folded into ramp mode. **Rejected:** subscription pricing (kept $29 one-time per Decision #3), revenue projections/"$500K buyer" framing (unverified template claims), weather risk level.
+- **Feature lane rule (Decision #10, LOCKED — Louis's call):** the two apps advertise each other; no duplicate features. CatchTales lane = weather/maps/lakes/launches/regulations; AftLog lane = boat care/maintenance/safety/ownership. AftLog hands off weather via CTA ("Check conditions before you launch →") instead of building it.
+- Spec updated: new §5.31–5.34 (Beginner Mode, Emergency, Health Score, Progress tracker), nudges in §5.7, weather risk removed, Phase 1 MVP = 5–7 weeks with beginner layer, §6 out-of-scope + Phase 2 updated for the lane rule.
+- "Ask a Mechanic" bounty marketplace: researched (JustAnswer is the existing analog); **deferred** — marketplace chicken-and-egg, revisit post-traction.
+
+### Current state
+| Item | Value |
+|------|-------|
+| Gate 0 waitlist | RUNNING (since 2026-08-10, ~2-week countdown → ~Aug 24) |
+| Decisions | #1–#10 (9+10 locked today) |
+| MVP scope | 5–7 weeks incl. beginner layer (spec §9) |
+| App | v1.0.0+1, skeleton complete, on phone |
+
+### Next steps (suggested order)
+1. **Landing-page copy refresh** — lead with Beginner Mode / first-time boater angle (helps Gate 0 conversion NOW)
+2. **Version discipline** — pick the versioning approach (still 1.0.0+1; standing reminder)
+3. **Build the beginner layer** — Beginner Mode shell first (mode toggle + simplified dashboard), then Health Score, Emergency button, nudges, progress tracker
+4. **Louis's blanks** — intervals, checklist items, symptom causes, glossary, prices, quiz weights (drafted placeholders in code/data)
+5. **AI key at build** — `--dart-define=GEMINI_API_KEY` (pass entry same as CatchTales) for real AI answers
+6. Full translation pass (Rule 3) at release; scheduled due-soon notifications wiring
+
+---
+
 ## 2026-08-10 — Session 1 — AftLog launched: foundations → complete structure
 
 ### Stage 0 — Foundations (all locked in DECISIONS.md)
