@@ -67,6 +67,7 @@
 - **Marketing feature list (28 primary, grouped):** created `~/aftlog/MARKETING-FEATURES.md` — INTERNAL, publish-hold until Gate 0 go / Louis sign-off. NOT the version counter (FEATURES.md stays that).
 - **Oil mix calculator + Calculators redesign (1.57.0, feature #57):** 2-stroke premix calc (ratios 25/40/50/100:1 + custom, L/gal → ml/oz, quick-pour table, oil-injection warning — Louis's gap catch, not in any prior spec); Calculators page = card picker grid, one screen per calculator. Installed. Committed + pushed `5b8d6b7`.
 - **Parts Locator (1.58.0, feature #58 — the affiliate stream):** 14 part categories · US/CA supplier search links (11 suppliers, spec templates) · keyword builder (free = generic, Pro = brand+HP+keyword) · "recommended for next service" (due intervals → categories) · offline common part numbers per brand (starter data, verify-before-buying) · nearby stores = external maps links (no new GPS permission). Dart consts, not JSON. More → Logs & maintenance. Installed. Committed + pushed `8b8ee5b`.
+- **Pro upgrade screen + billing seam (1.59.0, feature #59):** single ProUpgradeScreen (price card, what-you-get, unlock, Restore placeholder, honest note that payments arrive at Play launch); `ProService.purchase()` = the Play Billing seam (Decision #2 — one-method swap); all 5 scattered unlock dialogs now route to it; assistant refreshes free-ask banner after upgrade. Installed. Committed + pushed `2fa5dd5`.
 
 ---
 
