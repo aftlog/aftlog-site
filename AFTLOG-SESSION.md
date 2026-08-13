@@ -6,20 +6,55 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
-- **Keystore USB backup DONE 2026-08-11** — copied to USB drive `F:` (label AFTLOG-KEYS). Verified: SHA-256 identical across all 3 copies, opens with pass password, alias `aftlog`, fingerprint matches DECISIONS.md. Off-machine copy exists ✅. Password also written on paper with the USB. Full redundancy: key×3 + password×3 (pass/paper/USB).
-- **Keystore password ROTATED 2026-08-11 (was exposed in a session transcript)** — new password in `pass` (`aftlog/keystore-password`), fingerprint unchanged (3C:B3:FD:...:01:DF, key untouched). All 3 copies (working/Desktop/USB F:) refreshed + hash-verified (bbecb5a1...) + open with the new password. Paper note updated with the new password 2026-08-11 — rotation FULLY COMPLETE (key×3 + password×3 consistent).
-- **Gate 0 waitlist running** — landing page live at aftlog.com (waitlist formspree `xoeaezwv`). 2-week email count decides MVP go/no-go. Countdown started 2026-08-10.
-- **Version discipline not yet applied** — app still `1.0.0+1` after many dev iterations. Per standards every change bumps; decide the AftLog release versioning approach before the first release build (suggest: keep dev iteration at 1.0.x, bump when features settle).
-- **AI needs a key** — real Gemini answers require `--dart-define=GEMINI_API_KEY=...` at build (same pass entry as CatchTales). Offline fallback answers work without it.
-- **Full translation pass pending** — translation service has core strings only; deep screens still EN. Rule 3 pass at release.
-- **Push notifications**: in-app reminders + "Test reminder" button work; scheduled due-soon notifications not yet wired (NotificationService has the plumbing).
-- **Blanks for Louis to fill** (drafted placeholders, flagged in code/data):
-  - Interval amounts (oil/impeller/lower unit/etc. per engine)
-  - Checklist item lists (launch/retrieve/towing/winterize/spring prep/used boat)
-  - Symptom-decoder causes (8 symptoms)
-  - Glossary (15 terms), Compliance rules, Manual links, DIY steps
+- **🔴 OPEN ITEMS (see Session 3 for full log):**
+  1. **Data blanks:** interval amounts per engine · glossary check (29 terms drafted) · boat-style prices · buying-quiz weights · calculator assumptions (placeholders flagged in `reference_data.dart`)
+  2. **Translations:** core strings only; deep screens still EN (Rule 3 pass at release)
+  3. **Pro purchase wiring:** `pro_service.dart` is just a flag — the $29 unlock isn't purchasable yet
+  4. **Scheduled interval notifications:** daily check-in works; per-interval due-soon push not wired
+- **Gate 0 waitlist running** — landing live at aftlog.com (formspree `xoeaezwv`). 2-week countdown from 2026-08-10 → decision ~Aug 24. Landing already refreshed with the beginner angle.
+- **AI is LIVE:** `GEMINI_API_KEY` in env (AQ.Ab8RN6…, same as CatchTales) — builds embed it. Ask AftLog grounded with boat context, brevity enforced, "continue" works, error taxonomy in. Gemini Flash kept (no o3-mini — truncation was our prompt/cap bug; provider switch designed-not-built).
+- **Repo hygiene DONE 2026-08-12:** purged 136MB of stray build/APK-extraction junk (lib/*.so dumps + root dex/arsc/META-INF/res); gitignore patterns added; tracked size 153MB→17MB. (History still holds old blobs — optional rewrite like CatchTales later.)
+- **CoPilot review workflow:** full code bundle at Windows Desktop `aftlog-review/` (OneDrive Desktop; also `\wsl$` → home/louis/Desktop) + `aftlog-codebase.zip` (3.4MB, secrets-excluded). Paste/upload with the guardrails in `00b-overview.md`/`ARCHITECTURE.md`.
+- **Versioning:** `./build.sh` auto-bumps (v1.0.x+N); release builds signed with aftlog-release.keystore. Never raw flutter build.
   - Boat-style prices/running costs (16 styles), buying-quiz weights
   - Calculator assumptions (default 30 km/h cruise, 30 L tank examples)
+
+---
+
+## 2026-08-12 — Session 3 — Massive build day: beginner layer → wizards → AI → v1.0.36
+
+**Version arc: 1.0.0 → 1.0.36** (auto-bump per build; phone on v1.0.36). Everything below built, analyzer-clean, installed on S23, committed + pushed.
+
+### Features shipped
+- **Beginner layer (Decision #9):** Beginner Mode (onboarding choice + simplified dashboard + toggle via `HomeScreen.tabIndex`) · Boat Health Score (green/yellow/red from intervals) · Emergency "What to do if…" (6 scenarios, GPS copy/maps, haptics, timestamp, Retry, Open Settings via app_settings, user-set emergency contact tap-to-call) · Your Boating Journey (6 data-derived milestones + progress) · Pro-gated nudges (gentle interval/battery/engagement + daily check-in notification) · tips of the day.
+- **Setup/reset flows:** Reset — Keep All / Delete All (Pro survives wipe) · run-setup-again with checklist dedupe · onboarding back-nav fix (pushAndRemoveUntil Home + push detail).
+- **Buying inspection wizard (the flagship):** 13 sections / ~120 items · STEP N OF M header + per-section progress + complete check · Pass/Attention/Fail ratings with **custom vocab per item** (`Label § opt1/opt2/opt3`) · multi-photo evidence (DB v7 `photo_paths` JSON) · full-screen zoom viewer · inline glossary ? (shared glossary data) · header fields (price/hours/year) · **report engine** (score/stars/risk/heuristic repair buckets/offer range/BUY-CONSIDER-WALK-AWAY) · live summary · shareable PDF · reset between viewings.
+- **Post-purchase setup wizard:** 11-step guided flow (add boat → 9 rated sections → real interval schedule → optional full inspection → Finish).
+- **Launch/Retrieve/Towing big-button modes:** shared `BigButtonChecklist` engine (haptics, reset, unified "Complete — Well Done, Good to Go!"), conditional Towing (trailer owners), first-class placement (dashboard quick actions, boat profile chips, Checklists primary cards, More → Tools).
+- **Dashboard v2:** compact brand header (logo 170→34px, tagline kept; beginner dashboard got its brand row back), summary strip (boats/overdue/upcoming/last trip/fill), per-boat health dot + next task, quick actions, buying-lane cards for zero-boat beginners, seasonal chips (Spring Mar–May / Winter Sep–Nov via `SeasonalService`).
+- **Wizards out of Checklists tab** (recurring/operational only there); More → Tools regrouped (Buying & inspection / Operational / Seasonal / Logs & maintenance / Diagnostics / Reference).
+- **Symptom decoder:** 8→19 symptoms, drive-type branching (outboard/inboard/jet + default), severity tags, "Start here" + safety fallback per symptom — fully offline.
+- **AI (Ask AftLog):** Gemini live (key in env) · **grounding** (boat context in prompt + context line) · 10→15s timeout · error taxonomy (no-net/403/429/5xx) · brevity prompt (≤6 bullets/150 words) · 2048 token cap · MAX_TOKENS detection · real "continue" continuation · thinking bubble · auto-scroll.
+- **Calculators:** real-world anchor scope (+bow height), voltage-drop % (12/24V + >3% warn), prop-slip color coding + theoretical speed, fuel-burn cruise+WOT, tongue-weight range warnings, sanitized inputs.
+- **Manual finder:** 37 categorized links (OEM/libraries/paid/boat-builders/trailers/electronics+safety), search, "can't find it?" mailto.
+- **Content passes:** Spring Prep 15→24 items, Winterization 11→19, used-boat buying checklist content; completion message unity ("Complete — Well Done, Good to Go!").
+- **Boat specs:** fuelType + maxPersons + maxWeightLbs (DB v8), shown on detail.
+
+### Bug fixes
+- **Android 11+ dead links** — manifest lacked VIEW-intent `<queries>` → manual finder/tel:/geo: all silently dead; fixed app-wide (same CatchTales lesson).
+- **Location permission never prompted** — geolocator v14 doesn't auto-request; explicit requestPermission + denied/deniedForever distinction + Open Settings.
+- **Onboarding-created checklists trapped users** (no back) — now land in shell with checklist on top.
+- **AI truncation** — was our prompt/cap bug, not Gemini (see reminders).
+- Duplicated-block + DB CREATE-table slips caught by analyzer.
+
+### Repo hygiene
+- Purged 136MB tracked build junk (lib/.*.so dumps + root APK-extraction dump); gitignore patterns; 153MB→17MB. History rewrite optional later.
+
+### CoPilot workflow
+- Reviews pasted for every area; applied the good/cheap, rejected the over-engineered (Riverpod, template tables, stored derived values, model swaps). Full code bundle at Windows Desktop `aftlog-review/` + `aftlog-codebase.zip` (3.4MB, secrets excluded) — upload with ARCHITECTURE.md guardrails.
+
+### Decision points held (LOCKED, from Session 2)
+- Freemium + $29 one-time, no trial (Decision #12) · Gemini stays (no o3-mini yet) · inspection-v2 deferred (YAGNI) · wizards ≠ checklists · lane rule with CatchTales.
 
 ---
 
