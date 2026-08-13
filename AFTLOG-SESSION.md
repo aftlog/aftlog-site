@@ -6,18 +6,48 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
-- **🔴 OPEN ITEMS (see Session 3 for full log):**
-  1. **Data blanks:** interval amounts per engine · glossary check (29 terms drafted) · boat-style prices · buying-quiz weights · calculator assumptions (placeholders flagged in `reference_data.dart`)
-  2. **Translations:** core strings only; deep screens still EN (Rule 3 pass at release)
-  3. **Pro purchase wiring:** `pro_service.dart` is just a flag — the $29 unlock isn't purchasable yet
-  4. **Scheduled interval notifications:** daily check-in works; per-interval due-soon push not wired
+- **🔴 OPEN ITEMS (see Session 4 for full log):**
+  1. **Hotspot alignment:** current 79 hotspots are knowledge-based — align via the editor (`tools/aftlog-diagram-editor.html`): Import JSON from `tools/hotspots/`, load the WebP, drag into place, Export → `python3 tools/hotspots_to_dart.py` → rebuild with plain `./build.sh`.
+  2. **Review backlog (Session 4 findings, cheap fixes):** daily check-in dies on reboot (`RECEIVE_BOOT_COMPLETED` missing) · onboarding flag written before onboarding finishes · free-tier gating not enforced (AI + reminders should be Pro per Decision #3) · Boats tab stale (listen to `BoatEvents`) · `Units` service dead code (metric toggle half-wired)
+  3. **Data blanks:** interval amounts per engine · glossary check (29 terms) · boat-style prices · buying-quiz weights · calculator assumptions (placeholders in `reference_data.dart`) — incl. boat-style prices/running costs (16 styles), buying-quiz weights, calculator assumptions (default 30 km/h cruise, 30 L tank examples)
+  4. **Translations:** core strings only; deep screens still EN (Rule 3 pass at release)
+  5. **Pro purchase wiring:** `pro_service.dart` is just a flag — the $29 unlock isn't purchasable yet
+  6. **Scheduled interval notifications:** daily check-in works; per-interval due-soon push not wired
 - **Gate 0 waitlist running** — landing live at aftlog.com (formspree `xoeaezwv`). 2-week countdown from 2026-08-10 → decision ~Aug 24. Landing already refreshed with the beginner angle.
 - **AI is LIVE:** `GEMINI_API_KEY` in env (AQ.Ab8RN6…, same as CatchTales) — builds embed it. Ask AftLog grounded with boat context, brevity enforced, "continue" works, error taxonomy in. Gemini Flash kept (no o3-mini — truncation was our prompt/cap bug; provider switch designed-not-built).
 - **Repo hygiene DONE 2026-08-12:** purged 136MB of stray build/APK-extraction junk (lib/*.so dumps + root dex/arsc/META-INF/res); gitignore patterns added; tracked size 153MB→17MB. (History still holds old blobs — optional rewrite like CatchTales later.)
 - **CoPilot review workflow:** full code bundle at Windows Desktop `aftlog-review/` (OneDrive Desktop; also `\wsl$` → home/louis/Desktop) + `aftlog-codebase.zip` (3.4MB, secrets-excluded). Paste/upload with the guardrails in `00b-overview.md`/`ARCHITECTURE.md`.
-- **Versioning:** `./build.sh` auto-bumps (v1.0.x+N); release builds signed with aftlog-release.keystore. Never raw flutter build.
-  - Boat-style prices/running costs (16 styles), buying-quiz weights
-  - Calculator assumptions (default 30 km/h cruise, 30 L tank examples)
+- **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
+- **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
+- **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-13 — Session 4 — Diagrams shipped + editor pipeline + versioning overhaul
+
+**Version arc: 1.0.38 → 1.50.0** (versioning scheme changed, Decision #11 amended). Phone on 1.0.38; repo at 1.50.0+40. Committed + pushed (app `0b64b0b`).
+
+### Features shipped
+- **Troubleshooting Diagrams (feature #34 — the advisor "wow" item):** 19 generic system diagrams (Motor 7 / Lower unit 4 / Boat 8) with Louis's original art. PNG→WebP q90 (38.6MB → 5.8MB, 85% smaller; masters kept at `~/aftlog/images/diagrams-src/`) · **79 hotspots** (circle + rect shapes, normalized coords, disc hit-testing for circles) · viewer: pan/zoom (InteractiveViewer), runtime aspect-ratio fit (art ships at 3:2, 5:4 and square), no-art fallback canvas, bottom-sheet flows with drive branching · More → Diagnostics & tools → Diagrams.
+- **Symptom knowledge base extracted** to `lib/data/symptoms.dart` — shared by decoder + diagrams (decoder slimmed 491→~200 lines, zero behavior change). Flows **19 → 25**: added Air intake, Oil pressure, Freshwater, Livewell, Navigation lights, Trailer wiring (starter content, Louis corrects).
+- **Diagram editor (dev tool, not in the app):** single-file HTML `tools/aftlog-diagram-editor.html` (+ Desktop copy) — load WebP/PNG, drag-drop JSON + image, add/move/resize circle+rect hotspots, 10% grid, inspector (name/id/check/flow/shape, normalized coords), import/export JSON, light preview mode.
+- **Codegen pipeline:** `tools/dart_to_hotspots.py` ⇄ `tools/hotspots_to_dart.py` (JSON ⇄ `diagram_data.dart`; round-trip verified identical). Editor exports JSON → script regenerates Dart → app stays compile-time-safe, no runtime JSON parsing.
+- **Asset fix (CatchTales subdir lesson):** pubspec now declares `assets/images/diagrams/{motor,boat,lower_unit}/` explicitly — nested subdirs are silently skipped otherwise (caught by APK inspection: 0 webp bundled until declared).
+
+### Versioning overhaul (Decision #11 AMENDED — Louis's call)
+- **New rule: minor = number of shipped features.** `FEATURES.md` (in app repo) is the canonical inventory — **50 features**, script-verified 1–50. `./build.sh` = patch+1 · `./build.sh --feature` = minor+1, patch→0 · major = main redesign · launch = current version at sign-off (old "launch = 1.1.0" marker dropped).
+- App re-versioned **1.0.38 → 1.50.0+40** (Diagrams = feature #34). build.sh bump math verified: 1.50.0 → 1.50.1 (patch) / 1.51.0 (feature).
+
+### Review findings (first full code review, Session 4)
+- **Verified:** DB discipline (tables in both creation paths), no secrets in git history, Dart 3 switch = no fall-through (report engine safe), analyzer clean (10 pre-existing infos).
+- **Real bugs found (backlog, see reminders):** daily check-in dies on reboot (`RECEIVE_BOOT_COMPLETED` missing from manifest) · onboarding can be permanently skipped (prefs flag written before onboarding completes) · free-tier gating not enforced (AI + reminders ungated vs locked Decision #3) · Boats tab stale (no `BoatEvents` listener — standards §9) · `Units` service is dead code (metric toggle half-wired; Calculators/Cost Insights hardcode L/hr).
+- **Minor:** manifest `android:label="aftlog"` lowercase · notification icon = full-color launcher icon (should be monochrome) · "contentt" typo in `reference_data.dart` · `test/` empty (12k lines, zero tests — highest-leverage gap).
+- **ChatGPT/DeepSeek suggestion reviewed:** WebP already done (their q85–90 rec), diagram cache = Flutter's built-in ImageCache (nothing to build), per-diagram JSON rejected in favor of typed Dart consts + codegen (their hotspots.json idea would add runtime parsing for zero benefit); circle-first editor = good, built with rect support since existing 79 are rects.
+
+### Open / next
+- Hotspot alignment via the editor (see reminders #1). Overlays at `~/Desktop/aftlog-diagram-overlays/` (grid + coords version).
+- Diagram background inconsistency (white vs dark navy) — Louis's style call.
+- Review backlog fixes (reminders #2) — cheap, then one build (plain `./build.sh` → 1.50.1+41).
 
 ---
 
