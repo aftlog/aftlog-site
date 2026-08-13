@@ -49,6 +49,13 @@
 - Diagram background inconsistency (white vs dark navy) — Louis's style call.
 - Review backlog fixes (reminders #2) — cheap, then one build (plain `./build.sh` → 1.50.1+41).
 
+### Session 4b (same day, afternoon) — hotspots now do something
+- **Guided troubleshooting (feature #51):** decision-tree engine (`flow.dart` / `flows.dart` / `flow_screen.dart`) with Won't-start + Overheating trees authored; pattern ready to extend. Reached from symptom sheets + On-the-Water.
+- **On-the-Water mode (feature #52):** big red I'M ON THE WATER button (dashboard + More → Safety) → 8-problem grid → safety-first routing (Taking on water → Emergency; guided flow when authored; else symptom sheet; Other → decoder). No emojis (brand rule).
+- **Repair logging (feature #53):** "I fixed it / Log this repair" writes a ServiceRecord to the primary boat → service history + resale report. Closes the troubleshoot→log loop.
+- **Component purposes:** all 79 hotspots got "what it does" text (editor schema + codegen + sheet display).
+- Version: 3 features → FEATURES.md 53 → **1.53.0+42** (pre-set 1.52.0 → `./build.sh --feature`). Built release; phone NOT installed (disconnected, meeting). Committed + pushed `af86c25`.
+
 ---
 
 ## 2026-08-12 — Session 3 — Massive build day: beginner layer → wizards → AI → v1.0.36
