@@ -56,6 +56,15 @@
 - **Component purposes:** all 79 hotspots got "what it does" text (editor schema + codegen + sheet display).
 - Version: 3 features → FEATURES.md 53 → **1.53.0+42** (pre-set 1.52.0 → `./build.sh --feature`). Built release; phone NOT installed (disconnected, meeting). Committed + pushed `af86c25`.
 
+### Session 4c (same day, late afternoon) — review-batch features (1.56.0)
+- **Emergency +2 (spec 4):** Lost GPS + Smoke from engine scenarios (8 total) — free per D12.
+- **Next Best Action (spec 3, feature #54):** NudgeService gains triage categories (today / week / before-next-trip); dashboard card groups under urgency headers ("Do this today…"). Pro (nudges are Pro).
+- **Boat Health Score 0–100 (spec 2):** composite = intervals 40 / checklists 35 / logs 15 / battery 10 + trend arrow (vs stored score); beginner shows "Your boat health is X/100", boat cards show score/100. FREE per D12 (spec said Pro — corrected).
+- **Fuel Range Estimator (spec 9, feature #55):** 6th calculator — safe/risky/max ranges, reserve %, wind/wave loss %, burn rate prefilled from learned logbook fuel use.
+- **Handling guides (spec 10, feature #56):** trim / steering / porpoising text guides with symptom-flow links (More → Reference). No art needed.
+- Pro gating deferred (Louis); version 56 features → **1.56.0+43** (pre-set 1.55.0 → --feature). Installed on phone. Committed + pushed `f4c937c`.
+- **Deferred (spec 8, buying advisor):** data-blank dependent, Phase 2. **Skipped (spec 5):** tools already categorized.
+
 ---
 
 ## 2026-08-12 — Session 3 — Massive build day: beginner layer → wizards → AI → v1.0.36
