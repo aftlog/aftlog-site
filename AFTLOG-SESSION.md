@@ -65,6 +65,7 @@
 - Pro gating deferred (Louis); version 56 features → **1.56.0+43** (pre-set 1.55.0 → --feature). Installed on phone. Committed + pushed `f4c937c`.
 - **Deferred (spec 8, buying advisor):** data-blank dependent, Phase 2. **Skipped (spec 5):** tools already categorized.
 - **Marketing feature list (28 primary, grouped):** created `~/aftlog/MARKETING-FEATURES.md` — INTERNAL, publish-hold until Gate 0 go / Louis sign-off. NOT the version counter (FEATURES.md stays that).
+- **Oil mix calculator + Calculators redesign (1.57.0, feature #57):** 2-stroke premix calc (ratios 25/40/50/100:1 + custom, L/gal → ml/oz, quick-pour table, oil-injection warning — Louis's gap catch, not in any prior spec); Calculators page = card picker grid, one screen per calculator. Installed. Committed + pushed `5b8d6b7`.
 
 ---
 
