@@ -64,6 +64,7 @@
 - **Handling guides (spec 10, feature #56):** trim / steering / porpoising text guides with symptom-flow links (More → Reference). No art needed.
 - Pro gating deferred (Louis); version 56 features → **1.56.0+43** (pre-set 1.55.0 → --feature). Installed on phone. Committed + pushed `f4c937c`.
 - **Deferred (spec 8, buying advisor):** data-blank dependent, Phase 2. **Skipped (spec 5):** tools already categorized.
+- **Marketing feature list (28 primary, grouped):** created `~/aftlog/MARKETING-FEATURES.md` — INTERNAL, publish-hold until Gate 0 go / Louis sign-off. NOT the version counter (FEATURES.md stays that).
 
 ---
 
