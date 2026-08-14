@@ -24,6 +24,14 @@
 
 ---
 
+## 2026-08-14 — Session 5g — Mode-switch onboarding (FINAL SPEC §5–§6, feature #70) → 1.70.0
+
+- **Final More-menu spec delivered.** Checked §1–§4 + §7 against what 5e/5f already shipped: 7 sections, exact order/labels, drill-down, beginner/power variants — ALL already live, zero changes needed.
+- **New (Spec §5–§6):** `ModeOnboardingScreen` (full-screen, exact text — Beginner: "AftLog is now in Beginner Mode" / Power: "Full tools unlocked", body, 4 bullets, footer; brand-styled, Continue pops). Trigger logic: toggling Beginner Mode in Settings arms `hasSeenBeginnerOnboarding` / `hasSeenPowerOnboarding` (reset to false); the NEXT More section entered shows it once, then never until the next toggle. Never shown immediately on toggle.
+- Files touched: more_section_screen.dart (initState hook + toggle handler), new mode_onboarding_screen.dart. Everything else untouched per §8. Built + installed v1.70.0+68 (chunked + MD5). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5f — More tab = section index (1.69.1)
 
 - **Louis's handback on 5e:** even the 7-section list was still "long and overwhelming" — he wanted just the section headers visible. More tab is now **7 short tiles** (icon + name + one-line hint); tapping a section opens its items in its own screen (`MoreSectionScreen`).
