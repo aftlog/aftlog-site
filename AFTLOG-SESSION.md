@@ -24,6 +24,15 @@
 
 ---
 
+## 2026-08-14 — Session 5c — PDF gated behind Pro (Decision #14 LOCKED) → 1.68.2
+
+- **Louis's call:** summary screen stays FREE (safety & learning, per D12); **PDF generation is PRO-only** — industry-standard diagnostic-report pattern. The on-screen narrative + diagram thumbnail remain the free adoption hook; the shareable artifact is the Pro value.
+- Implemented: button shows lock + "Generate PDF (Pro)" when locked; tap → ProUpgradeScreen (existing pattern); upgrade-and-generate in one flow on success. Dev builds auto-unlocked (kDebugMode) so testing is unaffected.
+- Recorded: **Decision #14 in DECISIONS.md** (LOCKED), FEATURES.md #68 notes Pro. Built + installed (v1.68.2+64). 89 tests green.
+- Revisit only if Gate 0 data suggests free PDF would drive sharing/virality.
+
+---
+
 ## 2026-08-14 — Session 5b — Diagnostic Report PDF (Phase 2, feature #68) → 1.68.0+62
 
 **Delivered:** shareable A4 PDF of the Diagnostic Assistant Report. Engine untouched (Phase 1 intact).
