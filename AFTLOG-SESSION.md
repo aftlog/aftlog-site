@@ -14,12 +14,28 @@
   5. **Pro purchase wiring:** `pro_service.dart` is just a flag — the $29 unlock isn't purchasable yet
   6. **Scheduled interval notifications:** daily check-in works; per-interval due-soon push not wired
 - **Gate 0 waitlist running** — landing live at aftlog.com (formspree `xoeaezwv`). 2-week countdown from 2026-08-10 → decision ~Aug 24. Landing already refreshed with the beginner angle.
-- **AI is LIVE:** `GEMINI_API_KEY` in env (AQ.Ab8RN6…, same as CatchTales) — builds embed it. Ask AftLog grounded with boat context, brevity enforced, "continue" works, error taxonomy in. Gemini Flash kept (no o3-mini — truncation was our prompt/cap bug; provider switch designed-not-built).
+- **AI is LIVE:** `GEMINI_API_KEY` in env (key in pass, same as CatchTales) — builds embed it. Ask AftLog grounded with boat context, brevity enforced, "continue" works, error taxonomy in. Gemini Flash kept (no o3-mini — truncation was our prompt/cap bug; provider switch designed-not-built).
 - **Repo hygiene DONE 2026-08-12:** purged 136MB of stray build/APK-extraction junk (lib/*.so dumps + root dex/arsc/META-INF/res); gitignore patterns added; tracked size 153MB→17MB. (History still holds old blobs — optional rewrite like CatchTales later.)
 - **CoPilot review workflow:** full code bundle at Windows Desktop `aftlog-review/` (OneDrive Desktop; also `\wsl$` → home/louis/Desktop) + `aftlog-codebase.zip` (3.4MB, secrets-excluded). Paste/upload with the guardrails in `00b-overview.md`/`ARCHITECTURE.md`.
 - **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
 - **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
 - **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-14 — Session 5 — Diagnostic Assistant Report (Phase 1, feature #67) → 1.67.0+60
+
+**Delivered (app repo, commit to follow):** narrative engine + summary screen. Phase 1 ONLY — PDF is Phase 2, deliberately not built.
+
+- **Feature spec implemented as given** (Louis's DeepSeek input block): `DiagnosticNarrative` + `DiagnosticInput` models, `DiagnosticEngine` with the 7 section builders, the 7 locked template functions, exact section headers, 1–3 sentence template prose (13 total).
+- **Adapted to the real codebase:** the spec assumed `SymptomDecoder.meaning()/causes()/userChecks()/mechanicChecks()/risk()` and a `SymptomEvent` type that don't exist — symptoms are `symptoms.dart` string keys with `startFor/causesFor/fixesFor/stopFor/fallbackFor/mechanicNoteFor` helpers. Engine wires: meaning = category + start line · logs = new `LogAnalyzer.summarize()` (trips/fills/hours/distance, unit-aware) · causes = per-drive list · user checks = start line · mechanic = category + drive label + mechanic note · risk = stop conditions + fallback · photos = gallery snapshot. Data strings get trailing-period-stripped so template punctuation never doubles.
+- **Entry point:** "Get a report" button on `SymptomFlowView` → covers Symptom decoder, diagram hotspot sheets, and On-the-Water in one place. Loads primary boat + recent logs/services/photos from local SQLite, builds narrative, pushes `DiagnosticSummaryScreen` (brand-styled cards, exact headers, "PDF coming" footnote).
+- **Latent bug found + fixed:** `causesFor`/`fixesFor` in `symptoms.dart` cast `'causes': {}` (the 3 safety-only symptoms — Alarm/beeping, Taking on water, Smells like gas) to `Map<String, List<String>>` and CRASHED at runtime — the decoder would have hit it too. Now null-safe; regression test added.
+- **Drive fix:** `boat.driveType` stores the enum NAME (`outboard2Stroke`) but decoder lists are keyed by CATEGORY (`outboard`) — engine converts via `DriveType.fromName().category` before lookup.
+- **Tests:** 84 total (was 70) — 13 engine tests (sections non-empty, template prose 2 sentences/section + photos 1 → 13 total within 8–14, friendly openings/closers, no dealership jargon, empty-logbook line, real-log summary, exact photo sentences, safety-symptom fallbacks, drive labels) + 1 symptoms regression.
+- **Versioning:** FEATURES.md was stale (said 59, app at 1.66.1) — backfilled 60–66 from git history + added 67, count header fixed → `./build.sh --feature` → **1.67.0+60**, signed release built, badging verified (com.aftlog.app, versionCode 60).
+- **Housekeeping:** scrubbed a partial Gemini key fragment (`AQ.Ab8RN6…`) from this public site repo's session file — key stays in pass only. NOTE for Louis: this file is PUBLIC (site repo) — keep it free of secrets.
+- **Not done (known state):** deep-screen translations still EN (Rule 3 pass at release, unchanged); PDF = Phase 2; phone install pending (USB).
 
 ---
 
