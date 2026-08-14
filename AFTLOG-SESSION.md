@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 29 — v1.103–110: Web Portal Analytics Pack
+
+**Delivered on aftlog-server (pushed):** 4 read-only analytics endpoints + shared portal shell + 8 pages.
+- **API:** /analytics/trips (per-day/month, weekday-weekend, time-of-day, seasonal, multi-year) · /maintenance (cost-by-month, parts usage, overdue/on-time, health score) · /planner (planned-vs-completed, checklist gauge, consistency, recurring) · /boats (per-boat hours/fuel/cost/trips/compliance + 0-100 index). Services schema gained 'parts'.
+- **Frontend:** portal.css + portal.js (sidebar nav, year+boat selectors, cards/tables/SVG chart helpers) + 8 pages under /portal/ (Trip Calendar, Patterns, Heatmap, Clustering, Forecast, Maintenance, Planner, Boat Health). Hand-rolled SVG — zero external deps.
+- **Goof recovery:** the user interrupted the first pass ("oops i goofed") and re-sent the corrected spec — resumed cleanly; the earlier build was 95% reusable. Lessons: (1) quoted heredocs don't expand shell vars → the $P stylesheet link silently vanished (test caught it); (2) test expectations must match the actual fixture (all 4 trips are weekdays).
+- Tests: +7 → **16 total green** (import/validation/analytics/router/portal). Verified live: all endpoints + pages 200. SERVER_FEATURES.md updated (103–110).
+
+---
+
 ## 2026-08-14 — Session 28 — v1.102: Web Portal Year-in-Review page
 
 **Delivered on the local backend (repo now pushed: aftlog/aftlog-server, PRIVATE):**
