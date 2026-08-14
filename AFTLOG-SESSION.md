@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 8 — Planner Pro: Slice 1 Export (feature #73) → 1.73.0
+
+**Delivered (Planner Pro set, slice 1 of 5):**
+- `planner_export_service.dart`: collect() multi-boat (boatId optional) · CSV export (labeled sections: Upcoming tasks w/ planner buckets / Completed & service history / Seasonal tasks / Interval table — ExportService write pattern to Downloads) · PDF share (PdfService pattern, default fonts) · `plannerExportAllowed()` gating helper.
+- **UI:** Planner overflow (⋮) → Export planner / Export completed — free users see lock + (Pro) label → ProUpgradeScreen upsell → then CSV/PDF chooser sheet for Pro. Boat detail → Maintenance → "Export maintenance (Pro)" (boat-scoped CSV).
+- **Documented adaptation:** the spec's "Completed timeline → overflow" is folded into the planner overflow (the Completed section shares the planner screen/app bar — no separate overflow exists).
+- Tests: +5 (bucket rows across 2 boats, 4 CSV sections in order, completed-only, gating) → **124 total green**. Analyzer clean. Built + installed v1.73.0+81 (chunked + MD5).
+- **Next slices:** 2 Multi-Season · 3 Analytics · 4 Predictive · 5 Cloud-sync seam — awaiting Louis's go.
+
+---
+
 ## 2026-08-14 — Session 7c — Settings notifications restyle (skeleton UI) → 1.72.2
 
 - **DeepSeek UI skeleton applied to More → Settings → Maintenance notifications:** per-toggle icons (notifications_active / priority_high / schedule / ac_unit / calendar_today), skeleton labels + subtitles, section header "Maintenance notifications", and ONE "Quiet hours" tile (nights_stay) showing the live range and opening a start→end picker dialog via the new `NotificationService.pickQuietHours(context)` (replaces the two separate picker tiles).
