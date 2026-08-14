@@ -27,6 +27,20 @@
 
 ---
 
+## 2026-08-14 — Session 7 — Planner notifications (feature #72) → 1.72.0
+
+**Delivered (v1.72.x spec):** state-transition local alerts, all logic in notification_service.dart (existing service extended — the spec assumed a new file; it already existed from Sessions 2–4).
+
+- **4 types, once per cycle:** Due (isDue transition) · Due Soon (isDueSoon && !due) · Seasonal (active window OR within-7-days) · Monthly Planner Summary (first launch of month, This Month bucket non-empty). Dedupe keys: last_due_notif_{boat}_{interval} (cleared when no longer due → re-arms after Mark as Done), due-soon twin, last_seasonal_notif_{season}_{year}, last_monthly_notif_{YYYY-MM}.
+- **Multi-boat aggregation:** simultaneous items → one alert ("2 items due — Oil change, Gear oil (Bluefin)").
+- **Settings → Notifications** (More → Settings, the one allowed screen): master (ON) + 4 sub-toggles (ON) + quiet-hours pickers (22:00–07:00).
+- **Quiet hours:** skip delivery + dedupe, queue; next app-open after 07:00 delivers still-due items. DEVIATION (documented): no zoned scheduling — that needs the timezone dep + exact-alarm permission; app-open delivery keeps it offline-first with zero new deps. Flag if Louis wants true 07:00 background delivery later.
+- **Trigger:** app launch only (main.dart post-frame — bootstrap, no screen modified per §8). Existing daily digest + Pro daily check-in untouched.
+- **Tests:** 15 new (due once, re-arm cycle, due-soon once, due-wins, seasonal once per window, near-season, monthly once per month + empty bucket, quiet hours incl. overnight + defaults, aggregation, master/due/seasonal toggles) → **114 total green**, analyzer clean.
+- Built + installed v1.72.0+78 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 6 — Maintenance Planner (feature #71) → 1.71.0
 
 **Delivered (Louis's FINAL SPEC):** unified maintenance hub. Menu: More → Logs & maintenance → **Maintenance Planner** (end of section, both modes).
