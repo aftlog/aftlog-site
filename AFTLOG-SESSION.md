@@ -27,6 +27,15 @@
 
 ---
 
+## 2026-08-14 — Session 23 — Trip Heatmap + Trip Summary (features #95–#96) → 1.96.0
+
+**Delivered (two DeepSeek specs, shipped together):** both land in the consolidated Insights menu (the v1.95 spec's standalone button predates the consolidation — flagged).
+- **#95 Trip Heatmap:** seasonal + monthly usage bars (count/max×10, brandRedBright blocks), peak season/month, distance + hours intensity (avg/max), summary cards.
+- **#96 Trip Summary:** totals/averages/efficiency/seasonal/cluster distribution/highlights (longest, highest cost, best km/L)/last-5 mini-timeline, summary cards.
+- Both pure models + scrollable sheets; zero service/model/logic changes. Tests: +9 → **252 total green.** Built + installed v1.96.0+106 (chunked + MD5). Insights menu now has 10 sheets.
+
+---
+
 ## 2026-08-14 — Session 22b — Log tab insights consolidation (1.94.1)
 
 - **Louis approved the consolidation:** the 8 display-only sheet buttons on the Log tab collapse into a single **Insights** button → bottom-sheet menu (Log Insights, Engine Hour History, Fuel Range Estimator, Fuel Cost Insights, Trip Efficiency, Trip Timeline, Trip Clustering, Trip Forecast). Trip/Fuel wizards stay as buttons; forms untouched.
