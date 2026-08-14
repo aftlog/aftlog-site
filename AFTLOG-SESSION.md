@@ -24,6 +24,14 @@
 
 ---
 
+## 2026-08-14 — Session 5k — Manual finder mailto fixed (1.70.6)
+
+- **Louis's catch confirmed:** the Manual Finder's "Can't find it? Ask us" mailed the dead **hello@aftlog.com** (aftlog.com has no mail server). Swapped to **aftlog+support@yahoo.com** (chosen from Louis's list — manual requests = support bucket) with the same hidden mailto pattern: To: + "Manual request" subject pre-filled, address never shown in the UI.
+- **Plus-address registry (Louis's yahoo auto-sort):** support ✓ in use (About Email Support + Manual Finder) · bugs / diagnostic / pro / feedback / suggestions / attachments — reserved for future surfaces.
+- Built + installed v1.70.6+74 (chunked + MD5). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5j — Support one-tap + Email Support button (1.70.5)
 
 - **Louis's 3 fixes:**
