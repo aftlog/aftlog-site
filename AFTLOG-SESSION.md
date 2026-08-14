@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 18 — Log Intelligence Pack (feature #88) → 1.88.0
+
+**Delivered (DeepSeek spec, fully isolated, display-only):**
+- **Log Insights sheet** (pure model + scrollable sheet): Trip insights (count/avg/longest/shortest/most-common destination/avg GPS distance/trip-hours), Fuel insights (litres/avg per fill/avg cost/full-vs-partial/burn rate = litres÷hours), Usage insights (hours/day, seasonal distribution by month, trips/month).
+- **Engine Hour History sheet** (pure model): date-sorted rows with running cumulative ('2026-07-14 · +2.5 hrs · 187.0 total'), optional Destination/Distance lines, header total.
+- **Log tab:** two more brandRedBright buttons above the wizards.
+- **Flagged:** spec's `entriesByType(boatId, type)` doesn't exist → filtered client-side from getEntries (no service change).
+- Tests: +10 → **211 total green.** Built + installed v1.88.0+97 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 17b — What's New governance + entries structure (1.87.1)
 
 **PERMANENT RULES (Louis's spec, recorded for every future session — What's New updates):**
