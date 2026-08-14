@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 17 — Log Wizards Pack (feature #87) → 1.87.0
+
+**Delivered (DeepSeek spec, fully isolated):**
+- **Trip Log Wizard:** destination → hours → optional GPS page (only when a GPS distance exists; injectable for tests) → notes → summary. Pure `buildEntry()` factory; save writes a trip entry (hours, distanceKm when GPS used, destination, notes).
+- **Fuel Log Wizard:** litres → price → fill type (full/partial + exact explanation) → notes → summary. Pure `buildEntry()`; save writes a fuel entry. **Spec's litres/price/fillType don't exist on LogEntry** → mapped to fuelLitres/fuelPrice/isFill (+ cost, as the existing form does) — flagged.
+- **Log tab:** two brandRedBright buttons above the forms; tab reloads after the wizard pops (LogScreen doesn't listen to BoatEvents).
+- Tests: +7 → **201 total green.** Built + installed v1.87.0+95 (chunked + MD5). No LogService/forms/logic changes.
+
+---
+
 ## 2026-08-14 — Session 16 — Smart Maintenance Pack (feature #86) → 1.86.0
 
 **Delivered per confirmed adaptation plan (4 spec assumptions didn't exist — RegionService / SafetyGearService / 'Tools → Safety Gear' screen / health-score hook):**
