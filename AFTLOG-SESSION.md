@@ -27,6 +27,13 @@
 
 ---
 
+## 2026-08-14 — Session 14b — Buying Advisor quiz fix (1.82.1)
+
+- **Louis's report:** quiz question chips ("How will you use it" etc.) couldn't be selected on the phone. **Root cause: the ChoiceChip callbacks never called setState** — taps updated the state fields silently, so the UI never rebuilt (a latent bug since the advisor was built; the Show button masked it because it reads the fields at submit). All 5 questions now wrap handlers in setState.
+- Built + installed v1.82.1+90 (chunked + MD5). 177 tests green. **Lesson: no setState in a tap handler = invisible selection — review other screens for the same pattern.**
+
+---
+
 ## 2026-08-14 — Session 14 — Instructional Help Expansion (feature #82) → 1.82.0
 
 **Delivered (DeepSeek spec, fully isolated):** HelpTopic gains nullable howTo/examples/tips/where/affects; all 9 topics ship the exact spec instructional content. HelpScreen renders only-present sections in order (Title, Body, Bullets, Where to find it, How to use it as numbered steps, Examples, Tips, How it affects AftLog, Done).
