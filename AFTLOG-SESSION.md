@@ -27,6 +27,15 @@
 
 ---
 
+## 2026-08-14 — Session 7b — Notification wrapper layer (DeepSeek skeleton compat) → 1.72.1
+
+- **Louis's wrapper-layer spec applied** — thin API-compat methods on NotificationService so the file shape matches the DeepSeek skeleton. Zero behavior/persistence/lifecycle changes; all wrappers delegate to the shipped logic (settings, quiet hours, queue/dispatch, triggers → deduped global check(), persistence compat accessors on a `planner_ts_*` namespace).
+- **Intentional non-adoptions (flagged):** skeleton's in-memory last-fired maps NOT adopted (they'd re-fire every process restart — prefs dedupe stays the active mechanism); sync getter signatures impossible (SharedPreferences is async) → wrappers are Future-based.
+- +5 wrapper tests (settings defaults, quiet hours TimeOfDay, overnight check, persistence round-trip, queue) → **119 total green**. Analyzer clean. Built + installed v1.72.1+79 (chunked + MD5).
+- Note: trigger wrappers delegate to check() which touches SQLite — not unit-testable; exercised on device.
+
+---
+
 ## 2026-08-14 — Session 7 — Planner notifications (feature #72) → 1.72.0
 
 **Delivered (v1.72.x spec):** state-transition local alerts, all logic in notification_service.dart (existing service extended — the spec assumed a new file; it already existed from Sessions 2–4).
