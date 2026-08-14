@@ -27,6 +27,13 @@
 
 ---
 
+## 2026-08-14 — Session 22b — Log tab insights consolidation (1.94.1)
+
+- **Louis approved the consolidation:** the 8 display-only sheet buttons on the Log tab collapse into a single **Insights** button → bottom-sheet menu (Log Insights, Engine Hour History, Fuel Range Estimator, Fuel Cost Insights, Trip Efficiency, Trip Timeline, Trip Clustering, Trip Forecast). Trip/Fuel wizards stay as buttons; forms untouched.
+- Note: relocating the menu handler into the right class took several brace-surgery attempts (my python string edits misfired 4× — lesson: use brace-tracking or the edit tool for class-scope surgery, never blind anchor replaces). Resolved via a proper depth-tracking script. **242 tests green.** Built + installed v1.94.1+104 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 22 — Trip trio: Timeline + Clustering + Forecast (features #92–#94) → 1.94.0
 
 **Delivered (three DeepSeek specs, shipped together — 1.92 was built but superseded before install; all land in 1.94.0):**
