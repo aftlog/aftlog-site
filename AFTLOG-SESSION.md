@@ -27,6 +27,21 @@
 
 ---
 
+## 2026-08-14 — Session 6 — Maintenance Planner (feature #71) → 1.71.0
+
+**Delivered (Louis's FINAL SPEC):** unified maintenance hub. Menu: More → Logs & maintenance → **Maintenance Planner** (end of section, both modes).
+
+- **Summary header:** Next service (min remaining across boats — "Oil change — due in 12 hrs"), overdue count, next seasonal event ("Winterization starts in 3 weeks" / "Spring prep is in season"), last service (relative).
+- **5 buckets:** Due Now / Due Soon / This Month / Seasonal / Later, each with "Nothing here right now" when empty. Active seasonal task also appears in Due Now (per spec). Bucket logic = existing isDue/isDueSoon + 30-hr/30-day This-Month window; no-baseline (never done) → Later.
+- **Multi-boat:** All Boats / per-boat filter chips; boat names on every row + completed entries.
+- **Detail sheet:** interval/category/threshold/last done/current hours/countdown + **Mark as Done** (writes a ServiceRecord + updates the interval baseline → item leaves Due buckets, Completed timeline gains it) + **View Parts / Manuals / DIY**.
+- **Pure logic extracted + 10 unit tests** (bucket assignment, remaining, relative days, season text, month label) → 99 tests green, analyzer clean.
+- **Flagged deviation:** spec says don't modify existing screens, but "pre-filtered" navigation needs hooks — added OPTIONAL additive params (default null, zero behavior change): PartsLocatorScreen.initialCategory (highlight + auto-scroll), ManualFinderScreen.initialQuery (pre-fills search), DiyLibraryScreen.initialQuery (filters articles).
+- **Observed (not fixed, spec says don't change models):** ServiceInterval.isDue() months path uses DateTime.now() internally, ignoring the now param (latent quirk; harmless in production since the app always uses real now).
+- Built + installed v1.71.0+77 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 5m — Email: single address + auto subject (CatchTales pattern) (1.70.9)
 
 - **Louis remembered the CatchTales pattern mid-install (stopped me):** one address for everything (`catchtales@yahoo.com`) + **auto pre-filled subject line** per context — yahoo auto-sort filters on the subject, not on separate addresses. Verified in ~/CatchTales: Contact Us (no subject), "Report wrong tackle photo" (subject), "Wrong tackle photo - {name}" (subject), Pro purchase (subject + body).
