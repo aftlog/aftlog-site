@@ -24,6 +24,14 @@
 
 ---
 
+## 2026-08-14 — Session 5l — Email addresses corrected: hyphens not plus-tags (1.70.7)
+
+- **Louis corrected the address format:** the auto-sort addresses are **hyphenated** (`aftlog-support@yahoo.com`), not plus-addresses — my 5k implementation used the plus form he'd given earlier. Both mailto usages updated: About → Email Support + Manual Finder "Can't find it?" → `aftlog-support@yahoo.com`. Addresses stay hidden in the UI.
+- **CORRECTED address registry:** `aftlog-support` (in use: About + Manual Finder) · `aftlog-bugs` · `aftlog-diagnostic` · `aftlog-pro` · `aftlog-feedback` · `aftlog-suggestions` · `aftlog-attachments` — all @yahoo.com, hyphenated. (Earlier plus-address version superseded — this is the source of truth.)
+- Built + installed v1.70.7+75 (chunked + MD5). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5k — Manual finder mailto fixed (1.70.6)
 
 - **Louis's catch confirmed:** the Manual Finder's "Can't find it? Ask us" mailed the dead **hello@aftlog.com** (aftlog.com has no mail server). Swapped to **aftlog+support@yahoo.com** (chosen from Louis's list — manual requests = support bucket) with the same hidden mailto pattern: To: + "Manual request" subject pre-filled, address never shown in the UI.
