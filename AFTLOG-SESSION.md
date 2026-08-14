@@ -24,6 +24,20 @@
 
 ---
 
+## 2026-08-14 — Session 5b — Diagnostic Report PDF (Phase 2, feature #68) → 1.68.0+62
+
+**Delivered:** shareable A4 PDF of the Diagnostic Assistant Report. Engine untouched (Phase 1 intact).
+
+- `lib/services/diagnostic_pdf_service.dart`: generate() + share() (Printing.sharePdf — same pattern as PdfService; the spec's `saveAndShare` doesn't exist in this codebase). Exact locked section headers, exact order, diagram thumbnail at top only, footer-only branding. Filename: `diagnostic_report_YYYY-MM-DD_HHMMSS.pdf`.
+- **Diagram thumbnail wired from real data:** `diagnosticDiagramMap` built from diagram_data.dart (overview + 63 hotspot symptom links) → symptom → WebP asset (e.g. Overheating → cooling_system.webp). "Won't start" has no system art — correctly absent, PDF renders without diagram.
+- Summary screen: **Generate PDF** button (spinner while generating, error SnackBar on failure); screen gained optional `symptomKey` param (the spec's snippet needed a key Phase 1 didn't carry); "PDF coming later" footnote replaced.
+- **Spec adaptations (judgment calls, documented):** (1) no `PdfService.saveAndShare` — followed the existing sharePdf pattern instead; (2) NO PdfGoogleFonts — runtime font download breaks offline-first, and no existing report uses it; (3) spec's `_theme()` had `await` in a non-async static — moot without font loading.
+- **Font fix:** default PDF fonts can't draw em/en dashes or curly quotes (—, –, “”) — ASCII-sanitized at the PDF boundary so the report renders clean; the on-screen summary keeps the real characters. Verified: WebP embeds fine in pdf 3.13 (test renders the real cooling_system.webp).
+- Tests: 89 (5 new — PDF magic bytes, WebP embed, diagram map, filename format). Analyzer clean. Built + installed on phone (v1.68.0+62).
+- **Not gated:** PDF is FREE (spec marked Pro gating optional; UI snippet had none). Louis: 3-line add if you want PDF Pro-only — say the word.
+
+---
+
 ## 2026-08-14 — Session 5 — Diagnostic Assistant Report (Phase 1, feature #67) → 1.67.0+60
 
 **Delivered (app repo, commit to follow):** narrative engine + summary screen. Phase 1 ONLY — PDF is Phase 2, deliberately not built.
