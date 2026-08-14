@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 24 — Trip Patterns + Trip Calendar (features #97–#98) → 1.98.0
+
+**Delivered (two DeepSeek specs, shipped together, both in the Insights menu):**
+- **#97 Trip Patterns:** weekend/weekday counts+dist+hours, early(Jan–Jun)/late(Jul–Dec), avg distance/hour/fuel per group, morning/afternoon/evening timing (05–11/12–17/18–22), summary cards.
+- **#98 Trip Calendar:** month selector, Mon–Sun grid with marker dots, tap-a-day → trip list sheet, monthly totals, per-day intensity bars, most-active day + busiest week + trips cards.
+- Tests: +9 → **261 total green.** Built + installed v1.98.0+108 (chunked + MD5). Insights menu now has 12 sheets — still one tap.
+- Note: my test expectations twice reflected bad test data rather than bugs (all-July trips → late season dominates; duplicate label strings) — worth remembering: check the DATA before suspecting the code.
+
+---
+
 ## 2026-08-14 — Session 23 — Trip Heatmap + Trip Summary (features #95–#96) → 1.96.0
 
 **Delivered (two DeepSeek specs, shipped together):** both land in the consolidated Insights menu (the v1.95 spec's standalone button predates the consolidation — flagged).
