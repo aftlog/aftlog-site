@@ -27,6 +27,14 @@
 
 ---
 
+## 2026-08-14 — Session 21 — Trip Efficiency Insights sheet (feature #91) → 1.91.0
+
+**Delivered (DeepSeek spec, fully isolated, display-only):** TripEfficiencyInsights — trip-by-trip km/L + cost/km (missing fields skipped), best/worst trips (hidden without pairs), average trend, seasonal efficiency (mean km/L + cost/km per season), efficiency-vs-distance list (desc, top 10), summary cards (avg km/L, avg cost/km, total distance). Log tab button.
+- Tests: +5 → **227 total green.** Built + installed v1.91.0+100 (chunked + MD5). 100th build number milestone.
+- **Log tab now has 6 tool buttons + forms — recommend consolidating** (e.g. one 'Insights' button opening a menu of the 5 sheets) before the tab gets unwieldy; Louis's call.
+
+---
+
 ## 2026-08-14 — Session 20 — Fuel Cost Insights sheet (feature #90) → 1.90.0
 
 **Delivered (DeepSeek spec, fully isolated, display-only):** FuelCostInsights — per-trip cost (+cost/km when distance logged), cost per engine hour, seasonal breakdown (Spring/Summer/Fall/Winter cost + litres), fill trends (avg/max/min cost, avg price/L), 3 summary cards (total / avg per trip / avg per hour). cost = litres×price with e.cost fallback per spec. 'Avg per trip' = mean of trips-with-fuel-cost (interpretation — flagged). Log tab button.
