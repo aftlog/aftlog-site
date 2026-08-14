@@ -24,6 +24,14 @@
 
 ---
 
+## 2026-08-14 — Session 5h — Nav label wrap fix + About AftLog screen (1.70.1)
+
+- **Bug (Louis):** bottom-nav item 1 wrapped — "Dashboard" rendered as "Dashboar" + "D". Root cause: S23 has Android **font_scale 1.3**; M3 NavigationBar labels scaled to ~15.6sp and wrapped in the ~90px tab. Fix: clamp the bar's text scale (MediaQuery textScaler) so labels stay one line at any system font size; icons + AppBar title still scale. (Device also has density 450 — noted for future UI checks.)
+- **About AftLog (DEEPSEEK FINAL SPEC — exact text):** new `AboutScreen` — tagline, "What AftLog helps you do" (7 items), Offline-first, Privacy, Version, Company (Maison Louis Design + louismales-a11y.github.io link), Support (support@aftlog.app mailto), Legal paragraph. Version renders the LIVE app version via package_info_plus (the old dialog hardcoded 1.0.0 — stale). Support tile now pushes the screen; company/support links tappable (url_launcher). package_info_plus promoted to a direct dependency.
+- Built + installed v1.70.1+69 (chunked + MD5). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5g — Mode-switch onboarding (FINAL SPEC §5–§6, feature #70) → 1.70.0
 
 - **Final More-menu spec delivered.** Checked §1–§4 + §7 against what 5e/5f already shipped: 7 sections, exact order/labels, drill-down, beginner/power variants — ALL already live, zero changes needed.
