@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 16 — Smart Maintenance Pack (feature #86) → 1.86.0
+
+**Delivered per confirmed adaptation plan (4 spec assumptions didn't exist — RegionService / SafetyGearService / 'Tools → Safety Gear' screen / health-score hook):**
+- **Interval Forecasting:** pure model (usage hrs/day from logs, target, predicted due hours + date, region season window via SettingsService.region + regionSeasons) + sheet with exact spec sections; 'Forecast' button under the interval detail header.
+- **Safety Gear Wizard:** 7 checkbox pages + final; saves to prefs. Button on **Compliance** (no 'Tools → Safety Gear' exists). Health-score hook **deferred** (needs a scoring change the spec forbids — flagged for a future pack).
+- **Seasonal Prep Wizard:** Spring(6)/Fall(4)/Winter(4) exact pages, region-aware; per-season button on Planner → Seasons (Summer none).
+- Tests: +13 → **194 total green**. Built + installed v1.86.0+94 (chunked + MD5). #85 reserved per the spec's numbering.
+
+---
+
 ## 2026-08-14 — Session 15 — Dashboard Breakdown Pack (features #83–#84) → 1.84.0
 
 **Delivered (DeepSeek spec) with one correction:** the spec claims `score_breakdown_sheet.dart (from v1.83.0)` — it never shipped. The pack therefore builds BOTH:
