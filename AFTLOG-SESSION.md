@@ -27,6 +27,19 @@
 
 ---
 
+## 2026-08-14 — Session 9 — Planner Pro slices 2–5 (features #74–77) → 1.77.0
+
+**Delivered all four remaining Pro slices in one pass (Louis: "do them all in order"):**
+- **#74 Multi-Season Planning (Pro):** `planner_season_service.dart` (boatSeasons, seasonalChecklistFor, intervalsInSeason — pure) · planner tabs **This Month | Upcoming | Seasons (Pro)** (Seasons gated → ProUpgradeScreen; free tier keeps all buckets on the Upcoming tab) · `planner_seasons_screen.dart` (per-season checklist open + predicted intervals; hours-based items stay in buckets).
+- **#75 Analytics (Pro):** `planner_analytics_service.dart` (hours-between gaps, cost per service/season/boat, frequency — pure) · `planner_analytics_screen.dart` (CustomPaint bar charts, zero deps) · planner overflow + Boat detail entries, gated.
+- **#76 Predictive (Pro):** `planner_predictive_service.dart` (avg hours/day from logbook, predictedDaysUntilDue, predictedText) · summary-card PRO badge + predicted line · interval-detail Predicted row · Pro-gated **"Predicted due soon"** notification (id 9014, once per item per cycle).
+- **#77 Cloud sync seam (Pro):** `planner_sync_service.dart` — buildPayload (intervals/history/logs/boats, deterministic) + disabled no-op sync(); tests assert payload shape + no behavior change.
+- Settings → Pro & data gains **"Planner Pro features"** checklist when Pro active. Free-tier behavior untouched throughout.
+- Tests: +19 → **143 total green**. Analyzer clean. Built + installed v1.77.0+84 (chunked + MD5).
+- **Deviation note:** 1.74.0–1.76.0 were consumed as pre-set bumps (established pattern) — all four features ship in 1.77.0; FEATURES.md audit trail intact.
+
+---
+
 ## 2026-08-14 — Session 8 — Planner Pro: Slice 1 Export (feature #73) → 1.73.0
 
 **Delivered (Planner Pro set, slice 1 of 5):**
