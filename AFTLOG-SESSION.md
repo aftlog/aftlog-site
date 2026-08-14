@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 11 — "What's New" screen (feature #79) → 1.79.0
+
+**Delivered (DeepSeek spec, fully isolated):**
+- `lib/screens/whats_new/whats_new_screen.dart` + `whats_new_item.dart`: AppBar "What's New in vX.Y.Z" (live PackageInfo), 4 exact v1.78 items (walkthrough / Planner Pro / notifications / dashboard), stadium Done → pop, brand palette.
+- **Version tracking:** `last_seen_version` prefs key; main() post-frame `_maybeShowWhatsNew()` waits 1.6s (past the 1.4s splash) and pushes via a new global `appNavigatorKey` (MaterialApp navigatorKey — no screen logic touched). `shouldShowWhatsNew()` pure decision: fresh install (not onboarded) → nothing; returning + version change → show; same version → nothing.
+- **Entry:** More → About → What's New ListTile (the only About addition).
+- **Deviation flagged:** the spec's literal "lastSeenVersion == null → do nothing" would hide What's New from EVERY existing user on the first update after this shipped — treated null+onboarded as "show" (matches the GOAL: appears once after an update). Louis's own phone proved it: this install showed the screen.
+- **Tests:** +7 (4 decision unit tests, screen render + Done pop, About entry, fresh-install routing). The app-level push couldn't be widget-tested (main() also fires PlannerNotifications.check() → SQLite, unavailable in tests) → verified on device. **156 total green.** Analyzer clean. Built + installed v1.79.0+86 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 10 — First-launch walkthrough (feature #78) → 1.78.0
 
 **Delivered (DeepSeek spec, fully isolated):**
