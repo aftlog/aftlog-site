@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 10 — First-launch walkthrough (feature #78) → 1.78.0
+
+**Delivered (DeepSeek spec, fully isolated):**
+- `lib/screens/onboarding/onboarding_tour_screen.dart` + `onboarding_tour_card.dart`: PageView 4 cards (Welcome w/ logo, Planner, Safety tools, Offline-first — exact spec text), dots, Next, always-visible Skip, Done on last, stadium buttons, brand palette, no emojis.
+- `_FirstRun` (main.dart): new `onboarding_tour_complete` key — not-onboarded users see the tour once, then the existing OnboardingScreen. Existing `onboarded` flag untouched; onboarded users never see the tour; back exits via root route (same as existing onboarding).
+- Tests: +6 widget tests (first launch shows tour; 4-card walkthrough; Skip/Done → complete + existing onboarding; relaunch skips; preset skips; onboarding unaffected). **149 total green.** Analyzer clean. Built + installed v1.78.0+85 (chunked + MD5).
+- **Deviations flagged:** (1) spec's FEATURES.md number "60" was stale (taken) → shipped as #78; (2) the onboarded→Splash branch needs SQLite to widget-test, so that pre-existing path is verified manually (tour gates only the not-onboarded path, which IS tested).
+
+---
+
 ## 2026-08-14 — Session 9 — Planner Pro slices 2–5 (features #74–77) → 1.77.0
 
 **Delivered all four remaining Pro slices in one pass (Louis: "do them all in order"):**
