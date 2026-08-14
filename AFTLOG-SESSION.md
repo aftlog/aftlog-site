@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 27 — v1.101C: Local Backend Prototype (Dart shelf + SQLite)
+
+**Louis chose Option C — a lab backend, zero infra commitment.** New repo `~/aftlog_server` (standalone Dart, NOT the Flutter app):
+- **Import API** `POST /api/v1/aftlog/import-bundle` — accepts BOTH the app's real backup shape (boats/log_entries/service_records/service_intervals/checklists — the actual BackupService export) AND the spec's idealized shape; validates (400 invalid/missing, 413 >20MB, 422 bad version); normalizes into SQLite with user_id+import_id on every record; malformed rows skipped; returns importId + summary.
+- `GET /imports`, `GET /data?year`, `GET /year-in-review?year` (totals/averages/efficiency/seasonal/clusters/highlights/milestones/timeline + multiYear) — the analytics mirror the app's Dart math 1:1.
+- Auth out of scope (user_id=1). sqlite3 loader overridden → libsqlite3.so.0 (this box lacks the dev symlink). **8 tests green.** Verified live with curl: import → ok+summary; 400/422 error paths; year-in-review computed 55 km/10 h/19 L/$36.50 from the fixture.
+- **Next layers when ready:** v1.102 web Year-in-Review page (consumes /year-in-review), then v1.103–110 analytics pack — all against this local server with zero guesswork. Server repo is local-only (git committed, not pushed); push to aftlog/aftlog-server when Louis wants.
+
+---
+
 ## 2026-08-14 — Session 26 — Send to Web Portal (feature #100) → 1.100.0 🎉
 
 **FEATURE #100 — the century milestone.** Delivered (DeepSeek spec, display-only, Pro):
