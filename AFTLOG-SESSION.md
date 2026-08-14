@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 28 — v1.102: Web Portal Year-in-Review page
+
+**Delivered on the local backend (repo now pushed: aftlog/aftlog-server, PRIVATE):**
+- `web/portal/year-in-review.html` — self-contained responsive hero dashboard, inline CSS/JS + hand-rolled SVG charts (zero external deps, brand palette): hero cards · totals/averages · efficiency panel + sparkline · seasonal stacked bars · cluster donut · highlights cards · **milestones & badges grid + Share Badge (SVG download)** · recent-trips table · **multi-year line chart** · CSV export + print-PDF · empty-data state · year selector · Pro footer.
+- Shelf serves `GET /portal/year-in-review`; buildRouter accepts an injected DB (testable). Router tests: import→review end-to-end, 400/422 paths, page served → **11 tests green**. Verified live (import 200, portal 200).
+- Auth/Pro gating stubbed (lab, user_id=1) — wired at deployment.
+- **How to see it:** `cd ~/aftlog_server && dart run bin/server.dart` → `http://localhost:8080/portal/year-in-review` (after importing a bundle).
+- **Next layers ready to go:** v1.103–110 analytics pack (all against this server).
+
+---
+
 ## 2026-08-14 — Session 27 — v1.101C: Local Backend Prototype (Dart shelf + SQLite)
 
 **Louis chose Option C — a lab backend, zero infra commitment.** New repo `~/aftlog_server` (standalone Dart, NOT the Flutter app):
