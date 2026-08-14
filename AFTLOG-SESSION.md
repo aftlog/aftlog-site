@@ -24,6 +24,14 @@
 
 ---
 
+## 2026-08-14 — Session 5f — More tab = section index (1.69.1)
+
+- **Louis's handback on 5e:** even the 7-section list was still "long and overwhelming" — he wanted just the section headers visible. More tab is now **7 short tiles** (icon + name + one-line hint); tapping a section opens its items in its own screen (`MoreSectionScreen`).
+- New `lib/screens/more_section_screen.dart` (MoreSectionKind enum + per-section item lists, beginner variants, all handlers moved); `more_screen.dart` is now just the index. Emergency contact loads from prefs on open (subtitle now correct on cold start). "Logs (fuel & trips)" pops the section then switches to the Log tab.
+- Navigation, icons, gating, seasonal logic unchanged. Built + installed v1.69.1+67 (chunked push + MD5 verify). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5e — More menu rewrite + standalone Diagnostic report (feature #69) → 1.69.0
 
 - **Louis's DeepSeek spec applied:** 12 sections → 7 (On the water / Checklists & setup / Tools & diagnostics / Logs & maintenance / Settings / Pro & data / Support). Exact labels per spec (Launch/Retrieve/Towing **checklist**, **System diagrams**, **Units & measurement**, **Reset setup**, **Restore backup**, **Seasonal checklists**). Navigation targets, icons, Pro gating, seasonal logic untouched.
