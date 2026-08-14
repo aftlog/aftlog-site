@@ -27,6 +27,14 @@
 
 ---
 
+## 2026-08-14 — Session 25 — Trip Year-in-Review + Milestones & Badges (feature #99) → 1.99.0
+
+**Delivered (DeepSeek spec, in the Insights menu — 13th sheet):** annual totals/averages/efficiency, seasonal, clusters, highlights (longest/highest cost/best km/L/busiest month+day), distance + hours + efficiency + activity milestones ([✓]/[ ] checkboxes), earned badge chips, last-10 timeline, summary cards.
+- **Flagged:** spec's `Icons.sunny_snowing` doesn't exist in this Flutter version → used `wb_sunny_outlined` for Season Master.
+- Tests: +6 → **267 total green.** Built + installed v1.99.0+109 (chunked + MD5). Insights menu: 13 sheets, one tap.
+
+---
+
 ## 2026-08-14 — Session 24 — Trip Patterns + Trip Calendar (features #97–#98) → 1.98.0
 
 **Delivered (two DeepSeek specs, shipped together, both in the Insights menu):**
