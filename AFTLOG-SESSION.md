@@ -27,6 +27,15 @@
 
 ---
 
+## 2026-08-14 — Session 7c — Settings notifications restyle (skeleton UI) → 1.72.2
+
+- **DeepSeek UI skeleton applied to More → Settings → Maintenance notifications:** per-toggle icons (notifications_active / priority_high / schedule / ac_unit / calendar_today), skeleton labels + subtitles, section header "Maintenance notifications", and ONE "Quiet hours" tile (nights_stay) showing the live range and opening a start→end picker dialog via the new `NotificationService.pickQuietHours(context)` (replaces the two separate picker tiles).
+- **New service wrappers:** setMasterEnabled / setDueEnabled / setDueSoonEnabled / setSeasonalEnabled / setMonthlyEnabled → PlannerNotifSettings.
+- **Deviations (flagged):** the skeleton's `await` inside build() is invalid Dart — kept the working FutureBuilder pattern with the skeleton's structure/icons/labels. pickQuietHours needed mounted-guards around both async gaps (analyzer).
+- 119 tests green, analyzer clean. Built + installed v1.72.2+80 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 7b — Notification wrapper layer (DeepSeek skeleton compat) → 1.72.1
 
 - **Louis's wrapper-layer spec applied** — thin API-compat methods on NotificationService so the file shape matches the DeepSeek skeleton. Zero behavior/persistence/lifecycle changes; all wrappers delegate to the shipped logic (settings, quiet hours, queue/dispatch, triggers → deduped global check(), persistence compat accessors on a `planner_ts_*` namespace).
