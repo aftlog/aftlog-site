@@ -24,6 +24,13 @@
 
 ---
 
+## 2026-08-14 — Session 5d — PDF preview on phone (1.68.3)
+
+- **Louis's ask:** generating the PDF jumped straight to the share sheet — he wants to VIEW it on the phone. Now Generate PDF → full-screen `PdfPreview` (printing package, already a dep) with built-in **share + print** actions in its action bar; fixed A4 (no page-format/orientation switching). `DiagnosticPdfService.share()` removed (screen generates bytes → navigates to preview; service is generation+filename only).
+- **adb transport lesson (UPDATE the old note):** kill-server alone was NOT enough today — the phone silently dropped full-APK pushes ("1 file pushed" but file never landed; version stayed old). **Reliable path on this S23: chunked push (8MB parts) → verify chunk count (10) → cat on device → md5sum match → pm install.** Small pushes land, big ones vanish. Installed v1.68.3+65, MD5-verified, running.
+
+---
+
 ## 2026-08-14 — Session 5c — PDF gated behind Pro (Decision #14 LOCKED) → 1.68.2
 
 - **Louis's call:** summary screen stays FREE (safety & learning, per D12); **PDF generation is PRO-only** — industry-standard diagnostic-report pattern. The on-screen narrative + diagram thumbnail remain the free adoption hook; the shareable artifact is the Pro value.
