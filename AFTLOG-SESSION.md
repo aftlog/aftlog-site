@@ -31,7 +31,8 @@
 
 **Delivered (DeepSeek spec, fully isolated):** HelpTopic gains nullable howTo/examples/tips/where/affects; all 9 topics ship the exact spec instructional content. HelpScreen renders only-present sections in order (Title, Body, Bullets, Where to find it, How to use it as numbered steps, Examples, Tips, How it affects AftLog, Done).
 
-- Tests: +6 → **177 total green**. Analyzer clean. **Built v1.82.0+89 but NOT installed** — Louis was on a call, phone disconnected; install pending reconnect (chunked + MD5).
+- Tests: +6 → **177 total green**. Analyzer clean.
+- **Install complete:** built v1.82.0+89, installed after reconnect (chunked + MD5) — the phone needed a REBOOT (USB re-enumeration loop: MTP window popup cycling; reboot fixed it — add to adb troubleshooting notes). What's New screen fired on this update (1.79→1.82) — live verification of feature #79.
 - Repo committed + pushed (app 94fa38e).
 
 ---
