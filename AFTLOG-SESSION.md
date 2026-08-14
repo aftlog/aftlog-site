@@ -24,6 +24,17 @@
 
 ---
 
+## 2026-08-14 — Session 5j — Support one-tap + Email Support button (1.70.5)
+
+- **Louis's 3 fixes:**
+  1. **One less tap** — More → Support now opens the About screen DIRECTLY (the intermediate "About AftLog" tile is gone). MoreSectionKind.support removed; More tab = 6 sections + Support tile.
+  2. **MLD logo buffering** — 12px gap added between "Maison Louis Design" and the logo (was hugging).
+  3. **Email Support button** (Icons.mail_outline — first envelope icon in the project) with the **hidden plus-address** mailto:aftlog+support@yahoo.com → opens default mail client, To: pre-filled, empty subject/body, address never shown in UI. Louis's "don't want people to see the address" also removed the visible aftlog@yahoo.com link (his intent overrides the spec's "don't remove items").
+- **NOTE flagged to Louis:** manual finder's "Can't find it? Ask us" still mails **hello@aftlog.com** — probably should also become the hidden plus-address; awaiting his call.
+- Build quirk: two failed builds (my enum/overload typos) consumed 1.70.3/1.70.4 → shipped as **1.70.5+73**. Installed (chunked + MD5). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5i — About screen corrections (1.70.2)
 
 - **Louis's fixes to the About screen (his own spec had errors):**
