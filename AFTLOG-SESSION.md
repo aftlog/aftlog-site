@@ -24,6 +24,17 @@
 
 ---
 
+## 2026-08-14 — Session 5i — About screen corrections (1.70.2)
+
+- **Louis's fixes to the About screen (his own spec had errors):**
+  1. **One window** — AftLog logo (assets/images/aftlog-logo.png, 120px) at the top with the tagline underneath; the big text heading removed.
+  2. **Version** — already LIVE via package_info_plus (auto-updates every build); the spec's "1.70.0" was never hardcoded in the app. Confirmed to Louis.
+  3. **Company link unseen** — the visible URL text is gone; the **MLD logo** (mld-logo.webp copied from catchtales-site, 72px) is now the clickable link to louismales-a11y.github.io. Name "Maison Louis Design" kept as text.
+  4. **Support email corrected** to **aftlog@yahoo.com** (mailto). (The support@aftlog.app address came from Louis's own DeepSeek spec — flagged so he knows it wasn't invented by me.)
+- assets/images/ is already fully declared in pubspec so both logos bundle automatically. Built + installed v1.70.2+70 (chunked + MD5). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5h — Nav label wrap fix + About AftLog screen (1.70.1)
 
 - **Bug (Louis):** bottom-nav item 1 wrapped — "Dashboard" rendered as "Dashboar" + "D". Root cause: S23 has Android **font_scale 1.3**; M3 NavigationBar labels scaled to ~15.6sp and wrapped in the ~90px tab. Fix: clamp the bar's text scale (MediaQuery textScaler) so labels stay one line at any system font size; icons + AppBar title still scale. (Device also has density 450 — noted for future UI checks.)
