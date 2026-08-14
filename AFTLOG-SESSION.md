@@ -6,6 +6,7 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔴 adb stall (Samsung):** plain `adb push` can wedge for 10min+. Fix: `adb kill-server && adb start-server`, then re-push (same file took 1.3s after). Seen twice 2026-08-14. Also in CODING-STANDARDS §3.
 - **🔴 OPEN ITEMS (see Session 4 for full log):**
   1. **Hotspot alignment:** current 79 hotspots are knowledge-based — align via the editor (`tools/aftlog-diagram-editor.html`): Import JSON from `tools/hotspots/`, load the WebP, drag into place, Export → `python3 tools/hotspots_to_dart.py` → rebuild with plain `./build.sh`.
   2. **Review backlog (Session 4 findings, cheap fixes):** daily check-in dies on reboot (`RECEIVE_BOOT_COMPLETED` missing) · onboarding flag written before onboarding finishes · free-tier gating not enforced (AI + reminders should be Pro per Decision #3) · Boats tab stale (listen to `BoatEvents`) · `Units` service dead code (metric toggle half-wired)
