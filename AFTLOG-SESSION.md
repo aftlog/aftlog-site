@@ -24,6 +24,15 @@
 
 ---
 
+## 2026-08-14 — Session 5m — Email: single address + auto subject (CatchTales pattern) (1.70.9)
+
+- **Louis remembered the CatchTales pattern mid-install (stopped me):** one address for everything (`catchtales@yahoo.com`) + **auto pre-filled subject line** per context — yahoo auto-sort filters on the subject, not on separate addresses. Verified in ~/CatchTales: Contact Us (no subject), "Report wrong tackle photo" (subject), "Wrong tackle photo - {name}" (subject), Pro purchase (subject + body).
+- **Applied to AftLog:** single inbox `aftlog@yahoo.com` · About → Email Support = `?subject=Support` · Manual Finder = `?subject=Manual%20request`. All concatenated/hyphenated/plus variant addresses (5k–5l) are dead — superseded. Addresses stay hidden in the UI.
+- **Rule recorded:** any future mailto in AftLog uses `aftlog@yahoo.com` + a context-specific subject (CatchTales convention), never a second address.
+- Built + installed v1.70.9+76 (chunked + MD5). 89 tests green. (1.70.8 was built but superseded before install.)
+
+---
+
 ## 2026-08-14 — Session 5l — Email addresses corrected: hyphens not plus-tags (1.70.7)
 
 - **Louis corrected the address format:** the auto-sort addresses are **hyphenated** (`aftlog-support@yahoo.com`), not plus-addresses — my 5k implementation used the plus form he'd given earlier. Both mailto usages updated: About → Email Support + Manual Finder "Can't find it?" → `aftlog-support@yahoo.com`. Addresses stay hidden in the UI.
