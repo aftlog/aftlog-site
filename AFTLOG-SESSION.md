@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 12 — Contextual Help System (feature #80) → 1.80.0
+
+**Delivered (DeepSeek spec, fully isolated):**
+- `lib/help/`: `help_button.dart` (help_outline IconButton, brandMuted, always navigates — never a dialog) · `help_screen.dart` (AppBar "Help — {title}", title/body/bullets, stadium Done; unknown topic falls back to planner so Help never renders empty) · `help_content.dart` (6 exact spec topics: planner/analytics/predictive/seasons/logs/safety).
+- **Buttons ONLY on allowed screens:** Planner (⋮ bar) · Analytics · Seasons · interval detail · On-the-Water (safety) · Log tab.
+- **Two mapped placements (flagged):** the spec's "IntervalDetailScreen" is the planner's bottom-sheet detail (no AppBar) → help icon in the sheet header; the Log tab has no own AppBar (shell's is shared; HomeScreen is on the forbidden list) → help icon top-right of the tab content. Both deviate from "AppBar actions" but are the only compliant options.
+- Forbidden screens untouched. +6 tests (topics map + exact wording, screen content, fallback, Done pop, button → right topic). **162 total green.** Analyzer clean. Built + installed v1.80.0+87 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 11 — "What's New" screen (feature #79) → 1.79.0
 
 **Delivered (DeepSeek spec, fully isolated):**
