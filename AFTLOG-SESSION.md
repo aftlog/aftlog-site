@@ -27,6 +27,23 @@
 
 ---
 
+## 2026-08-14 — Session 17b — What's New governance + entries structure (1.87.1)
+
+**PERMANENT RULES (Louis's spec, recorded for every future session — What's New updates):**
+1. **NEVER auto-add** — only when Louis explicitly provides content.
+2. User-visible features ONLY — no refactors/services/bug-fixes/tests/prefs/scoring/dev-notes.
+3. Short, curated, plain language, no emojis/jargon.
+4. Group by version; never merge/reorder.
+5. Append-only; never rewrite old entries.
+6. No other About content changes.
+7. Exact tuple shape: (version, title, bullets).
+8–11. Use EXACTLY the version/title/bullets Louis provides — no guessing.
+12. Display-only.
+
+**Implemented (enabling, zero entries added per Rule 1):** `lib/screens/whats_new/whats_new_entries.dart` — empty const + rules header; screen shows latest group when present, else the existing v1.78 items (UX unchanged). Path note: the spec's `lib/screens/about/whats_new.dart` doesn't exist — entries live at `lib/screens/whats_new/` (flagged). Built + installed v1.87.1+96. 201 tests green.
+
+---
+
 ## 2026-08-14 — Session 17 — Log Wizards Pack (feature #87) → 1.87.0
 
 **Delivered (DeepSeek spec, fully isolated):**
