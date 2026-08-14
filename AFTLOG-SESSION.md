@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 26 — Send to Web Portal (feature #100) → 1.100.0 🎉
+
+**FEATURE #100 — the century milestone.** Delivered (DeepSeek spec, display-only, Pro):
+- One-shot JSON bundle export (existing BackupService, no logic changes) + offline transfer options: QR code (qr package via CustomPainter, small bundles only, else 'too large'), USB path, Bluetooth instructions, local Wi-Fi LAN server (dart:io on :8080, stops on close — nothing sent automatically).
+- Pro gate: upgrade note + Unlock Pro button for free users. Entry: More → Pro & data (spec said 'Data section' — flagged).
+- qr added as a direct dep. Tests: +6 (gating, QR vs too-large, LAN server 200/404 over localhost via raw sockets — dart's HttpClient fought the test env; raw Socket was the fix) → **273 total green.** Built + installed v1.100.0+110 (chunked + MD5).
+- **Session tally: 100 features shipped in ~26 sessions today, 273 tests, 26 releases on the phone.**
+
+---
+
 ## 2026-08-14 — Session 25 — Trip Year-in-Review + Milestones & Badges (feature #99) → 1.99.0
 
 **Delivered (DeepSeek spec, in the Insights menu — 13th sheet):** annual totals/averages/efficiency, seasonal, clusters, highlights (longest/highest cost/best km/L/busiest month+day), distance + hours + efficiency + activity milestones ([✓]/[ ] checkboxes), earned badge chips, last-10 timeline, summary cards.
