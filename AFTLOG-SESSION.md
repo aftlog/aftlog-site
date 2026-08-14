@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 15 — Dashboard Breakdown Pack (features #83–#84) → 1.84.0
+
+**Delivered (DeepSeek spec) with one correction:** the spec claims `score_breakdown_sheet.dart (from v1.83.0)` — it never shipped. The pack therefore builds BOTH:
+- **Fuel Range Breakdown** (#84): pure FuelRangeBreakdown model + scrollable bottom sheet (Tank size / Burn rate / Cruise speed / Remaining / Estimated range / Accuracy with exact spec tier text: ≥10 trips High, 4–9 Medium, 0–3 Low + 3 tips + Done). Values compose existing LogService methods only (fuelSince/efficiencyKmPerL/kmPerHour/fuelPerHour/statsForBoat) — display-only, zero service changes.
+- **Boat Health Score Breakdown** (#83, the missing v1.83 item): score/status/overdue + the four documented weights (40/35/15/10) as the explanation — HealthScoreService untouched.
+- Beginner dashboard: "Breakdown" TextButton (brandMuted, right-aligned) under the Fuel card subtitle AND the Health card — cards otherwise unchanged. Sheets isScrollControlled + scrollable (small screens).
+- Tests: +5 → **182 total green**. Analyzer clean. Built + installed v1.84.0+92 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 14b — Buying Advisor quiz fix (1.82.1)
 
 - **Louis's report:** quiz question chips ("How will you use it" etc.) couldn't be selected on the phone. **Root cause: the ChoiceChip callbacks never called setState** — taps updated the state fields silently, so the UI never rebuilt (a latent bug since the advisor was built; the Show button masked it because it reads the fields at submit). All 5 questions now wrap handlers in setState.
