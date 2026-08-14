@@ -6,7 +6,10 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
-- **🔴 adb stall (Samsung):** plain `adb push` can wedge for 10min+. Fix: `adb kill-server && adb start-server`, then re-push (same file took 1.3s after). Seen twice 2026-08-14. Also in CODING-STANDARDS §3.
+- **🔜 NEXT UP: MAINTENANCE PLANNER** (Louis, 2026-08-14 — the next feature). See session 5m report in chat + AFTLOG-SPEC context: ~60% of the pieces exist (intervals + isDue/isDueSoon + logs hours + reminders due/upcoming + NBA triage + health score + parts-at-category + seasonal). Missing: the unified Planner screen (summary + 30/90/365-day timeline buckets + completed section), "X hours away" countdowns, per-item parts/manual/DIY links. Start by re-reading DECISIONS.md + CODING-STANDARDS + this file's 5a–5m entries.
+- **🔴 adb stall (Samsung):** plain `adb push` can wedge or silently drop big files. Reliable: chunked push (8MB parts) → verify chunk count (10) → cat on device → md5sum match → pm install. Seen many times 2026-08-14. Also in CODING-STANDARDS §3.
+- **Email convention (LOCKED 2026-08-14):** ALL mailtos = `aftlog@yahoo.com` + context-specific subject (CatchTales pattern). Never a second address.
+- **Open (parked):** hotspot visual alignment (79 knowledge-based hotspots, editor at tools/aftlog-diagram-editor.html) · deep-screen translations (Rule 3 pass at release) · site rollout (analytics → beta CTA → distribution; Aug 24 gate) · MLD logo spacing done 5j.
 - **🔴 OPEN ITEMS (see Session 4 for full log):**
   1. **Hotspot alignment:** current 79 hotspots are knowledge-based — align via the editor (`tools/aftlog-diagram-editor.html`): Import JSON from `tools/hotspots/`, load the WebP, drag into place, Export → `python3 tools/hotspots_to_dart.py` → rebuild with plain `./build.sh`.
   2. **Review backlog (Session 4 findings, cheap fixes):** daily check-in dies on reboot (`RECEIVE_BOOT_COMPLETED` missing) · onboarding flag written before onboarding finishes · free-tier gating not enforced (AI + reminders should be Pro per Decision #3) · Boats tab stale (listen to `BoatEvents`) · `Units` service dead code (metric toggle half-wired)
