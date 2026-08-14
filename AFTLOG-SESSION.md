@@ -27,6 +27,14 @@
 
 ---
 
+## 2026-08-14 — Session 19 — Fuel Range Estimator sheet (feature #89) → 1.89.0
+
+**Delivered (DeepSeek spec, fully isolated, display-only):** FuelRangeSheet — pure `FuelRangeEstimate.calculate` with the EXACT calculator formulas from `_FuelRangeState` (max/risky/safe), live-recompute inputs (Tank prefilled from boat, Reserve 20, Burn rate prefilled from logbook + 'learned from logbook' suffix, Cruise 30, Wind 10, Waves 10), outputs 'Safe/Risky/Max theoretical: X km' + exact explanation + Done. Metric/imperial conversion mirrors the calculator. Log tab full-width button.
+- **Flagged:** spec's `fuelBurnPerHour` doesn't exist → used `fuelPerHour`.
+- Tests: +5 (formula parity incl. zero-burn/no-reserve, prefill, blank-when-absent) → **216 total green.** Built + installed v1.89.0+98 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 18 — Log Intelligence Pack (feature #88) → 1.88.0
 
 **Delivered (DeepSeek spec, fully isolated, display-only):**
