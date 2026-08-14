@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 13 — Combined Help + Knowledge Base (feature #81) → 1.81.0
+
+**Delivered (DeepSeek spec, fully isolated):**
+- `help_content.dart`: HelpTopic gains microTitle/microBody; all 6 original topics got exact micro text; **3 new dashboard topics** (boat_health / fuel_range / journey) with the spec's EXACT micro wording — their full title/body/bullets composed to match the app (flagged; the spec only supplied micro text for them).
+- `help_micro.dart`: MicroHelp.show (bottom sheet: microTitle + microBody + "Learn more" → HelpScreen; brand palette; no dialogs/emojis/external links) + MicroHelpIcon.
+- `knowledge_base_screen.dart`: lists all 9 topics → HelpScreen; About gains a **Knowledge Base** tile beside What's New (the only About additions).
+- **Dashboard micro-help:** info icons on the beginner dashboard's Boat Health Score / Fuel range / Boating Journey cards ONLY — the spec's forbidden placements untouched.
+- Tests: +9 → **171 total green.** Analyzer clean. Built + installed v1.81.0+88 (chunked + MD5).
+
+---
+
 ## 2026-08-14 — Session 12 — Contextual Help System (feature #80) → 1.80.0
 
 **Delivered (DeepSeek spec, fully isolated):**
