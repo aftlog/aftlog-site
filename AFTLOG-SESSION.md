@@ -27,6 +27,15 @@
 
 ---
 
+## 2026-08-14 — Session 14 — Instructional Help Expansion (feature #82) → 1.82.0
+
+**Delivered (DeepSeek spec, fully isolated):** HelpTopic gains nullable howTo/examples/tips/where/affects; all 9 topics ship the exact spec instructional content. HelpScreen renders only-present sections in order (Title, Body, Bullets, Where to find it, How to use it as numbered steps, Examples, Tips, How it affects AftLog, Done).
+
+- Tests: +6 → **177 total green**. Analyzer clean. **Built v1.82.0+89 but NOT installed** — Louis was on a call, phone disconnected; install pending reconnect (chunked + MD5).
+- Repo committed + pushed (app 94fa38e).
+
+---
+
 ## 2026-08-14 — Session 13 — Combined Help + Knowledge Base (feature #81) → 1.81.0
 
 **Delivered (DeepSeek spec, fully isolated):**
