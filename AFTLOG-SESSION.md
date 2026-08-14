@@ -24,6 +24,17 @@
 
 ---
 
+## 2026-08-14 — Session 5e — More menu rewrite + standalone Diagnostic report (feature #69) → 1.69.0
+
+- **Louis's DeepSeek spec applied:** 12 sections → 7 (On the water / Checklists & setup / Tools & diagnostics / Logs & maintenance / Settings / Pro & data / Support). Exact labels per spec (Launch/Retrieve/Towing **checklist**, **System diagrams**, **Units & measurement**, **Reset setup**, **Restore backup**, **Seasonal checklists**). Navigation targets, icons, Pro gating, seasonal logic untouched.
+- **Beginner Mode rules per spec:** Tools & diagnostics → Symptom decoder / Diagnostic report / Ask AftLog / System diagrams / Handling guides / Glossary; Pro & data → Unlock Pro + Load demo data only.
+- **One deviation (flagged to Louis in commit + summary):** the spec lists "Diagnostic report (PDF)" but no such menu item existed — built a standalone `DiagnosticReportScreen` (drive chips + symptom picker + Generate report → summary; PDF still Pro-gated per D14). Only new code in the change.
+- **Seasonal checklists:** the dynamic per-season row (Spring prep / Winterization — never both) is now titled "Seasonal checklists" with the season name as subtitle; visibility logic unchanged.
+- **Adaptation:** power-user title stays "Pro unlocked" when already Pro (spec's "Unlock Pro" is the free-state label).
+- Built + installed v1.69.0+66 (chunked push + MD5 verify — the reliable method now). 89 tests green.
+
+---
+
 ## 2026-08-14 — Session 5d — PDF preview on phone (1.68.3)
 
 - **Louis's ask:** generating the PDF jumped straight to the share sheet — he wants to VIEW it on the phone. Now Generate PDF → full-screen `PdfPreview` (printing package, already a dep) with built-in **share + print** actions in its action bar; fixed A4 (no page-format/orientation switching). `DiagnosticPdfService.share()` removed (screen generates bytes → navigates to preview; service is generation+filename only).
