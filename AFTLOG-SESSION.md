@@ -27,6 +27,14 @@
 
 ---
 
+## 2026-08-14 — Session 20 — Fuel Cost Insights sheet (feature #90) → 1.90.0
+
+**Delivered (DeepSeek spec, fully isolated, display-only):** FuelCostInsights — per-trip cost (+cost/km when distance logged), cost per engine hour, seasonal breakdown (Spring/Summer/Fall/Winter cost + litres), fill trends (avg/max/min cost, avg price/L), 3 summary cards (total / avg per trip / avg per hour). cost = litres×price with e.cost fallback per spec. 'Avg per trip' = mean of trips-with-fuel-cost (interpretation — flagged). Log tab button.
+- Tests: +6 → **222 total green.** Built + installed v1.90.0+99 (chunked + MD5).
+- Note: the Log tab now carries 5 tool buttons (Insights, Engine Hours, Fuel Range, Fuel Cost, wizards) + forms — getting busy; consider a collapsible 'Log tools' group or moving sheets under a single 'Insights' menu at some point (Louis's call).
+
+---
+
 ## 2026-08-14 — Session 19 — Fuel Range Estimator sheet (feature #89) → 1.89.0
 
 **Delivered (DeepSeek spec, fully isolated, display-only):** FuelRangeSheet — pure `FuelRangeEstimate.calculate` with the EXACT calculator formulas from `_FuelRangeState` (max/risky/safe), live-recompute inputs (Tank prefilled from boat, Reserve 20, Burn rate prefilled from logbook + 'learned from logbook' suffix, Cruise 30, Wind 10, Waves 10), outputs 'Safe/Risky/Max theoretical: X km' + exact explanation + Done. Metric/imperial conversion mirrors the calculator. Log tab full-width button.
