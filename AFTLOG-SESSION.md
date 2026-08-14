@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 22 — Trip trio: Timeline + Clustering + Forecast (features #92–#94) → 1.94.0
+
+**Delivered (three DeepSeek specs, shipped together — 1.92 was built but superseded before install; all land in 1.94.0):**
+- **#92 Trip Timeline:** chronological trips with distance/fuel/cost/efficiency/cost-per-km/hours/duration/notes + summary cards.
+- **#93 Trip Clustering:** short(0–5)/medium(>5–15)/long(>15) km clusters — per-cluster lists + avg distance/duration/km/L + most-common cluster (tie → first max) + seasonal dominance.
+- **#94 Trip Forecast:** base averages (skip missing fields), season-aware forecast, short/medium/long hours + fuel bands, efficiency forecast (km/L + fuel for typical trip), summary cards (typical trip / best season = most-active / fuel per trip).
+- All pure models + scrollable sheets; zero service/model/logic changes. Tests: +9 → **242 total green.** Built + installed v1.94.0+103 (chunked + MD5).
+- **STILL STANDING (3rd time):** Log tab has **9 tool buttons + forms**. Consolidation into a single 'Insights' menu button strongly recommended before release polish.
+
+---
+
 ## 2026-08-14 — Session 21 — Trip Efficiency Insights sheet (feature #91) → 1.91.0
 
 **Delivered (DeepSeek spec, fully isolated, display-only):** TripEfficiencyInsights — trip-by-trip km/L + cost/km (missing fields skipped), best/worst trips (hidden without pairs), average trend, seasonal efficiency (mean km/L + cost/km per season), efficiency-vs-distance list (desc, top 10), summary cards (avg km/L, avg cost/km, total distance). Log tab button.
