@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 34 — v1.114: team ID-rename patch (adaptive)
+
+- **The team's v1.114.patch does NOT apply to this repo** — it was generated against their template architecture, but this repo has a different structure (no per-section containers/init*() functions in portal.js; page logic is inline per HTML file; filenames differ). Verified the mismatch with grep evidence.
+- **Applied the intent adaptively:** homepage ids renamed to the contract (home-stats/home-imports/home-boats + JS refs), verified rendering via headless DOM.
+- **Wrote CONTRACT.md** in the repo — the definitive frontend contract for generators/team: exact URLs, flat file layout, portal.js = shell only + per-page inline render(), state/chart helpers, theme system, "rules for generated code". Saved v1.114.patch for reference.
+- Tests: 20 green. Pushed.
+- **Lesson:** before the team generates another patch, point them at CONTRACT.md — patches against the template will keep failing; patches against the contract won't.
+
+---
+
 ## 2026-08-14 — Session 33 — v1.113: Unified portal contract (team bundle)
 
 **Applied the team's cut-and-paste bundle against the exact contract** (/portal/assets/, /portal/<name>, /api/v1/aftlog/...):
