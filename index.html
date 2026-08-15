@@ -51,7 +51,11 @@
     transition:color .15s;
   }
   nav a:hover{color:var(--accent2)}
-  @media(max-width:640px){ nav a{display:none} }
+  @media(max-width:640px){
+    .header-inner{flex-wrap:wrap;gap:8px}
+    nav{display:flex;gap:12px;overflow-x:auto;width:100%;padding:4px 0 6px;-webkit-overflow-scrolling:touch}
+    nav a{margin-left:0;white-space:nowrap;font-size:13px}
+  }
 
   /* hero */
   .hero{
@@ -170,6 +174,56 @@
   footer p{color:#6E6E77;font-size:13.5px}
   footer a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13.5px}
   footer a:hover{color:var(--accent2)}
+
+  /* platform / portal */
+  .platform{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .platform-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;margin-top:32px;align-items:flex-start}
+  @media(max-width:800px){.platform-layout{grid-template-columns:1fr}}
+  .platform-copy p{color:var(--muted);font-size:15px;margin-top:10px;line-height:1.6}
+  .platform-copy ul{list-style:none;margin-top:18px;padding-left:0}
+  .platform-copy li{color:#D6D6DC;font-size:14.5px;padding:6px 0 6px 22px;position:relative}
+  .platform-copy li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:10px;border-radius:50%;background:rgba(224,32,32,.7)}
+  .portal-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+  .portal-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+  .portal-card p{color:var(--muted);font-size:14px;line-height:1.55}
+  .portal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .portal-tag{font-size:12px;color:#D6D6DC;border-radius:999px;border:1px solid var(--line);padding:5px 10px;background:#101015}
+
+  /* screenshots */
+  .screens{background:#0B0B0F;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:32px}
+  .screen-card{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px 18px 20px}
+  .screen-card img{width:100%;border-radius:14px;display:block;border:1px solid #1E1E24;margin-bottom:12px}
+  .screen-card h3{font-size:15.5px;font-weight:700;margin-bottom:4px}
+  .screen-card p{color:var(--muted);font-size:13.5px;line-height:1.5}
+
+  /* how it works */
+  .how{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:30px}
+  .how-step{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:22px 22px 24px}
+  .how-step .num{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
+  .how-step h3{font-size:17px;font-weight:700;margin-bottom:6px}
+  .how-step p{color:var(--muted);font-size:14.5px;line-height:1.55}
+
+  /* FAQ */
+  .faq{background:#0B0B0F;border-top:1px solid var(--line)}
+  .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:30px}
+  .faq-item{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:22px 22px 24px}
+  .faq-item h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
+  .faq-item p{color:var(--muted);font-size:14px;line-height:1.55}
+
+  /* pro tier */
+  .pro{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pro-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px;margin-top:30px;align-items:flex-start}
+  @media(max-width:800px){.pro-layout{grid-template-columns:1fr}}
+  .pro-copy p{color:var(--muted);font-size:15px;margin-top:10px;line-height:1.6}
+  .pro-copy ul{list-style:none;margin-top:16px;padding-left:0}
+  .pro-copy li{color:#D6D6DC;font-size:14.5px;padding:6px 0 6px 22px;position:relative}
+  .pro-copy li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:10px;border-radius:50%;background:rgba(224,32,32,.7)}
+  .pro-card{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:22px 22px 24px}
+  .pro-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+  .pro-card p{color:var(--muted);font-size:14px;line-height:1.55}
+  .pro-pill{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.18em;padding:5px 10px;border-radius:999px;border:1px solid rgba(224,32,32,.5);color:var(--accent2);background:rgba(224,32,32,.08);margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -179,9 +233,12 @@
     <div class="logo"><img src="images/aftlog-logo.png" alt="AftLog"></div>
     <nav>
       <a href="#pain">Why it exists</a>
-      <a href="#beginner">For new boaters</a>
       <a href="#features">Features</a>
       <a href="#price">Pricing</a>
+      <a href="#portal">Web Portal</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#pro-tier">Pro</a>
+      <a href="#faq">FAQ</a>
       <a href="/updates/">Updates</a>
     </nav>
   </div>
@@ -307,6 +364,96 @@
   </div>
 </section>
 
+
+<section class="platform" id="portal">
+  <div class="wrap">
+    <div class="sec-label">AftLog Web Portal</div>
+    <h2>Your boat's analytics suite — when you want it, not when the app demands it</h2>
+    <p class="sec-intro">AftLog starts as an offline logbook on your phone. When you're ready, you export a bundle and send it to the Web Portal — a full analytics dashboard for your trips, fuel, maintenance, and boat health.</p>
+    <div class="platform-layout">
+      <div class="platform-copy">
+        <p>Every log entry you make offline — hours, fuel, services, checklists — becomes real analytics when you choose to sync. No accounts, no always-on cloud, just:</p>
+        <ul>
+          <li><strong>Year-in-Review:</strong> total trips, distance, hours, fuel, and cost — plus efficiency and highlights.</li>
+          <li><strong>Trip analytics:</strong> calendar, patterns, heatmap, clustering, and a simple forecast for next season.</li>
+          <li><strong>Maintenance &amp; planner:</strong> cost trends, overdue vs on-time, planned vs completed, and consistency scores.</li>
+          <li><strong>Boat health:</strong> per-boat hours, fuel, compliance, and a 0–100 health index inspired by the app's Boat Health Score.</li>
+        </ul>
+        <p style="margin-top:14px">The Web Portal is included in your AftLog Pro license. You can ignore it and stay fully offline — or use it when you want deeper insight into how you actually use your boat.</p>
+      </div>
+      <div class="portal-card">
+        <h3>AftLog Web Portal — included</h3>
+        <p>Runs on your own machine today, and will be available as a secure cloud service later. The same data model as the app, just with bigger charts.</p>
+        <div class="portal-tags">
+          <span class="portal-tag">Year-in-Review dashboard</span>
+          <span class="portal-tag">Trip Calendar</span>
+          <span class="portal-tag">Trip Patterns</span>
+          <span class="portal-tag">Trip Heatmap</span>
+          <span class="portal-tag">Trip Clustering</span>
+          <span class="portal-tag">Trip Forecast</span>
+          <span class="portal-tag">Maintenance Dashboard</span>
+          <span class="portal-tag">Planner Dashboard</span>
+          <span class="portal-tag">Boat Health Dashboard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screens" id="screenshots">
+  <div class="wrap">
+    <div class="sec-label">See it in action</div>
+    <h2>App on the dock, portal at the desk</h2>
+    <p class="sec-intro">AftLog is built for the 11 months a year your boat is more project than boat. The app keeps you honest at the dock; the portal shows you the bigger picture when you're back home.</p>
+    <div class="screens-grid">
+      <div class="screen-card">
+        <img src="images/screen-app-dashboard.png" alt="AftLog app dashboard">
+        <h3>App — Boat dashboard</h3>
+        <p>Boat Health Score, next task, and fuel range — the things you need before you launch.</p>
+      </div>
+      <div class="screen-card">
+        <img src="images/screen-app-checklists.png" alt="AftLog checklists">
+        <h3>App — Seasonal checklists</h3>
+        <p>Launch, spring prep, winterization and more — with guided steps and safety checks.</p>
+      </div>
+      <div class="screen-card">
+        <img src="images/screen-portal-year.png" alt="AftLog Web Portal Year-in-Review">
+        <h3>Portal — Year-in-Review</h3>
+        <p>Total trips, distance, hours, fuel, and cost — plus efficiency, highlights, and multi-year trends.</p>
+      </div>
+      <div class="screen-card">
+        <img src="images/screen-portal-health.png" alt="AftLog Web Portal Boat Health">
+        <h3>Portal — Boat Health</h3>
+        <p>Per-boat cards with hours, fuel, compliance, and a 0–100 health index.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how-it-works">
+  <div class="wrap">
+    <div class="sec-label">How it works</div>
+    <h2>Log offline, export when you're ready, see the big picture</h2>
+    <p class="sec-intro">AftLog doesn't force you into an account or a cloud. You use it offline like a proper logbook — and when you want analytics, you send a bundle to the Web Portal.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="num">Step 01</div>
+        <h3>Log your boat offline</h3>
+        <p>Engine hours, fuel, services, checklists, and symptoms — all on your phone, even with no signal at the lake. Reminders fire locally; nothing depends on a server.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">Step 02</div>
+        <h3>Export your AftLog bundle</h3>
+        <p>When you want a deeper view, you export a single bundle file from the app. It contains your boats, trips, services, intervals, and checklists — nothing is sent on its own.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">Step 03</div>
+        <h3>Send it to the Web Portal</h3>
+        <p>Import the bundle into the AftLog Web Portal to see Year-in-Review, trip analytics, maintenance dashboards, and boat health — all computed from your own log.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="price" id="price">
   <div class="wrap">
     <div class="sec-label">Pricing</div>
@@ -327,6 +474,33 @@
   </div>
 </section>
 
+
+<section class="pro" id="pro-tier">
+  <div class="wrap">
+    <div class="sec-label">One-time Pro</div>
+    <h2>App + Web Portal, one price — no subscription</h2>
+    <div class="pro-layout">
+      <div class="pro-copy">
+        <p>AftLog has a free tier for one boat, and a $29 one-time Pro license that covers everything: the full app and the Web Portal. No monthly fee, no ads, no upsell screens.</p>
+        <ul>
+          <li><strong>Free:</strong> one boat, core logging, checklists, and safety tools.</li>
+          <li><strong>AftLog Pro ($29):</strong> unlimited boats, reminders, AI diagnostics, PDF reports, and the Web Portal analytics suite.</li>
+          <li><strong>Data:</strong> your log stays yours. Export to CSV/PDF anytime; portal analytics are computed from your bundle, not mined from your behavior.</li>
+        </ul>
+        <p style="margin-top:14px">One-time, not rented. Your license covers the app and the portal — the portal just runs on your own machine today, and becomes a secure cloud service later.</p>
+      </div>
+      <div class="pro-card">
+        <span class="pro-pill">AftLog Pro</span>
+        <h3>$29 — app + portal, one-time</h3>
+        <p>At launch, the $29 Pro license covers both the offline app and the Web Portal analytics suite. Waitlist members lock in this price, even if it rises later.</p>
+        <p style="margin-top:10px">No subscription. No ads. No data mining. Just a logbook and its analytics, built for the kind of person who keeps their boat longer than their phone.</p>
+        <div style="margin-top:16px">
+          <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="waitlist">
   <div class="wrap">
     <div class="waitlist">
@@ -345,9 +519,43 @@
   </div>
 </section>
 
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-label">FAQ</div>
+    <h2>Questions boat owners actually ask</h2>
+    <p class="sec-intro">If you're the kind of person who keeps a notebook in the glove box, this is for you. AftLog is built to replace that notebook — without losing the parts that make it yours.</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Does it work offline?</h3>
+        <p>Yes. The app is offline-first: logging, checklists, and reminders all work without signal. AI diagnostics have an offline fallback when you're out of range. Sync and export happen when you choose.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need an account?</h3>
+        <p>No. AftLog does not require an account to use the app. The Web Portal uses your exported bundle, not a live account connection.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I track more than one boat?</h3>
+        <p>Yes. Your Pro license covers unlimited boats and engines. Each boat gets its own health score, checklists, and analytics.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does it work for outboards and inboards?</h3>
+        <p>Yes. AftLog supports common outboard and inboard configurations, with service reminders and checklists tailored to your engine type.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What happens to my data?</h3>
+        <p>Your log lives on your device. You can export it to CSV or PDF anytime. The Web Portal computes analytics from your bundle; we don't sell or mine your data.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is this available outside Canada and the US?</h3>
+        <p>AftLog is built for boat owners in Canada and the US first, with seasons and reminders tuned to those regions. Other regions may work, but aren't optimized yet.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <footer>
   <div class="wrap">
-    <p><a href="#pain">Why it exists</a><a href="#features">Features</a><a href="#price">Pricing</a><a href="/updates/">Updates</a></p>
+    <p><a href="#pain">Why it exists</a><a href="#features">Features</a><a href="#price">Pricing</a><a href="#portal">Web Portal</a><a href="#faq">FAQ</a><a href="/updates/">Updates</a></p>
     <p style="margin-top:12px">AftLog — keeping your boat shipshape. Built for the 11 months a year your boat is more project than boat.</p>
   </div>
 </footer>
