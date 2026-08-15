@@ -11,6 +11,12 @@
 <meta property="og:title" content="Updates — AftLog">
 <meta property="og:description" content="Progress updates for AftLog, the offline-first boat maintenance logbook.">
 <meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<script>
+  /* Strip stale anchor hashes on load — browser autofill can land on e.g. /#pain */
+  (function(){
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  })();
+</script>
 <style>
   :root{
     --bg:#0B0B0D;

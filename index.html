@@ -12,6 +12,12 @@
 <meta property="og:description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time $29, no subscription.">
 <meta property="og:image" content="https://aftlog.com/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<script>
+  /* Strip stale anchor hashes on load — browser autofill can land on e.g. /#pain */
+  (function(){
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  })();
+</script>
 <style>
   :root{
     --bg:#0B0B0D;
