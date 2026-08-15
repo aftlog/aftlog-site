@@ -27,6 +27,24 @@
 
 ---
 
+## 2026-08-15 — Session 38 — Portal brand polish + site HTTPS + canonical palette
+
+**Portal (aftlog-server v1.118–v1.121, all 22 tests green):**
+- **v1.118** — portal was broken out of the box: `--bg/--card/…` only existed under `[data-theme]` so fresh browsers rendered it WHITE; sidebar showed text not the logo; `var(--accent2)` was never defined; `/portal/assets/*` 500'd on binary files (`readAsStringSync` on a PNG). Fixed all four; logo added (trimmed 400px copy of the site logo).
+- **v1.119** — red was too faint vs the site (~13–20× less strong red). Red kickers on sidebar group labels, red edge on active nav, red bars on page titles/section h2s, chart bars brightened to `#FF4B4B`, heatmap mids brightened.
+- **v1.120** — "faded" + light mode lost detail: dark mode got bigger red stats (34px), red stat-card tops, red table headers, inset card highlights (solid — no gradients), brighter ramps (`#1A1A1F→#FF4B4B`); light mode swapped `#FF4B4B`→`#E02020` (2.6:1 contrast fix), sidebar/topbar follow theme (were hardcoded `#141417`), theme-aware chart colors (`isLight()`), structural contrast (bg `#EDEDF2`, cards white, lines `#D8D8E0`); year-in-review (self-contained page) got the theme system + toggle + logo; removed duplicated `fetchJSON`/theme block.
+- **v1.121** — portal logo +25% (sidebar 95px, topbar 48px, year header 65px).
+
+**Site (aftlog-site):**
+- `#pain` on load was browser autofill of a previously-clicked anchor — not site code. Added a head script that strips stale hashes on arrival (nav clicks still keep theirs). Deployed.
+- **HTTPS was never set up** — GitHub Pages `https_enforced:false`, no cert for `aftlog.com` (edge served `*.github.io`). Louis enabled custom domain in Settings → DNS check passed → cert issued within seconds → **Enforce HTTPS on**. Verified: valid cert on `https://aftlog.com`, www redirects to apex, HTTP→HTTPS redirect propagating (up to an hour).
+
+**Canonical palette LOCKED** (this session): `AftLogColors` Dart class — dark-only, real status colors (`#2ECC71`/`#F5B041`), no Material defaults (`#4CAF50`/`#FFC107`), no accent blue (`#2196F3` NOT in app), no `#B00020`/`#121212`/`#1E1E1E`/`#303030`. Full block added to AFTLOG-CODING-STANDARDS §1. Portal light-theme values documented there as optional cross-platform reference.
+
+**Still open (unchanged):** MAINTENANCE PLANNER is the next feature · server spec slices (heatmap/clustering/forecast/maintenance/planner/boat-health) · portal deployment decision (Louis) · seed newer portal screenshots into landing site · Aug 24 waitlist gate.
+
+---
+
 ## 2026-08-14 — Session 37 — Day-end review + rules locked
 
 **State at end of day (all three repos clean + pushed):**

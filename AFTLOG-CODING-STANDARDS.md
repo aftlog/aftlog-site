@@ -21,6 +21,58 @@
 - **Logo + illustrations** come from Louis (`~/aftlog/images/`); never substitute emoji or scraped images.
 - Tagline: "Keeping your boat shipshape!"
 
+### Canonical palette (locked 2026-08-15 — grounded in aftlog-app code, Session 37 corrections)
+
+Dark-mode only — AftLog does **not** implement a light theme. Status colors are the real app values (`#2ECC71`/`#F5B041`), **not** Material defaults (`#4CAF50`/`#FFC107`). No accent blue (`#2196F3` is NOT in the app — brand is red-only). No `#B00020`, `#121212`, `#1E1E1E`, `#303030`.
+
+```dart
+import 'package:flutter/material.dart';
+
+/// AftLog — Canonical Color Palette
+/// Grounded in the actual aftlog-app codebase (Session 37 corrections).
+/// Dark-mode only — AftLog does not implement a light theme.
+
+class AftLogColors {
+  // ------------------------------------------------------------
+  // BRAND
+  // ------------------------------------------------------------
+  static const Color brandRed = Color(0xFFE02020);       // primary accent / danger
+  static const Color brandRedBright = Color(0xFFFF4B4B); // highlight / active
+
+  // ------------------------------------------------------------
+  // SURFACES (dark theme only)
+  // ------------------------------------------------------------
+  static const Color bg = Color(0xFF0B0B0D);             // main background
+  static const Color card = Color(0xFF141417);           // cards, panels
+  static const Color bgAlt = Color(0xFF0D0D10);          // dashboard alt background
+  static const Color surfaceHigh = Color(0xFF1D1D22);    // elevated surfaces
+  static const Color line = Color(0xFF232329);           // dividers, strokes
+  static const Color muted = Color(0xFF9A9AA3);          // muted text
+
+  // ------------------------------------------------------------
+  // STATUS COLORS (actual app usage)
+  // ------------------------------------------------------------
+  static const Color healthy = Color(0xFF2ECC71);        // green (health score, checklists)
+  static const Color warning = Color(0xFFF5B041);        // amber (due soon)
+  static const Color danger = Color(0xFFE02020);         // due / overdue
+  static const Color error = Color(0xFFFF6B6B);          // error states
+
+  // ------------------------------------------------------------
+  // TEXT
+  // ------------------------------------------------------------
+  static const Color textPrimary = Colors.white;
+  static const Color textSecondary = muted;
+
+  // ------------------------------------------------------------
+  // OPTIONAL: Portal Light Theme (for future cross-platform alignment)
+  // ------------------------------------------------------------
+  static const Color portalLightBg = Color(0xFFEDEDF2);
+  static const Color portalLightCard = Colors.white;
+  static const Color portalLightLine = Color(0xFFD8D8E0);
+  static const Color portalLightMuted = Color(0xFF5C5C6A);
+}
+```
+
 ## 2. Version & release discipline
 
 | Rule | Details |
