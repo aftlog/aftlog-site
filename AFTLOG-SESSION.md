@@ -41,6 +41,8 @@
 
 **Canonical palette LOCKED** (this session): `AftLogColors` Dart class — dark-only, real status colors (`#2ECC71`/`#F5B041`), no Material defaults (`#4CAF50`/`#FFC107`), no accent blue (`#2196F3` NOT in app), no `#B00020`/`#121212`/`#1E1E1E`/`#303030`. Full block added to AFTLOG-CODING-STANDARDS §1. Portal light-theme values documented there as optional cross-platform reference.
 
+**Canonical theme LOCKED** (this session): `AftLogTheme.build()` (Material 3, dark-only) added to standards §1, ready to drop in as `lib/theme/aftlog_theme.dart` + `aftlog_colors.dart`. **Verified compiles on Flutter 3.44.4** (`flutter analyze` clean — after correcting `CardTheme`→`CardThemeData` and dropping deprecated `background`/`onBackground` ColorScheme params).
+
 **Still open (unchanged):** MAINTENANCE PLANNER is the next feature · server spec slices (heatmap/clustering/forecast/maintenance/planner/boat-health) · portal deployment decision (Louis) · seed newer portal screenshots into landing site · Aug 24 waitlist gate.
 
 ---

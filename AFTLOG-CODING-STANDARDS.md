@@ -73,6 +73,170 @@ class AftLogColors {
 }
 ```
 
+### Canonical theme (locked 2026-08-15 — replaces `AftLogApp._buildTheme()`)
+
+Material 3, dark-only, no gradients, no emojis. Validated against the app's Flutter 3.44.4 — the app already uses `CardThemeData` + `WidgetStateProperty`, so use those (NOT the deprecated `CardTheme`/`MaterialStateProperty`). Ready to drop in as `lib/theme/aftlog_theme.dart` (needs `aftlog_colors.dart` from the palette block above).
+
+```dart
+import 'package:flutter/material.dart';
+import 'aftlog_colors.dart';
+
+/// AftLog — Unified Theme (Dark-only)
+/// Grounded in the actual app palette and Material 3.
+/// Replaces AftLogApp._buildTheme() with a clean, centralized theme.
+
+class AftLogTheme {
+  static ThemeData build() {
+    const scheme = ColorScheme(
+      brightness: Brightness.dark,
+
+      // Brand
+      primary: AftLogColors.brandRed,
+      onPrimary: Colors.white,
+      secondary: AftLogColors.brandRedBright,
+      onSecondary: Colors.white,
+
+      // Error
+      error: AftLogColors.error,
+      onError: Colors.black,
+
+      // Surfaces
+      surface: AftLogColors.card,
+      onSurface: Colors.white,
+      surfaceContainerHighest: AftLogColors.surfaceHigh,
+
+      // Tertiary / outline
+      tertiary: AftLogColors.muted,
+      onTertiary: Colors.white,
+      outline: AftLogColors.line,
+    );
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: scheme,
+      // background/onBackground are deprecated in Flutter 3.18+ — surfaces cover this.
+      scaffoldBackgroundColor: AftLogColors.bg,
+      canvasColor: AftLogColors.bg,
+
+      // ------------------------------------------------------------
+      // TEXT
+      // ------------------------------------------------------------
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(fontSize: 15, height: 1.45),
+        bodyMedium: TextStyle(fontSize: 14, height: 1.45),
+        bodySmall: TextStyle(fontSize: 12.5, height: 1.45, color: AftLogColors.muted),
+
+        titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+        titleMedium: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+        titleSmall: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+      ),
+
+      // ------------------------------------------------------------
+      // CARDS
+      // ------------------------------------------------------------
+      cardTheme: const CardThemeData(
+        color: AftLogColors.card,
+        elevation: 0,
+        margin: EdgeInsets.symmetric(vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+      ),
+
+      // ------------------------------------------------------------
+      // DIVIDERS
+      // ------------------------------------------------------------
+      dividerColor: AftLogColors.line,
+      dividerTheme: const DividerThemeData(
+        thickness: 1,
+        color: AftLogColors.line,
+      ),
+
+      // ------------------------------------------------------------
+      // BUTTONS
+      // ------------------------------------------------------------
+      filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(AftLogColors.brandRed),
+          foregroundColor: WidgetStateProperty.all(Colors.white),
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+          ),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
+      ),
+
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(AftLogColors.brandRedBright),
+          foregroundColor: WidgetStateProperty.all(Colors.white),
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+          ),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
+      ),
+
+      // ------------------------------------------------------------
+      // INPUTS
+      // ------------------------------------------------------------
+      inputDecorationTheme: const InputDecorationTheme(
+        filled: true,
+        fillColor: AftLogColors.card,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: AftLogColors.line),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: AftLogColors.line),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: AftLogColors.brandRedBright, width: 1.4),
+        ),
+        labelStyle: TextStyle(color: AftLogColors.muted),
+        hintStyle: TextStyle(color: AftLogColors.muted),
+      ),
+
+      // ------------------------------------------------------------
+      // ICONS
+      // ------------------------------------------------------------
+      iconTheme: const IconThemeData(
+        color: Colors.white,
+        size: 20,
+      ),
+
+      // ------------------------------------------------------------
+      // LIST TILES
+      // ------------------------------------------------------------
+      listTileTheme: const ListTileThemeData(
+        iconColor: Colors.white,
+        textColor: Colors.white,
+        tileColor: AftLogColors.card,
+      ),
+
+      // ------------------------------------------------------------
+      // APP BAR
+      // ------------------------------------------------------------
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AftLogColors.bg,
+        elevation: 0,
+        titleTextStyle: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+```
+
 ## 2. Version & release discipline
 
 | Rule | Details |
