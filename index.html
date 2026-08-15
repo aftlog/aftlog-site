@@ -1,575 +1,296 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AftLog — keeping your boat shipshape</title>
-<meta name="description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time $29, no subscription.">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
-<link rel="apple-touch-icon" href="images/favicon-180.png">
-<meta property="og:title" content="AftLog — keeping your boat shipshape">
-<meta property="og:description" content="AftLog is the offline-first maintenance logbook for boat owners: engine hours, fuel, service history, seasonal checklists, reminders, and AI diagnostics. One-time $29, no subscription.">
-<meta property="og:image" content="https://aftlog.com/images/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<script>
-  /* Strip stale anchor hashes on load — browser autofill can land on e.g. /#pain */
-  (function(){
-    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-  })();
-</script>
-<style>
-  :root{
-    --bg:#0B0B0D;
-    --card:#141417;
-    --line:#232329;
-    --accent:#E02020;
-    --accent2:#FF4B4B;
-    --text:#FFFFFF;
-    --muted:#9A9AA3;
-    --maxw:960px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-  /* header */
-  header{
-    border-bottom:1px solid var(--line);
-    background:rgba(11,11,13,.92);
-    position:sticky;top:0;z-index:10;
-    backdrop-filter:blur(8px);
-  }
-  .header-inner{
-    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .logo img{height:64px;width:auto;display:block}
-  nav a{
-    color:var(--muted);text-decoration:none;font-size:14.5px;margin-left:26px;
-    transition:color .15s;
-  }
-  nav a:hover{color:var(--accent2)}
-  @media(max-width:640px){
-    .header-inner{flex-wrap:wrap;gap:8px}
-    nav{display:flex;gap:12px;overflow-x:auto;width:100%;padding:4px 0 6px;-webkit-overflow-scrolling:touch}
-    nav a{margin-left:0;white-space:nowrap;font-size:13px}
-  }
-
-  /* hero */
-  .hero{
-    padding:72px 24px 64px;text-align:center;
-  }
-  .hero .logo-big{height:262px;width:auto;margin:0 auto 20px;display:block}
-  .hero .slogan{
-    font-size:clamp(21px, 2.8vw, 30px);font-weight:700;letter-spacing:-.01em;
-    color:var(--text);margin-bottom:18px;
-  }
-  .hero .slogan .hl{color:var(--accent2)}
-  .hero .kicker{
-    display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--accent2);border:1px solid rgba(224,32,32,.5);border-radius:999px;
-    padding:7px 16px;margin-bottom:26px;font-weight:700;
-  }
-  .hero h1{
-    font-size:clamp(38px, 6vw, 62px);
-    line-height:1.05;font-weight:800;letter-spacing:-.02em;
-    max-width:820px;margin:0 auto;
-  }
-  .hero h1 .hl{color:var(--accent2)}
-  .hero p.sub{
-    color:var(--muted);font-size:clamp(16px,1.6vw,19px);
-    max-width:640px;margin:22px auto 0;line-height:1.55;
-  }
-  .cta-row{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    height:54px;padding:0 30px;border-radius:999px;
-    font-size:15.5px;font-weight:700;text-decoration:none;border:none;cursor:pointer;
-    transition:transform .12s, box-shadow .15s;
-  }
-  .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:var(--accent);color:#FFFFFF}
-  .btn-primary:hover{box-shadow:0 10px 28px rgba(224,32,32,.35)}
-  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--accent2);color:var(--accent2)}
-  .hero .fine{color:#6E6E77;font-size:13px;margin-top:18px}
-
-  /* sections */
-  section{padding:80px 24px}
-  .sec-label{
-    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);
-    font-weight:700;margin-bottom:12px;
-  }
-  h2{font-size:clamp(26px,3.4vw,36px);font-weight:800;letter-spacing:-.02em;line-height:1.15}
-  .sec-intro{color:var(--muted);font-size:16px;max-width:640px;margin-top:12px;line-height:1.6}
-
-  /* pain */
-  .pain{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:34px}
-  .pain-card{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;
-    transition:border-color .15s, transform .12s;
-  }
-  .pain-card:hover{border-color:rgba(224,32,32,.5);transform:translateY(-3px)}
-  .pain-card .num{color:var(--accent2);font-weight:800;font-size:13px;letter-spacing:.1em}
-  .pain-card h3{font-size:17px;margin:10px 0 6px;font-weight:700}
-  .pain-card p{color:var(--muted);font-size:14.5px}
-
-  /* features */
-  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:34px}
-  .feat{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;
-    transition:border-color .15s, transform .12s;
-  }
-  .feat:hover{border-color:rgba(224,32,32,.55);transform:translateY(-3px)}
-  .feat .ic{
-    width:46px;height:46px;border-radius:14px;margin-bottom:16px;
-    display:flex;align-items:center;justify-content:center;
-    background:rgba(224,32,32,.12);border:1px solid rgba(224,32,32,.35);
-  }
-  .feat .ic svg{width:22px;height:22px;stroke:var(--accent2)}
-  .feat h3{font-size:17px;font-weight:700}
-  .feat p{color:var(--muted);font-size:14.5px;margin-top:8px;line-height:1.55}
-
-  /* price */
-  .price{text-align:center}
-  .price-card{
-    max-width:460px;margin:36px auto 0;
-    background:var(--card);border:1px solid rgba(224,32,32,.5);
-    border-radius:22px;padding:40px 32px;
-  }
-  .price-card .amt{font-size:52px;font-weight:800;color:var(--accent2);letter-spacing:-.02em}
-  .price-card .per{color:var(--muted);font-size:14px}
-  .price-card ul{list-style:none;margin:24px 0 28px;text-align:left}
-  .price-card li{color:#D6D6DC;font-size:15px;padding:8px 0 8px 32px;position:relative}
-  .price-card li::before{
-    content:"";position:absolute;left:0;top:14px;
-    width:17px;height:17px;border-radius:50%;
-    border:2px solid var(--accent);background:rgba(224,32,32,.15);
-  }
-  .price-card .note{color:#6E6E77;font-size:13px;margin-top:16px}
-
-  /* waitlist */
-  .waitlist{
-    background:var(--card);border:1px solid var(--line);border-radius:22px;
-    padding:44px 32px;text-align:center;max-width:600px;margin:44px auto 0;
-  }
-  .waitlist h3{font-size:22px;font-weight:800;letter-spacing:-.01em}
-  .waitlist p{color:var(--muted);font-size:15px;margin:10px 0 26px}
-  .waitlist form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .waitlist input{
-    flex:1;min-width:240px;height:54px;padding:0 22px;border-radius:999px;
-    background:#0B0B0F;border:1px solid var(--line);color:var(--text);font-size:15.5px;outline:none;
-    transition:border-color .15s;
-  }
-  .waitlist input:focus{border-color:var(--accent2)}
-  .waitlist .fs-success{color:#FFFFFF;font-weight:700;font-size:15px;margin-top:16px;line-height:1.45}
-  .waitlist .fs-error{color:#FF6B6B;font-weight:600;font-size:14px;margin-top:16px}
-  .waitlist .fine{color:#6E6E77;font-size:12.5px;margin-top:16px}
-
-  /* footer */
-  footer{border-top:1px solid var(--line);padding:32px 24px;text-align:center}
-  footer p{color:#6E6E77;font-size:13.5px}
-  footer a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13.5px}
-  footer a:hover{color:var(--accent2)}
-
-  /* platform / portal */
-  .platform{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .platform-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;margin-top:32px;align-items:flex-start}
-  @media(max-width:800px){.platform-layout{grid-template-columns:1fr}}
-  .platform-copy p{color:var(--muted);font-size:15px;margin-top:10px;line-height:1.6}
-  .platform-copy ul{list-style:none;margin-top:18px;padding-left:0}
-  .platform-copy li{color:#D6D6DC;font-size:14.5px;padding:6px 0 6px 22px;position:relative}
-  .platform-copy li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:10px;border-radius:50%;background:rgba(224,32,32,.7)}
-  .portal-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
-  .portal-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
-  .portal-card p{color:var(--muted);font-size:14px;line-height:1.55}
-  .portal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .portal-tag{font-size:12px;color:#D6D6DC;border-radius:999px;border:1px solid var(--line);padding:5px 10px;background:#101015}
-
-  /* screenshots */
-  .screens{background:#0B0B0F;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:32px}
-  .screen-card{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px 18px 20px}
-  .screen-card img{width:100%;border-radius:14px;display:block;border:1px solid #1E1E24;margin-bottom:12px}
-  .screen-card h3{font-size:15.5px;font-weight:700;margin-bottom:4px}
-  .screen-card p{color:var(--muted);font-size:13.5px;line-height:1.5}
-
-  /* how it works */
-  .how{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:30px}
-  .how-step{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:22px 22px 24px}
-  .how-step .num{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}
-  .how-step h3{font-size:17px;font-weight:700;margin-bottom:6px}
-  .how-step p{color:var(--muted);font-size:14.5px;line-height:1.55}
-
-  /* FAQ */
-  .faq{background:#0B0B0F;border-top:1px solid var(--line)}
-  .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:30px}
-  .faq-item{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:22px 22px 24px}
-  .faq-item h3{font-size:15.5px;font-weight:700;margin-bottom:6px}
-  .faq-item p{color:var(--muted);font-size:14px;line-height:1.55}
-
-  /* pro tier */
-  .pro{background:#0D0D10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .pro-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px;margin-top:30px;align-items:flex-start}
-  @media(max-width:800px){.pro-layout{grid-template-columns:1fr}}
-  .pro-copy p{color:var(--muted);font-size:15px;margin-top:10px;line-height:1.6}
-  .pro-copy ul{list-style:none;margin-top:16px;padding-left:0}
-  .pro-copy li{color:#D6D6DC;font-size:14.5px;padding:6px 0 6px 22px;position:relative}
-  .pro-copy li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:10px;border-radius:50%;background:rgba(224,32,32,.7)}
-  .pro-card{background:var(--card);border-radius:18px;border:1px solid var(--line);padding:22px 22px 24px}
-  .pro-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
-  .pro-card p{color:var(--muted);font-size:14px;line-height:1.55}
-  .pro-pill{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.18em;padding:5px 10px;border-radius:999px;border:1px solid rgba(224,32,32,.5);color:var(--accent2);background:rgba(224,32,32,.08);margin-bottom:10px}
-</style>
+  <meta charset="UTF-8">
+  <title>AftLog — Keep your boat shipshape</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AftLog tracks maintenance, fuel, trips, and costs for your boat, then turns it into clear, simple insights. Offline-first. One-time $29 Pro, no subscription.">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+  <meta property="og:title" content="AftLog — keeping your boat shipshape">
+  <meta property="og:description" content="AftLog tracks maintenance, fuel, trips, and costs for your boat, then turns it into clear, simple insights. Offline-first. One-time $29 Pro, no subscription.">
+  <meta property="og:image" content="https://aftlog.com/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>
+    /* Strip stale anchor hashes on load — browser autofill can land on e.g. /#pain */
+    (function(){
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    })();
+  </script>
+  <link rel="stylesheet" href="aftlog.css">
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo"><img src="images/aftlog-logo.png" alt="AftLog"></div>
-    <nav>
-      <a href="#pain">Why it exists</a>
-      <a href="#features">Features</a>
-      <a href="#price">Pricing</a>
-      <a href="#portal">Web Portal</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="#pro-tier">Pro</a>
-      <a href="#faq">FAQ</a>
-      <a href="/updates/">Updates</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <img class="logo-big" src="images/aftlog-logo.png" alt="AftLog">
-    <p class="slogan">Keeping your boat <span class="hl">shipshape!</span></p>
-    <span class="kicker">Boat owner's logbook</span>
-    <h1>Every hour, every tank, every service — <span class="hl">one place, even offline</span></h1>
-    <p class="sub">AftLog is the maintenance logbook your boat deserves: engine hours, fuel, service history, and seasonal checklists — with reminders that actually fire, and AI that explains what that noise was.</p>
-    <p class="sub" style="margin-top:6px">New to boating? AftLog teaches you your boat, checks you're ready before you launch, and tells you what to do when something's wrong.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#waitlist">Join the waitlist — $29 one-time</a>
-      <a class="btn btn-ghost" href="#features">See what it does</a>
+  <header class="site-header site-header--dark">
+    <div class="container header-inner">
+      <div class="logo"><a href="#top"><img src="images/aftlog-logo.png" alt="AftLog"></a></div>
+      <nav class="nav" aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#portal">Web Portal</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="/updates/">Updates</a>
+        <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
+      </nav>
     </div>
-    <p class="fine">One-time payment. No subscription. No ads. Your data stays on your device and syncs when you want.</p>
-  </div>
-</section>
+  </header>
 
-<section class="pain" id="pain">
-  <div class="wrap">
-    <div class="sec-label">Why it exists</div>
-    <h2>Every boat owner keeps the same three records — and they're all broken</h2>
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="num">01</div>
-        <h3>The spreadsheet</h3>
-        <p>Rows you forget to add, columns that drift, and a file that lives on the laptop, not at the dock. Winterization checklists are a paper printout somewhere.</p>
-      </div>
-      <div class="pain-card">
-        <div class="num">02</div>
-        <h3>The generic tracker</h3>
-        <p>Fishing-trip loggers and GPS apps track where you went, not whether the impeller was replaced or when the lower-unit oil is due.</p>
-      </div>
-      <div class="pain-card">
-        <div class="num">03</div>
-        <h3>The existing maintenance apps</h3>
-        <p>Most are hollow list databases, die offline, or bury your own logs behind ad screens. That's why nobody's heard of them.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="beginner" id="beginner">
-  <div class="wrap">
-    <div class="sec-label">New to boating?</div>
-    <h2>You're not supposed to know all this yet — that's the point</h2>
-    <p class="sec-intro">Most boating apps assume you've been doing this for years. AftLog doesn't. If your boat is new to you, it teaches the essentials, keeps you safe at the ramp, and only ever shows the one thing you should do next.</p>
-    <div class="feat-grid">
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
-        <h3>Boat Health Score</h3>
-        <p>Is your boat ready? One glance gives you green, yellow, or red — and the single next thing to do. No maintenance expertise required.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 17H2z"/><path d="M12 10v4M12 17h.01"/></svg></div>
-        <h3>Emergency: "What to do if…"</h3>
-        <p>Engine won't start? Taking on water? One tap gets calm, step-by-step instructions — and your exact GPS position ready to share with help.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 014 4v12a4 4 0 00-4-4H2z"/><path d="M22 4h-6a4 4 0 00-4 4v12a4 4 0 014-4h6z"/></svg></div>
-        <h3>"Know Your Boat" in 2 minutes</h3>
-        <p>Short guided cards teach the essentials: bilge pump, battery, oil, trim, navigation lights, shallow water. "Got it" moves you on — "show me later" saves it.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-        <h3>Pre-departure checklist</h3>
-        <p>Drain plug, battery, fuel, life jackets, kill switch — every item with a picture of what to look for, so the mistakes everyone makes once, you don't make.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M12 8v14"/><path d="M5 12a7 7 0 0014 0"/><path d="M5 22h14"/></svg></div>
-        <h3>First-time launch helper</h3>
-        <p>Backing up, ramp etiquette, avoiding the jackknife, getting on and off the trailer — guided steps for the most stressful 20 minutes in boating.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="16" cy="12" r="4"/></svg></div>
-        <h3>Beginner Mode</h3>
-        <p>A simplified dashboard: one next task, your fuel range, and a daily tip. When you're ready for everything, switch to full mode — nothing is locked away.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="features">
-  <div class="wrap">
-    <div class="sec-label">Features</div>
-    <h2>Built like a good boat: nothing fancy that breaks</h2>
-    <p class="sec-intro">Offline-first, like you are at the lake. Every feature below works with zero signal, and syncs when you're back on the dock.</p>
-    <div class="feat-grid">
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h3>Engine hours &amp; fuel log</h3>
-        <p>One tap to log hours at the dock. Auto-estimates hours from trips if you forget, so the log stays honest.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a6 6 0 00-4 10.5c.8.7 1 1.2 1 2h6c0-.8.2-1.3 1-2A6 6 0 0012 2z"/></svg></div>
-        <h3>Service reminders</h3>
-        <p>"Lower-unit oil due in 40 hours." "Winterize in 3 weeks." Based on your engine, your hours, and your region's season.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
-        <h3>Seasonal checklists</h3>
-        <p>Commissioning in spring, winterization in fall — prebuilt checklists for your engine type, with photos and receipts attached.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 015.4 2c0 2-3 2-3 4M12 18h.01"/></svg></div>
-        <h3>AI diagnostics</h3>
-        <p>"Outboard won't idle after winter storage." Describes symptoms, gets likely causes ranked by what your log shows, in plain language.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></div>
-        <h3>Sync, export, back up</h3>
-        <p>Offline-first on device. Sync across phone and tablet when you choose. Export the whole log to PDF or CSV — yours forever.</p>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
-        <h3>Symptom decoder</h3>
-        <p>"Why won't it start?" Pick your engine and the symptom — get ranked causes, fix steps, and when to call a mechanic.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="platform" id="portal">
-  <div class="wrap">
-    <div class="sec-label">AftLog Web Portal</div>
-    <h2>Your boat's analytics suite — when you want it, not when the app demands it</h2>
-    <p class="sec-intro">AftLog starts as an offline logbook on your phone. When you're ready, you export a bundle and send it to the Web Portal — a full analytics dashboard for your trips, fuel, maintenance, and boat health.</p>
-    <div class="platform-layout">
-      <div class="platform-copy">
-        <p>Every log entry you make offline — hours, fuel, services, checklists — becomes real analytics when you choose to sync. No accounts, no always-on cloud, just:</p>
-        <ul>
-          <li><strong>Year-in-Review:</strong> total trips, distance, hours, fuel, and cost — plus efficiency and highlights.</li>
-          <li><strong>Trip analytics:</strong> calendar, patterns, heatmap, clustering, and a simple forecast for next season.</li>
-          <li><strong>Maintenance &amp; planner:</strong> cost trends, overdue vs on-time, planned vs completed, and consistency scores.</li>
-          <li><strong>Boat health:</strong> per-boat hours, fuel, compliance, and a 0–100 health index inspired by the app's Boat Health Score.</li>
-        </ul>
-        <p style="margin-top:14px">The Web Portal is included in your AftLog Pro license. You can ignore it and stay fully offline — or use it when you want deeper insight into how you actually use your boat.</p>
-      </div>
-      <div class="portal-card">
-        <h3>AftLog Web Portal — included</h3>
-        <p>Runs on your own machine today, and will be available as a secure cloud service later. The same data model as the app, just with bigger charts.</p>
-        <div class="portal-tags">
-          <span class="portal-tag">Year-in-Review dashboard</span>
-          <span class="portal-tag">Trip Calendar</span>
-          <span class="portal-tag">Trip Patterns</span>
-          <span class="portal-tag">Trip Heatmap</span>
-          <span class="portal-tag">Trip Clustering</span>
-          <span class="portal-tag">Trip Forecast</span>
-          <span class="portal-tag">Maintenance Dashboard</span>
-          <span class="portal-tag">Planner Dashboard</span>
-          <span class="portal-tag">Boat Health Dashboard</span>
+  <main id="top">
+    <!-- Hero — dark marine -->
+    <section class="hero hero--dark">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <span class="kicker">Boat owner's logbook</span>
+          <h1>Every hour, every tank, every service — <span class="hl">one place, even offline</span></h1>
+          <p>AftLog tracks maintenance, fuel, trips, and costs for your boat — then turns it into clear, simple insights.</p>
+          <p>New to boating? AftLog teaches you your boat, checks you're ready before you launch, and tells you what to do when something's wrong.</p>
+          <div class="hero-actions">
+            <a href="#waitlist" class="btn btn-primary">Join the waitlist — $29 one-time</a>
+            <a href="#portal" class="btn btn-secondary">Open Web Portal</a>
+          </div>
+          <p class="hero-sub">Built for pleasure craft and fishing boats in Canada + USA. Offline-first, no subscription, no ads.</p>
+        </div>
+        <div class="hero-image">
+          <img src="images/screen-app-dashboard.png" alt="AftLog app dashboard with boat health score">
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="screens" id="screenshots">
-  <div class="wrap">
-    <div class="sec-label">See it in action</div>
-    <h2>App on the dock, portal at the desk</h2>
-    <p class="sec-intro">AftLog is built for the 11 months a year your boat is more project than boat. The app keeps you honest at the dock; the portal shows you the bigger picture when you're back home.</p>
-    <div class="screens-grid">
-      <div class="screen-card">
-        <img src="images/screen-app-dashboard.png" alt="AftLog app dashboard">
-        <h3>App — Boat dashboard</h3>
-        <p>Boat Health Score, next task, and fuel range — the things you need before you launch.</p>
-      </div>
-      <div class="screen-card">
-        <img src="images/screen-app-checklists.png" alt="AftLog checklists">
-        <h3>App — Seasonal checklists</h3>
-        <p>Launch, spring prep, winterization and more — with guided steps and safety checks.</p>
-      </div>
-      <div class="screen-card">
-        <img src="images/screen-portal-year.png" alt="AftLog Web Portal Year-in-Review">
-        <h3>Portal — Year-in-Review</h3>
-        <p>Total trips, distance, hours, fuel, and cost — plus efficiency, highlights, and multi-year trends.</p>
-      </div>
-      <div class="screen-card">
-        <img src="images/screen-portal-health.png" alt="AftLog Web Portal Boat Health">
-        <h3>Portal — Boat Health</h3>
-        <p>Per-boat cards with hours, fuel, compliance, and a 0–100 health index.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="how" id="how-it-works">
-  <div class="wrap">
-    <div class="sec-label">How it works</div>
-    <h2>Log offline, export when you're ready, see the big picture</h2>
-    <p class="sec-intro">AftLog doesn't force you into an account or a cloud. You use it offline like a proper logbook — and when you want analytics, you send a bundle to the Web Portal.</p>
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="num">Step 01</div>
-        <h3>Log your boat offline</h3>
-        <p>Engine hours, fuel, services, checklists, and symptoms — all on your phone, even with no signal at the lake. Reminders fire locally; nothing depends on a server.</p>
-      </div>
-      <div class="how-step">
-        <div class="num">Step 02</div>
-        <h3>Export your AftLog bundle</h3>
-        <p>When you want a deeper view, you export a single bundle file from the app. It contains your boats, trips, services, intervals, and checklists — nothing is sent on its own.</p>
-      </div>
-      <div class="how-step">
-        <div class="num">Step 03</div>
-        <h3>Send it to the Web Portal</h3>
-        <p>Import the bundle into the AftLog Web Portal to see Year-in-Review, trip analytics, maintenance dashboards, and boat health — all computed from your own log.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="price" id="price">
-  <div class="wrap">
-    <div class="sec-label">Pricing</div>
-    <h2>One price. Yours forever.</h2>
-    <div class="price-card">
-      <div class="amt">$29</div>
-      <div class="per">one-time, lifetime license</div>
-      <ul>
-        <li>Unlimited boats, engines, and log entries</li>
-        <li>All checklists and reminders</li>
-        <li>AI diagnostics included</li>
-        <li>Offline mode and sync on all your devices</li>
-        <li>No subscription. No ads. No data mining.</li>
-      </ul>
-      <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
-      <p class="note">Launch price is $29. Waitlist members lock it in — it may rise after.</p>
-    </div>
-  </div>
-</section>
-
-
-<section class="pro" id="pro-tier">
-  <div class="wrap">
-    <div class="sec-label">One-time Pro</div>
-    <h2>App + Web Portal, one price — no subscription</h2>
-    <div class="pro-layout">
-      <div class="pro-copy">
-        <p>AftLog has a free tier for one boat, and a $29 one-time Pro license that covers everything: the full app and the Web Portal. No monthly fee, no ads, no upsell screens.</p>
-        <ul>
-          <li><strong>Free:</strong> one boat, core logging, checklists, and safety tools.</li>
-          <li><strong>AftLog Pro ($29):</strong> unlimited boats, reminders, AI diagnostics, PDF reports, and the Web Portal analytics suite.</li>
-          <li><strong>Data:</strong> your log stays yours. Export to CSV/PDF anytime; portal analytics are computed from your bundle, not mined from your behavior.</li>
-        </ul>
-        <p style="margin-top:14px">One-time, not rented. Your license covers the app and the portal — the portal just runs on your own machine today, and becomes a secure cloud service later.</p>
-      </div>
-      <div class="pro-card">
-        <span class="pro-pill">AftLog Pro</span>
-        <h3>$29 — app + portal, one-time</h3>
-        <p>At launch, the $29 Pro license covers both the offline app and the Web Portal analytics suite. Waitlist members lock in this price, even if it rises later.</p>
-        <p style="margin-top:10px">No subscription. No ads. No data mining. Just a logbook and its analytics, built for the kind of person who keeps their boat longer than their phone.</p>
-        <div style="margin-top:16px">
-          <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+    <!-- Personas — light -->
+    <section class="section section--light" id="personas">
+      <div class="container">
+        <span class="sec-label">Who it's for</span>
+        <h2>Built for real boat owners</h2>
+        <div class="cards cards--three">
+          <article class="card">
+            <h3>New boat owners</h3>
+            <p>You just bought a boat. AftLog walks you through setup, safety gear, and your first season — you're not supposed to know all this yet.</p>
+          </article>
+          <article class="card">
+            <h3>Weekend captains</h3>
+            <p>You trailer, launch, and fish on weekends. AftLog keeps your checklists, fuel, and service history in one place.</p>
+          </article>
+          <article class="card">
+            <h3>Serious planners</h3>
+            <p>You care about costs, range, and reliability. AftLog's analytics sheets and Web Portal give you the full picture.</p>
+          </article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<section id="waitlist">
-  <div class="wrap">
-    <div class="waitlist">
-      <h3>Be first on the dock</h3>
-      <p>We're building AftLog now. Join the waitlist and we'll email you the day it's ready — plus early access to the seasonal checklists while you wait.</p>
-      <p class="fine" style="margin-top:8px">New boaters welcome — AftLog is built to teach, not just track.</p>
-      <form id="waitlist-form" action="https://formspree.io/f/xoeaezwv" method="POST">
-        <input type="email" name="email" placeholder="Your email — waitlist for AftLog" required data-fs-field>
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-        <button class="btn btn-primary" type="submit" data-fs-submit-btn>Join the waitlist</button>
-      </form>
-      <p class="fs-success" data-fs-success hidden>You're on the list! One email at launch — nothing else. We'll see you at the dock.</p>
-      <p class="fs-error" data-fs-error hidden>Something went wrong — please try again.</p>
-      <p class="fine">No spam. One email at launch. Unsubscribe anytime.</p>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- App vs Portal — light -->
+    <section class="section section--alt" id="features">
+      <div class="container two-column">
+        <div>
+          <span class="sec-label">The app</span>
+          <h2>AftLog app</h2>
+          <ul class="feature-list">
+            <li>Maintenance logs for services, hours, costs, DIY vs shop.</li>
+            <li>Checklists for launch, retrieve, towing, winterization, and buying.</li>
+            <li>Symptom decoder and diagnostic report for breakdowns.</li>
+            <li>Fuel and trip logging with range hints.</li>
+            <li>Photos, documents, and parts tracking.</li>
+            <li>Beginner Mode for new boat owners.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="sec-label">The portal</span>
+          <h2>AftLog Web Portal</h2>
+          <ul class="feature-list">
+            <li>Browser-based view of all your boat data.</li>
+            <li>Trip, fuel, and service analytics sheets.</li>
+            <li>Export to CSV and PDF for records and resale.</li>
+            <li>Bundle flow via QR, USB, Bluetooth, or LAN.</li>
+            <li>Use your phone to log, your laptop to review.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="sec-label">FAQ</div>
-    <h2>Questions boat owners actually ask</h2>
-    <p class="sec-intro">If you're the kind of person who keeps a notebook in the glove box, this is for you. AftLog is built to replace that notebook — without losing the parts that make it yours.</p>
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h3>Does it work offline?</h3>
-        <p>Yes. The app is offline-first: logging, checklists, and reminders all work without signal. AI diagnostics have an offline fallback when you're out of range. Sync and export happen when you choose.</p>
+    <!-- On the water — light -->
+    <section class="section section--light">
+      <div class="container">
+        <span class="sec-label">On the water</span>
+        <h2>On the water, you don't want to guess</h2>
+        <ul class="feature-list">
+          <li>Emergency contact card and float plan wizard.</li>
+          <li>Compliance checklist for required safety gear.</li>
+          <li>Launch, retrieve, and towing checklists.</li>
+          <li>Breakdown mode with symptom decoder and Pro advice.</li>
+        </ul>
       </div>
-      <div class="faq-item">
-        <h3>Do I need an account?</h3>
-        <p>No. AftLog does not require an account to use the app. The Web Portal uses your exported bundle, not a live account connection.</p>
+    </section>
+
+    <!-- Analytics — light -->
+    <section class="section section--alt">
+      <div class="container">
+        <span class="sec-label">Know your boat</span>
+        <h2>Know your boat's history — and its future</h2>
+        <p class="sec-intro">AftLog turns your logs into real numbers — range, costs, and usage patterns — so you can plan with confidence.</p>
+        <ul class="feature-list">
+          <li>Service history timeline with costs and hours.</li>
+          <li>Trip and fuel history with best and busiest seasons.</li>
+          <li>Average fuel burn and cost per hour or trip.</li>
+          <li>Weekend vs weekday usage patterns.</li>
+        </ul>
       </div>
-      <div class="faq-item">
-        <h3>Can I track more than one boat?</h3>
-        <p>Yes. Your Pro license covers unlimited boats and engines. Each boat gets its own health score, checklists, and analytics.</p>
+    </section>
+
+    <!-- Portal — light, dedicated -->
+    <section class="section section--light" id="portal">
+      <div class="container two-column">
+        <div>
+          <span class="sec-label">Web Portal</span>
+          <h2>AftLog Web Portal — your boat's data, visualized.</h2>
+          <p class="sec-intro">Log on your phone, review on your laptop. The Web Portal gives you a bigger canvas for planning trips, tracking costs, and exporting data.</p>
+          <ul class="feature-list">
+            <li>Year-in-Review, trip calendar, patterns, heatmap, clustering, and forecast.</li>
+            <li>Maintenance, planner, and boat-health dashboards.</li>
+            <li>Export to CSV and PDF.</li>
+            <li>Bundle flow via QR, USB, Bluetooth, or LAN.</li>
+          </ul>
+          <!-- Portal is not deployed yet — swap the href for the live URL when it is. -->
+          <p style="margin-top:26px"><a href="https://portal.aftlog.com" class="btn btn-on-light">Open Web Portal</a></p>
+        </div>
+        <div class="portal-shot">
+          <img src="images/screen-portal-year.png" alt="AftLog Web Portal Year-in-Review analytics view">
+        </div>
       </div>
-      <div class="faq-item">
-        <h3>Does it work for outboards and inboards?</h3>
-        <p>Yes. AftLog supports common outboard and inboard configurations, with service reminders and checklists tailored to your engine type.</p>
+    </section>
+
+    <!-- Screenshots — light -->
+    <section class="section section--alt" id="screenshots">
+      <div class="container">
+        <span class="sec-label">See it in action</span>
+        <h2>App on the dock, portal at the desk</h2>
+        <div class="shots">
+          <div class="shot">
+            <img src="images/screen-app-dashboard.png" alt="AftLog app dashboard">
+            <h3>App — Boat dashboard</h3>
+            <p>Boat Health Score, next task, and fuel range.</p>
+          </div>
+          <div class="shot">
+            <img src="images/screen-app-checklists.png" alt="AftLog checklists">
+            <h3>App — Seasonal checklists</h3>
+            <p>Launch, spring prep, winterization, and more.</p>
+          </div>
+          <div class="shot">
+            <img src="images/screen-portal-year.png" alt="AftLog Web Portal Year-in-Review">
+            <h3>Portal — Year-in-Review</h3>
+            <p>Trips, distance, hours, fuel, cost, and trends.</p>
+          </div>
+          <div class="shot">
+            <img src="images/screen-portal-health.png" alt="AftLog Web Portal Boat Health">
+            <h3>Portal — Boat Health</h3>
+            <p>Per-boat health, hours, fuel, and compliance.</p>
+          </div>
+        </div>
       </div>
-      <div class="faq-item">
-        <h3>What happens to my data?</h3>
-        <p>Your log lives on your device. You can export it to CSV or PDF anytime. The Web Portal computes analytics from your bundle; we don't sell or mine your data.</p>
+    </section>
+
+    <!-- Pricing — light -->
+    <section class="section section--light" id="pricing">
+      <div class="container">
+        <span class="sec-label">Pricing</span>
+        <h2>One price. Yours forever.</h2>
+        <div class="cards cards--two">
+          <article class="card">
+            <h3>Free</h3>
+            <ul>
+              <li>1 boat</li>
+              <li>Core logs and basic checklists</li>
+              <li>Safety tools and offline-first design</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Pro — <span class="price">$29</span> <span class="per">one-time, lifetime</span></h3>
+            <ul>
+              <li>Multiple boats</li>
+              <li>Web Portal access + analytics sheets</li>
+              <li>AI diagnostics, reminders, and forecasts</li>
+              <li>Backup, restore, and Pro exports (resale PDF, logbook PDF)</li>
+              <li>No subscription. No ads. No data mining.</li>
+            </ul>
+            <p style="margin-top:16px"><a href="#waitlist" class="btn btn-on-light">Join the waitlist</a></p>
+            <p class="per" style="margin-top:10px">Launch price is $29. Waitlist members lock it in — it may rise after.</p>
+          </article>
+        </div>
       </div>
-      <div class="faq-item">
-        <h3>Is this available outside Canada and the US?</h3>
-        <p>AftLog is built for boat owners in Canada and the US first, with seasons and reminders tuned to those regions. Other regions may work, but aren't optimized yet.</p>
+    </section>
+
+    <!-- Waitlist — dark card on light -->
+    <section class="section section--light" id="waitlist">
+      <div class="container">
+        <div class="waitlist">
+          <h3>Be first on the dock</h3>
+          <p>We're building AftLog now. Join the waitlist and we'll email you the day it's ready — plus early access to the seasonal checklists while you wait. New boaters welcome — AftLog is built to teach, not just track.</p>
+          <form id="waitlist-form" action="https://formspree.io/f/xoeaezwv" method="POST">
+            <input type="email" name="email" placeholder="Your email — waitlist for AftLog" required data-fs-field>
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <button class="btn btn-primary" type="submit" data-fs-submit-btn>Join the waitlist</button>
+          </form>
+          <p class="fs-success" data-fs-success hidden>You're on the list! One email at launch — nothing else. We'll see you at the dock.</p>
+          <p class="fs-error" data-fs-error hidden>Something went wrong — please try again.</p>
+          <p class="fine">No spam. One email at launch. Unsubscribe anytime.</p>
+        </div>
       </div>
+    </section>
+
+    <!-- FAQ — light -->
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <span class="sec-label">FAQ</span>
+        <h2>Questions boat owners actually ask</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Does AftLog work offline?</summary>
+            <p>Yes. The app is offline-first: logging, checklists, and reminders all work without signal. AI diagnostics have an offline fallback when you're out of range. Sync and export happen when you choose.</p>
+          </details>
+          <details>
+            <summary>Do I need an account?</summary>
+            <p>No. AftLog does not require an account to use the app. The Web Portal uses your exported bundle, not a live account connection.</p>
+          </details>
+          <details>
+            <summary>Can I export my data?</summary>
+            <p>Yes. You can export to CSV and PDF anytime, including resale and logbook reports. Your log stays yours.</p>
+          </details>
+          <details>
+            <summary>Does AftLog support multiple boats?</summary>
+            <p>Yes. The Pro tier supports multiple boats and engines — each with its own health score, checklists, and analytics — with shared Web Portal access.</p>
+          </details>
+          <details>
+            <summary>Can I track more than one boat on the free plan?</summary>
+            <p>The free plan covers one boat. Pro ($29 one-time) unlocks unlimited boats, the Web Portal, and everything else.</p>
+          </details>
+          <details>
+            <summary>Is AftLog designed for my region?</summary>
+            <p>AftLog is built for pleasure craft and fishing boats in Canada and the USA, with seasons and reminders tuned to those regions.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer--dark">
+    <div class="container footer-inner">
+      <div class="footer-brand"><img src="images/aftlog-logo.png" alt="AftLog"></div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#portal">Web Portal</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist">Waitlist</a>
+        <a href="/updates/">Updates</a>
+      </div>
+      <div class="footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA.</div>
     </div>
-  </div>
-</section>
-<footer>
-  <div class="wrap">
-    <p><a href="#pain">Why it exists</a><a href="#features">Features</a><a href="#price">Pricing</a><a href="#portal">Web Portal</a><a href="#faq">FAQ</a><a href="/updates/">Updates</a></p>
-    <p style="margin-top:12px">AftLog — keeping your boat shipshape. Built for the 11 months a year your boat is more project than boat.</p>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#waitlist-form', formId: 'xoeaezwv' });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#waitlist-form', formId: 'xoeaezwv' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
