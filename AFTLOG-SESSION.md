@@ -51,6 +51,8 @@
 
 **Feature #102 SHIPPED** (aftlog-app 1.102.0, signed APK): free-tier gating completion. Already gated pre-existing: AI (3/day), reminders, NBA, Seasons, analytics, export. New: Boat Health breakdown (ScoreBreakdownSheet) → Pro with locked button; calculators Prop slip + Fuel range → Pro (locked cards upsell); planner Completed history → Pro (locked card all tabs). **Stripe seam wired (#103, Stripe last):** purchase() opens Checkout in system browser via url_launcher, placeholder URL (`AFTLOG_STRIPE_URL` dart-define), optimistic local unlock, no server validation. **Decision notes:** team spec's "Battery Runtime" calculator doesn't exist (flagged); Voltage drop left free per Louis's list. **Gotcha:** ProService.isPro = kDebugMode||flag → gating only visible in release builds; widget tests always run unlocked.
 
+**Feature #103 SHIPPED** (aftlog-app 1.103.0, signed APK): **Battery Runtime calculator** (Pro-gated card). Math: usable = Ah × depth, runtime = usable ÷ load. Depth presets (Lead-acid/AGM 50%, Lithium 80%), status color (≥8h green / ≥2h amber / below red), 4 widget tests. **Latent quirk found:** the shared `numberField` has an empty `onChanged`, so ALL the older calculators only recompute when some other setState fires — typing alone doesn't update them. Battery Runtime is the first live-recomputing calculator (optional `onChanged` param, backward-compatible). Flagging: fixing the 7 older calculators is a cheap follow-up if desired.
+
 **Still open (unchanged):** MAINTENANCE PLANNER is the next feature · server spec slices (heatmap/clustering/forecast/maintenance/planner/boat-health) · portal deployment decision (Louis) · seed newer portal screenshots into landing site · Aug 24 waitlist gate.
 
 ---
