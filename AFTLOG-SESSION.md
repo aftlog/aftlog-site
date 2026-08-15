@@ -45,6 +45,10 @@
 
 **Feature #101 SHIPPED** (aftlog-app 1.101.0, signed APK `AftLog-v1.101.0.apk`): Planner Timeline tab with 30/90/365-day bucket windows. Team spec targeted nonexistent `planner_screen.dart`/`planner_logic.dart` (Session 37 rule #1 in action — applied the intent adaptively to `maintenance_planner_screen.dart`): `plannerWindowItems()` pure fn + Timeline tab (This Month | Upcoming | **Timeline** | Seasons), 6 unit tests, analyze clean, full suite 277 pass (2 pre-existing LocalBundleServer localhost failures). FEATURES.md #101 + count→101.
 
+**🔴 CRITICAL PORTAL BUG FOUND & FIXED (aftlog-server v1.121):** `initShell()` never fired the initial render — every shell page (home + all 8 analytics pages) was stuck on "Loading…" **since v1.111**. All the "verified by screenshot" checks were fooled: shell-only renders are 34KB/2000+ colors, so byte-size/color-count looked rich while `#content` sat empty. year-in-review rendered only because it's self-contained. Fix: `wrapped(y, b)` after selector wiring; all pages now render real data (screenshot sizes 34KB → 55–113KB). **Lesson — screenshot size/color count is NOT render proof; assert on content elements (stat values, chart nodes).**
+
+**Portal Timeline parity (v1.122):** `/api/v1/aftlog/analytics/planner` now returns `timeline` (30/90/365 windows, engine-hours for hours-type / days for months/custom, no-baseline excluded, urgency-sorted — mirrors app `plannerWindowItems`); planner-dashboard renders the three panels. Tests 22 → 25 green.
+
 **Still open (unchanged):** MAINTENANCE PLANNER is the next feature · server spec slices (heatmap/clustering/forecast/maintenance/planner/boat-health) · portal deployment decision (Louis) · seed newer portal screenshots into landing site · Aug 24 waitlist gate.
 
 ---
