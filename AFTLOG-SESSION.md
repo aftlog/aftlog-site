@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 35 — v1.116: Trip Calendar full spec
+
+**Delivered on aftlog-server (the team's spec, adapted to the real architecture):**
+- **API:** GET /api/v1/aftlog/trip-calendar — 365/366 zero-filled day series + summary (total_trips/hours/distance_km, busiest_day, max_trips_in_a_day). Pure function + route + test.
+- **Page:** contract containers tc-calendar + tc-summary added; the spec's 31-column intensity grid + summary card render via new portal.js helpers (intensityToColor, renderTripCalendar, initTripCalendar — with year param); the existing richer 12-month view kept below.
+- **Verified via screenshot** (37KB/2145 colors = rich render). NOTE: headless dump-dom hangs on XHR under virtual-time-budget, so post-fetch pages verify by screenshot, not dump — a harness artifact, not a bug (the homepage only looked dump-friendly because its skeleton is synchronous).
+- Tests: +1 → **21 total green.** Pushed. SERVER_FEATURES.md updated (116).
+
+---
+
 ## 2026-08-14 — Session 34 — v1.114: team ID-rename patch (adaptive)
 
 - **The team's v1.114.patch does NOT apply to this repo** — it was generated against their template architecture, but this repo has a different structure (no per-section containers/init*() functions in portal.js; page logic is inline per HTML file; filenames differ). Verified the mismatch with grep evidence.
