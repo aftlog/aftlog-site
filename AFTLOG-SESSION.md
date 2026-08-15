@@ -27,6 +27,18 @@
 
 ---
 
+## 2026-08-14 — Session 31 — v1.111: Web Portal Homepage
+
+**Delivered on aftlog-server:** GET /portal/ (and /portal) — the 'Welcome back' dashboard:
+- Quick stats (trips/hours/distance/fuel from year-in-review) · recent imports list · 9 analytics quick-link cards · per-boat health cards.
+- Shared shell: sidebar nav gained a **Home** entry (NAV refactored to objects with hrefs); page reuses initShell for consistent chrome.
+- **Loading → empty → error states per section** (fetch failures show a friendly line, no silent blanks) — the polish item the team flagged.
+- Wired to existing read-only endpoints only; no app changes. Fixed the spec's broken `<p` tag + used real no-slash URLs.
+- Tests: +2 → **18 total green.** SERVER_FEATURES.md updated. Homepage screenshot captured for marketing at /tmp/portal-home.png (move to aftlog-site/images/screen-portal-home.png if wanted).
+- **Lessons re-learned:** appending test groups outside main() — third time; the reliable method is rewriting the tail block, not slicing.
+
+---
+
 ## 2026-08-14 — Session 30 — Landing page: Web Portal platform story
 
 **Applied the team's landing-page block (5 new sections) with 5 fixes from my review:**
