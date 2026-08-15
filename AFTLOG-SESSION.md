@@ -27,6 +27,28 @@
 
 ---
 
+## 2026-08-14 — Session 37 — Day-end review + rules locked
+
+**State at end of day (all three repos clean + pushed):**
+- aftlog-server @ v1.117 (Trip Patterns) · 22 tests green · CONTRACT.md authoritative for portal codegen
+- aftlog-site @ session log current · aftlog-app @ 1.100.0 (untouched today, phone idle)
+
+**NEW RULES LOCKED (from today's sessions):**
+1. **Team patches target a template architecture, not this repo** — always `git apply --check` + grep the context before applying; apply the intent adaptively (v1.114 lesson). Generated code must target CONTRACT.md.
+2. **Never trust "already exists" in team specs** — v1.116 trip-calendar and v1.117 trip-patterns both claimed an alias already existed; neither did. Check the route table first.
+3. **Headless dump-dom hangs XHR under virtual-time-budget** — post-fetch pages (all analytics pages) verify by SCREENSHOT; the homepage is dump-friendly (synchronous skeleton). Don't burn time on dump-dom for analytics pages.
+4. **Model may not support images in a session** — pixel/color analysis is the fallback for visual checks; flag "eyeball on phone/desktop" for the human.
+5. **CONTRACT.md is the authoritative portal contract** (aftlog-server) — keep in sync with architecture; it documents shell-only portal.js + inline page renderers + URL/API aliases.
+
+**Cleanup done:** lab server stopped; test aftlog.db removed (gitignored, regenerable from test/fixtures/sample_bundle.json).
+
+**Open items (next sessions):**
+- Remaining spec slices: trip-heatmap, trip-clustering, trip-forecast, maintenance, planner, boat-health — pattern proven (API → contract containers → portal.js renderers → CSS).
+- Portal screenshots for the landing site: today's /tmp/tc-shot.png + /tmp/tp-shot.png can seed screen-portal-* files in ~/aftlog-site/images/ (Louis's call).
+- Portal deployment (Render/Railway/Fly/VPS) — still open, Louis's decision.
+
+---
+
 ## 2026-08-14 — Session 36 — v1.117: Trip Patterns full spec
 
 **Delivered on aftlog-server, contract-correct (spec said the alias "already exists" — it didn't; created it):**
