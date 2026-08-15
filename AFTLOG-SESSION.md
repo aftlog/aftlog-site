@@ -43,6 +43,8 @@
 
 **Canonical theme LOCKED** (this session): `AftLogTheme.build()` (Material 3, dark-only) added to standards §1, ready to drop in as `lib/theme/aftlog_theme.dart` + `aftlog_colors.dart`. **Verified compiles on Flutter 3.44.4** (`flutter analyze` clean — after correcting `CardTheme`→`CardThemeData` and dropping deprecated `background`/`onBackground` ColorScheme params).
 
+**Feature #101 SHIPPED** (aftlog-app 1.101.0, signed APK `AftLog-v1.101.0.apk`): Planner Timeline tab with 30/90/365-day bucket windows. Team spec targeted nonexistent `planner_screen.dart`/`planner_logic.dart` (Session 37 rule #1 in action — applied the intent adaptively to `maintenance_planner_screen.dart`): `plannerWindowItems()` pure fn + Timeline tab (This Month | Upcoming | **Timeline** | Seasons), 6 unit tests, analyze clean, full suite 277 pass (2 pre-existing LocalBundleServer localhost failures). FEATURES.md #101 + count→101.
+
 **Still open (unchanged):** MAINTENANCE PLANNER is the next feature · server spec slices (heatmap/clustering/forecast/maintenance/planner/boat-health) · portal deployment decision (Louis) · seed newer portal screenshots into landing site · Aug 24 waitlist gate.
 
 ---
