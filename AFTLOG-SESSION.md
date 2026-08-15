@@ -27,6 +27,17 @@
 
 ---
 
+## 2026-08-14 — Session 33 — v1.113: Unified portal contract (team bundle)
+
+**Applied the team's cut-and-paste bundle against the exact contract** (/portal/assets/, /portal/<name>, /api/v1/aftlog/...):
+- **Theme system:** dark/light via data-theme + ☾ toggle + localStorage persistence (brand accents unchanged).
+- **Contract aliases added (read-only):** /api/v1/aftlog/stats (year totals) + /api/v1/aftlog/boats (= analytics/boats) + page aliases /portal/maintenance + /portal/planner (bundle nav names).
+- **Kept my filled renderers** — the bundle's per-page wiring templates are empty shells; my pages already wire their sections to the API. Flagged.
+- Tests: +1 → **20 total green.** Verified live: stats {trips 4, hours 10, 55 km, 19 L}; all alias routes + pages 200; homepage DOM renders grouped sidebar + theme button + boats.
+- **Where the portal lives (answered for the team):** local lab only (aftlog-server, dart run → localhost:8080/portal/). NOT on aftlog.com — the landing page is static GitHub Pages and only *describes* the portal. Deploy is the open gap.
+
+---
+
 ## 2026-08-14 — Session 32 — v1.112: Sidebar redesign + states + CRITICAL assets fix
 
 **Applied the team's sidebar/state/folder block, with two deviations flagged:**
