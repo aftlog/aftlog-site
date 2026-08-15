@@ -27,6 +27,18 @@
 
 ---
 
+## 2026-08-14 — Session 30 — Landing page: Web Portal platform story
+
+**Applied the team's landing-page block (5 new sections) with 5 fixes from my review:**
+1. **Real screenshots** — the block referenced 4 images that didn't exist. Captured real ones: app dashboard + checklists via adb screencap (Louis's actual phone data), portal Year-in-Review + Boat Health via headless Playwright Chromium against the local aftlog-server (sample Grady bundle). Saved to aftlog-site/images/.
+2. **Copy accuracy** — portal health index is "inspired by" the app's score (server index is a simplified variant) · AI has "offline fallback" (Gemini needs network) · bundle copy no longer says "nothing else" (it carries photos/documents).
+3. **Pro-tier story fixed** — the block's "if we ever add a true Pro tier" contradicted the app where **$29 IS Pro**; rewrote: free tier (1 boat) + $29 Pro (unlimited, reminders, AI, PDF, Web Portal). Decision #3/#14 consistent.
+4. **Nav extended** (Web Portal / How it works / Pro / FAQ) + **mobile nav now scrolls** instead of hiding (existing display:none quirk).
+5. Order per team: portal+screens+how after #features, pro after #price, faq before footer. 570 lines, tags balanced, pushed → auto-deploys to aftlog.com.
+- **Note for next sessions:** real portal screenshots require the local server running with imported data (documented procedure above).
+
+---
+
 ## 2026-08-14 — Session 29 — v1.103–110: Web Portal Analytics Pack
 
 **Delivered on aftlog-server (pushed):** 4 read-only analytics endpoints + shared portal shell + 8 pages.
