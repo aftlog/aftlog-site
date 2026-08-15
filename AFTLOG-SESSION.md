@@ -27,6 +27,16 @@
 
 ---
 
+## 2026-08-14 — Session 36 — v1.117: Trip Patterns full spec
+
+**Delivered on aftlog-server, contract-correct (spec said the alias "already exists" — it didn't; created it):**
+- **API:** GET /api/v1/aftlog/trip-patterns — frequency (Mon–Sun), timing (0–23 hourly), patterns (early_morning 05–08, late_evening 20+, weekend+weekday = 100).
+- **portal.js:** spec renderers (renderFrequencyChart, renderTimingChart via intensityToColor, renderPatternSummary, renderTripPatterns, initTripPatterns). Page: spec sections first, richer existing charts kept below.
+- **Verified:** API shape (7+24 entries, pcts sum 100); screenshot rich render + red-fill pixel analysis (model can't view images, so pixel-count check instead).
+- Tests: +1 → **22 total green.** Pushed.
+
+---
+
 ## 2026-08-14 — Session 35 — v1.116: Trip Calendar full spec
 
 **Delivered on aftlog-server (the team's spec, adapted to the real architecture):**
