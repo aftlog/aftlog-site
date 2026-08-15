@@ -27,6 +27,18 @@
 
 ---
 
+## 2026-08-14 — Session 32 — v1.112: Sidebar redesign + states + CRITICAL assets fix
+
+**Applied the team's sidebar/state/folder block, with two deviations flagged:**
+1. **Icons: emojis rejected** (🏠📊🗓️… — AftLog brand rule: no emojis). Used lightweight inline SVG icons instead.
+2. **Folder structure kept flat** — the /portal/<page>/index.html subdir layout is equivalent churn against the current routes; same URLs, same result. Revisit only if deploy-portability demands it.
+- **Built:** grouped sidebar (Overview/Trips/Maintenance/Boats) · mobile off-canvas + hamburger topbar · shared showLoading/showEmpty/showError + spinner · initShell wraps every page render in try/catch → friendly error state (no silent blanks).
+- **🔴 CRITICAL LATENT BUG FOUND:** /portal/assets/* was never routed → **every page using portal.css/js rendered BLANK since v1.102** (only the self-contained year-in-review worked). The portal-page test checked the <script> tag, not that it loaded. Fixed the route + added a regression test. Homepage screenshot: 5.8KB blank → 42KB real.
+- **Lesson:** a test asserting a tag exists is not a test that the page renders — headless-DOM verification caught what unit tests missed. The small-screenshot mystery from Session 28-31 was this bug.
+- Tests: +2 → **19 total green.** SERVER_FEATURES.md updated (112). Pushed.
+
+---
+
 ## 2026-08-14 — Session 31 — v1.111: Web Portal Homepage
 
 **Delivered on aftlog-server:** GET /portal/ (and /portal) — the 'Welcome back' dashboard:
