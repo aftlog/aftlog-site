@@ -60,6 +60,24 @@
   off). Future features (e.g. VEA) run through this checklist.
 
 
+**VEA-3 SHIPPED (commit 770780e, 08-16):** full result rendering — part
+chip (name/confidence/source), fault chip (no-fault copy or fault+
+confidence), manual refs (Open Page → viewer, F6), SMP tasks
+(severity-colored, Open Task), diagnostics (Run Diagnostic → new
+SymptomFlowScreen host), safety badge, notes (hidden when empty); Save to
+History (image + entry + detail); analyze() called once (analyzeOverride
+test seam). 10 tests; plugin-heavy viewer verified via guard (can't render
+SfPdfViewer in unit env — on-device verify).
+
+**VEA-4 SHIPPED (commit 36d7482, 08-16):** Pro gating — vea_gating.dart
+(isVeaAvailableForUser / isVeaProForUser, SMP-pattern), vea_upsell_screen
+(user-facing copy, linted), Tools tile + home buttons route free → upsell /
+Pro → flow; capture/result/history unreachable for free. Fixed a real
+language-rule violation ('offline-first' in dataYoursOffline → 'always on
+your device', x5). +3 tests → 400 (2 pre-existing). NO install until
+VEA-Final. (Louis at an appointment — phone disconnected, no installs
+needed anyway.)
+
 **VEA-2 scaffold SHIPPED (commit 91a1672, 08-16):** lib/screens/vea/
 (home, capture via image_picker camera+gallery, result with 7 placeholder
 sections + disabled save, history list + detail with delete), widgets/vea/
