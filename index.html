@@ -260,30 +260,91 @@
         <h2>Questions boat owners actually ask</h2>
         <div class="faq-list">
           <details>
-            <summary>Does AftLog work offline?</summary>
-            <p>Yes. The app is offline-first: logging, checklists, and reminders all work without signal. AI diagnostics have an offline fallback when you're out of range. Sync and export happen when you choose.</p>
+            <summary>Does AftLog work without cell service?</summary>
+            <p>Yes. AftLog is fully offline-first. You can log trips, fuel, maintenance, and checklists anywhere — lakes, rivers, or offshore — and everything syncs when you're back online.</p>
           </details>
           <details>
-            <summary>Do I need an account?</summary>
-            <p>No. AftLog does not require an account to use the app. The Web Portal uses your exported bundle, not a live account connection.</p>
+            <summary>How do I back up my data?</summary>
+            <p>AftLog supports local JSON backups and exports to CSV/PDF. You can also send your log to the Web Portal for a bigger view on your laptop.</p>
           </details>
           <details>
-            <summary>Can I export my data?</summary>
-            <p>Yes. You can export to CSV and PDF anytime, including resale and logbook reports. Your log stays yours.</p>
+            <summary>What happens if I get a new phone?</summary>
+            <p>Just restore your backup on the new device. All your logs, photos, and history come with you.</p>
           </details>
           <details>
-            <summary>Does AftLog support multiple boats?</summary>
-            <p>Yes. The Pro tier supports multiple boats and engines — each with its own health score, checklists, and analytics — with shared Web Portal access.</p>
+            <summary>Can I track more than one boat?</summary>
+            <p>Yes. The Free tier supports one boat, and the Pro tier supports multiple boats with shared analytics and Portal access.</p>
           </details>
           <details>
-            <summary>Can I track more than one boat on the free plan?</summary>
-            <p>The free plan covers one boat. Pro ($29 one-time) unlocks unlimited boats, the Web Portal, and everything else.</p>
+            <summary>Is my data private?</summary>
+            <p>Your data stays on your device unless you choose to sync or export it. No account is required, and your logs are never mined or sold.</p>
           </details>
           <details>
-            <summary>Is AftLog designed for my region?</summary>
-            <p>AftLog is built for pleasure craft and fishing boats in Canada and the USA, with seasons and reminders tuned to those regions.</p>
+            <summary>Does AftLog track engine hours?</summary>
+            <p>Yes. You can log engine hours manually, track service intervals, and see usage patterns over time.</p>
+          </details>
+          <details>
+            <summary>Can AftLog calculate fuel burn and range?</summary>
+            <p>Yes. AftLog uses your real trip and fuel history to calculate average burn, cost per hour, and estimated range.</p>
+          </details>
+          <details>
+            <summary>Does AftLog help with resale?</summary>
+            <p>Yes. Pro users can generate clean resale PDFs with service history, trip summaries, and maintenance logs.</p>
+          </details>
+          <details>
+            <summary>Can I attach receipts, photos, and documents?</summary>
+            <p>Yes. You can attach photos, invoices, serial numbers, and part details to your boat and its service entries.</p>
+          </details>
+          <details>
+            <summary>Does AftLog include safety checklists?</summary>
+            <p>Yes. AftLog includes launch, retrieve, towing, winterization, compliance, and float plan checklists.</p>
+          </details>
+          <details>
+            <summary>Is AftLog good for fishing trips?</summary>
+            <p>Yes. You can log fuel, distance, hours, notes, and photos for every trip. AftLog works great for anglers.</p>
+          </details>
+          <details>
+            <summary>Is there a Web Portal?</summary>
+            <p>Yes. The Web Portal gives you a larger screen for analytics and exports — you send it a bundle from the app, no account needed.</p>
+          </details>
+          <details>
+            <summary>What does Pro include?</summary>
+            <p>Multiple boats, Web Portal access, advanced analytics sheets, backup/restore, and resale exports.</p>
+          </details>
+          <details>
+            <summary>Is there a one-time price?</summary>
+            <p>Yes. Early adopters can lock in Pro access for a one-time $29 price.</p>
+          </details>
+          <details>
+            <summary>Can I use AftLog for commercial boats?</summary>
+            <p>AftLog is designed for pleasure craft and fishing boats, but many small operators use it successfully.</p>
           </details>
         </div>
+        <div class="faq-contact">
+          <p>Still have questions? <a href="#contact">Contact us</a> — we're happy to help.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="contact">
+      <div class="container">
+        <span class="sec-label">Contact</span>
+        <h2>Contact us</h2>
+        <p class="sec-intro">If you have questions about AftLog, the Web Portal, or Pro features, send us a message:</p>
+        <form action="https://formspree.io/f/xoeaezwv" method="POST" class="contact-form" id="contact-form">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <label>
+            Your email
+            <input type="email" name="email" required data-fs-field>
+          </label>
+          <label>
+            Your message
+            <textarea name="message" rows="5" required data-fs-field></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary" data-fs-submit-btn>Send message</button>
+          <p class="fs-success" data-fs-success hidden>Thanks — we'll get back to you soon.</p>
+          <p class="fs-error" data-fs-error hidden>Something went wrong — please try again.</p>
+        </form>
       </div>
     </section>
   </main>
@@ -306,6 +367,9 @@
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#waitlist-form', formId: 'xoeaezwv' });
+    // Contact form — same Formspree account for now; swap in a dedicated
+    // form ID from https://forms.formspree.io when you want separate inboxes.
+    formspree('initForm', { formElement: '#contact-form', formId: 'xoeaezwv' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
