@@ -8,7 +8,7 @@
 
 - **🔜 TEST THE REVIEW PUBLISHER FLOW (Louis, 08-16):** AftLog Dev 1.103.16 is installed on your phone with the GitHub token embedded. Open More → Tools → Review Publisher (Dev) → publish a test review → verify it lands on aftlog.com/#reviews after the ~1 min rebuild. Token stored at `pass api/github-aftlog-site` (classic `ghp_…`, 40 bytes). If the flow stumbles, the commit error shows in the app snackbar.
 
-- **🔜 NEXT UP (updated 2026-08-15):** MAINTENANCE PLANNER **is SHIPPED** (features #71–77 + #86, 1.71.0–1.86.0 — More → Maintenance Planner; tabs, seasons/analytics/predictive/export Pro-gated). The session-log note from 08-14 saying it was missing was STALE. Real open frontier: server spec slices (trip-heatmap/clustering/forecast done on portal; maintenance/planner/boat-health dashboards remain) · portal deployment decision (Aug 24 gate) · free-tier gating not enforced · Pro purchase wiring · per-interval due-soon notifications · hotpot alignment. Candidate enhancement if desired: explicit 30/90/365-day bucket view on the existing planner (a team-spec PlannerScreen was reviewed 08-15 — 5 API mismatches, does NOT compile; only new idea worth keeping is the 30/90/365 buckets).
+- **🔜 NEXT UP (reconciled 2026-08-16 — several "open" notes were STALE):** All server spec slices are DONE — trip calendar/patterns/heatmap/clustering/forecast + **maintenance/planner/boat-health dashboards shipped in the v1.103–110 analytics pack** (verified 08-16: routes + portal.js renderers + DOM checks, 26 tests green). Per-interval due-soon notifications DONE (feature #72 state-transition alerts). Free-tier gating DONE (#102). 30/90/365 buckets DONE (#101 + server v1.122). **Genuinely open:** ① portal deployment decision (Aug 24 gate — Louis) ② site analytics (GoatCounter/Plausible, planned Aug 11, still zero — no account in pass) ③ Pro purchase: Stripe seam wired, needs backend validation at deployment ④ data blanks (Louis's content: intervals per engine, glossary 29 terms, boat-style prices, quiz weights, calculator assumptions) ⑤ data-level enum labels (DriveType/HullType/DocType/ChecklistType) still EN — future data-layer decision.
 - **🔴 adb stall (Samsung):** plain `adb push` can wedge or silently drop big files. Reliable: chunked push (8MB parts) → verify chunk count (10) → cat on device → md5sum match → pm install. Seen many times 2026-08-14. Also in CODING-STANDARDS §3.
 - **Email convention (LOCKED 2026-08-14):** ALL mailtos = `aftlog@yahoo.com` + context-specific subject (CatchTales pattern). Never a second address.
 - **Open (parked):** ~~hotspot visual alignment~~ ✅ finished (Louis, 08-15) · **Site redesign DONE 08-15** — hybrid dark hero + light content deployed (index.html + aftlog.css); portal links live everywhere with placeholder href (`https://portal.aftlog.com`) — **swap for the real URL when the portal deploys** · deep-screen translations ✅ COMPLETE 1.103.12 · **Dev Flavor Review Publisher SHIPPED 08-15 (app 1.103.13-dev + site data/reviews.json)**: phone → paste review → publish → GitHub commit → aftlog.com rebuilds. **Louis TODO: fine-grained PAT (aftlog/aftlog-site contents:write) → `pass insert api/github-aftlog-site` → rebuild `./build.sh dev`.** Token + admin routes are dev-only by design. · site rollout (analytics → beta CTA → distribution; Aug 24 gate) · MLD logo spacing done 5j.
@@ -26,6 +26,48 @@
 - **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
 - **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
 - **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-16 — Session 39 — State reconciliation + live-site screenshot fix
+
+**Big finding: the session log was badly STALE about the server.** The
+08-15 notes said maintenance/planner/boat-health dashboards "remain" —
+they're all SHIPPED (v1.103–110 analytics pack: routes, portal pages,
+portal.js renderers, verified by DOM assertions). The "open frontier" list
+is now reconciled in REMINDERS; almost everything on it was done.
+
+**Housekeeping:**
+- Committed the dev-flavor version sync in aftlog-app (1.103.16+129 — 3
+  builds since the Review Publisher commit, no code changes).
+- Set per-repo git identity on all three repos (Louis / aftlog@yahoo.com)
+  — previous commits relied on env vars, `git commit` was failing bare.
+
+**🔴 Real bug found & fixed on the LIVE site:** `screen-portal-health.png`
+(the "Portal — Boat Health" screenshot on aftlog.com) was 100% WHITE — a
+5.8KB/1-color render from the v1.111 "Loading…" bug era. The site was
+showing an empty white frame as the health dashboard. Replaced with a
+real render from the polished v1.118–121 portal.
+
+**Server v1.123 (pushed, 26 tests green):**
+- `tools/generate_demo_bundle.py` — deterministic seeded demo bundle for
+  portal screenshots: 2 boats, 112 trips (weekend-heavy Georgian Bay
+  season), 14 services w/ parts, 10 intervals, 6 checklists.
+- Fix: trip-calendar summary totals rounded to 1 decimal server-side
+  (was binary float drift — "84.59999999999998 h" on the summary card);
+  portal.js `renderTripCalendar` formats defensively. +1 rounding test.
+
+**Screenshots regenerated (aftlog-site, pushed):** year-in-review +
+boat-health recaptured via headless Chromium (1440×950, virtual-time
+budget) against the demo-bundle server; verified with Playwright DOM
+needles (content elements, per the v1.121 lesson) + pixel analysis
+(rich dark renders, red accents). Demo data + generator committed so
+screenshots are reproducible. All 10 portal pages verified rendering.
+
+**Louis TODOs (unchanged from 08-15):** test the Review Publisher flow on
+the phone (Dev 1.103.16, token in `pass api/github-aftlog-site`) · site
+analytics (GoatCounter/Plausible — needs an account) · portal deployment
+decision · eyeball the two refreshed screenshots on the live site.
 
 ---
 
