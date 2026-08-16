@@ -45,6 +45,15 @@
   uses SystemSound click (no audio plugin allowed by the no-external-libs
   rule — 'asset audio' doesn't exist in bare Flutter).
 
+- **🔒 AFTLOG-BOATRUN-FIXES-1 SHIPPED (commit cf69498, app 1.107.1 on
+  phone, 08-16):** landscape clamp (pure clampX helper, called every frame
+  with the current MediaQuery width — mid-game rotation safe) + kid-
+  friendly steering circles (semi-transparent Left/Right targets, ~120px,
+  above the canvas, toggle 'Show steering circles' default ON, local
+  state) + 2 help lines. No scoring/speed/spawn/collision changes; patch
+  bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
+  1.107.1 (one chunk dropped mid-push — retried; md5 verified).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -178,6 +187,15 @@ help/website.
   uses SystemSound click (no audio plugin allowed by the no-external-libs
   rule — 'asset audio' doesn't exist in bare Flutter).
 
+- **🔒 AFTLOG-BOATRUN-FIXES-1 SHIPPED (commit cf69498, app 1.107.1 on
+  phone, 08-16):** landscape clamp (pure clampX helper, called every frame
+  with the current MediaQuery width — mid-game rotation safe) + kid-
+  friendly steering circles (semi-transparent Left/Right targets, ~120px,
+  above the canvas, toggle 'Show steering circles' default ON, local
+  state) + 2 help lines. No scoring/speed/spawn/collision changes; patch
+  bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
+  1.107.1 (one chunk dropped mid-push — retried; md5 verified).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -231,6 +249,15 @@ help/website.
   manualFilename/manualMimeType — same intent, documented); BoatRun sound
   uses SystemSound click (no audio plugin allowed by the no-external-libs
   rule — 'asset audio' doesn't exist in bare Flutter).
+
+- **🔒 AFTLOG-BOATRUN-FIXES-1 SHIPPED (commit cf69498, app 1.107.1 on
+  phone, 08-16):** landscape clamp (pure clampX helper, called every frame
+  with the current MediaQuery width — mid-game rotation safe) + kid-
+  friendly steering circles (semi-transparent Left/Right targets, ~120px,
+  above the canvas, toggle 'Show steering circles' default ON, local
+  state) + 2 help lines. No scoring/speed/spawn/collision changes; patch
+  bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
+  1.107.1 (one chunk dropped mid-push — retried; md5 verified).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -291,6 +318,15 @@ help/website.
   manualFilename/manualMimeType — same intent, documented); BoatRun sound
   uses SystemSound click (no audio plugin allowed by the no-external-libs
   rule — 'asset audio' doesn't exist in bare Flutter).
+
+- **🔒 AFTLOG-BOATRUN-FIXES-1 SHIPPED (commit cf69498, app 1.107.1 on
+  phone, 08-16):** landscape clamp (pure clampX helper, called every frame
+  with the current MediaQuery width — mid-game rotation safe) + kid-
+  friendly steering circles (semi-transparent Left/Right targets, ~120px,
+  above the canvas, toggle 'Show steering circles' default ON, local
+  state) + 2 help lines. No scoring/speed/spawn/collision changes; patch
+  bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
+  1.107.1 (one chunk dropped mid-push — retried; md5 verified).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
