@@ -54,6 +54,16 @@
   bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
   1.107.1 (one chunk dropped mid-push — retried; md5 verified).
 
+- **🔒 AFTLOG-BOATRUN-FIXES-2 SHIPPED (commit d70bfc4, app 1.107.2 on
+  phone, 08-16):** hold-to-steer steering circles (Listener pointer
+  events — instant on a still press, unlike tap/pan recognizers; empty
+  tap absorbs so the canvas doesn't double-steer; per-frame hold rate 6px
+  — the block's 'unchanged 24px per frame' would sweep the screen in
+  ~0.3s, documented deviation) + orientation-safe clamp (per-frame
+  MediaQuery clamp + immediate re-clamp on orientation change). No
+  scoring/collision/spawn changes; patch only. +3 tests → 421 (2
+  pre-existing). Installed 1.107.2 (md5 verified).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -196,6 +206,16 @@ help/website.
   bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
   1.107.1 (one chunk dropped mid-push — retried; md5 verified).
 
+- **🔒 AFTLOG-BOATRUN-FIXES-2 SHIPPED (commit d70bfc4, app 1.107.2 on
+  phone, 08-16):** hold-to-steer steering circles (Listener pointer
+  events — instant on a still press, unlike tap/pan recognizers; empty
+  tap absorbs so the canvas doesn't double-steer; per-frame hold rate 6px
+  — the block's 'unchanged 24px per frame' would sweep the screen in
+  ~0.3s, documented deviation) + orientation-safe clamp (per-frame
+  MediaQuery clamp + immediate re-clamp on orientation change). No
+  scoring/collision/spawn changes; patch only. +3 tests → 421 (2
+  pre-existing). Installed 1.107.2 (md5 verified).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -258,6 +278,16 @@ help/website.
   state) + 2 help lines. No scoring/speed/spawn/collision changes; patch
   bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
   1.107.1 (one chunk dropped mid-push — retried; md5 verified).
+
+- **🔒 AFTLOG-BOATRUN-FIXES-2 SHIPPED (commit d70bfc4, app 1.107.2 on
+  phone, 08-16):** hold-to-steer steering circles (Listener pointer
+  events — instant on a still press, unlike tap/pan recognizers; empty
+  tap absorbs so the canvas doesn't double-steer; per-frame hold rate 6px
+  — the block's 'unchanged 24px per frame' would sweep the screen in
+  ~0.3s, documented deviation) + orientation-safe clamp (per-frame
+  MediaQuery clamp + immediate re-clamp on orientation change). No
+  scoring/collision/spawn changes; patch only. +3 tests → 421 (2
+  pre-existing). Installed 1.107.2 (md5 verified).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -327,6 +357,16 @@ help/website.
   state) + 2 help lines. No scoring/speed/spawn/collision changes; patch
   bump only. 6 keys x5, +4 tests → 418 (2 pre-existing). Installed
   1.107.1 (one chunk dropped mid-push — retried; md5 verified).
+
+- **🔒 AFTLOG-BOATRUN-FIXES-2 SHIPPED (commit d70bfc4, app 1.107.2 on
+  phone, 08-16):** hold-to-steer steering circles (Listener pointer
+  events — instant on a still press, unlike tap/pan recognizers; empty
+  tap absorbs so the canvas doesn't double-steer; per-frame hold rate 6px
+  — the block's 'unchanged 24px per frame' would sweep the screen in
+  ~0.3s, documented deviation) + orientation-safe clamp (per-frame
+  MediaQuery clamp + immediate re-clamp on orientation change). No
+  scoring/collision/spawn changes; patch only. +3 tests → 421 (2
+  pre-existing). Installed 1.107.2 (md5 verified).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
