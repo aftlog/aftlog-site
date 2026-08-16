@@ -73,6 +73,36 @@ OCR-verified as the real app.
 
 **Feature #104 SHIPPED — Engine Manual Assist (1.104.0, app on phone 1.104.1-dev):** user attaches their own engine manual PDF; AftLog indexes it fully offline (syncfusion_flutter_pdf extraction — spec's pdf_text/native_pdf_renderer both conflict with the app's http/geolocator pins → pure-Dart plugin instead, documented in code; ~250-word chunks; deterministic FNV-1a hashing embeddings stable across SDK versions; index JSON at <docs>/manual_index_<boatId>.json; vector search = term overlap + cosine bonus, 0.35 threshold, top 5). Diagnostics get a "Manual Guidance (<name>)" section with page snippets (never quoting copyrighted text); Ask AftLog searches the manual with the question's own words and cites pages (online + offline fallback). Free: attach/view (FileProvider added). Pro: guidance + search. DB v9, 23 translation keys ×5, 19 new unit tests (311 total, 2 pre-existing LocalBundleServer failures unchanged). VERIFIED ON PHONE: migration clean, boat detail tile → Engine Manual screen → system PDF picker opens. Sample manual at /sdcard/Download/sample_manual.pdf for Louis's end-to-end test. **Louis TODO: attach the sample manual → pick 'Overheating' in Manual guidance (Pro) → check diagnostic summary shows Manual Guidance.**
 
+**F1–F14 bundle COMPLETE (1.104.2, on phone 08-16):** the team's fix blocks
+(F1–F14) shipped over three commits — 443c867 (F1), f502ed6 (F2–F4),
+963c129 (F5–F14). Final state:
+- F1: View Manual opened the folder → storage aligned to the spec path
+  (getExternalStorageDirectory = /Android/data/com.aftlog/files) +
+  FileProvider XML fixed; later REPLACED by the in-app viewer (F2).
+- F2: in-app SfPdfViewer (pinch/scroll/paging), free; FileProvider+Intent
+  removed. Dep: syncfusion_flutter_pdfviewer 34.2.3 + device_info_plus
+  ^12 override (win32 ^5 — file_picker 10 breaks on win32 6).
+- F3: first-page thumbnails via off-screen RepaintBoundary capture
+  (syncfusion has no rasterize API) → <boatId>_thumb.png.
+- F4: typed ManualCorrupt/ManualEmpty exceptions; parse-before-copy so a
+  bad PDF never clobbers the previous manual/index; missing-file snackbar;
+  View hidden when file missing.
+- F6: diagnostics deep-link "Open manual — page N" (jumpToPage).
+- F7: highlighted snippets + Top Matches + Related Sections.
+- F8: background-isolate indexing + progress stream + cancel (race fixed
+  by test). F9: launch-time index integrity auto-repair.
+- F10: metadata (title/author + model/OEM/year heuristics) → sidecar JSON.
+- F11/F12: bookmarks + annotations sidecars (PDF never modified).
+- F13: storage usage + orphan cleanup. F14: manuals in backup JSON.
+- F5 multi-manual DEFERRED (needs layout+DB change+renames — violates the
+  bundle's own no-refactor/no-rename/no-breaking rules). Next feature if
+  the team wants it: a boat_manuals table + per-type storage.
+- 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
+  clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**Louis: retest the manual flow on 1.104.2 — attach sample_manual.pdf,
+check thumbnail + metadata line, View opens the in-app viewer, bookmark a
+page, add a note, diagnostics deep-link, backup includes the manual.**
+
 **Louis TODOs (unchanged from 08-15):** test the Review Publisher flow on
 the phone (Dev 1.103.16, token in `pass api/github-aftlog-site`) · site
 analytics (GoatCounter/Plausible — needs an account) · portal deployment
