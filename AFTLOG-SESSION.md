@@ -77,6 +77,19 @@
   insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
   md5 verified).
 
+- **🔒 BOATRUN-FIXES-2 RE-SEND RECONCILED (08-16):** the block re-arrived
+  after it shipped (hold-to-steer d70bfc4/1.107.2 + landscape clamp
+  f310158/1.107.3, on the phone). NO re-implementation: Section 2's
+  literal MediaQuery-based clamp is the EXACT approach that caused the
+  reported landscape disappearance (MediaQuery width > safe-area canvas on
+  notched phones) — the shipped fix clamps to the PLAYFIELD and is
+  verified on-device + by the insets regression test. Documented
+  deviation kept: hold rate 6px/frame (the block's 'unchanged 24px per
+  frame' would sweep the screen in ~0.3s). All Section-3 tests pass
+  (18 boatrun tests: hold left/right/release, rotation mid-game/start/
+  repeated, score/collision/pause unchanged), lint clean, analyzer clean,
+  phone at 1.107.3.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -242,6 +255,19 @@ help/website.
   insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
   md5 verified).
 
+- **🔒 BOATRUN-FIXES-2 RE-SEND RECONCILED (08-16):** the block re-arrived
+  after it shipped (hold-to-steer d70bfc4/1.107.2 + landscape clamp
+  f310158/1.107.3, on the phone). NO re-implementation: Section 2's
+  literal MediaQuery-based clamp is the EXACT approach that caused the
+  reported landscape disappearance (MediaQuery width > safe-area canvas on
+  notched phones) — the shipped fix clamps to the PLAYFIELD and is
+  verified on-device + by the insets regression test. Documented
+  deviation kept: hold rate 6px/frame (the block's 'unchanged 24px per
+  frame' would sweep the screen in ~0.3s). All Section-3 tests pass
+  (18 boatrun tests: hold left/right/release, rotation mid-game/start/
+  repeated, score/collision/pause unchanged), lint clean, analyzer clean,
+  phone at 1.107.3.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -327,6 +353,19 @@ help/website.
   LESSON: test orientation on a device-like viewport WITH safe-area
   insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
   md5 verified).
+
+- **🔒 BOATRUN-FIXES-2 RE-SEND RECONCILED (08-16):** the block re-arrived
+  after it shipped (hold-to-steer d70bfc4/1.107.2 + landscape clamp
+  f310158/1.107.3, on the phone). NO re-implementation: Section 2's
+  literal MediaQuery-based clamp is the EXACT approach that caused the
+  reported landscape disappearance (MediaQuery width > safe-area canvas on
+  notched phones) — the shipped fix clamps to the PLAYFIELD and is
+  verified on-device + by the insets regression test. Documented
+  deviation kept: hold rate 6px/frame (the block's 'unchanged 24px per
+  frame' would sweep the screen in ~0.3s). All Section-3 tests pass
+  (18 boatrun tests: hold left/right/release, rotation mid-game/start/
+  repeated, score/collision/pause unchanged), lint clean, analyzer clean,
+  phone at 1.107.3.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -419,6 +458,19 @@ help/website.
   LESSON: test orientation on a device-like viewport WITH safe-area
   insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
   md5 verified).
+
+- **🔒 BOATRUN-FIXES-2 RE-SEND RECONCILED (08-16):** the block re-arrived
+  after it shipped (hold-to-steer d70bfc4/1.107.2 + landscape clamp
+  f310158/1.107.3, on the phone). NO re-implementation: Section 2's
+  literal MediaQuery-based clamp is the EXACT approach that caused the
+  reported landscape disappearance (MediaQuery width > safe-area canvas on
+  notched phones) — the shipped fix clamps to the PLAYFIELD and is
+  verified on-device + by the insets regression test. Documented
+  deviation kept: hold rate 6px/frame (the block's 'unchanged 24px per
+  frame' would sweep the screen in ~0.3s). All Section-3 tests pass
+  (18 boatrun tests: hold left/right/release, rotation mid-game/start/
+  repeated, score/collision/pause unchanged), lint clean, analyzer clean,
+  phone at 1.107.3.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
