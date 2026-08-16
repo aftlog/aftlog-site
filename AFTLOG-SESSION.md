@@ -60,6 +60,22 @@
   off). Future features (e.g. VEA) run through this checklist.
 
 
+**VEA-FINAL — VEA COMPLETE (app 1.106.0 on phone, 08-16):** help topics
+x2 (using VEA + troubleshooting, full instructional fields), optional 5th
+onboarding-tour card (Try VEA, veaEnabled-gated), What's New 1.106 (exact
+block copy, linted), FEATURES.md #106, website landing section + changelog
+(screenshot placeholder — real result shot needs an engine photo),
+server CHANGELOG VEA product docs (privacy: photos stay on device).
+Release checklist executed: version 1.106.0 (feature bump), lint clean
+(app + site + server), 400 tests (2 pre-existing), analyzer clean, signed
+dev build, md5 verified, single install. ALL VEA blocks complete:
+VEA-1 (core) → Cleanup-1 → VEA-2 (scaffold) → VEA-3 (result UI) →
+VEA-4 (Pro gating) → VEA-Final (docs/release). On-device smoke test is
+Louis's: capture → result → save → history → detail → delete; manual/SMP/
+diagnostics deep-links; safety badge; upsell on a release (free) build.
+VEA release note: the heuristic offline analyzer is an honest stand-in
+until a real model asset ships; Gemini refines when a key + signal exist.
+
 **VEA-3 SHIPPED (commit 770780e, 08-16):** full result rendering — part
 chip (name/confidence/source), fault chip (no-fault copy or fault+
 confidence), manual refs (Open Page → viewer, F6), SMP tasks
