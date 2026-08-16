@@ -213,11 +213,19 @@
   in More; EN + ES copy.
 - Unit-level JWT verified: claims correct + signature verifies against an
   embedded test RSA-2048 public key (and mismatched payload fails).
-- BLOCKED on Louis: Project settings → Service accounts → Generate new
-  private key → save the JSON as aftlog_server/firebase_service_account.json
-  (gitignored) → confirm → live end-to-end check (create code → submit
-  with a real session → linked_devices mapping in Firestore → expired/used
-  rejections).
+- BLOCK 2 FULLY LIVE-VERIFIED (server f23688d) against real Firebase
+  after Louis added the service-account key (Firebase/ folder in the repo,
+  gitignored; copied to firebase_service_account.json): app registers a
+  code → doc lands in production Firestore; portal submit → linked_devices
+  mapping with the signed-in USER's uid; used flag flips (re-submit 409);
+  expired code 410. Key fixes found during live testing: RSASigner hex was
+  bogus ('06020000' → SHA-256 OID '0609608648016503040201' — Google
+  rejected the DigestInfo); base64UrlEncode pads but JWT must be unpadded;
+  '\$_base()' interpolated the method tear-off; _req force-closed the
+  client before the response body was read (writes silently succeeded but
+  every call threw HttpException) — now reads+returns the full response.
+  Remaining: app-side live (code → screen → portal submit with the phone;
+  the app build wait stays until a bundle completes).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -520,11 +528,19 @@ help/website.
   in More; EN + ES copy.
 - Unit-level JWT verified: claims correct + signature verifies against an
   embedded test RSA-2048 public key (and mismatched payload fails).
-- BLOCKED on Louis: Project settings → Service accounts → Generate new
-  private key → save the JSON as aftlog_server/firebase_service_account.json
-  (gitignored) → confirm → live end-to-end check (create code → submit
-  with a real session → linked_devices mapping in Firestore → expired/used
-  rejections).
+- BLOCK 2 FULLY LIVE-VERIFIED (server f23688d) against real Firebase
+  after Louis added the service-account key (Firebase/ folder in the repo,
+  gitignored; copied to firebase_service_account.json): app registers a
+  code → doc lands in production Firestore; portal submit → linked_devices
+  mapping with the signed-in USER's uid; used flag flips (re-submit 409);
+  expired code 410. Key fixes found during live testing: RSASigner hex was
+  bogus ('06020000' → SHA-256 OID '0609608648016503040201' — Google
+  rejected the DigestInfo); base64UrlEncode pads but JWT must be unpadded;
+  '\$_base()' interpolated the method tear-off; _req force-closed the
+  client before the response body was read (writes silently succeeded but
+  every call threw HttpException) — now reads+returns the full response.
+  Remaining: app-side live (code → screen → portal submit with the phone;
+  the app build wait stays until a bundle completes).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -748,11 +764,19 @@ help/website.
   in More; EN + ES copy.
 - Unit-level JWT verified: claims correct + signature verifies against an
   embedded test RSA-2048 public key (and mismatched payload fails).
-- BLOCKED on Louis: Project settings → Service accounts → Generate new
-  private key → save the JSON as aftlog_server/firebase_service_account.json
-  (gitignored) → confirm → live end-to-end check (create code → submit
-  with a real session → linked_devices mapping in Firestore → expired/used
-  rejections).
+- BLOCK 2 FULLY LIVE-VERIFIED (server f23688d) against real Firebase
+  after Louis added the service-account key (Firebase/ folder in the repo,
+  gitignored; copied to firebase_service_account.json): app registers a
+  code → doc lands in production Firestore; portal submit → linked_devices
+  mapping with the signed-in USER's uid; used flag flips (re-submit 409);
+  expired code 410. Key fixes found during live testing: RSASigner hex was
+  bogus ('06020000' → SHA-256 OID '0609608648016503040201' — Google
+  rejected the DigestInfo); base64UrlEncode pads but JWT must be unpadded;
+  '\$_base()' interpolated the method tear-off; _req force-closed the
+  client before the response body was read (writes silently succeeded but
+  every call threw HttpException) — now reads+returns the full response.
+  Remaining: app-side live (code → screen → portal submit with the phone;
+  the app build wait stays until a bundle completes).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -982,11 +1006,19 @@ help/website.
   in More; EN + ES copy.
 - Unit-level JWT verified: claims correct + signature verifies against an
   embedded test RSA-2048 public key (and mismatched payload fails).
-- BLOCKED on Louis: Project settings → Service accounts → Generate new
-  private key → save the JSON as aftlog_server/firebase_service_account.json
-  (gitignored) → confirm → live end-to-end check (create code → submit
-  with a real session → linked_devices mapping in Firestore → expired/used
-  rejections).
+- BLOCK 2 FULLY LIVE-VERIFIED (server f23688d) against real Firebase
+  after Louis added the service-account key (Firebase/ folder in the repo,
+  gitignored; copied to firebase_service_account.json): app registers a
+  code → doc lands in production Firestore; portal submit → linked_devices
+  mapping with the signed-in USER's uid; used flag flips (re-submit 409);
+  expired code 410. Key fixes found during live testing: RSASigner hex was
+  bogus ('06020000' → SHA-256 OID '0609608648016503040201' — Google
+  rejected the DigestInfo); base64UrlEncode pads but JWT must be unpadded;
+  '\$_base()' interpolated the method tear-off; _req force-closed the
+  client before the response body was read (writes silently succeeded but
+  every call threw HttpException) — now reads+returns the full response.
+  Remaining: app-side live (code → screen → portal submit with the phone;
+  the app build wait stays until a bundle completes).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
