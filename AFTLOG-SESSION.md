@@ -90,6 +90,18 @@
   repeated, score/collision/pause unchanged), lint clean, analyzer clean,
   phone at 1.107.3.
 
+- **🔒 AFTLOG BOATRUN REMOVED (commit 1575311, app 1.107.4 on phone,
+  08-16, Louis's decision — may revisit later):** game + Crew & Kids
+  section + 24 translation keys deleted; FEATURES.md back to 106 features
+  (next feature bump → 1.107.0, versionName may repeat history —
+  cosmetic; versionCode stays monotonic). ROOT CAUSE of the persistent
+  landscape disappearance, found at removal time: boatY was hardcoded at
+  600px for PORTRAIT; the landscape canvas is ~400px tall, so the boat
+  rendered BELOW the visible area (the X-axis clamping was correct). A
+  one-line fix (boatY relative to height, e.g. height*0.85) would have
+  solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
+  revival. 404 tests (2 pre-existing). Installed 1.107.4.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -268,6 +280,18 @@ help/website.
   repeated, score/collision/pause unchanged), lint clean, analyzer clean,
   phone at 1.107.3.
 
+- **🔒 AFTLOG BOATRUN REMOVED (commit 1575311, app 1.107.4 on phone,
+  08-16, Louis's decision — may revisit later):** game + Crew & Kids
+  section + 24 translation keys deleted; FEATURES.md back to 106 features
+  (next feature bump → 1.107.0, versionName may repeat history —
+  cosmetic; versionCode stays monotonic). ROOT CAUSE of the persistent
+  landscape disappearance, found at removal time: boatY was hardcoded at
+  600px for PORTRAIT; the landscape canvas is ~400px tall, so the boat
+  rendered BELOW the visible area (the X-axis clamping was correct). A
+  one-line fix (boatY relative to height, e.g. height*0.85) would have
+  solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
+  revival. 404 tests (2 pre-existing). Installed 1.107.4.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -366,6 +390,18 @@ help/website.
   (18 boatrun tests: hold left/right/release, rotation mid-game/start/
   repeated, score/collision/pause unchanged), lint clean, analyzer clean,
   phone at 1.107.3.
+
+- **🔒 AFTLOG BOATRUN REMOVED (commit 1575311, app 1.107.4 on phone,
+  08-16, Louis's decision — may revisit later):** game + Crew & Kids
+  section + 24 translation keys deleted; FEATURES.md back to 106 features
+  (next feature bump → 1.107.0, versionName may repeat history —
+  cosmetic; versionCode stays monotonic). ROOT CAUSE of the persistent
+  landscape disappearance, found at removal time: boatY was hardcoded at
+  600px for PORTRAIT; the landscape canvas is ~400px tall, so the boat
+  rendered BELOW the visible area (the X-axis clamping was correct). A
+  one-line fix (boatY relative to height, e.g. height*0.85) would have
+  solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
+  revival. 404 tests (2 pre-existing). Installed 1.107.4.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -471,6 +507,18 @@ help/website.
   (18 boatrun tests: hold left/right/release, rotation mid-game/start/
   repeated, score/collision/pause unchanged), lint clean, analyzer clean,
   phone at 1.107.3.
+
+- **🔒 AFTLOG BOATRUN REMOVED (commit 1575311, app 1.107.4 on phone,
+  08-16, Louis's decision — may revisit later):** game + Crew & Kids
+  section + 24 translation keys deleted; FEATURES.md back to 106 features
+  (next feature bump → 1.107.0, versionName may repeat history —
+  cosmetic; versionCode stays monotonic). ROOT CAUSE of the persistent
+  landscape disappearance, found at removal time: boatY was hardcoded at
+  600px for PORTRAIT; the landscape canvas is ~400px tall, so the boat
+  rendered BELOW the visible area (the X-axis clamping was correct). A
+  one-line fix (boatY relative to height, e.g. height*0.85) would have
+  solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
+  revival. 404 tests (2 pre-existing). Installed 1.107.4.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
