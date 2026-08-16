@@ -6,7 +6,7 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
-- **🔜 TEST THE REVIEW PUBLISHER FLOW (Louis, 08-16):** AftLog Dev 1.103.16 is installed on your phone with the GitHub token embedded. Open More → Tools → Review Publisher (Dev) → publish a test review → verify it lands on aftlog.com/#reviews after the ~1 min rebuild. Token stored at `pass api/github-aftlog-site` (classic `ghp_…`, 40 bytes). If the flow stumbles, the commit error shows in the app snackbar.
+- **🔜 RETEST REVIEW PUBLISHER (Louis):** Bug FOUND + FIXED 08-16 (1.103.17 on your phone). The publish failed with `FormatInvalid character (at character 61)` — GitHub's Contents API returns base64 with a newline every 60 chars and Dart's base64Decode rejects newlines. Fixed in `github_commit_service.dart` (`_b64` strips whitespace; httpClient injectable; +3 regression tests; verified live). Open More → Tools → Review Publisher (Dev) → publish a test review → verify it lands on aftlog.com/#reviews after the ~1 min rebuild. Token at `pass api/github-aftlog-site`.
 
 - **🔜 NEXT UP (reconciled 2026-08-16 — several "open" notes were STALE):** All server spec slices are DONE — trip calendar/patterns/heatmap/clustering/forecast + **maintenance/planner/boat-health dashboards shipped in the v1.103–110 analytics pack** (verified 08-16: routes + portal.js renderers + DOM checks, 26 tests green). Per-interval due-soon notifications DONE (feature #72 state-transition alerts). Free-tier gating DONE (#102). 30/90/365 buckets DONE (#101 + server v1.122). **Genuinely open:** ① portal deployment decision (Aug 24 gate — Louis) ② site analytics (GoatCounter/Plausible, planned Aug 11, still zero — no account in pass) ③ Pro purchase: Stripe seam wired, needs backend validation at deployment ④ data blanks (Louis's content: intervals per engine, glossary 29 terms, boat-style prices, quiz weights, calculator assumptions) ⑤ data-level enum labels (DriveType/HullType/DocType/ChecklistType) still EN — future data-layer decision.
 - **🔴 adb stall (Samsung):** plain `adb push` can wedge or silently drop big files. Reliable: chunked push (8MB parts) → verify chunk count (10) → cat on device → md5sum match → pm install. Seen many times 2026-08-14. Also in CODING-STANDARDS §3.
@@ -68,6 +68,15 @@ screenshots are reproducible. All 10 portal pages verified rendering.
 the phone (Dev 1.103.16, token in `pass api/github-aftlog-site`) · site
 analytics (GoatCounter/Plausible — needs an account) · portal deployment
 decision · eyeball the two refreshed screenshots on the live site.
+
+**Later — Review Publisher bug found & fixed (Louis's phone test):**
+`Publish failed: FormatInvalid character (at character 61)` → root cause:
+GitHub Contents API returns file base64 with a newline every 60 chars;
+Dart's base64Decode rejects newlines. Fixed with `_b64()` whitespace strip
+in both fetch paths (fetchReviews + publishReview), httpClient injectable,
++3 regression tests (`test/github_commit_service_test.dart`), verified
+end-to-end against the live API, Dev 1.103.17 built + chunk-pushed +
+installed on the phone (md5 verified). Pushed.
 
 ---
 
