@@ -156,7 +156,11 @@
   Function (atomic redemption, race-safe), server-owned Pro fields
   (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
   redemption with offline caching, portal /redeem page. No login in the
-  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  app, no Stripe, no subscriptions. Block 6 (AFTLOG-PRO-ADMIN-TOOL: private Dev-Flavor AdminLicenseManagerScreen
+  — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
+  pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
+  devices; no web/portal/public access, excluded from production) is STORED
+  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -403,7 +407,11 @@ help/website.
   Function (atomic redemption, race-safe), server-owned Pro fields
   (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
   redemption with offline caching, portal /redeem page. No login in the
-  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  app, no Stripe, no subscriptions. Block 6 (AFTLOG-PRO-ADMIN-TOOL: private Dev-Flavor AdminLicenseManagerScreen
+  — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
+  pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
+  devices; no web/portal/public access, excluded from production) is STORED
+  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -571,7 +579,11 @@ help/website.
   Function (atomic redemption, race-safe), server-owned Pro fields
   (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
   redemption with offline caching, portal /redeem page. No login in the
-  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  app, no Stripe, no subscriptions. Block 6 (AFTLOG-PRO-ADMIN-TOOL: private Dev-Flavor AdminLicenseManagerScreen
+  — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
+  pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
+  devices; no web/portal/public access, excluded from production) is STORED
+  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -745,7 +757,11 @@ help/website.
   Function (atomic redemption, race-safe), server-owned Pro fields
   (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
   redemption with offline caching, portal /redeem page. No login in the
-  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  app, no Stripe, no subscriptions. Block 6 (AFTLOG-PRO-ADMIN-TOOL: private Dev-Flavor AdminLicenseManagerScreen
+  — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
+  pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
+  devices; no web/portal/public access, excluded from production) is STORED
+  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
