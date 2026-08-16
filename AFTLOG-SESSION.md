@@ -175,6 +175,15 @@
   portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
 
+- **🔒 RUN STARTED — PORTAL FOUNDATION BLOCK 1 IMPLEMENTED (commit
+  c180d17, 08-16):** AFTLOG-PORTAL-FIREBASE-AUTH shipped. Login/signup/
+  reset/logout routes + pages (Firebase JS SDK), server-validated ID
+  tokens via tokeninfo (zero new deps), HttpOnly session cookies,
+  firestore.rules (users/{uid} owner-only, Pro fields server-owned),
+  gating for Manual Generator + AI (redirect to /login when
+  FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
+  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -438,6 +447,15 @@ help/website.
   portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
 
+- **🔒 RUN STARTED — PORTAL FOUNDATION BLOCK 1 IMPLEMENTED (commit
+  c180d17, 08-16):** AFTLOG-PORTAL-FIREBASE-AUTH shipped. Login/signup/
+  reset/logout routes + pages (Firebase JS SDK), server-validated ID
+  tokens via tokeninfo (zero new deps), HttpOnly session cookies,
+  firestore.rules (users/{uid} owner-only, Pro fields server-owned),
+  gating for Manual Generator + AI (redirect to /login when
+  FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
+  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -621,6 +639,15 @@ help/website.
   code, boat pages, Pro dashboard, license codes + admin tool + app UX +
   portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
+
+- **🔒 RUN STARTED — PORTAL FOUNDATION BLOCK 1 IMPLEMENTED (commit
+  c180d17, 08-16):** AFTLOG-PORTAL-FIREBASE-AUTH shipped. Login/signup/
+  reset/logout routes + pages (Firebase JS SDK), server-validated ID
+  tokens via tokeninfo (zero new deps), HttpOnly session cookies,
+  firestore.rules (users/{uid} owner-only, Pro fields server-owned),
+  gating for Manual Generator + AI (redirect to /login when
+  FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
+  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -811,6 +838,15 @@ help/website.
   code, boat pages, Pro dashboard, license codes + admin tool + app UX +
   portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
+
+- **🔒 RUN STARTED — PORTAL FOUNDATION BLOCK 1 IMPLEMENTED (commit
+  c180d17, 08-16):** AFTLOG-PORTAL-FIREBASE-AUTH shipped. Login/signup/
+  reset/logout routes + pages (Firebase JS SDK), server-validated ID
+  tokens via tokeninfo (zero new deps), HttpOnly session cookies,
+  firestore.rules (users/{uid} owner-only, Pro fields server-owned),
+  gating for Manual Generator + AI (redirect to /login when
+  FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
+  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
