@@ -59,6 +59,20 @@
   smoke test; session log updated (features, commits, versions, flags left
   off). Future features (e.g. VEA) run through this checklist.
 
+
+**VEA (Visual Engine Assist) started — VEA-1 core SHIPPED (commit 6409ba0,
+08-16):** architecture block — models (VeaResult/VeaHistoryEntry/
+DiagnosticRef reusing the shipped ManualPageRef/MaintenanceTaskRef), part
+catalog (10 parts: synonyms, manual keywords, SMP task titles, symptoms,
+fault cues), pipeline (preprocess 512² via the image package, heuristic
+offline analysis — honest substitute since no TFLite model asset exists,
+Gemini Vision cloud pass via new AiService.analyzeImage, offline-first
+merge), manual refs (top 3 via the manual search), SMP tasks
+(findTasksByPart), diagnostics (fromPart), safety rules. FeatureFlags VEA
+scaffold. 20 tests → 387 (2 pre-existing). NO version bump, nothing to the
+phone until VEA-Final. Remaining blocks: UI, on-device model, Pro gating,
+help/website.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
