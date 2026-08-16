@@ -279,6 +279,26 @@
   NOTE: NO console rules publish needed — pro_licenses deny-all already
   live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
 
+### Block 6 (AFTLOG-PRO-ADMIN-TOOL, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- App 48d0a4e (425 tests, +7). PRIVATE dev-flavor only, exactly per the
+  block: no web admin panel, no public routes, no portal pages, no server
+  changes, not reachable from production builds (AppFlavor.isDev entry +
+  body guard), never distributed.
+- FirebaseAdminClient (lib/services/dev/): RS256 JWT -> OAuth2 -> Firestore
+  REST admin calls, self-contained; credentials arrive ONLY via the
+  AFTLOG_SA_JSON dart-define that build.sh injects for dev builds from
+  ../aftlog_server/firebase_service_account.json (pro builds never carry
+  them; file lives in the server repo, gitignored).
+- AdminLicenseManagerScreen in More (Dev section): lifetime/yearly switch,
+  expiry picker for yearly, issued-by, 12-char unambiguous codes,
+  PRO-XXXX-XXXX-XXXX display, admin list (used/unused, type, expiry,
+  issuedBy, usedBy).
+- LIVE: the APP's own admin client wrote PRO-NTFG-JZ98-8XED to the real
+  pro_licenses and listed it back; client reads of pro_licenses still 403;
+  test codes swept. NOTE: flutter test does not surface --dart-define to
+  String.fromEnvironment reliably — live checks use a throwaway test that
+  loads the SA via the seam and is deleted before commit.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -646,6 +666,26 @@ help/website.
   NOTE: NO console rules publish needed — pro_licenses deny-all already
   live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
 
+### Block 6 (AFTLOG-PRO-ADMIN-TOOL, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- App 48d0a4e (425 tests, +7). PRIVATE dev-flavor only, exactly per the
+  block: no web admin panel, no public routes, no portal pages, no server
+  changes, not reachable from production builds (AppFlavor.isDev entry +
+  body guard), never distributed.
+- FirebaseAdminClient (lib/services/dev/): RS256 JWT -> OAuth2 -> Firestore
+  REST admin calls, self-contained; credentials arrive ONLY via the
+  AFTLOG_SA_JSON dart-define that build.sh injects for dev builds from
+  ../aftlog_server/firebase_service_account.json (pro builds never carry
+  them; file lives in the server repo, gitignored).
+- AdminLicenseManagerScreen in More (Dev section): lifetime/yearly switch,
+  expiry picker for yearly, issued-by, 12-char unambiguous codes,
+  PRO-XXXX-XXXX-XXXX display, admin list (used/unused, type, expiry,
+  issuedBy, usedBy).
+- LIVE: the APP's own admin client wrote PRO-NTFG-JZ98-8XED to the real
+  pro_licenses and listed it back; client reads of pro_licenses still 403;
+  test codes swept. NOTE: flutter test does not surface --dart-define to
+  String.fromEnvironment reliably — live checks use a throwaway test that
+  loads the SA via the seam and is deleted before commit.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -933,6 +973,26 @@ help/website.
   redeem yearly 200 (expiresAt 2027), unlinked device 404. Cleanup done.
   NOTE: NO console rules publish needed — pro_licenses deny-all already
   live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
+
+### Block 6 (AFTLOG-PRO-ADMIN-TOOL, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- App 48d0a4e (425 tests, +7). PRIVATE dev-flavor only, exactly per the
+  block: no web admin panel, no public routes, no portal pages, no server
+  changes, not reachable from production builds (AppFlavor.isDev entry +
+  body guard), never distributed.
+- FirebaseAdminClient (lib/services/dev/): RS256 JWT -> OAuth2 -> Firestore
+  REST admin calls, self-contained; credentials arrive ONLY via the
+  AFTLOG_SA_JSON dart-define that build.sh injects for dev builds from
+  ../aftlog_server/firebase_service_account.json (pro builds never carry
+  them; file lives in the server repo, gitignored).
+- AdminLicenseManagerScreen in More (Dev section): lifetime/yearly switch,
+  expiry picker for yearly, issued-by, 12-char unambiguous codes,
+  PRO-XXXX-XXXX-XXXX display, admin list (used/unused, type, expiry,
+  issuedBy, usedBy).
+- LIVE: the APP's own admin client wrote PRO-NTFG-JZ98-8XED to the real
+  pro_licenses and listed it back; client reads of pro_licenses still 403;
+  test codes swept. NOTE: flutter test does not surface --dart-define to
+  String.fromEnvironment reliably — live checks use a throwaway test that
+  loads the SA via the seam and is deleted before commit.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -1227,6 +1287,26 @@ help/website.
   redeem yearly 200 (expiresAt 2027), unlinked device 404. Cleanup done.
   NOTE: NO console rules publish needed — pro_licenses deny-all already
   live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
+
+### Block 6 (AFTLOG-PRO-ADMIN-TOOL, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- App 48d0a4e (425 tests, +7). PRIVATE dev-flavor only, exactly per the
+  block: no web admin panel, no public routes, no portal pages, no server
+  changes, not reachable from production builds (AppFlavor.isDev entry +
+  body guard), never distributed.
+- FirebaseAdminClient (lib/services/dev/): RS256 JWT -> OAuth2 -> Firestore
+  REST admin calls, self-contained; credentials arrive ONLY via the
+  AFTLOG_SA_JSON dart-define that build.sh injects for dev builds from
+  ../aftlog_server/firebase_service_account.json (pro builds never carry
+  them; file lives in the server repo, gitignored).
+- AdminLicenseManagerScreen in More (Dev section): lifetime/yearly switch,
+  expiry picker for yearly, issued-by, 12-char unambiguous codes,
+  PRO-XXXX-XXXX-XXXX display, admin list (used/unused, type, expiry,
+  issuedBy, usedBy).
+- LIVE: the APP's own admin client wrote PRO-NTFG-JZ98-8XED to the real
+  pro_licenses and listed it back; client reads of pro_licenses still 403;
+  test codes swept. NOTE: flutter test does not surface --dart-define to
+  String.fromEnvironment reliably — live checks use a throwaway test that
+  loads the SA via the seam and is deleted before commit.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
