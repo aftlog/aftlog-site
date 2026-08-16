@@ -227,6 +227,24 @@
   Remaining: app-side live (code → screen → portal submit with the phone;
   the app build wait stays until a bundle completes).
 
+### Block 3 (AFTLOG-PORTAL-BOAT-PAGES, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 0073250, 89 tests green (+14). Boat pages (login-gated):
+  /boats list, /boats/:id detail, /boats/:id/edit form; API under
+  /api/v1/portal/boats (the pre-existing /api/v1/aftlog/boats analytics
+  endpoint untouched — additive-only).
+- Boats live at Firestore users/{uid}/boats/{boatId} (owner-only rules —
+  published LIVE via the Rules API with the service account; new reusable
+  tool tools/publish_rules.py removes future console round trips).
+- POST /boats/upload — offline app (no login) uploads boats bound to its
+  linked deviceId (Block 2 mapping decides the userId). Pass-through
+  fields only: no capacity/HP inference, no AI, no Manual Generator / AI
+  changes.
+- FirebaseAdmin.listDocuments + shared FakeAdminStore test helper.
+- LIVE CHECK: Block 2 link flow → upload 2 boats → Firestore docs → portal
+  list/detail → edit persisted (rename + notes) → delete removed; cleanup
+  done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
+  change rules going forward.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -542,6 +560,24 @@ help/website.
   Remaining: app-side live (code → screen → portal submit with the phone;
   the app build wait stays until a bundle completes).
 
+### Block 3 (AFTLOG-PORTAL-BOAT-PAGES, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 0073250, 89 tests green (+14). Boat pages (login-gated):
+  /boats list, /boats/:id detail, /boats/:id/edit form; API under
+  /api/v1/portal/boats (the pre-existing /api/v1/aftlog/boats analytics
+  endpoint untouched — additive-only).
+- Boats live at Firestore users/{uid}/boats/{boatId} (owner-only rules —
+  published LIVE via the Rules API with the service account; new reusable
+  tool tools/publish_rules.py removes future console round trips).
+- POST /boats/upload — offline app (no login) uploads boats bound to its
+  linked deviceId (Block 2 mapping decides the userId). Pass-through
+  fields only: no capacity/HP inference, no AI, no Manual Generator / AI
+  changes.
+- FirebaseAdmin.listDocuments + shared FakeAdminStore test helper.
+- LIVE CHECK: Block 2 link flow → upload 2 boats → Firestore docs → portal
+  list/detail → edit persisted (rename + notes) → delete removed; cleanup
+  done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
+  change rules going forward.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -777,6 +813,24 @@ help/website.
   every call threw HttpException) — now reads+returns the full response.
   Remaining: app-side live (code → screen → portal submit with the phone;
   the app build wait stays until a bundle completes).
+
+### Block 3 (AFTLOG-PORTAL-BOAT-PAGES, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 0073250, 89 tests green (+14). Boat pages (login-gated):
+  /boats list, /boats/:id detail, /boats/:id/edit form; API under
+  /api/v1/portal/boats (the pre-existing /api/v1/aftlog/boats analytics
+  endpoint untouched — additive-only).
+- Boats live at Firestore users/{uid}/boats/{boatId} (owner-only rules —
+  published LIVE via the Rules API with the service account; new reusable
+  tool tools/publish_rules.py removes future console round trips).
+- POST /boats/upload — offline app (no login) uploads boats bound to its
+  linked deviceId (Block 2 mapping decides the userId). Pass-through
+  fields only: no capacity/HP inference, no AI, no Manual Generator / AI
+  changes.
+- FirebaseAdmin.listDocuments + shared FakeAdminStore test helper.
+- LIVE CHECK: Block 2 link flow → upload 2 boats → Firestore docs → portal
+  list/detail → edit persisted (rename + notes) → delete removed; cleanup
+  done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
+  change rules going forward.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -1019,6 +1073,24 @@ help/website.
   every call threw HttpException) — now reads+returns the full response.
   Remaining: app-side live (code → screen → portal submit with the phone;
   the app build wait stays until a bundle completes).
+
+### Block 3 (AFTLOG-PORTAL-BOAT-PAGES, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 0073250, 89 tests green (+14). Boat pages (login-gated):
+  /boats list, /boats/:id detail, /boats/:id/edit form; API under
+  /api/v1/portal/boats (the pre-existing /api/v1/aftlog/boats analytics
+  endpoint untouched — additive-only).
+- Boats live at Firestore users/{uid}/boats/{boatId} (owner-only rules —
+  published LIVE via the Rules API with the service account; new reusable
+  tool tools/publish_rules.py removes future console round trips).
+- POST /boats/upload — offline app (no login) uploads boats bound to its
+  linked deviceId (Block 2 mapping decides the userId). Pass-through
+  fields only: no capacity/HP inference, no AI, no Manual Generator / AI
+  changes.
+- FirebaseAdmin.listDocuments + shared FakeAdminStore test helper.
+- LIVE CHECK: Block 2 link flow → upload 2 boats → Firestore docs → portal
+  list/detail → edit persisted (rename + notes) → delete removed; cleanup
+  done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
+  change rules going forward.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
