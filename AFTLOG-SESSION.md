@@ -99,6 +99,18 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**SMP-2 scaffold SHIPPED (commit ad86cfb, 08-16):** screens/widgets/hooks/
+flags + DB v10. lib/screens/smp/ (plan, task detail, settings), widgets/smp/
+(task tile, recommendation banner, interval review dialog), service hooks
+(smp_recommendation_service.fromDiagnostics/relatedTasks — empty until
+SMP-3; smp_interval_review_service API), FeatureFlags SMP Pro flags
+(false — wired SMP-4). DB v10: 3 nullable TEXT sidecar columns on boats
+(adapted from the block's boat.json — this app stores boats in SQLite;
+the block's "no migration" maps to the app's standard guarded ALTERs).
+Hooks live: dashboard card, boat-detail section (per-boat plan), More →
+SMP settings. 31 translation keys; +6 tests → 358 (2 pre-existing fails).
+NO version bump, nothing to the phone until SMP-Final.
+
 **SMP (Smart Maintenance Planner) started — SMP-1 core SHIPPED (commit
 f216a88, 08-16):** new mega-feature (per-boat intelligent maintenance
 planner). SMP-1 was the architecture block — implemented the fully-
