@@ -60,6 +60,13 @@
   off). Future features (e.g. VEA) run through this checklist.
 
 
+**VEA-Cleanup-1 SHIPPED (commit c21c79b, 08-16):** removed the "Test
+reminder" debug hook from the boat screen (AftChip firing
+NotificationService.show with a legacy CatchTales-style test body) +
+orphaned _proDialog + imports + 2 translation keys x5. Production
+notification logic untouched. Analyzer clean, 387 pass. No install (VEA
+completion rule).
+
 **VEA (Visual Engine Assist) started — VEA-1 core SHIPPED (commit 6409ba0,
 08-16):** architecture block — models (VeaResult/VeaHistoryEntry/
 DiagnosticRef reusing the shipped ManualPageRef/MaintenanceTaskRef), part
