@@ -6,6 +6,19 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
+  must WARN before driving the phone via adb (input taps/swipes). Before any
+  drive: say which app + exactly what actions are about to happen + roughly
+  how long, so Louis can watch or opt out. Screencap-only whenever possible
+  (no taps). Never tap when a screencap alone answers the question. Louis
+  will not touch the phone during a drive, and the AI will not claim
+  tap-triggered state as intentional. NOTE: AI-driven taps DO set app state
+  (walkthroughs/tooltips marked seen, toggles) — always mention what state
+  was changed after a drive. If Louis touches the phone mid-drive, stop and
+  re-check state before continuing.
+
+## ⚠️ REMINDERS FOR NEXT SESSION
+
 - **🔜 RETEST REVIEW PUBLISHER (Louis):** ~~Bug FOUND + FIXED 08-16 (1.103.17)~~ ✅ **VERIFIED WORKING 08-16** — Louis published a test review from the phone, landed on aftlog.com/#reviews. Root cause had been: GitHub's Contents API returns base64 with a newline every 60 chars and Dart's base64Decode rejects newlines → fixed with `_b64()` whitespace strip (+3 regression tests).
 
 - **🔜 NEXT UP (reconciled 2026-08-16 — several "open" notes were STALE):** All server spec slices are DONE — trip calendar/patterns/heatmap/clustering/forecast + **maintenance/planner/boat-health dashboards shipped in the v1.103–110 analytics pack** (verified 08-16: routes + portal.js renderers + DOM checks, 26 tests green). Per-interval due-soon notifications DONE (feature #72 state-transition alerts). Free-tier gating DONE (#102). 30/90/365 buckets DONE (#101 + server v1.122). **Genuinely open:** ① portal deployment decision (Aug 24 gate — Louis) ② site analytics (GoatCounter/Plausible, planned Aug 11, still zero — no account in pass) ③ Pro purchase: Stripe seam wired, needs backend validation at deployment ④ data blanks (Louis's content: intervals per engine, glossary 29 terms, boat-style prices, quiz weights, calculator assumptions) ⑤ data-level enum labels (DriveType/HullType/DocType/ChecklistType) still EN — future data-layer decision.
