@@ -99,6 +99,18 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**SMP (Smart Maintenance Planner) started — SMP-1 core SHIPPED (commit
+f216a88, 08-16):** new mega-feature (per-boat intelligent maintenance
+planner). SMP-1 was the architecture block — implemented the fully-
+specified core only; UI/Pro-gating/Help/Walkthrough/Website deferred to
+SMP-2..SMP-Final. Core: maintenance_plan.dart models (MaintenancePlan,
+MaintenanceTaskRef with manualPageRefs + diagnosticsLinkId,
+MaintenanceRecommendation, MaintenanceSettings) + smp_service.dart
+(interval-pattern parsing, manual-based interval extraction reusing the
+manual search, usage/region/season-aware scheduling, recommendations).
+20 tests, 352 total. Layers on ServiceInterval + Engine Manual Assist —
+no refactors. NO version bump, nothing to the phone until all SMP blocks.
+
 **Louis: retest the manual flow on 1.104.2 — attach sample_manual.pdf,
 check thumbnail + metadata line, View opens the in-app viewer, bookmark a
 page, add a note, diagnostics deep-link, backup includes the manual.**
