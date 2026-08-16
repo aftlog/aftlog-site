@@ -22,6 +22,16 @@
   smoke test; session log updated (features, commits, versions, flags left
   off). Future features (e.g. VEA) run through this checklist.
 
+- **🔒 AFTLOG BOATRUN SHIPPED (1.107.0 on phone, 08-16, feature #107):**
+  offline Crew & Kids mini-game (More → Tools → Crew & Kids). Pure-Dart
+  engine (seeded RNG, unit-tested), CustomPainter rendering (no external
+  libs/assets, <1MB), steer + dodge buoys/logs/rocks + collect stars,
+  gentle speed ramp, pause + end dialog. Sound = optional SystemSound
+  click (built into Flutter — the block's 'built-in asset audio' doesn't
+  exist without a plugin). Free, no ads/cloud/analytics. 18 keys x5,
+  +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
+  (md5 verified). On-device fun test: More → Tools → Crew & Kids.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -132,6 +142,16 @@ scaffold. 20 tests → 387 (2 pre-existing). NO version bump, nothing to the
 phone until VEA-Final. Remaining blocks: UI, on-device model, Pro gating,
 help/website.
 
+- **🔒 AFTLOG BOATRUN SHIPPED (1.107.0 on phone, 08-16, feature #107):**
+  offline Crew & Kids mini-game (More → Tools → Crew & Kids). Pure-Dart
+  engine (seeded RNG, unit-tested), CustomPainter rendering (no external
+  libs/assets, <1MB), steer + dodge buoys/logs/rocks + collect stars,
+  gentle speed ramp, pause + end dialog. Sound = optional SystemSound
+  click (built into Flutter — the block's 'built-in asset audio' doesn't
+  exist without a plugin). Free, no ads/cloud/analytics. 18 keys x5,
+  +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
+  (md5 verified). On-device fun test: More → Tools → Crew & Kids.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -162,6 +182,16 @@ help/website.
   language lint + marketing voice; signed builds + md5 + single install +
   smoke test; session log updated (features, commits, versions, flags left
   off). Future features (e.g. VEA) run through this checklist.
+
+- **🔒 AFTLOG BOATRUN SHIPPED (1.107.0 on phone, 08-16, feature #107):**
+  offline Crew & Kids mini-game (More → Tools → Crew & Kids). Pure-Dart
+  engine (seeded RNG, unit-tested), CustomPainter rendering (no external
+  libs/assets, <1MB), steer + dodge buoys/logs/rocks + collect stars,
+  gentle speed ramp, pause + end dialog. Sound = optional SystemSound
+  click (built into Flutter — the block's 'built-in asset audio' doesn't
+  exist without a plugin). Free, no ads/cloud/analytics. 18 keys x5,
+  +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
+  (md5 verified). On-device fun test: More → Tools → Crew & Kids.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -199,6 +229,16 @@ help/website.
   language lint + marketing voice; signed builds + md5 + single install +
   smoke test; session log updated (features, commits, versions, flags left
   off). Future features (e.g. VEA) run through this checklist.
+
+- **🔒 AFTLOG BOATRUN SHIPPED (1.107.0 on phone, 08-16, feature #107):**
+  offline Crew & Kids mini-game (More → Tools → Crew & Kids). Pure-Dart
+  engine (seeded RNG, unit-tested), CustomPainter rendering (no external
+  libs/assets, <1MB), steer + dodge buoys/logs/rocks + collect stars,
+  gentle speed ramp, pause + end dialog. Sound = optional SystemSound
+  click (built into Flutter — the block's 'built-in asset audio' doesn't
+  exist without a plugin). Free, no ads/cloud/analytics. 18 keys x5,
+  +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
+  (md5 verified). On-device fun test: More → Tools → Crew & Kids.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
