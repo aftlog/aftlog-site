@@ -114,6 +114,19 @@
   +13 tests → 38 green; live smoke test verified. Portal still runs at
   localhost:8080 for eyeballing.
 
+- **🔒 PORTAL-ASK-AFTLOG-AI-PHOTO-ASSIST SHIPPED (commit decc337, 08-16,
+  Phase 2 of the manual generator):** sandboxed 'Ask AftLog AI' panel on
+  /portal/manual-generator (Pro) — text + PNG/JPG photo (8 MB max) →
+  Gemini via dart:io HttpClient (zero new deps). Suggests field values
+  with 'Use this value' confirmation (never auto-fills); server filters
+  blocked fields (hpRange/fuelCapacity) + unknown values; refuses
+  capacity/HP/structural guesses (verified live). EXIF stripped
+  server-side (hand-rolled JPEG marker walker, correct segment math);
+  photos never persisted. Abort discipline unchanged. Found + fixed live:
+  maxOutputTokens 512 starved answers (model thinking budget) → 2048.
+  Tests +6 → 44 green. Portal live at localhost:8080 for clicking
+  through. Block 3 of 3 complete.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -316,6 +329,19 @@ help/website.
   +13 tests → 38 green; live smoke test verified. Portal still runs at
   localhost:8080 for eyeballing.
 
+- **🔒 PORTAL-ASK-AFTLOG-AI-PHOTO-ASSIST SHIPPED (commit decc337, 08-16,
+  Phase 2 of the manual generator):** sandboxed 'Ask AftLog AI' panel on
+  /portal/manual-generator (Pro) — text + PNG/JPG photo (8 MB max) →
+  Gemini via dart:io HttpClient (zero new deps). Suggests field values
+  with 'Use this value' confirmation (never auto-fills); server filters
+  blocked fields (hpRange/fuelCapacity) + unknown values; refuses
+  capacity/HP/structural guesses (verified live). EXIF stripped
+  server-side (hand-rolled JPEG marker walker, correct segment math);
+  photos never persisted. Abort discipline unchanged. Found + fixed live:
+  maxOutputTokens 512 starved answers (model thinking budget) → 2048.
+  Tests +6 → 44 green. Portal live at localhost:8080 for clicking
+  through. Block 3 of 3 complete.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -438,6 +464,19 @@ help/website.
   Pro gating via PORTAL_PRO flag (lab user = Pro; real auth at deploy).
   +13 tests → 38 green; live smoke test verified. Portal still runs at
   localhost:8080 for eyeballing.
+
+- **🔒 PORTAL-ASK-AFTLOG-AI-PHOTO-ASSIST SHIPPED (commit decc337, 08-16,
+  Phase 2 of the manual generator):** sandboxed 'Ask AftLog AI' panel on
+  /portal/manual-generator (Pro) — text + PNG/JPG photo (8 MB max) →
+  Gemini via dart:io HttpClient (zero new deps). Suggests field values
+  with 'Use this value' confirmation (never auto-fills); server filters
+  blocked fields (hpRange/fuelCapacity) + unknown values; refuses
+  capacity/HP/structural guesses (verified live). EXIF stripped
+  server-side (hand-rolled JPEG marker walker, correct segment math);
+  photos never persisted. Abort discipline unchanged. Found + fixed live:
+  maxOutputTokens 512 starved answers (model thinking budget) → 2048.
+  Tests +6 → 44 green. Portal live at localhost:8080 for clicking
+  through. Block 3 of 3 complete.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -567,6 +606,19 @@ help/website.
   Pro gating via PORTAL_PRO flag (lab user = Pro; real auth at deploy).
   +13 tests → 38 green; live smoke test verified. Portal still runs at
   localhost:8080 for eyeballing.
+
+- **🔒 PORTAL-ASK-AFTLOG-AI-PHOTO-ASSIST SHIPPED (commit decc337, 08-16,
+  Phase 2 of the manual generator):** sandboxed 'Ask AftLog AI' panel on
+  /portal/manual-generator (Pro) — text + PNG/JPG photo (8 MB max) →
+  Gemini via dart:io HttpClient (zero new deps). Suggests field values
+  with 'Use this value' confirmation (never auto-fills); server filters
+  blocked fields (hpRange/fuelCapacity) + unknown values; refuses
+  capacity/HP/structural guesses (verified live). EXIF stripped
+  server-side (hand-rolled JPEG marker walker, correct segment math);
+  photos never persisted. Abort discipline unchanged. Found + fixed live:
+  maxOutputTokens 512 starved answers (model thinking budget) → 2048.
+  Tests +6 → 44 green. Portal live at localhost:8080 for clicking
+  through. Block 3 of 3 complete.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
