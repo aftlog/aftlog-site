@@ -163,8 +163,16 @@
   at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
   SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
   optional Portal sync via link code — no login/Firebase Auth/Stripe in
-  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
-  pending.
+  the app) is STORED at aftlog_server/blocks/. Block 8 (AFTLOG-PRO-PORTAL-UX: ProStatusPanel, /redeem + /pro-confirmation,
+  /pro dashboard integration, Portal gating — mirrors CatchTales Cloud
+  Dashboard) is STORED at aftlog_server/blocks/. **LICENSING BUNDLE
+  COMPLETE (5-8)**. ALL 12 BUNDLE BLOCKS NOW ON FILE (Portal Foundation
+  1-4 + Licensing 5-8) — see aftlog_server/blocks/. Per the blocks'
+  completion rules: do NOT implement until the explicit RUN instruction
+  arrives. When RUN comes: implement the complete Pro architecture
+  (Firebase Auth + Firestore profiles + server-owned Pro fields, link
+  code, boat pages, Pro dashboard, license codes + admin tool + app UX +
+  portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -418,8 +426,16 @@ help/website.
   at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
   SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
   optional Portal sync via link code — no login/Firebase Auth/Stripe in
-  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
-  pending.
+  the app) is STORED at aftlog_server/blocks/. Block 8 (AFTLOG-PRO-PORTAL-UX: ProStatusPanel, /redeem + /pro-confirmation,
+  /pro dashboard integration, Portal gating — mirrors CatchTales Cloud
+  Dashboard) is STORED at aftlog_server/blocks/. **LICENSING BUNDLE
+  COMPLETE (5-8)**. ALL 12 BUNDLE BLOCKS NOW ON FILE (Portal Foundation
+  1-4 + Licensing 5-8) — see aftlog_server/blocks/. Per the blocks'
+  completion rules: do NOT implement until the explicit RUN instruction
+  arrives. When RUN comes: implement the complete Pro architecture
+  (Firebase Auth + Firestore profiles + server-owned Pro fields, link
+  code, boat pages, Pro dashboard, license codes + admin tool + app UX +
+  portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -594,8 +610,16 @@ help/website.
   at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
   SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
   optional Portal sync via link code — no login/Firebase Auth/Stripe in
-  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
-  pending.
+  the app) is STORED at aftlog_server/blocks/. Block 8 (AFTLOG-PRO-PORTAL-UX: ProStatusPanel, /redeem + /pro-confirmation,
+  /pro dashboard integration, Portal gating — mirrors CatchTales Cloud
+  Dashboard) is STORED at aftlog_server/blocks/. **LICENSING BUNDLE
+  COMPLETE (5-8)**. ALL 12 BUNDLE BLOCKS NOW ON FILE (Portal Foundation
+  1-4 + Licensing 5-8) — see aftlog_server/blocks/. Per the blocks'
+  completion rules: do NOT implement until the explicit RUN instruction
+  arrives. When RUN comes: implement the complete Pro architecture
+  (Firebase Auth + Firestore profiles + server-owned Pro fields, link
+  code, boat pages, Pro dashboard, license codes + admin tool + app UX +
+  portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -776,8 +800,16 @@ help/website.
   at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
   SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
   optional Portal sync via link code — no login/Firebase Auth/Stripe in
-  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
-  pending.
+  the app) is STORED at aftlog_server/blocks/. Block 8 (AFTLOG-PRO-PORTAL-UX: ProStatusPanel, /redeem + /pro-confirmation,
+  /pro dashboard integration, Portal gating — mirrors CatchTales Cloud
+  Dashboard) is STORED at aftlog_server/blocks/. **LICENSING BUNDLE
+  COMPLETE (5-8)**. ALL 12 BUNDLE BLOCKS NOW ON FILE (Portal Foundation
+  1-4 + Licensing 5-8) — see aftlog_server/blocks/. Per the blocks'
+  completion rules: do NOT implement until the explicit RUN instruction
+  arrives. When RUN comes: implement the complete Pro architecture
+  (Firebase Auth + Firestore profiles + server-owned Pro fields, link
+  code, boat pages, Pro dashboard, license codes + admin tool + app UX +
+  portal UX) as a coherent build, then the release checklist.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
