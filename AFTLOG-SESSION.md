@@ -245,6 +245,21 @@
   done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
   change rules going forward.
 
+### Block 4 (AFTLOG-PORTAL-PRO-DASHBOARD, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 2c37507, 95 tests green (+6). GET /pro (login-gated) + GET
+  /api/v1/portal/profile (read-only Pro status from Firestore users/{uid}).
+  Informational ONLY: no unlock/payment logic, no writes to the Pro
+  fields (server-owned; rules deny clients — re-verified live, 403).
+  Nav: Pro item (star icon) at top of Overview.
+- LIVE: 302 no-session / 200 with-session; free by default; admin writes
+  the Pro fields (the future licensing/admin path) -> dashboard shows
+  isPro + proType; client tamper attempt 403. Cleanup done.
+- ★ PORTAL FOUNDATION BUNDLE COMPLETE (4/4: Auth, Linking, Boats, Pro).
+  Server tests 95 green. All blocks stored in aftlog_server/blocks/.
+  NEXT: Licensing Bundle Blocks 5–8 per Louis's RUN cadence (5 = licensing
+  engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
+  Pro UX).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -578,6 +593,21 @@ help/website.
   done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
   change rules going forward.
 
+### Block 4 (AFTLOG-PORTAL-PRO-DASHBOARD, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 2c37507, 95 tests green (+6). GET /pro (login-gated) + GET
+  /api/v1/portal/profile (read-only Pro status from Firestore users/{uid}).
+  Informational ONLY: no unlock/payment logic, no writes to the Pro
+  fields (server-owned; rules deny clients — re-verified live, 403).
+  Nav: Pro item (star icon) at top of Overview.
+- LIVE: 302 no-session / 200 with-session; free by default; admin writes
+  the Pro fields (the future licensing/admin path) -> dashboard shows
+  isPro + proType; client tamper attempt 403. Cleanup done.
+- ★ PORTAL FOUNDATION BUNDLE COMPLETE (4/4: Auth, Linking, Boats, Pro).
+  Server tests 95 green. All blocks stored in aftlog_server/blocks/.
+  NEXT: Licensing Bundle Blocks 5–8 per Louis's RUN cadence (5 = licensing
+  engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
+  Pro UX).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -831,6 +861,21 @@ help/website.
   list/detail → edit persisted (rename + notes) → delete removed; cleanup
   done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
   change rules going forward.
+
+### Block 4 (AFTLOG-PORTAL-PRO-DASHBOARD, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 2c37507, 95 tests green (+6). GET /pro (login-gated) + GET
+  /api/v1/portal/profile (read-only Pro status from Firestore users/{uid}).
+  Informational ONLY: no unlock/payment logic, no writes to the Pro
+  fields (server-owned; rules deny clients — re-verified live, 403).
+  Nav: Pro item (star icon) at top of Overview.
+- LIVE: 302 no-session / 200 with-session; free by default; admin writes
+  the Pro fields (the future licensing/admin path) -> dashboard shows
+  isPro + proType; client tamper attempt 403. Cleanup done.
+- ★ PORTAL FOUNDATION BUNDLE COMPLETE (4/4: Auth, Linking, Boats, Pro).
+  Server tests 95 green. All blocks stored in aftlog_server/blocks/.
+  NEXT: Licensing Bundle Blocks 5–8 per Louis's RUN cadence (5 = licensing
+  engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
+  Pro UX).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -1091,6 +1136,21 @@ help/website.
   list/detail → edit persisted (rename + notes) → delete removed; cleanup
   done. BOOKMARK: test users/docs swept; publish_rules.py is the way to
   change rules going forward.
+
+### Block 4 (AFTLOG-PORTAL-PRO-DASHBOARD, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 2c37507, 95 tests green (+6). GET /pro (login-gated) + GET
+  /api/v1/portal/profile (read-only Pro status from Firestore users/{uid}).
+  Informational ONLY: no unlock/payment logic, no writes to the Pro
+  fields (server-owned; rules deny clients — re-verified live, 403).
+  Nav: Pro item (star icon) at top of Overview.
+- LIVE: 302 no-session / 200 with-session; free by default; admin writes
+  the Pro fields (the future licensing/admin path) -> dashboard shows
+  isPro + proType; client tamper attempt 403. Cleanup done.
+- ★ PORTAL FOUNDATION BUNDLE COMPLETE (4/4: Auth, Linking, Boats, Pro).
+  Server tests 95 green. All blocks stored in aftlog_server/blocks/.
+  NEXT: Licensing Bundle Blocks 5–8 per Louis's RUN cadence (5 = licensing
+  engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
+  Pro UX).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
