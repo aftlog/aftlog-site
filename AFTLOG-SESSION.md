@@ -149,6 +149,16 @@
   server-owned isPro, one-time link code, boat pages, Pro dashboard),
   reusing the CatchTales patterns, then run the release checklist.
 
+- **🔒 AFTLOG LICENSING BUNDLE (8 blocks) — Block 5 STORED, not
+  implemented (08-16):** AFTLOG-PRO-LICENSING saved at
+  aftlog_server/blocks/. Reuses the CatchTales licensing architecture:
+  Firestore pro_licenses/{code} (admin-only), activateAftLogProCode Cloud
+  Function (atomic redemption, race-safe), server-owned Pro fields
+  (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
+  redemption with offline caching, portal /redeem page. No login in the
+  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  STORE ONLY until all 8 arrive + explicit RUN.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -386,6 +396,16 @@ help/website.
   server-owned isPro, one-time link code, boat pages, Pro dashboard),
   reusing the CatchTales patterns, then run the release checklist.
 
+- **🔒 AFTLOG LICENSING BUNDLE (8 blocks) — Block 5 STORED, not
+  implemented (08-16):** AFTLOG-PRO-LICENSING saved at
+  aftlog_server/blocks/. Reuses the CatchTales licensing architecture:
+  Firestore pro_licenses/{code} (admin-only), activateAftLogProCode Cloud
+  Function (atomic redemption, race-safe), server-owned Pro fields
+  (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
+  redemption with offline caching, portal /redeem page. No login in the
+  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  STORE ONLY until all 8 arrive + explicit RUN.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -543,6 +563,16 @@ help/website.
   the foundation as one build (Firebase Auth + Firestore profiles +
   server-owned isPro, one-time link code, boat pages, Pro dashboard),
   reusing the CatchTales patterns, then run the release checklist.
+
+- **🔒 AFTLOG LICENSING BUNDLE (8 blocks) — Block 5 STORED, not
+  implemented (08-16):** AFTLOG-PRO-LICENSING saved at
+  aftlog_server/blocks/. Reuses the CatchTales licensing architecture:
+  Firestore pro_licenses/{code} (admin-only), activateAftLogProCode Cloud
+  Function (atomic redemption, race-safe), server-owned Pro fields
+  (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
+  redemption with offline caching, portal /redeem page. No login in the
+  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -707,6 +737,16 @@ help/website.
   the foundation as one build (Firebase Auth + Firestore profiles +
   server-owned isPro, one-time link code, boat pages, Pro dashboard),
   reusing the CatchTales patterns, then run the release checklist.
+
+- **🔒 AFTLOG LICENSING BUNDLE (8 blocks) — Block 5 STORED, not
+  implemented (08-16):** AFTLOG-PRO-LICENSING saved at
+  aftlog_server/blocks/. Reuses the CatchTales licensing architecture:
+  Firestore pro_licenses/{code} (admin-only), activateAftLogProCode Cloud
+  Function (atomic redemption, race-safe), server-owned Pro fields
+  (isPro/proType/proSince/proExpiresAt — clients denied), app-side code
+  redemption with offline caching, portal /redeem page. No login in the
+  app, no Stripe, no subscriptions. Blocks 6 (admin panel), 7, 8 pending.
+  STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
