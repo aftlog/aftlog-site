@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Mark R.",
+    "boat": "Lund 1650",
+    "rating": 5,
+    "text": "Perfect for keeping track of fuel and service. My Lund 1650 has never been easier to manage.",
+    "preview": true
+  },
+  {
+    "name": "Sarah T.",
+    "rating": 5,
+    "text": "The checklists are worth the price alone. Launching and retrieving is stress-free now.",
+    "preview": true
+  },
+  {
+    "name": "Jason M.",
+    "rating": 4,
+    "text": "Love the analytics sheets. Seeing my real fuel burn and range is a game changer.",
+    "preview": true
+  }
+]

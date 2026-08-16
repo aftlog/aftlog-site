@@ -212,7 +212,7 @@
         <h2>User reviews</h2>
         <p class="sec-intro">Feedback from early testers and preview users.</p>
 
-        <div class="cards cards--three review-grid">
+        <div class="cards cards--three review-grid" id="review-grid">
           <article class="card review-card">
             <div class="review-badge">Early Access Preview</div>
             <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
@@ -434,6 +434,30 @@
     </div>
   </footer>
 
+  <script>
+    /* Reviews: render data/reviews.json into the grid (static cards are
+       the no-JS fallback). The Dev-Flavor Review Publisher commits to
+       this file; GitHub Pages rebuilds within ~1 min. */
+    (function () {
+      fetch('/data/reviews.json')
+        .then(r => { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+        .then(list => {
+          const grid = document.getElementById('review-grid');
+          if (!grid || !Array.isArray(list) || !list.length) return;
+          grid.innerHTML = list.map(rv => {
+            const stars = '★'.repeat(Math.max(1, Math.min(5, rv.rating|0))) +
+                          '☆'.repeat(5 - Math.max(1, Math.min(5, rv.rating|0)));
+            return `<article class="card review-card">
+              ${rv.preview ? '<div class="review-badge">Early Access Preview</div>' : ''}
+              <div class="review-stars" aria-label="${rv.rating} out of 5 stars">${stars}</div>
+              <p>"${(rv.text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}"</p>
+              <div class="review-author">— ${rv.name || 'Anonymous'}</div>
+            </article>`;
+          }).join('');
+        })
+        .catch(() => {/* keep the static fallback */});
+    })();
+  </script>
   <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#waitlist-form', formId: 'xoeaezwv' });
