@@ -64,6 +64,13 @@ needles (content elements, per the v1.121 lesson) + pixel analysis
 (rich dark renders, red accents). Demo data + generator committed so
 screenshots are reproducible. All 10 portal pages verified rendering.
 
+**Louis found the app checklists screenshot was kitco.com (a gold/silver
+dealer site!)** — the Aug 14 capture accidentally grabbed the phone
+browser instead of the app. Recaptured from the live app on the phone
+(adb-driven: More → Checklists tab, OCR-verified Launch/Spring Prep/
+Winterization/My checklists), replaced + pushed. Dashboard screenshot
+OCR-verified as the real app.
+
 **Louis TODOs (unchanged from 08-15):** test the Review Publisher flow on
 the phone (Dev 1.103.16, token in `pass api/github-aftlog-site`) · site
 analytics (GoatCounter/Plausible — needs an account) · portal deployment
