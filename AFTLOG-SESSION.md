@@ -140,7 +140,7 @@
   offline app deviceId to a Portal userId via Firestore
   linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
   enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
-  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
+  Block 3 (AFTLOG-PORTAL-BOAT-PAGES: login-gated boat list/detail/edit/delete over users/{uid}/boats/{boatId}, app-sync one-way via Block 2) is STORED at aftlog_server/blocks/ too. Blocks 1-3 stored; waiting for Block 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -370,7 +370,7 @@ help/website.
   offline app deviceId to a Portal userId via Firestore
   linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
   enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
-  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
+  Block 3 (AFTLOG-PORTAL-BOAT-PAGES: login-gated boat list/detail/edit/delete over users/{uid}/boats/{boatId}, app-sync one-way via Block 2) is STORED at aftlog_server/blocks/ too. Blocks 1-3 stored; waiting for Block 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -521,7 +521,7 @@ help/website.
   offline app deviceId to a Portal userId via Firestore
   linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
   enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
-  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
+  Block 3 (AFTLOG-PORTAL-BOAT-PAGES: login-gated boat list/detail/edit/delete over users/{uid}/boats/{boatId}, app-sync one-way via Block 2) is STORED at aftlog_server/blocks/ too. Blocks 1-3 stored; waiting for Block 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -678,7 +678,7 @@ help/website.
   offline app deviceId to a Portal userId via Firestore
   linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
   enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
-  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
+  Block 3 (AFTLOG-PORTAL-BOAT-PAGES: login-gated boat list/detail/edit/delete over users/{uid}/boats/{boatId}, app-sync one-way via Block 2) is STORED at aftlog_server/blocks/ too. Blocks 1-3 stored; waiting for Block 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
