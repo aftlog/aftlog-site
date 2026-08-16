@@ -260,6 +260,25 @@
   engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
   Pro UX).
 
+### Block 5 (AFTLOG-PRO-LICENSING, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 01a4146 (107 tests, +12): LicenseService = the lab's
+  activateAftLogProCode Cloud Function (CatchTales pattern). POST /redeem
+  (portal session) + POST /redeem/app (offline app, device-bound via
+  linked_devices) + GET /redeem page + nav item. Normalizes PRO-XXXX-XXXX
+  / 8/12-char codes (same as CatchTales). In-process in-flight set gives
+  atomicity for the single-writer lab; real CF transactions noted for
+  multi-instance. NOT Stripe/subscriptions/login-in-app per the block.
+- App 280e2fc (418 tests, +5): Enter Pro Code screen; ProService
+  activateWithCode -> /redeem/app with deviceId (no login, no Firebase
+  creds; device must be linked), writes local mirror is_pro +
+  pro_type + pro_expires_at (CatchTales keys). More tile on Free plan.
+- LIVE: seeded licenses via admin -> portal redeem 200 lifetime,
+  Firestore isPro/proType/proSince set + license used w/ correct uid,
+  re-redeem 409, expired 410, Block 4 dashboard shows Pro, app device
+  redeem yearly 200 (expiresAt 2027), unlinked device 404. Cleanup done.
+  NOTE: NO console rules publish needed — pro_licenses deny-all already
+  live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -608,6 +627,25 @@ help/website.
   engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
   Pro UX).
 
+### Block 5 (AFTLOG-PRO-LICENSING, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 01a4146 (107 tests, +12): LicenseService = the lab's
+  activateAftLogProCode Cloud Function (CatchTales pattern). POST /redeem
+  (portal session) + POST /redeem/app (offline app, device-bound via
+  linked_devices) + GET /redeem page + nav item. Normalizes PRO-XXXX-XXXX
+  / 8/12-char codes (same as CatchTales). In-process in-flight set gives
+  atomicity for the single-writer lab; real CF transactions noted for
+  multi-instance. NOT Stripe/subscriptions/login-in-app per the block.
+- App 280e2fc (418 tests, +5): Enter Pro Code screen; ProService
+  activateWithCode -> /redeem/app with deviceId (no login, no Firebase
+  creds; device must be linked), writes local mirror is_pro +
+  pro_type + pro_expires_at (CatchTales keys). More tile on Free plan.
+- LIVE: seeded licenses via admin -> portal redeem 200 lifetime,
+  Firestore isPro/proType/proSince set + license used w/ correct uid,
+  re-redeem 409, expired 410, Block 4 dashboard shows Pro, app device
+  redeem yearly 200 (expiresAt 2027), unlinked device 404. Cleanup done.
+  NOTE: NO console rules publish needed — pro_licenses deny-all already
+  live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -876,6 +914,25 @@ help/website.
   NEXT: Licensing Bundle Blocks 5–8 per Louis's RUN cadence (5 = licensing
   engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
   Pro UX).
+
+### Block 5 (AFTLOG-PRO-LICENSING, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 01a4146 (107 tests, +12): LicenseService = the lab's
+  activateAftLogProCode Cloud Function (CatchTales pattern). POST /redeem
+  (portal session) + POST /redeem/app (offline app, device-bound via
+  linked_devices) + GET /redeem page + nav item. Normalizes PRO-XXXX-XXXX
+  / 8/12-char codes (same as CatchTales). In-process in-flight set gives
+  atomicity for the single-writer lab; real CF transactions noted for
+  multi-instance. NOT Stripe/subscriptions/login-in-app per the block.
+- App 280e2fc (418 tests, +5): Enter Pro Code screen; ProService
+  activateWithCode -> /redeem/app with deviceId (no login, no Firebase
+  creds; device must be linked), writes local mirror is_pro +
+  pro_type + pro_expires_at (CatchTales keys). More tile on Free plan.
+- LIVE: seeded licenses via admin -> portal redeem 200 lifetime,
+  Firestore isPro/proType/proSince set + license used w/ correct uid,
+  re-redeem 409, expired 410, Block 4 dashboard shows Pro, app device
+  redeem yearly 200 (expiresAt 2027), unlinked device 404. Cleanup done.
+  NOTE: NO console rules publish needed — pro_licenses deny-all already
+  live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -1151,6 +1208,25 @@ help/website.
   NEXT: Licensing Bundle Blocks 5–8 per Louis's RUN cadence (5 = licensing
   engine/Cloud Function path, 6 = admin tool, 7 = app Pro UX, 8 = portal
   Pro UX).
+
+### Block 5 (AFTLOG-PRO-LICENSING, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- Server 01a4146 (107 tests, +12): LicenseService = the lab's
+  activateAftLogProCode Cloud Function (CatchTales pattern). POST /redeem
+  (portal session) + POST /redeem/app (offline app, device-bound via
+  linked_devices) + GET /redeem page + nav item. Normalizes PRO-XXXX-XXXX
+  / 8/12-char codes (same as CatchTales). In-process in-flight set gives
+  atomicity for the single-writer lab; real CF transactions noted for
+  multi-instance. NOT Stripe/subscriptions/login-in-app per the block.
+- App 280e2fc (418 tests, +5): Enter Pro Code screen; ProService
+  activateWithCode -> /redeem/app with deviceId (no login, no Firebase
+  creds; device must be linked), writes local mirror is_pro +
+  pro_type + pro_expires_at (CatchTales keys). More tile on Free plan.
+- LIVE: seeded licenses via admin -> portal redeem 200 lifetime,
+  Firestore isPro/proType/proSince set + license used w/ correct uid,
+  re-redeem 409, expired 410, Block 4 dashboard shows Pro, app device
+  redeem yearly 200 (expiresAt 2027), unlinked device 404. Cleanup done.
+  NOTE: NO console rules publish needed — pro_licenses deny-all already
+  live; this is the pattern for Blocks 6–8 (admin tool = Block 6).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
