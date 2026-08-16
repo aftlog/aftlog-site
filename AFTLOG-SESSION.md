@@ -6,6 +6,8 @@
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔜 TEST THE REVIEW PUBLISHER FLOW (Louis, 08-16):** AftLog Dev 1.103.16 is installed on your phone with the GitHub token embedded. Open More → Tools → Review Publisher (Dev) → publish a test review → verify it lands on aftlog.com/#reviews after the ~1 min rebuild. Token stored at `pass api/github-aftlog-site` (classic `ghp_…`, 40 bytes). If the flow stumbles, the commit error shows in the app snackbar.
+
 - **🔜 NEXT UP (updated 2026-08-15):** MAINTENANCE PLANNER **is SHIPPED** (features #71–77 + #86, 1.71.0–1.86.0 — More → Maintenance Planner; tabs, seasons/analytics/predictive/export Pro-gated). The session-log note from 08-14 saying it was missing was STALE. Real open frontier: server spec slices (trip-heatmap/clustering/forecast done on portal; maintenance/planner/boat-health dashboards remain) · portal deployment decision (Aug 24 gate) · free-tier gating not enforced · Pro purchase wiring · per-interval due-soon notifications · hotpot alignment. Candidate enhancement if desired: explicit 30/90/365-day bucket view on the existing planner (a team-spec PlannerScreen was reviewed 08-15 — 5 API mismatches, does NOT compile; only new idea worth keeping is the 30/90/365 buckets).
 - **🔴 adb stall (Samsung):** plain `adb push` can wedge or silently drop big files. Reliable: chunked push (8MB parts) → verify chunk count (10) → cat on device → md5sum match → pm install. Seen many times 2026-08-14. Also in CODING-STANDARDS §3.
 - **Email convention (LOCKED 2026-08-14):** ALL mailtos = `aftlog@yahoo.com` + context-specific subject (CatchTales pattern). Never a second address.
