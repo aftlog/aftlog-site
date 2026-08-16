@@ -64,6 +64,19 @@
   scoring/collision/spawn changes; patch only. +3 tests → 421 (2
   pre-existing). Installed 1.107.2 (md5 verified).
 
+- **🔒 BOATRUN LANDSCAPE FIX 2b (commit f310158, app 1.107.3 on phone,
+  08-16):** Louis reported the boat STILL vanishing in landscape after
+  FIXES-2. Root cause: the per-frame clamp used MediaQuery.size.width,
+  but landscape phones with notch/gesture-bar insets (S23 Ultra) have a
+  MediaQuery width LARGER than the SafeArea-shrunk canvas → the boat
+  clamped past the visible edge and drew off-canvas. Unit tests missed it
+  (no insets in the test viewport). Fix: clamp against _engine.width
+  (the LayoutBuilder playfield), never MediaQuery. Regression test with
+  100px horizontal insets locks it (clamps to 1681, not 1881). 422 pass.
+  LESSON: test orientation on a device-like viewport WITH safe-area
+  insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
+  md5 verified).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -216,6 +229,19 @@ help/website.
   scoring/collision/spawn changes; patch only. +3 tests → 421 (2
   pre-existing). Installed 1.107.2 (md5 verified).
 
+- **🔒 BOATRUN LANDSCAPE FIX 2b (commit f310158, app 1.107.3 on phone,
+  08-16):** Louis reported the boat STILL vanishing in landscape after
+  FIXES-2. Root cause: the per-frame clamp used MediaQuery.size.width,
+  but landscape phones with notch/gesture-bar insets (S23 Ultra) have a
+  MediaQuery width LARGER than the SafeArea-shrunk canvas → the boat
+  clamped past the visible edge and drew off-canvas. Unit tests missed it
+  (no insets in the test viewport). Fix: clamp against _engine.width
+  (the LayoutBuilder playfield), never MediaQuery. Regression test with
+  100px horizontal insets locks it (clamps to 1681, not 1881). 422 pass.
+  LESSON: test orientation on a device-like viewport WITH safe-area
+  insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
+  md5 verified).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -288,6 +314,19 @@ help/website.
   MediaQuery clamp + immediate re-clamp on orientation change). No
   scoring/collision/spawn changes; patch only. +3 tests → 421 (2
   pre-existing). Installed 1.107.2 (md5 verified).
+
+- **🔒 BOATRUN LANDSCAPE FIX 2b (commit f310158, app 1.107.3 on phone,
+  08-16):** Louis reported the boat STILL vanishing in landscape after
+  FIXES-2. Root cause: the per-frame clamp used MediaQuery.size.width,
+  but landscape phones with notch/gesture-bar insets (S23 Ultra) have a
+  MediaQuery width LARGER than the SafeArea-shrunk canvas → the boat
+  clamped past the visible edge and drew off-canvas. Unit tests missed it
+  (no insets in the test viewport). Fix: clamp against _engine.width
+  (the LayoutBuilder playfield), never MediaQuery. Regression test with
+  100px horizontal insets locks it (clamps to 1681, not 1881). 422 pass.
+  LESSON: test orientation on a device-like viewport WITH safe-area
+  insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
+  md5 verified).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -367,6 +406,19 @@ help/website.
   MediaQuery clamp + immediate re-clamp on orientation change). No
   scoring/collision/spawn changes; patch only. +3 tests → 421 (2
   pre-existing). Installed 1.107.2 (md5 verified).
+
+- **🔒 BOATRUN LANDSCAPE FIX 2b (commit f310158, app 1.107.3 on phone,
+  08-16):** Louis reported the boat STILL vanishing in landscape after
+  FIXES-2. Root cause: the per-frame clamp used MediaQuery.size.width,
+  but landscape phones with notch/gesture-bar insets (S23 Ultra) have a
+  MediaQuery width LARGER than the SafeArea-shrunk canvas → the boat
+  clamped past the visible edge and drew off-canvas. Unit tests missed it
+  (no insets in the test viewport). Fix: clamp against _engine.width
+  (the LayoutBuilder playfield), never MediaQuery. Regression test with
+  100px horizontal insets locks it (clamps to 1681, not 1881). 422 pass.
+  LESSON: test orientation on a device-like viewport WITH safe-area
+  insets. Installed 1.107.3 (two chunks dropped mid-push — retried,
+  md5 verified).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
