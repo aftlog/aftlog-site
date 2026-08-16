@@ -112,6 +112,11 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**What's New copy LOCKED to Louis's wording (1.105.3, 08-16):** heading
+'Smart Maintenance Planner (1.105)'; bullets use plain user-facing
+language — no 'gating'/'UI' jargon ('Enhanced Pro experience' replaces
+'Full Pro gating UI'). Site changelog matches. Verified on the phone.
+
 **What's New rendering fix (1.105.2, 08-16):** Louis spotted the curated
 entry rendered one card PER BULLET with the title repeated 10× (junk
 drawer). Fixed — one heading + 'Version 1.105' + all bullets as check rows
