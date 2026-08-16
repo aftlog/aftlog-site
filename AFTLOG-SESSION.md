@@ -60,6 +60,15 @@
   off). Future features (e.g. VEA) run through this checklist.
 
 
+**MANUAL-BACKUP-1 SHIPPED (commit d38c55a, app 1.106.1 on phone,
+08-16):** manual PDF backups already carried the file (F14) — this closes
+the gap the block exposed: the SEARCH INDEX now rides in the backup
+('index' per-boat) and restore reuses it or rebuilds it from the PDF
+(rebuildIndexFromFile). Corrupt PDF → file written, no index, no crash.
+Old backups restore cleanly. Fully offline; APK/app size unchanged.
++4 tests → 404 (2 pre-existing). Installed 1.106.1 (chunk push retry on a
+dropped part — md5 verified).
+
 **VEA-FINAL — VEA COMPLETE (app 1.106.0 on phone, 08-16):** help topics
 x2 (using VEA + troubleshooting, full instructional fields), optional 5th
 onboarding-tour card (Try VEA, veaEnabled-gated), What's New 1.106 (exact
