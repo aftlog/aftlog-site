@@ -136,6 +136,11 @@
   codes) for the AftLog Portal — manual generator, AI panel, saved
   manuals, boat pages (Block 3), Pro dashboard (Block 4) become
   login-gated. Do not implement any of it until Blocks 2-4 are in hand.
+  Block 2 (AFTLOG-PORTAL-APP-LINKING, one-time 8-char link code binding an
+  offline app deviceId to a Portal userId via Firestore
+  linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
+  enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
+  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -361,6 +366,11 @@ help/website.
   codes) for the AftLog Portal — manual generator, AI panel, saved
   manuals, boat pages (Block 3), Pro dashboard (Block 4) become
   login-gated. Do not implement any of it until Blocks 2-4 are in hand.
+  Block 2 (AFTLOG-PORTAL-APP-LINKING, one-time 8-char link code binding an
+  offline app deviceId to a Portal userId via Firestore
+  linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
+  enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
+  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -507,6 +517,11 @@ help/website.
   codes) for the AftLog Portal — manual generator, AI panel, saved
   manuals, boat pages (Block 3), Pro dashboard (Block 4) become
   login-gated. Do not implement any of it until Blocks 2-4 are in hand.
+  Block 2 (AFTLOG-PORTAL-APP-LINKING, one-time 8-char link code binding an
+  offline app deviceId to a Portal userId via Firestore
+  linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
+  enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
+  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -659,6 +674,11 @@ help/website.
   codes) for the AftLog Portal — manual generator, AI panel, saved
   manuals, boat pages (Block 3), Pro dashboard (Block 4) become
   login-gated. Do not implement any of it until Blocks 2-4 are in hand.
+  Block 2 (AFTLOG-PORTAL-APP-LINKING, one-time 8-char link code binding an
+  offline app deviceId to a Portal userId via Firestore
+  linked_devices/{deviceId}; link_codes ephemeral collection, Cloud-Function
+  enforced) is STORED at aftlog_server/blocks/ too. Blocks 1+2 stored;
+  waiting for Blocks 3 (Portal boat pages) + 4 (Portal Pro dashboard).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
