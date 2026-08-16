@@ -102,6 +102,18 @@
   solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
   revival. 404 tests (2 pre-existing). Installed 1.107.4.
 
+- **🔒 PORTAL-MANUAL-GENERATOR-PRO SHIPPED (commit 4b993ea, 08-16):**
+  Pro-only custom boat manual generator on the portal (/portal/manual-
+  generator, Tools nav group). 14 required fields → polite abort if any
+  missing (exact spec message, no partial manuals); 13 sections +
+  'AftLog Custom Owner's Manual (Generated from your boat profile)' label
+  + 4 mandatory disclaimers; no OEM/manufacturer/certification claims.
+  Exports: save to Portal (manual_generations table) + list + Download
+  PDF (hand-rolled minimal PDF writer — no external libs allowed).
+  Pro gating via PORTAL_PRO flag (lab user = Pro; real auth at deploy).
+  +13 tests → 38 green; live smoke test verified. Portal still runs at
+  localhost:8080 for eyeballing.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -292,6 +304,18 @@ help/website.
   solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
   revival. 404 tests (2 pre-existing). Installed 1.107.4.
 
+- **🔒 PORTAL-MANUAL-GENERATOR-PRO SHIPPED (commit 4b993ea, 08-16):**
+  Pro-only custom boat manual generator on the portal (/portal/manual-
+  generator, Tools nav group). 14 required fields → polite abort if any
+  missing (exact spec message, no partial manuals); 13 sections +
+  'AftLog Custom Owner's Manual (Generated from your boat profile)' label
+  + 4 mandatory disclaimers; no OEM/manufacturer/certification claims.
+  Exports: save to Portal (manual_generations table) + list + Download
+  PDF (hand-rolled minimal PDF writer — no external libs allowed).
+  Pro gating via PORTAL_PRO flag (lab user = Pro; real auth at deploy).
+  +13 tests → 38 green; live smoke test verified. Portal still runs at
+  localhost:8080 for eyeballing.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -402,6 +426,18 @@ help/website.
   one-line fix (boatY relative to height, e.g. height*0.85) would have
   solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
   revival. 404 tests (2 pre-existing). Installed 1.107.4.
+
+- **🔒 PORTAL-MANUAL-GENERATOR-PRO SHIPPED (commit 4b993ea, 08-16):**
+  Pro-only custom boat manual generator on the portal (/portal/manual-
+  generator, Tools nav group). 14 required fields → polite abort if any
+  missing (exact spec message, no partial manuals); 13 sections +
+  'AftLog Custom Owner's Manual (Generated from your boat profile)' label
+  + 4 mandatory disclaimers; no OEM/manufacturer/certification claims.
+  Exports: save to Portal (manual_generations table) + list + Download
+  PDF (hand-rolled minimal PDF writer — no external libs allowed).
+  Pro gating via PORTAL_PRO flag (lab user = Pro; real auth at deploy).
+  +13 tests → 38 green; live smoke test verified. Portal still runs at
+  localhost:8080 for eyeballing.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -519,6 +555,18 @@ help/website.
   one-line fix (boatY relative to height, e.g. height*0.85) would have
   solved it. BoatRun lives in git history (d70bfc4, f310158) for easy
   revival. 404 tests (2 pre-existing). Installed 1.107.4.
+
+- **🔒 PORTAL-MANUAL-GENERATOR-PRO SHIPPED (commit 4b993ea, 08-16):**
+  Pro-only custom boat manual generator on the portal (/portal/manual-
+  generator, Tools nav group). 14 required fields → polite abort if any
+  missing (exact spec message, no partial manuals); 13 sections +
+  'AftLog Custom Owner's Manual (Generated from your boat profile)' label
+  + 4 mandatory disclaimers; no OEM/manufacturer/certification claims.
+  Exports: save to Portal (manual_generations table) + list + Download
+  PDF (hand-rolled minimal PDF writer — no external libs allowed).
+  Pro gating via PORTAL_PRO flag (lab user = Pro; real auth at deploy).
+  +13 tests → 38 green; live smoke test verified. Portal still runs at
+  localhost:8080 for eyeballing.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
