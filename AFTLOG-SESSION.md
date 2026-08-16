@@ -112,6 +112,12 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**What's New rendering fix (1.105.2, 08-16):** Louis spotted the curated
+entry rendered one card PER BULLET with the title repeated 10× (junk
+drawer). Fixed — one heading + 'Version 1.105' + all bullets as check rows
+in one card. Test locked (title findsOneWidget). Installed 1.105.2-dev;
+Louis verified the fixed screen live.
+
 **SMP-FINAL — SMP COMPLETE (app 1.105.1 on phone, 08-16):** Help topics ×8
 (overview/tasks/completion/recommendations/settings/manual/diagnostics/
 troubleshooting, all with howTo/examples/tips/where/affects), SMP first-
