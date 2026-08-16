@@ -160,7 +160,11 @@
   — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
   pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
   devices; no web/portal/public access, excluded from production) is STORED
-  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
+  at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
+  SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
+  optional Portal sync via link code — no login/Firebase Auth/Stripe in
+  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
+  pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -411,7 +415,11 @@ help/website.
   — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
   pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
   devices; no web/portal/public access, excluded from production) is STORED
-  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
+  at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
+  SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
+  optional Portal sync via link code — no login/Firebase Auth/Stripe in
+  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
+  pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -583,7 +591,11 @@ help/website.
   — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
   pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
   devices; no web/portal/public access, excluded from production) is STORED
-  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
+  at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
+  SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
+  optional Portal sync via link code — no login/Firebase Auth/Stripe in
+  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
+  pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
@@ -761,7 +773,11 @@ help/website.
   — generates lifetime/yearly 12-char codes via Firebase Admin SDK into
   pro_licenses/{code}, admin-only listing; exists ONLY on Louis's personal
   devices; no web/portal/public access, excluded from production) is STORED
-  at aftlog_server/blocks/. Blocks 5-6 stored; 7, 8 pending.
+  at aftlog_server/blocks/. Block 7 (AFTLOG-PRO-APP-UX: ProActivationScreen + ProStatusScreen,
+  SharedPreferences aftlog_is_pro/type/expires_at, Pro gating dialogs,
+  optional Portal sync via link code — no login/Firebase Auth/Stripe in
+  the app) is STORED at aftlog_server/blocks/. Blocks 5-7 stored; 8
+  pending.
   STORE ONLY until all 8 arrive + explicit RUN.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
