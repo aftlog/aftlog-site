@@ -99,6 +99,21 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**SMP-FINAL — SMP COMPLETE (app 1.105.1 on phone, 08-16):** Help topics ×8
+(overview/tasks/completion/recommendations/settings/manual/diagnostics/
+troubleshooting, all with howTo/examples/tips/where/affects), SMP first-
+time walkthrough (5 cards + Try It Now, once per install) + contextual
+tooltips (plan/task-detail Pro/settings Pro), What's New 1.105 entry,
+FEATURES.md #105, landing SMP section + FAQ + changelog + REAL free-tier
+plan screenshot captured from the phone (grey Basic Maintenance Schedule
+header, upsell banner, Basic interval labels — exactly per spec).
+Version 1.105.0 (pro) + 1.105.1 (dev, installed once — md5 verified).
+367 tests pass (2 pre-existing LocalBundleServer failures). ALL SMP blocks
+(SMP-1 → SMP-Final) complete: models+logic (SMP-1), scaffold+DB v10
+(SMP-2), full UI (SMP-3), Pro gating UI (SMP-4), docs (Final).
+SMP release note: flags stay false — the app runs the free tier; flipping
+FeatureFlags.isSmpProEnabled() ships the Pro smart planner.
+
 **SMP-4 SHIPPED (commit f0c3255, 08-16) — Pro gating UI:** smp_gating.dart
 (smpProActive = isPro AND any SMP flag — release master switch + per-user
 gate), global SmpUpsellBanner on plan/task-detail/settings screens
