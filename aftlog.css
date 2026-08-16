@@ -53,12 +53,54 @@ a { color: var(--accent); }
 .hero-text > p { color: var(--muted-dark); font-size: 1.05rem; max-width: 34em; margin-bottom: 12px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
 .hero-sub { font-size: .88rem; opacity: .75; }
-.hero-image img {
-  width: 100%; max-width: 420px; border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 24px 60px rgba(0,0,0,.55);
-  display: block;
+
+/* ── Device frames (solid colors only — brand rule: no gradients) ───── */
+.phone {
+  --bezel: #1C1C24;
+  width: min(320px, 100%);
+  margin: 0 auto;
+  background: var(--bezel);
+  border-radius: 44px;
+  border: 2px solid #2A2A33;
+  padding: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5);
+  position: relative;
 }
+.phone::before { /* punch-hole camera */
+  content: ""; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  width: 8px; height: 8px; background: #0B0B0D; border-radius: 50%;
+  border: 2px solid #2A2A33; z-index: 2;
+}
+.phone::after { /* side buttons */
+  content: ""; position: absolute; right: -4px; top: 108px; width: 4px; height: 46px;
+  background: #2A2A33; border-radius: 2px;
+}
+.phone .screen {
+  border-radius: 34px; overflow: hidden; background: #0B0B0D;
+  aspect-ratio: 1080 / 2316;
+}
+.phone .screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.phone--sm { width: min(210px, 100%); padding: 9px; border-radius: 30px; }
+.phone--sm::before { top: 15px; width: 7px; height: 7px; }
+.phone--sm::after { right: -3px; top: 74px; width: 3px; height: 32px; }
+.phone--sm .screen { border-radius: 21px; }
+
+.browser {
+  width: 100%; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(0,0,0,.12);
+  background: #fff;
+}
+.browser .bar {
+  display: flex; align-items: center; gap: 6px; padding: 8px 12px;
+  background: #F1F1F5; border-bottom: 1px solid var(--line);
+}
+.browser .bar i { width: 10px; height: 10px; border-radius: 50%; }
+.browser .bar i:nth-child(1) { background: #E02020; }
+.browser .bar i:nth-child(2) { background: #F5B041; }
+.browser .bar i:nth-child(3) { background: #2ECC71; }
+.browser img { width: 100%; max-width: 100%; display: block; }
+.two-column > *, .shots > * { min-width: 0; }
+.hero-image { display: flex; justify-content: center; }
 
 /* ── Buttons ────────────────────────────────────────────────────────── */
 .btn {
@@ -110,14 +152,12 @@ h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
   content: ""; position: absolute; left: 0; top: 15px; width: 9px; height: 9px;
   border-radius: 50%; background: rgba(224,32,32,.7);
 }
-.portal-shot img, .shot img {
-  width: 100%; border-radius: 14px; border: 1px solid var(--line);
-  box-shadow: 0 12px 32px rgba(0,0,0,.12); display: block;
-}
+.portal-shot, .shot { text-align: center; }
+.browser { width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(0,0,0,.12); background: #fff; }
 
 /* ── Screenshots strip ──────────────────────────────────────────────── */
 .shots { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.shot img { margin-bottom: 10px; }
+.shot img, .shot .phone--sm, .shot .browser { margin-bottom: 12px; }
 .shot h3 { font-size: .95rem; }
 .shot p { color: var(--muted-light); font-size: .88rem; }
 
