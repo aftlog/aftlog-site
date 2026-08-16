@@ -32,6 +32,19 @@
   +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
   (md5 verified). On-device fun test: More → Tools → Crew & Kids.
 
+- **🔒 BUNDLE A COMPLETE (MANUAL-BACKUP-1 + AFTLOG-BOATRUN-1, 08-16):**
+  both features were shipped as independent blocks (d38c55a / a721fa3)
+  before the combined bundle arrived — the phone's 1.107.0 contains both.
+  Bundle QA passed: manual-backup tests (index rides in backup, rebuild on
+  restore, old-backup clean), BoatRun tests (steer/spawn/collision/score/
+  screens), language lint clean, translations guard clean, analyzer clean.
+  Copy deltas vs the bundle: kept the earlier blocks' exact wording
+  ('quiet', 'No sounds unless enabled'); backup field names stay
+  F14-compatible (file_b64/name/index vs the bundle's manualPdfBase64/
+  manualFilename/manualMimeType — same intent, documented); BoatRun sound
+  uses SystemSound click (no audio plugin allowed by the no-external-libs
+  rule — 'asset audio' doesn't exist in bare Flutter).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -152,6 +165,19 @@ help/website.
   +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
   (md5 verified). On-device fun test: More → Tools → Crew & Kids.
 
+- **🔒 BUNDLE A COMPLETE (MANUAL-BACKUP-1 + AFTLOG-BOATRUN-1, 08-16):**
+  both features were shipped as independent blocks (d38c55a / a721fa3)
+  before the combined bundle arrived — the phone's 1.107.0 contains both.
+  Bundle QA passed: manual-backup tests (index rides in backup, rebuild on
+  restore, old-backup clean), BoatRun tests (steer/spawn/collision/score/
+  screens), language lint clean, translations guard clean, analyzer clean.
+  Copy deltas vs the bundle: kept the earlier blocks' exact wording
+  ('quiet', 'No sounds unless enabled'); backup field names stay
+  F14-compatible (file_b64/name/index vs the bundle's manualPdfBase64/
+  manualFilename/manualMimeType — same intent, documented); BoatRun sound
+  uses SystemSound click (no audio plugin allowed by the no-external-libs
+  rule — 'asset audio' doesn't exist in bare Flutter).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -192,6 +218,19 @@ help/website.
   exist without a plugin). Free, no ads/cloud/analytics. 18 keys x5,
   +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
   (md5 verified). On-device fun test: More → Tools → Crew & Kids.
+
+- **🔒 BUNDLE A COMPLETE (MANUAL-BACKUP-1 + AFTLOG-BOATRUN-1, 08-16):**
+  both features were shipped as independent blocks (d38c55a / a721fa3)
+  before the combined bundle arrived — the phone's 1.107.0 contains both.
+  Bundle QA passed: manual-backup tests (index rides in backup, rebuild on
+  restore, old-backup clean), BoatRun tests (steer/spawn/collision/score/
+  screens), language lint clean, translations guard clean, analyzer clean.
+  Copy deltas vs the bundle: kept the earlier blocks' exact wording
+  ('quiet', 'No sounds unless enabled'); backup field names stay
+  F14-compatible (file_b64/name/index vs the bundle's manualPdfBase64/
+  manualFilename/manualMimeType — same intent, documented); BoatRun sound
+  uses SystemSound click (no audio plugin allowed by the no-external-libs
+  rule — 'asset audio' doesn't exist in bare Flutter).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -239,6 +278,19 @@ help/website.
   exist without a plugin). Free, no ads/cloud/analytics. 18 keys x5,
   +10 tests → 414 (2 pre-existing). Lint clean. Installed 1.107.0
   (md5 verified). On-device fun test: More → Tools → Crew & Kids.
+
+- **🔒 BUNDLE A COMPLETE (MANUAL-BACKUP-1 + AFTLOG-BOATRUN-1, 08-16):**
+  both features were shipped as independent blocks (d38c55a / a721fa3)
+  before the combined bundle arrived — the phone's 1.107.0 contains both.
+  Bundle QA passed: manual-backup tests (index rides in backup, rebuild on
+  restore, old-backup clean), BoatRun tests (steer/spawn/collision/score/
+  screens), language lint clean, translations guard clean, analyzer clean.
+  Copy deltas vs the bundle: kept the earlier blocks' exact wording
+  ('quiet', 'No sounds unless enabled'); backup field names stay
+  F14-compatible (file_b64/name/index vs the bundle's manualPdfBase64/
+  manualFilename/manualMimeType — same intent, documented); BoatRun sound
+  uses SystemSound click (no audio plugin allowed by the no-external-libs
+  rule — 'asset audio' doesn't exist in bare Flutter).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
