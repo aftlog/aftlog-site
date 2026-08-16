@@ -194,8 +194,30 @@
   published (users/{uid} owner-only, Pro fields denied; pro_licenses
   deny-all placeholder). NOTE: the console location dropdown was broken —
   database created via paste+publish once the rules editor had clean
-  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
-  RUN instruction.
+  (unfenced) content.
+
+### Block 2 (AFTLOG-PORTAL-APP-LINKING, RUN) — IMPLEMENTED
+- Server d04e7d6 (75 tests green): FirebaseAdmin — service-account RS256
+  JWT (pointycastle, pure Dart, zero native deps) -> OAuth2 token ->
+  Firestore REST with admin scope = the lab's Cloud Function (rules
+  bypass); PKCS#8 key parsed via ASN1; document-store seam for tests.
+  Routes: POST /link-code/create (app, unauthenticated BY DESIGN — the
+  app has no login/Firebase creds) -> link_codes/{code} {deviceId,
+  expiresAt +10min, used:false}; POST /link-code/submit (authed) verifies
+  exists/expired(410)/used(409) then writes linked_devices/{deviceId}
+  {userId, linkedAt} + marks the code used (usedBy/usedAt); GET
+  /link-code page (login-gated). Added pointycastle dep.
+- App b657dc0 (413 tests; only 2 known pre-existing LocalBundleServer
+  fails): PortalLinkService (stable 32-hex deviceId, 8-char A-Z0-9 code,
+  portal URL setting, pending-code 10-min local expiry) + PortalLinkScreen
+  in More; EN + ES copy.
+- Unit-level JWT verified: claims correct + signature verifies against an
+  embedded test RSA-2048 public key (and mismatched payload fails).
+- BLOCKED on Louis: Project settings → Service accounts → Generate new
+  private key → save the JSON as aftlog_server/firebase_service_account.json
+  (gitignored) → confirm → live end-to-end check (create code → submit
+  with a real session → linked_devices mapping in Firestore → expired/used
+  rejections).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -479,8 +501,30 @@ help/website.
   published (users/{uid} owner-only, Pro fields denied; pro_licenses
   deny-all placeholder). NOTE: the console location dropdown was broken —
   database created via paste+publish once the rules editor had clean
-  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
-  RUN instruction.
+  (unfenced) content.
+
+### Block 2 (AFTLOG-PORTAL-APP-LINKING, RUN) — IMPLEMENTED
+- Server d04e7d6 (75 tests green): FirebaseAdmin — service-account RS256
+  JWT (pointycastle, pure Dart, zero native deps) -> OAuth2 token ->
+  Firestore REST with admin scope = the lab's Cloud Function (rules
+  bypass); PKCS#8 key parsed via ASN1; document-store seam for tests.
+  Routes: POST /link-code/create (app, unauthenticated BY DESIGN — the
+  app has no login/Firebase creds) -> link_codes/{code} {deviceId,
+  expiresAt +10min, used:false}; POST /link-code/submit (authed) verifies
+  exists/expired(410)/used(409) then writes linked_devices/{deviceId}
+  {userId, linkedAt} + marks the code used (usedBy/usedAt); GET
+  /link-code page (login-gated). Added pointycastle dep.
+- App b657dc0 (413 tests; only 2 known pre-existing LocalBundleServer
+  fails): PortalLinkService (stable 32-hex deviceId, 8-char A-Z0-9 code,
+  portal URL setting, pending-code 10-min local expiry) + PortalLinkScreen
+  in More; EN + ES copy.
+- Unit-level JWT verified: claims correct + signature verifies against an
+  embedded test RSA-2048 public key (and mismatched payload fails).
+- BLOCKED on Louis: Project settings → Service accounts → Generate new
+  private key → save the JSON as aftlog_server/firebase_service_account.json
+  (gitignored) → confirm → live end-to-end check (create code → submit
+  with a real session → linked_devices mapping in Firestore → expired/used
+  rejections).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -685,8 +729,30 @@ help/website.
   published (users/{uid} owner-only, Pro fields denied; pro_licenses
   deny-all placeholder). NOTE: the console location dropdown was broken —
   database created via paste+publish once the rules editor had clean
-  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
-  RUN instruction.
+  (unfenced) content.
+
+### Block 2 (AFTLOG-PORTAL-APP-LINKING, RUN) — IMPLEMENTED
+- Server d04e7d6 (75 tests green): FirebaseAdmin — service-account RS256
+  JWT (pointycastle, pure Dart, zero native deps) -> OAuth2 token ->
+  Firestore REST with admin scope = the lab's Cloud Function (rules
+  bypass); PKCS#8 key parsed via ASN1; document-store seam for tests.
+  Routes: POST /link-code/create (app, unauthenticated BY DESIGN — the
+  app has no login/Firebase creds) -> link_codes/{code} {deviceId,
+  expiresAt +10min, used:false}; POST /link-code/submit (authed) verifies
+  exists/expired(410)/used(409) then writes linked_devices/{deviceId}
+  {userId, linkedAt} + marks the code used (usedBy/usedAt); GET
+  /link-code page (login-gated). Added pointycastle dep.
+- App b657dc0 (413 tests; only 2 known pre-existing LocalBundleServer
+  fails): PortalLinkService (stable 32-hex deviceId, 8-char A-Z0-9 code,
+  portal URL setting, pending-code 10-min local expiry) + PortalLinkScreen
+  in More; EN + ES copy.
+- Unit-level JWT verified: claims correct + signature verifies against an
+  embedded test RSA-2048 public key (and mismatched payload fails).
+- BLOCKED on Louis: Project settings → Service accounts → Generate new
+  private key → save the JSON as aftlog_server/firebase_service_account.json
+  (gitignored) → confirm → live end-to-end check (create code → submit
+  with a real session → linked_devices mapping in Firestore → expired/used
+  rejections).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -897,8 +963,30 @@ help/website.
   published (users/{uid} owner-only, Pro fields denied; pro_licenses
   deny-all placeholder). NOTE: the console location dropdown was broken —
   database created via paste+publish once the rules editor had clean
-  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
-  RUN instruction.
+  (unfenced) content.
+
+### Block 2 (AFTLOG-PORTAL-APP-LINKING, RUN) — IMPLEMENTED
+- Server d04e7d6 (75 tests green): FirebaseAdmin — service-account RS256
+  JWT (pointycastle, pure Dart, zero native deps) -> OAuth2 token ->
+  Firestore REST with admin scope = the lab's Cloud Function (rules
+  bypass); PKCS#8 key parsed via ASN1; document-store seam for tests.
+  Routes: POST /link-code/create (app, unauthenticated BY DESIGN — the
+  app has no login/Firebase creds) -> link_codes/{code} {deviceId,
+  expiresAt +10min, used:false}; POST /link-code/submit (authed) verifies
+  exists/expired(410)/used(409) then writes linked_devices/{deviceId}
+  {userId, linkedAt} + marks the code used (usedBy/usedAt); GET
+  /link-code page (login-gated). Added pointycastle dep.
+- App b657dc0 (413 tests; only 2 known pre-existing LocalBundleServer
+  fails): PortalLinkService (stable 32-hex deviceId, 8-char A-Z0-9 code,
+  portal URL setting, pending-code 10-min local expiry) + PortalLinkScreen
+  in More; EN + ES copy.
+- Unit-level JWT verified: claims correct + signature verifies against an
+  embedded test RSA-2048 public key (and mismatched payload fails).
+- BLOCKED on Louis: Project settings → Service accounts → Generate new
+  private key → save the JSON as aftlog_server/firebase_service_account.json
+  (gitignored) → confirm → live end-to-end check (create code → submit
+  with a real session → linked_devices mapping in Firestore → expired/used
+  rejections).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
