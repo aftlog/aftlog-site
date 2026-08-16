@@ -60,6 +60,15 @@
   off). Future features (e.g. VEA) run through this checklist.
 
 
+**VEA-2 scaffold SHIPPED (commit 91a1672, 08-16):** lib/screens/vea/
+(home, capture via image_picker camera+gallery, result with 7 placeholder
+sections + disabled save, history list + detail with delete), widgets/vea/
+(part/fault/safety/manual-ref chips — accept the shipped model types), DB
+v11 vea_history table, vea_history_service (addEntry/getEntries/getEntry/
+deleteEntry + saveImage/deleteImage, resilient to DB errors), More → Tools
+entry. Navigation via Navigator.push (no named routes — template noise).
+22 keys x5, +7 tests → 394 (2 pre-existing). NO install until VEA-Final.
+
 **VEA-Cleanup-1 SHIPPED (commit c21c79b, 08-16):** removed the "Test
 reminder" debug hook from the boat screen (AftChip firing
 NotificationService.show with a legacy CatchTales-style test body) +
