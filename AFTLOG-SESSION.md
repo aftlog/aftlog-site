@@ -99,6 +99,17 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**SMP-4 SHIPPED (commit f0c3255, 08-16) — Pro gating UI:** smp_gating.dart
+(smpProActive = isPro AND any SMP flag — release master switch + per-user
+gate), global SmpUpsellBanner on plan/task-detail/settings screens
+('Upgrade to AftLog Pro' → ProUpgradeScreen), tier-aware tiles (free:
+grey + 'Basic interval', no refs/deep-link; Pro: severity-colored +
+'Manual interval' + page refs), banner gated (free = basic overdue only),
+settings locked card for free. Blue title replaced with brand red (blue is
+off the canonical palette). 6 keys x5, +2 tests → 366 (2 pre-existing).
+No version bump, nothing to the phone. Remaining: SMP-Final
+(Help/Walkthrough/Website).
+
 **SMP-3 SHIPPED (commit cb1d7a5, 08-16) — full SMP UI logic:** settings
 persist (boats.maintenance_settings_json, live save + snackbar); interval
 review flow (accept/edit/reject, decisions persisted in the plan JSON and
