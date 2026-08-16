@@ -71,6 +71,8 @@ browser instead of the app. Recaptured from the live app on the phone
 Winterization/My checklists), replaced + pushed. Dashboard screenshot
 OCR-verified as the real app.
 
+**Feature #104 SHIPPED — Engine Manual Assist (1.104.0, app on phone 1.104.1-dev):** user attaches their own engine manual PDF; AftLog indexes it fully offline (syncfusion_flutter_pdf extraction — spec's pdf_text/native_pdf_renderer both conflict with the app's http/geolocator pins → pure-Dart plugin instead, documented in code; ~250-word chunks; deterministic FNV-1a hashing embeddings stable across SDK versions; index JSON at <docs>/manual_index_<boatId>.json; vector search = term overlap + cosine bonus, 0.35 threshold, top 5). Diagnostics get a "Manual Guidance (<name>)" section with page snippets (never quoting copyrighted text); Ask AftLog searches the manual with the question's own words and cites pages (online + offline fallback). Free: attach/view (FileProvider added). Pro: guidance + search. DB v9, 23 translation keys ×5, 19 new unit tests (311 total, 2 pre-existing LocalBundleServer failures unchanged). VERIFIED ON PHONE: migration clean, boat detail tile → Engine Manual screen → system PDF picker opens. Sample manual at /sdcard/Download/sample_manual.pdf for Louis's end-to-end test. **Louis TODO: attach the sample manual → pick 'Overheating' in Manual guidance (Pro) → check diagnostic summary shows Manual Guidance.**
+
 **Louis TODOs (unchanged from 08-15):** test the Review Publisher flow on
 the phone (Dev 1.103.16, token in `pass api/github-aftlog-site`) · site
 analytics (GoatCounter/Plausible — needs an account) · portal deployment
