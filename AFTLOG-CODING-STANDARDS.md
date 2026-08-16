@@ -316,3 +316,5 @@ docs) must be value-focused and free of developer terminology.
   files; CI job `lint-release-notes` fails the build on violations (app
   repo: whats_new_entries.dart + help_content.dart; site repo: index.html
   + updates/index.html). Never bypass the lint.
+- **FEATURES.md is NEVER linted** (Louis, 2026-08-16) — it is an internal
+  developer document and is permanently exempt.

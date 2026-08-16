@@ -2,9 +2,13 @@
 """Release-note language validator (RULE — user-facing language, 2026-08-16).
 
 Scans user-facing files for developer terminology. Exits 1 (CI failure)
-when a forbidden pattern is found. Internal developer docs (FEATURES.md,
-CODING-STANDARDS, source comments) are NOT scanned — this targets release
-notes, What's New, help topics, landing page and changelog copy.
+when a forbidden pattern is found. Internal developer docs and source
+comments are NOT scanned — this targets release notes, What's New, help
+topics, landing page and changelog copy.
+
+NEVER scan FEATURES.md (explicit Louis decision, 2026-08-16): it is an
+internal developer document (feature list / version source of truth) and
+is permanently exempt from this lint.
 
 Usage:
     python3 tools/lint_release_notes.py <file...>

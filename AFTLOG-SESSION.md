@@ -37,7 +37,7 @@
   (app repo: whats_new_entries.dart + help_content.dart; site repo:
   index.html + updates/index.html) — CI job `lint-release-notes` fails on
   violations. What's New template: version/title/short description +
-  Free/Pro/Improvements sections. FEATURES.md is internal (not linted);
+  Free/Pro/Improvements sections. FEATURES.md is internal and is **NEVER linted** (explicit Louis rule, 2026-08-16 — do not add it to the scan);
   "model" (boat make/model) and "Segoe UI" (font) are documented
   exemptions. What's New entries restructured to the template in 1.105.4.
 
@@ -105,7 +105,7 @@
   (app repo: whats_new_entries.dart + help_content.dart; site repo:
   index.html + updates/index.html) — CI job `lint-release-notes` fails on
   violations. What's New template: version/title/short description +
-  Free/Pro/Improvements sections. FEATURES.md is internal (not linted);
+  Free/Pro/Improvements sections. FEATURES.md is internal and is **NEVER linted** (explicit Louis rule, 2026-08-16 — do not add it to the scan);
   "model" (boat make/model) and "Segoe UI" (font) are documented
   exemptions. What's New entries restructured to the template in 1.105.4.
 
