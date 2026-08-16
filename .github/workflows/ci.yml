@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-release-notes:
+    name: Lint release notes (user-facing language)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate user-facing copy
+        run: |
+          python3 tools/lint_release_notes.py index.html updates/index.html

@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <title>AftLog — Keep your boat shipshape</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AftLog tracks maintenance, fuel, trips, and costs for your boat, then turns it into clear, simple insights. Offline-first. One-time $29 Pro, no subscription.">
+  <meta name="description" content="AftLog tracks maintenance, fuel, trips, and costs for your boat, then turns it into clear, simple insights. Works offline. One-time $29 Pro, no subscription.">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
   <link rel="apple-touch-icon" href="images/favicon-180.png">
   <meta property="og:title" content="AftLog — keeping your boat shipshape">
-  <meta property="og:description" content="AftLog tracks maintenance, fuel, trips, and costs for your boat, then turns it into clear, simple insights. Offline-first. One-time $29 Pro, no subscription.">
+  <meta property="og:description" content="AftLog tracks maintenance, fuel, trips, and costs for your boat, then turns it into clear, simple insights. Works offline. One-time $29 Pro, no subscription.">
   <meta property="og:image" content="https://aftlog.com/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <script>
@@ -50,7 +50,7 @@
             <a href="#waitlist" class="btn btn-primary">Join the waitlist — $29 one-time</a>
             <a href="#portal" class="btn btn-secondary">Open Web Portal</a>
           </div>
-          <p class="hero-sub">Built for pleasure craft and fishing boats in Canada + USA. Offline-first, no subscription, no ads.</p>
+          <p class="hero-sub">Built for pleasure craft and fishing boats in Canada + USA. Works without a signal, no subscription, no ads.</p>
         </div>
         <div class="hero-image">
           <div class="phone">
@@ -277,7 +277,7 @@
             <ul>
               <li>1 boat</li>
               <li>Core logs and basic checklists</li>
-              <li>Safety tools and offline-first design</li>
+              <li>Safety tools and design that works without a signal</li>
             </ul>
           </article>
           <article class="card">
@@ -322,7 +322,7 @@
         <div class="faq-list">
           <details>
             <summary>Does AftLog work without cell service?</summary>
-            <p>Yes. AftLog is fully offline-first. You can log trips, fuel, maintenance, and checklists anywhere — lakes, rivers, or offshore — and everything syncs when you're back online.</p>
+            <p>Yes. AftLog works entirely on your device. You can log trips, fuel, maintenance, and checklists anywhere — lakes, rivers, or offshore — and everything syncs when you're back online.</p>
           </details>
           <details>
             <summary>How do I back up my data?</summary>
@@ -479,7 +479,7 @@
 
   <script>
     /* Reviews: render data/reviews.json into the grid (static cards are
-       the no-JS fallback). The Dev-Flavor Review Publisher commits to
+       the browsers without JavaScript). The Dev-Flavor Review Publisher commits to
        this file; GitHub Pages rebuilds within ~1 min. */
     (function () {
       fetch('/data/reviews.json')
@@ -498,7 +498,7 @@
             </article>`;
           }).join('');
         })
-        .catch(() => {/* keep the static fallback */});
+        .catch(() => {/* keep the static version */});
     })();
   </script>
   <script>

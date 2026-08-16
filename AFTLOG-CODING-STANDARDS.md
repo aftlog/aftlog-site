@@ -296,3 +296,23 @@ class AftLogTheme {
 | **Fight plugin versions, or drop the plugin** | share_plus 10.1.4 / 11.x / 12.x all failed Android builds (broken Kotlin refs); fixed by REMOVING share_plus and writing exports to Downloads instead. When a plugin's recent versions won't compile, removing it can be the right answer. |
 | **Scripted edits need a verification step** | A python replace of pubspec assets landed in the wrong section (corrupted YAML); a manifest replace silently no-op'd. After any scripted file edit: re-read the result, `flutter analyze`, and confirm the build. |
 | **Version bump on every change** | App is still 1.0.0+1 after many builds. From now: every change bumps pubspec (dev = patch 1.0.x; feature = minor). Do it at the END of each working session at minimum, before any build that leaves the machine. |
+
+
+## §16 — Release Notes Must Use User-Friendly Language (LOCKED 2026-08-16)
+
+User-facing text (What's New, changelog, landing page, help topics, portal
+docs) must be value-focused and free of developer terminology.
+
+- **Forbidden terms:** gating · flags · scaffold · migration · DB vX ·
+  service layer · models · integration hooks · sidecar · pipeline ·
+  embeddings · confidence score · fallback · offline-first (allowed only in
+  technical docs) · refactor · UI (unless a visible screen).
+- **Allowed equivalents:** "Pro features" · "Unlock manual-based
+  intervals" · "Unlock predictive recommendations" · "Unlock smart
+  adjustments" · "Open your engine manual directly from tasks" · "Enhanced
+  Pro experience".
+- Label Free vs Pro clearly; describe benefits, not implementation.
+- **Enforcement:** `tools/lint_release_notes.py` scans the user-facing
+  files; CI job `lint-release-notes` fails the build on violations (app
+  repo: whats_new_entries.dart + help_content.dart; site repo: index.html
+  + updates/index.html). Never bypass the lint.
