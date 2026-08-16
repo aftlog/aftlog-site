@@ -127,6 +127,16 @@
   Tests +6 → 44 green. Portal live at localhost:8080 for clicking
   through. Block 3 of 3 complete.
 
+- **🔒 PORTAL FOUNDATION BUNDLE (4 blocks) — Block 1 STORED, not
+  implemented (08-16):** AFTLOG-PORTAL-FIREBASE-AUTH saved verbatim at
+  aftlog_server/blocks/AFTLOG-PORTAL-FIREBASE-AUTH.md. Per the block's
+  completion rule: STORE ONLY until all 4 blocks arrive. The bundle
+  reuses the proven CatchTales identity architecture (Firebase Auth
+  email/password, Firestore users/{uid} with SERVER-OWNED isPro, license
+  codes) for the AftLog Portal — manual generator, AI panel, saved
+  manuals, boat pages (Block 3), Pro dashboard (Block 4) become
+  login-gated. Do not implement any of it until Blocks 2-4 are in hand.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
@@ -342,6 +352,16 @@ help/website.
   Tests +6 → 44 green. Portal live at localhost:8080 for clicking
   through. Block 3 of 3 complete.
 
+- **🔒 PORTAL FOUNDATION BUNDLE (4 blocks) — Block 1 STORED, not
+  implemented (08-16):** AFTLOG-PORTAL-FIREBASE-AUTH saved verbatim at
+  aftlog_server/blocks/AFTLOG-PORTAL-FIREBASE-AUTH.md. Per the block's
+  completion rule: STORE ONLY until all 4 blocks arrive. The bundle
+  reuses the proven CatchTales identity architecture (Firebase Auth
+  email/password, Firestore users/{uid} with SERVER-OWNED isPro, license
+  codes) for the AftLog Portal — manual generator, AI panel, saved
+  manuals, boat pages (Block 3), Pro dashboard (Block 4) become
+  login-gated. Do not implement any of it until Blocks 2-4 are in hand.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -477,6 +497,16 @@ help/website.
   maxOutputTokens 512 starved answers (model thinking budget) → 2048.
   Tests +6 → 44 green. Portal live at localhost:8080 for clicking
   through. Block 3 of 3 complete.
+
+- **🔒 PORTAL FOUNDATION BUNDLE (4 blocks) — Block 1 STORED, not
+  implemented (08-16):** AFTLOG-PORTAL-FIREBASE-AUTH saved verbatim at
+  aftlog_server/blocks/AFTLOG-PORTAL-FIREBASE-AUTH.md. Per the block's
+  completion rule: STORE ONLY until all 4 blocks arrive. The bundle
+  reuses the proven CatchTales identity architecture (Firebase Auth
+  email/password, Firestore users/{uid} with SERVER-OWNED isPro, license
+  codes) for the AftLog Portal — manual generator, AI panel, saved
+  manuals, boat pages (Block 3), Pro dashboard (Block 4) become
+  login-gated. Do not implement any of it until Blocks 2-4 are in hand.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -619,6 +649,16 @@ help/website.
   maxOutputTokens 512 starved answers (model thinking budget) → 2048.
   Tests +6 → 44 green. Portal live at localhost:8080 for clicking
   through. Block 3 of 3 complete.
+
+- **🔒 PORTAL FOUNDATION BUNDLE (4 blocks) — Block 1 STORED, not
+  implemented (08-16):** AFTLOG-PORTAL-FIREBASE-AUTH saved verbatim at
+  aftlog_server/blocks/AFTLOG-PORTAL-FIREBASE-AUTH.md. Per the block's
+  completion rule: STORE ONLY until all 4 blocks arrive. The bundle
+  reuses the proven CatchTales identity architecture (Firebase Auth
+  email/password, Firestore users/{uid} with SERVER-OWNED isPro, license
+  codes) for the AftLog Portal — manual generator, AI panel, saved
+  manuals, boat pages (Block 3), Pro dashboard (Block 4) become
+  login-gated. Do not implement any of it until Blocks 2-4 are in hand.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
