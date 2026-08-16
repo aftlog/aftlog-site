@@ -4,6 +4,61 @@
 
 ---
 
+- **🔒 PROCESS TEMPLATES + RELEASE CHECKLIST (LOCKED 2026-08-16, Louis's
+  bundle 2):** (A) Portal changelog template — per version: Feature name,
+  Summary (user-facing), What's new (changes, no jargon), Free vs Pro,
+  Impact (boat owners + admin/owner), Notes (no internal terms; screenshots
+  must match portal UI). Live file: aftlog_server/CHANGELOG.md (linted).
+  (B) Website landing template — hero (headline/subheadline/CTA), feature
+  overview with Free vs Pro, 'How it helps you' (safety/maintenance/
+  confidence), screenshots matching tier, language rules. (C) Marketing
+  voice preset — benefit-focused, short direct sentences, explain what it
+  does + why it matters + Free vs Pro; rewrite forbidden terms
+  automatically. (D) RELEASE CHECKLIST — file: aftlog-site/RELEASE-CHECKLIST.md:
+  code/features complete + no refactors + tests + analyzer; app (version
+  bump, What's New linted, screenshots, Pro flags); portal changelog +
+  docs; website landing/FAQ/changelog; help topics/walkthrough/tooltips;
+  language lint + marketing voice; signed builds + md5 + single install +
+  smoke test; session log updated (features, commits, versions, flags left
+  off). Future features (e.g. VEA) run through this checklist.
+
+## ⚠️ REMINDERS FOR NEXT SESSION
+
+- **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
+  INSTRUCTION — DeepSeek must use value-focused, user-friendly language in
+  all What's New, changelog, landing page, help topics, and portal docs.
+  Never use developer terminology: gating, flags, scaffold, migration,
+  DB vX, service layer, models, integration hooks, sidecar, pipeline,
+  embeddings, confidence score, fallback, offline-first (except in
+  technical docs), refactor, UI (unless a visible screen). Always label
+  Free vs Pro clearly; describe benefits not implementation; screenshots
+  must match the correct tier. If DeepSeek generates a forbidden term,
+  rewrite it automatically. ENFORCED BY CI: `tools/lint_release_notes.py`
+  (app repo: whats_new_entries.dart + help_content.dart; site repo:
+  index.html + updates/index.html) — CI job `lint-release-notes` fails on
+  violations. What's New template: version/title/short description +
+  Free/Pro/Improvements sections. FEATURES.md is internal (not linted);
+  "model" (boat make/model) and "Segoe UI" (font) are documented
+  exemptions. What's New entries restructured to the template in 1.105.4.
+
+- **🔒 PROCESS TEMPLATES + RELEASE CHECKLIST (LOCKED 2026-08-16, Louis's
+  bundle 2):** (A) Portal changelog template — per version: Feature name,
+  Summary (user-facing), What's new (changes, no jargon), Free vs Pro,
+  Impact (boat owners + admin/owner), Notes (no internal terms; screenshots
+  must match portal UI). Live file: aftlog_server/CHANGELOG.md (linted).
+  (B) Website landing template — hero (headline/subheadline/CTA), feature
+  overview with Free vs Pro, 'How it helps you' (safety/maintenance/
+  confidence), screenshots matching tier, language rules. (C) Marketing
+  voice preset — benefit-focused, short direct sentences, explain what it
+  does + why it matters + Free vs Pro; rewrite forbidden terms
+  automatically. (D) RELEASE CHECKLIST — file: aftlog-site/RELEASE-CHECKLIST.md:
+  code/features complete + no refactors + tests + analyzer; app (version
+  bump, What's New linted, screenshots, Pro flags); portal changelog +
+  docs; website landing/FAQ/changelog; help topics/walkthrough/tooltips;
+  language lint + marketing voice; signed builds + md5 + single install +
+  smoke test; session log updated (features, commits, versions, flags left
+  off). Future features (e.g. VEA) run through this checklist.
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 PHONE-CONTROL PROTOCOL (LOCKED 2026-08-16, Louis's request):** the AI
@@ -16,6 +71,61 @@
   (walkthroughs/tooltips marked seen, toggles) — always mention what state
   was changed after a drive. If Louis touches the phone mid-drive, stop and
   re-check state before continuing.
+
+- **🔒 PROCESS TEMPLATES + RELEASE CHECKLIST (LOCKED 2026-08-16, Louis's
+  bundle 2):** (A) Portal changelog template — per version: Feature name,
+  Summary (user-facing), What's new (changes, no jargon), Free vs Pro,
+  Impact (boat owners + admin/owner), Notes (no internal terms; screenshots
+  must match portal UI). Live file: aftlog_server/CHANGELOG.md (linted).
+  (B) Website landing template — hero (headline/subheadline/CTA), feature
+  overview with Free vs Pro, 'How it helps you' (safety/maintenance/
+  confidence), screenshots matching tier, language rules. (C) Marketing
+  voice preset — benefit-focused, short direct sentences, explain what it
+  does + why it matters + Free vs Pro; rewrite forbidden terms
+  automatically. (D) RELEASE CHECKLIST — file: aftlog-site/RELEASE-CHECKLIST.md:
+  code/features complete + no refactors + tests + analyzer; app (version
+  bump, What's New linted, screenshots, Pro flags); portal changelog +
+  docs; website landing/FAQ/changelog; help topics/walkthrough/tooltips;
+  language lint + marketing voice; signed builds + md5 + single install +
+  smoke test; session log updated (features, commits, versions, flags left
+  off). Future features (e.g. VEA) run through this checklist.
+
+## ⚠️ REMINDERS FOR NEXT SESSION
+
+- **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
+  INSTRUCTION — DeepSeek must use value-focused, user-friendly language in
+  all What's New, changelog, landing page, help topics, and portal docs.
+  Never use developer terminology: gating, flags, scaffold, migration,
+  DB vX, service layer, models, integration hooks, sidecar, pipeline,
+  embeddings, confidence score, fallback, offline-first (except in
+  technical docs), refactor, UI (unless a visible screen). Always label
+  Free vs Pro clearly; describe benefits not implementation; screenshots
+  must match the correct tier. If DeepSeek generates a forbidden term,
+  rewrite it automatically. ENFORCED BY CI: `tools/lint_release_notes.py`
+  (app repo: whats_new_entries.dart + help_content.dart; site repo:
+  index.html + updates/index.html) — CI job `lint-release-notes` fails on
+  violations. What's New template: version/title/short description +
+  Free/Pro/Improvements sections. FEATURES.md is internal (not linted);
+  "model" (boat make/model) and "Segoe UI" (font) are documented
+  exemptions. What's New entries restructured to the template in 1.105.4.
+
+- **🔒 PROCESS TEMPLATES + RELEASE CHECKLIST (LOCKED 2026-08-16, Louis's
+  bundle 2):** (A) Portal changelog template — per version: Feature name,
+  Summary (user-facing), What's new (changes, no jargon), Free vs Pro,
+  Impact (boat owners + admin/owner), Notes (no internal terms; screenshots
+  must match portal UI). Live file: aftlog_server/CHANGELOG.md (linted).
+  (B) Website landing template — hero (headline/subheadline/CTA), feature
+  overview with Free vs Pro, 'How it helps you' (safety/maintenance/
+  confidence), screenshots matching tier, language rules. (C) Marketing
+  voice preset — benefit-focused, short direct sentences, explain what it
+  does + why it matters + Free vs Pro; rewrite forbidden terms
+  automatically. (D) RELEASE CHECKLIST — file: aftlog-site/RELEASE-CHECKLIST.md:
+  code/features complete + no refactors + tests + analyzer; app (version
+  bump, What's New linted, screenshots, Pro flags); portal changelog +
+  docs; website landing/FAQ/changelog; help topics/walkthrough/tooltips;
+  language lint + marketing voice; signed builds + md5 + single install +
+  smoke test; session log updated (features, commits, versions, flags left
+  off). Future features (e.g. VEA) run through this checklist.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
