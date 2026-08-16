@@ -99,6 +99,19 @@ OCR-verified as the real app.
   the team wants it: a boat_manuals table + per-type storage.
 - 332 tests pass (2 pre-existing LocalBundleServer failures); analyzer
   clean. Sample manual at /sdcard/Download/sample_manual.pdf for testing.
+**SMP-3 SHIPPED (commit cb1d7a5, 08-16) — full SMP UI logic:** settings
+persist (boats.maintenance_settings_json, live save + snackbar); interval
+review flow (accept/edit/reject, decisions persisted in the plan JSON and
+re-applied); Mark Completed (lastCompleted + 3s banner); recommendation
+banner (overdue/upcoming/seasonal colors, dismiss persists, tap scrolls to
+task); diagnostics summary gets 'Related Maintenance Tasks'; Ask AftLog
+answers get 'Related Maintenance Tasks'; Reminders screen gets an SMP
+section. Pro flags WIRED (all false today): manual extraction hidden +
+upsell banner, smart adjustments off, predictive recs off. NOTE: SMP-task
+OS notifications deferred — would need a notification_service refactor
+(no-refactor rule); reminders UI integration shipped instead. 13 keys x5,
++6 tests → 364 (2 pre-existing). No version bump, nothing to the phone.
+
 **SMP-2 scaffold SHIPPED (commit ad86cfb, 08-16):** screens/widgets/hooks/
 flags + DB v10. lib/screens/smp/ (plan, task detail, settings), widgets/smp/
 (task tile, recommendation banner, interval review dialog), service hooks
