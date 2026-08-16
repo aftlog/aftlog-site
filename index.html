@@ -205,6 +205,37 @@
       </div>
     </section>
 
+    <!-- Reviews — light (social proof above pricing) -->
+    <section class="section section--light" id="reviews">
+      <div class="container">
+        <span class="sec-label">Reviews</span>
+        <h2>User reviews</h2>
+        <p class="sec-intro">Boat owners using AftLog every season.</p>
+
+        <div class="cards cards--three review-grid">
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"Perfect for keeping track of fuel and service. My Lund 1650 has never been easier to manage."</p>
+            <div class="review-author">— Mark R.</div>
+          </article>
+          <article class="card review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"The checklists are worth the price alone. Launching and retrieving is stress-free now."</p>
+            <div class="review-author">— Sarah T.</div>
+          </article>
+          <article class="card review-card">
+            <div class="review-stars" aria-label="4 out of 5 stars">★★★★☆</div>
+            <p>"Love the analytics sheets. Seeing my real fuel burn and range is a game changer."</p>
+            <div class="review-author">— Jason M.</div>
+          </article>
+        </div>
+
+        <div class="review-cta">
+          <p>Want to share your experience? <a href="#review-form">Leave a review</a>.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Pricing — light -->
     <section class="section section--light" id="pricing">
       <div class="container">
@@ -326,6 +357,42 @@
       </div>
     </section>
 
+    <section class="section section--light" id="review-form">
+      <div class="container">
+        <span class="sec-label">Reviews</span>
+        <h2>Leave a review</h2>
+        <p class="sec-intro">Your feedback helps us improve AftLog for all boat owners.</p>
+        <form action="https://formspree.io/f/xoeaezwv" method="POST" class="contact-form" id="review-form-el">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <label>
+            Name (optional)
+            <input type="text" name="name">
+          </label>
+          <label>
+            Boat type (optional)
+            <input type="text" name="boat">
+          </label>
+          <label>
+            Rating
+            <select name="rating" required data-fs-field>
+              <option value="5">★★★★★</option>
+              <option value="4">★★★★☆</option>
+              <option value="3">★★★☆☆</option>
+              <option value="2">★★☆☆☆</option>
+              <option value="1">★☆☆☆☆</option>
+            </select>
+          </label>
+          <label>
+            Review
+            <textarea name="review" rows="5" required data-fs-field></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary" data-fs-submit-btn>Submit review</button>
+          <p class="fs-success" data-fs-success hidden>Thanks for the review!</p>
+          <p class="fs-error" data-fs-error hidden>Something went wrong — please try again.</p>
+        </form>
+      </div>
+    </section>
+
     <section class="section section--light" id="contact">
       <div class="container">
         <span class="sec-label">Contact</span>
@@ -370,6 +437,7 @@
     // Contact form — same Formspree account for now; swap in a dedicated
     // form ID from https://forms.formspree.io when you want separate inboxes.
     formspree('initForm', { formElement: '#contact-form', formId: 'xoeaezwv' });
+    formspree('initForm', { formElement: '#review-form-el', formId: 'xoeaezwv' });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
