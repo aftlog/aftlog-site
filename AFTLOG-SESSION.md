@@ -182,7 +182,20 @@
   firestore.rules (users/{uid} owner-only, Pro fields server-owned),
   gating for Manual Generator + AI (redirect to /login when
   FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
-  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
+  Block 1 is now FULLY LIVE-VERIFIED against the real AftLog Firebase
+  project (aftlog-portal, created under the new aftlog@yahoo.com Google
+  account; config in aftlog_server/firebase_config.json, gitignored):
+  signup/login (real Firebase Auth), portal session cookie, gated page
+  200-with-session / 302-without, Firestore profile create 200, client
+  isPro write DENIED (403 — server-owned enforced), test user cleaned up.
+  ID-token validation uses Identity Toolkit accounts:lookup (Google's
+  tokeninfo does NOT validate Firebase tokens — found live). Reusable
+  check at aftlog_server/tools/live_auth_check.py. Firestore rules
+  published (users/{uid} owner-only, Pro fields denied; pro_licenses
+  deny-all placeholder). NOTE: the console location dropdown was broken —
+  database created via paste+publish once the rules editor had clean
+  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
+  RUN instruction.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -454,7 +467,20 @@ help/website.
   firestore.rules (users/{uid} owner-only, Pro fields server-owned),
   gating for Manual Generator + AI (redirect to /login when
   FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
-  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
+  Block 1 is now FULLY LIVE-VERIFIED against the real AftLog Firebase
+  project (aftlog-portal, created under the new aftlog@yahoo.com Google
+  account; config in aftlog_server/firebase_config.json, gitignored):
+  signup/login (real Firebase Auth), portal session cookie, gated page
+  200-with-session / 302-without, Firestore profile create 200, client
+  isPro write DENIED (403 — server-owned enforced), test user cleaned up.
+  ID-token validation uses Identity Toolkit accounts:lookup (Google's
+  tokeninfo does NOT validate Firebase tokens — found live). Reusable
+  check at aftlog_server/tools/live_auth_check.py. Firestore rules
+  published (users/{uid} owner-only, Pro fields denied; pro_licenses
+  deny-all placeholder). NOTE: the console location dropdown was broken —
+  database created via paste+publish once the rules editor had clean
+  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
+  RUN instruction.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -647,7 +673,20 @@ help/website.
   firestore.rules (users/{uid} owner-only, Pro fields server-owned),
   gating for Manual Generator + AI (redirect to /login when
   FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
-  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
+  Block 1 is now FULLY LIVE-VERIFIED against the real AftLog Firebase
+  project (aftlog-portal, created under the new aftlog@yahoo.com Google
+  account; config in aftlog_server/firebase_config.json, gitignored):
+  signup/login (real Firebase Auth), portal session cookie, gated page
+  200-with-session / 302-without, Firestore profile create 200, client
+  isPro write DENIED (403 — server-owned enforced), test user cleaned up.
+  ID-token validation uses Identity Toolkit accounts:lookup (Google's
+  tokeninfo does NOT validate Firebase tokens — found live). Reusable
+  check at aftlog_server/tools/live_auth_check.py. Firestore rules
+  published (users/{uid} owner-only, Pro fields denied; pro_licenses
+  deny-all placeholder). NOTE: the console location dropdown was broken —
+  database created via paste+publish once the rules editor had clean
+  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
+  RUN instruction.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
@@ -846,7 +885,20 @@ help/website.
   firestore.rules (users/{uid} owner-only, Pro fields server-owned),
   gating for Manual Generator + AI (redirect to /login when
   FIREBASE_WEB_CONFIG set; lab bypass otherwise). 19 tests -> 63 green.
-  NEXT: Block 2 (app<->portal link code) per Louis's RUN instruction.
+  Block 1 is now FULLY LIVE-VERIFIED against the real AftLog Firebase
+  project (aftlog-portal, created under the new aftlog@yahoo.com Google
+  account; config in aftlog_server/firebase_config.json, gitignored):
+  signup/login (real Firebase Auth), portal session cookie, gated page
+  200-with-session / 302-without, Firestore profile create 200, client
+  isPro write DENIED (403 — server-owned enforced), test user cleaned up.
+  ID-token validation uses Identity Toolkit accounts:lookup (Google's
+  tokeninfo does NOT validate Firebase tokens — found live). Reusable
+  check at aftlog_server/tools/live_auth_check.py. Firestore rules
+  published (users/{uid} owner-only, Pro fields denied; pro_licenses
+  deny-all placeholder). NOTE: the console location dropdown was broken —
+  database created via paste+publish once the rules editor had clean
+  (unfenced) content. NEXT: Block 2 (app<->portal link code) per Louis's
+  RUN instruction.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
