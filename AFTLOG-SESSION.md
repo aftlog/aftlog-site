@@ -1425,6 +1425,41 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 54 — DEEPSEEK STEP 7.4: /ai.html full rebuild (photo analysis + structure + brand header)
+
+**Goal (DEEPSEEK block):** rebuild /ai.html into the complete AI feature
+page — add the missing AI Photo Analysis section, structured full-width
+sections, a 'What AftLog Can Analyze' card grid, How It Works, Privacy &
+Offline Mode, and the CTA. No backend/global-token changes; no other
+pages touched.
+
+**What was done (aftlog-site, pushed):**
+- **Structure per spec:** brand header (7.2) → H1 'AI Features' → six
+  full-width sections (Ask AftLog with the live widget anchored
+  id='ai-widget' · Smart Planner w/ planner shot · Diagnostics · Manual
+  Extraction · Predictive Alerts · **NEW AI Photo Analysis** w/ the VEA
+  result shot) → 'What AftLog Can Analyze' 12-card grid (engine parts →
+  fluids & filters) → 'How It Works' (server-side AI, no keys, secure
+  proxy, on-device guidance when offline) → 'Privacy & Offline Mode' →
+  CTA 'Try Ask AftLog' → /ai.html#ai-widget.
+- **Hybrid helpers reused** (feature_section / feature_cards from 7.3;
+  feature_cards gained a title param). The VEA screenshot moved from the
+  Diagnostics section to its natural home (AI Photo Analysis) — exactly
+  one instance, no duplication.
+- **Copy lint:** spec's 'falls back' / 'Offline-first' reworded minimally
+  ('uses on-device guidance', 'Works without a signal') to pass the
+  locked copy gate.
+- **Verified:** H1 'AI Features' ✓ · 6 sections ✓ · 12 cards ✓ · Photo
+  Analysis present ✓ · widget anchor + script (ai/gemini + dev key) ✓ ·
+  CTA ✓ · slogan before H1 ✓ · HTML well-formed ✓ · site_check ALL PASS
+  (~170) · lint clean.
+
+**⚠ Deploy still pending the GitHub Actions outage** (Partial System
+Outage since Step 10; Pages 'Set up job' failures; CI passes). Live site
+will show 7.1–7.4 together once it clears (Re-run jobs / empty commit).
+
+---
+
 ## 2026-08-17 — Session 53 — DEEPSEEK STEP 7.3: /features.html hybrid rebuild
 
 **Goal (DEEPSEEK block):** rebuild /features.html as a hybrid layout —

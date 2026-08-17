@@ -260,7 +260,7 @@ def feature_section(title: str, text: str, bullets: list, shot: str | None = Non
     return f"<section class=\"{cls}\"><div class=\"container pg-feature-grid\">{body}</div></section>"
 
 
-def feature_cards(cards: list) -> str:
+def feature_cards(cards: list, title: str = "Every tool, in one place") -> str:
     items = "".join(
         f'<div class="pg-feature-card"><div class="pg-feature-icon">{icon}</div>'
         f'<h3>{title}</h3><ul class="pg-list">' +
@@ -268,7 +268,7 @@ def feature_cards(cards: list) -> str:
         for icon, title, bullets in cards
     )
     return (f"<section class=\"section section--light\"><div class=\"container\">"
-            f"<h2>Every tool, in one place</h2>"
+            f"<h2>{title}</h2>"
             f"<div class=\"pg-card-grid\">{items}</div></div></section>")
 
 
@@ -327,19 +327,68 @@ register(
 register(
     "ai",
     "AftLog AI — Smart Planner, Diagnostics, Ask AftLog",
-    "AI-powered maintenance planning and diagnostics for boat owners: Ask AftLog, Smart Planner, symptom diagnostics, manual extraction, and predictive alerts.",
-    hero("A marine assistant that knows your boat",
-         "Ask questions, plan maintenance, and diagnose problems — powered by the AftLog AI assistant through the server.")
-    + section("Ask AftLog", """<p>Ask anything about your boat in plain language. Answers are grounded in your actual boat, engine hours, and overdue services — concise, safety-first, no fluff.</p>
-      <p>Try it right here:</p>
-      """ + AI_WIDGET)
-    + section("Smart Planner", """<p>The maintenance planner turns intervals, usage, and season into a prioritized plan — what's due now, what's coming up, and what to do before the season starts.</p>""")
-    + section("Diagnostics", """<p>Describe a symptom — weak tell-tale, hard starting, overheating — and get the likely causes in order, with what to check first and when a mechanic is the right call.</p>
-      <p><strong>Visual Engine Assist:</strong> point your camera at the engine and get instant guidance — part identification, visible-issue detection, manual pages, related tasks, and safety guidance.</p>
-      <figure class=\"pg-shot\"><img src=\"/images/screen-vea-result.png\" alt=\"AftLog Visual Engine Assist result screen\"><figcaption class=\"pg-muted\">Visual Engine Assist — point, identify, and act.</figcaption></figure>""")
-    + section("Manual extraction", """<p>Attach your engine manual: AftLog indexes it fully offline and can pull service intervals and guidance from it, citing the exact pages.</p>""")
-    + section("Predictive alerts", """<p>Based on your usage patterns and logged services, AftLog predicts what will need attention next — before it strands you.</p>""")
-    + section("How it connects", """<p>The AI features run through the AftLog portal server — no keys in your app or this website. Questions are processed server-side and answered back. If the service is offline, the app falls back to on-device guidance so you're never stuck.</p>"""),
+    "AI-powered maintenance planning and diagnostics for boat owners: Ask AftLog, Smart Planner, symptom diagnostics, photo analysis, manual extraction, and predictive alerts.",
+    hero("AI Features",
+         "A marine assistant that knows your boat — ask questions, plan maintenance, analyze photos, and diagnose problems.")
+    + feature_section("Ask AftLog",
+        "Ask anything about your boat in plain language. Answers are grounded in your actual boat, engine hours, and overdue services — concise, safety-first, no fluff.",
+        ["Boat-aware answers", "Safety-first guidance", "No fluff", "Works on web + app"],
+        alt=True)
+    + f"""<section class="section section--alt" id="ai-widget"><div class="container">
+      <h2>Ask AftLog — try it now</h2>
+      <p>Ask AftLog anything about your boat. Questions are answered by the AftLog server — no keys in your browser.</p>
+      {AI_WIDGET}
+    </div></section>"""
+    + feature_section("Smart Planner",
+        "The maintenance planner turns intervals, usage, and season into a prioritized plan — what's due now, what's coming up, and what to do before the season starts.",
+        ["Interval-based planning", "Usage-aware adjustments", "Seasonal priorities", "Pro-level insights"],
+        shot="/images/screen-smp-plan.png")
+    + feature_section("Diagnostics",
+        "Describe a symptom — weak tell-tale, hard starting, overheating — and get the likely causes in order, with what to check first and when a mechanic is the right call.",
+        ["Symptom decoding", "Ranked causes", "Step-by-step checks", "Mechanic escalation guidance"],
+        alt=True)
+    + feature_section("Manual Extraction",
+        "Attach your engine manual: AftLog indexes it fully offline and can pull service intervals and guidance from it, citing the exact pages.",
+        ["Full offline indexing", "Interval extraction", "Page citations", "Multi-manual support"])
+    + feature_section("Predictive Alerts",
+        "Based on your usage patterns and logged services, AftLog predicts what will need attention next — before it strands you.",
+        ["Usage-based predictions", "Early warnings", "Boat Health Score integration", "Seasonal forecasting"],
+        alt=True)
+    + feature_section("AI Photo Analysis",
+        "Take a photo of a part, a symptom, or a problem — AftLog analyzes it and tells you what it is, what's wrong, and what to do next. Works for engines, rigging, electrical, pumps, steering, and more.",
+        ["Identify parts from photos", "Spot wear, corrosion, leaks, cracks", "Diagnose visual symptoms", "Suggest next steps", "Works offline (queued until connected)"],
+        shot="/images/screen-vea-result.png")
+    + feature_cards([
+        ("⚙️", "Engine parts", ["Identify components", "Spot wear"]),
+        ("⛽", "Fuel system", ["Lines & fittings", "Primer bulb, filters"]),
+        ("❄️", "Cooling system", ["Impeller, thermostat", "Inlets & tell-tale"]),
+        ("🔌", "Electrical system", ["Batteries, fuses", "Corrosion checks"]),
+        ("🎛️", "Steering & controls", ["Cables, helm", "Fluid levels"]),
+        ("💧", "Pumps & bilge", ["Pump condition", "Clogs & leaks"]),
+        ("🌀", "Prop & lower unit", ["Damage, fishing line", "Anode wear"]),
+        ("🧷", "Rigging & hardware", ["Clamps, bolts", "Rust & movement"]),
+        ("📟", "Gauges & instruments", ["Reading issues", "Wiring signs"]),
+        ("🦺", "Safety gear", ["Condition checks", "Expiry dates"]),
+        ("🚤", "Hull & fittings", ["Gelcoat, thru-hulls", "Seal condition"]),
+        ("🧴", "Fluids & filters", ["Oil, fuel, coolant", "Change intervals"]),
+    ], title="What AftLog Can Analyze")
+    + section("How It Works", """<p>The AI features run through the AftLog portal server — no keys in your app or this website. Questions and photos are processed server-side and answered back. If the service is offline, the app uses on-device guidance so you're never stuck.</p>
+      <ul class="pg-list">
+        <li>Server-side AI processing</li>
+        <li>No keys in app or website</li>
+        <li>Secure proxy architecture</li>
+        <li>On-device guidance when offline</li>
+      </ul>""")
+    + section("Privacy & Offline Mode", """<p>AftLog works without a signal. Your logs, photos, manuals, and boat data stay on your device. AI features only reach the server when you choose to ask a question or upload a photo.</p>
+      <ul class="pg-list">
+        <li>Works without a signal</li>
+        <li>On-device storage</li>
+        <li>No cloud dependency</li>
+        <li>Explicit, user-triggered AI calls</li>
+      </ul>""")
+    + (f"<section class=\"section section--alt pg-cta\"><div class=\"container\" style=\"text-align:center\">"
+       f"<h2>Curious? Ask AftLog a question about your boat.</h2>"
+       f"<p><a class=\"btn btn-primary\" href=\"/ai.html#ai-widget\">Try Ask AftLog</a></p></div></section>"),
 )
 
 # /portal
