@@ -1425,6 +1425,32 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 68 — DEEPSEEK STEP 8.10: Predictive Planner (app + website)
+
+**Goal (block):** analyze engine hours + maintenance logs + interval rules
+to predict upcoming tasks (per category), with hours remaining, date,
+severity, reason, export. No help/KB.
+
+**App:** lib/models/predictive_snapshot.dart (categories: oil 100h / gear
+100h / impeller 200h / plugs 200h / battery 12mo / trailer 12mo /
+winterization 12mo; finds the last matching service record by keyword;
+formula nextDue=last+interval, hoursRemaining, predicted date via
+avgHoursPerMonth, severity green/yellow/red, 'why due' reason; local
+snapshot storage). Screen lib/screens/tools/predictive_planner_screen.dart
+— loads boat engine hours (LogService.totalHours), avg h/month (from last
+90 days of trips or default 20), service records, renders per-item
+severity bar + hours remaining + est. date + reason; Save + PDF share
+(PdfService.sharePredictivePlanner). Wired at More → Tools. 5 tests.
+Analyzer clean. App built **1.108.15+162** (install still paused — phone
+disconnected; 7 APKs queued).
+
+**Website:** /tools/predictive-planner.html + predictive-planner.js
+(engine mirroring the app: interval/calendar rules, severity, reason,
+date, localStorage snapshot, print/PDF + txt export). External JS file
+(avoids the HTML-in-Python trap). site_check ALL PASS (~245), tools list
+extended, lint clean.
+
+---
 ## 2026-08-17 — Session 67 — DEEPSEEK STEP 8.9: Ask AftLog (app + website)
 
 **Goal (block):** the app already had the Ask AftLog chat (AI proxy +
