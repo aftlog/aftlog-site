@@ -1425,6 +1425,32 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 65 — DEEPSEEK STEP 8.7: Visual Engine Assist (app confirm + website)
+
+**Goal (block):** interactive engine diagram — tap a hotspot to open its
+symptom check. Fully offline. No help/KB.
+
+**App (confirmed, no change):** diagram system is complete —
+lib/models/diagram.dart (DiagramHotspot: id/label/check/shape/normalized
+x,y,w,h/symptomKey/purpose) + diagram_data.dart (19 system diagrams, 79
+hotspots, real webp art) + diagram_viewer_screen.dart with InteractiveViewer
+(minScale 1 / maxScale 4), FittedBox aspect-aligned to the art, tap
+hotspot → SymptomFlowView(symptomKey). **Verified: all 18 hotspot
+symptomKeys resolve in symptoms.dart (0 missing)** — every hotspot opens a
+real flow (severity/start/causes/stop/fallback). Offline.
+
+**Website:** /tools/visual-engine-assist.html — dropdown of 19 systems,
+engine webp + hotspot overlays (SVG rects from normalized coords), click
+→ symptom panel (severity badge, label, purpose, check, start,
+likely causes per drive, if-not-resolved) — all driven by
+data/vea.json (exported from the app's data via a quote-aware Dart-format
+parser; 19 diagrams / 79 hotspots / 18 symptoms) + the 19 webp art assets
+copied into images/diagrams/. Term 'fallback' → 'ifNotResolved' to pass
+the site copy lint. site_check ALL PASS (~230), tools list extended.
+Lint clean. Deploy behind the GitHub Pages outage (pushed + locally
+verified).
+
+---
 ## 2026-08-17 — Session 64 — DEEPSEEK STEP 8.6: Calculators (app formalize + website)
 
 **Goal (block):** the app already ships 6 calculators (fuel burn, prop
