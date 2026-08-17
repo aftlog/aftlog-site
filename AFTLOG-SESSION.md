@@ -1425,6 +1425,35 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 55 — DEEPSEEK STEP 7.6: /pricing.html rebuild (Free vs Lifetime Pro)
+
+**Goal (DEEPSEEK block):** rebuild /pricing.html — two-tier cards, no-
+subscription trust messaging, money-back guarantee, pricing FAQ, CTA.
+No backend/global-token changes; no other pages touched.
+
+**What was done (aftlog-site, pushed):**
+- **Structure per spec:** brand header (7.2) → H1 'Pricing' → two-tier
+  cards (Free $0 one-time/forever w/ 'Get Started Free' → /#waitlist;
+  AftLog Pro $29 one-time/lifetime w/ 'Unlock Pro — $29 Lifetime' →
+  portal.aftlog.com/pro) → 'One-time, lifetime — no subscriptions'
+  (spec text + bullets: no subscription / no renewal fees / no upsells /
+  lifetime access + the portal-server license note) → '30-day money-back
+  guarantee' → NEW pricing FAQ block (4 details: lifetime? offline?
+  multiple devices? subscription?) → CTA 'Unlock Pro — $29 Lifetime' →
+  portal pro page.
+- **Verified:** H1 ✓ · 2 cards + 2 card CTAs ✓ · FAQ 4 ✓ · money-back ✓ ·
+  portal link ✓ · slogan before H1 ✓ · HTML well-formed ✓ · site_check
+  ALL PASS (~170) · lint clean.
+
+**Deploy status:** the outage cleared — 7.1–7.4 verified LIVE on the site
+(H1 'AI Features', VEA off homepage, brand headers, hybrid features
+page). The 7.6 push's Pages deploy was still QUEUED at last check
+(GitHub Actions runner recovery is slow) — content is committed + CI
+passed; it will deploy, or Re-run jobs / an empty commit forces it.
+The block's Section 9 deploy-trigger note is moot (deploys work again).
+
+---
+
 ## 2026-08-17 — Session 54 — DEEPSEEK STEP 7.4: /ai.html full rebuild (photo analysis + structure + brand header)
 
 **Goal (DEEPSEEK block):** rebuild /ai.html into the complete AI feature
