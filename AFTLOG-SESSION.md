@@ -1425,6 +1425,35 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 44 — License Manager: lifetime-only (product rule fix)
+
+**Louis caught:** the License Manager's 'Yearly code' toggle let him generate
+YEARLY licenses — but AftLog is a ONE-TIME $29 purchase (Decision #3), no
+subscriptions. The product has no yearly tier.
+
+**Fix (both sides of the proxy boundary):**
+- App (aftlog-app, pushed): removed the 'Yearly code' SwitchListTile + the
+  expiry date picker from the License Manager screen; generateLicense always
+  sends type 'lifetime' with no expiry. Added a one-line hint on the screen:
+  'AftLog Pro is a one-time purchase — every code issued here is a LIFETIME
+  license (no subscriptions).' No UI redesign beyond removing the toggle.
+- Server (aftlog_server, pushed): /admin/licenses now REFUSES type !=
+  'lifetime' with 400 'AftLog licenses are lifetime only' (defense in depth
+  at the product boundary). Tests updated: server yearly test now expects
+  400 + nothing written; app test asserts lifetime + empty expiresAt.
+  133 server tests green; app analyzer clean, 429 tests +2 known.
+- Verified live: yearly → 400 with the product message; lifetime → 200
+  (created disposable PRO-RU6L-5K4H-CDWD). APK 1.108.5-dev (versionCode
+  152) chunk-pushed + installed (md5 714cf92d…); start-dev-server.sh used
+  to restart the server (validated the script).
+
+**⚠ The Session 41 curl test left a YEARLY code in Firestore**
+(PRO-WMBT-D4TW-R9QP, expires 2027) plus a few disposable lifetime codes
+(PRO-RU6L-5K4H-CDWD and any 'curl-smoke' ones) — delete them from the
+Firestore pro_licenses collection when convenient.
+
+---
+
 ## 2026-08-17 — Session 43 — DEEPSEEK STEP 3: GitHub publisher proxy — token moved to the server
 
 **Goal (DEEPSEEK block):** the Review Publisher's GITHUB_TOKEN and all
