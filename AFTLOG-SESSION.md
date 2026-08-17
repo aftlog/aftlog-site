@@ -2,6 +2,19 @@
 
 > Read `AFTLOG-CODING-STANDARDS.md` + `DECISIONS.md` first every session.
 
+- **🏷️ SPEC MIRROR PASS (Blocks 1–8) COMPLETE (2026-08-17):** the full DeepSeek
+  spec (foundation, models, services, widgets/data, screens 1–4, tools,
+  wizards, diagnostics, calculators) was processed as website mirror coverage
+  under the existing DEEPSEEK STEP 8.x numbering (Sessions 70–75, no
+  renumber). Net result on the site: **11 new tools** — Compliance, Manual
+  Finder, DIY Library, Battery & Electronics, Glossary, Emergency, Trip & Fuel
+  Log, Checklists, Cost of Ownership, Parts Locator — plus a central
+  **/tools/ index hub** linking all 20 tools, wired into the footer + features.
+  Left app-internal by design (no web clones of the boat manager): dashboard,
+  boats, add-boat, photos, documents, parts inventory, service history, plus
+  all services/models/widgets. App-side: pubspec bump committed (1.108.16);
+  8 APKs still queued for phone install (USB).
+
 ---
 
 - **🔒 PROCESS TEMPLATES + RELEASE CHECKLIST (LOCKED 2026-08-16, Louis's
