@@ -648,7 +648,7 @@ register("blog/winterize", "How to winterize your boat", "A step-by-step winteri
         <li><strong>Remove the battery.</strong> Store it inside on a maintainer. A battery left to discharge all winter is often dead by spring.</li>
         <li><strong>Protect the outside.</strong> Cover, shrink-wrap, or indoor storage — sun and snow both damage gelcoat and vinyl.</li>
       </ol>
-      <p>AftLog's <a href="/features.html">winterization planner</a> walks you through every step for your region and boat type.</p>""",
+      <p>Run the <a href="/tools/winterization-planner.html">Winterization Planner</a> for your region's timing, then work the <a href="/checklists/winterization.html">winterization checklist</a> step by step.</p>""",
                  '<li><a href="beginner-checklist.html">Boat maintenance checklist for beginners</a></li><li><a href="outboard-oil.html">How often to change outboard oil</a></li><li><a href="safety-equipment.html">Boat safety equipment list</a></li>'),
          active="/blog/")
 
@@ -735,6 +735,75 @@ register("terms", "AftLog Terms of Use", "The short version: use AftLog safely, 
       <li><strong>Warranty.</strong> The app is provided as-is. We keep it reliable, but we don't guarantee the app or the AI assistant will be error-free, and we're not liable for damage arising from how you use it.</li>
       <li><strong>Contact.</strong> Questions about these terms: <a href="mailto:aftlog@yahoo.com?subject=AftLog%20terms">aftlog@yahoo.com</a>.</li>
     </ul>"""))
+
+
+register(
+    "tools/winterization-planner",
+    "Winterization Planner — Freeze & Ice-Out Guide",
+    "Region-aware winterization timing from the AftLog app: freeze-up and ice-out windows, why it matters, and the guided checklist.",
+    hero("Winterization Planner",
+         "Freeze-up and ice-out timing for your region — and a guided checklist to protect your engine through the off-season.")
+    + '<section class="section section--light"><div class="container">'
+    + '<label for="wz-region" class="pg-hint-label">Choose your region</label>'
+    + '<select id="wz-region" class="pg-select"><option value="">Select a region…</option>'
+    + "".join('<option value="%s">%s</option>' % (n,n) for n,f,i in [
+        ("Southern Manitoba / Winkler","late October","mid-April"),
+        ("Winnipeg / Lake Winnipeg","mid-November","mid-May"),
+        ("Northern Manitoba / The Pas","late October","late May"),
+        ("Ontario south","mid-December","mid-April"),
+        ("Ontario north","mid-November","early May"),
+        ("US northern states","November","April"),
+        ("US southern states","mild","year-round")])
+    + '</select>'
+    + '<div class="wz-window" id="wz-window"><span class="wz-fill">Select a region to see your freeze-up and ice-out windows.</span></div>'
+    + """<script>
+        (function () {
+          var REGIONS = [
+            {name:'Southern Manitoba / Winkler', freezeUp:'late October', iceOut:'mid-April'},
+            {name:'Winnipeg / Lake Winnipeg', freezeUp:'mid-November', iceOut:'mid-May'},
+            {name:'Northern Manitoba / The Pas', freezeUp:'late October', iceOut:'late May'},
+            {name:'Ontario south', freezeUp:'mid-December', iceOut:'mid-April'},
+            {name:'Ontario north', freezeUp:'mid-November', iceOut:'early May'},
+            {name:'US northern states', freezeUp:'November', iceOut:'April'},
+            {name:'US southern states', freezeUp:'mild', iceOut:'year-round'}
+          ];
+          var sel = document.getElementById('wz-region');
+          var out = document.getElementById('wz-window');
+          sel.addEventListener('change', function () {
+            var r = REGIONS.find(function (x) { return x.name === sel.value; });
+            if (!r) { out.innerHTML = '<span class="wz-fill">Select a region to see your freeze-up and ice-out windows.</span>'; return; }
+            out.innerHTML = '<strong>Freeze-up:</strong> ' + r.freezeUp + ' &nbsp;·&nbsp; <strong>Ice-out:</strong> ' + r.iceOut;
+          });
+        })();
+      </script>"""
+    + '</div></section>'
+    + section("Why this matters", """<p>When water freezes it expands. Left in the engine, block, or manifolds over the off-season, it can crack cast iron and aluminum — the most expensive repair a boat owner faces. Winterizing clears the water and protects the fuel system, battery, and lower unit so the engine starts clean in spring.</p>
+      <p>Winterize after your region's freeze-up window, before the first hard frost. Commission in spring after ice-out.</p>""")
+    + section("Ready to winterize?", """<p>Run the guided winterization checklist — every step you complete saves a photo-worthy step for spring.</p>
+      <p><a class="btn btn-primary" href="/checklists/winterization.html">Start the Winterization Checklist</a></p>
+      <p class="pg-muted">In the app: More → Tools → Winterization Planner.</p>""")
+    + section("Forgot to winterize?", """<p>If it already froze with water in the engine: do <strong>not</strong> crank it. Drain everything, check the block and manifolds for cracks, and call a mechanic if in doubt. Cracked blocks are expensive; frozen-then-thawed ones leak.</p>"""),
+)
+
+
+register(
+    "checklists/winterization",
+    "Winterization Checklist",
+    "The step-by-step before-first-frost checklist — fuel, engine, water systems, battery, and cover.",
+    hero("Winterization Checklist",
+         "Work through these before the first hard frost to protect your boat over the off-season.")
+    + section("Before you start", """<p>Winterizing is the difference between a spring that starts on the first turn and a spring full of repairs. Do it before the first hard frost.</p>
+      <p>Plan it with the <a href="/tools/winterization-planner.html">Winterization Planner</a> for your region's timing.</p>""")
+    + section("The checklist", """<ol class="pg-list">
+      <li><strong>Stabilize the fuel.</strong> Add fuel stabilizer and run the engine long enough to work it through the system.</li>
+      <li><strong>Fog the engine.</strong> Fogging oil protects cylinders from corrosion while it sits.</li>
+      <li><strong>Drain water systems.</strong> Engine block, livewells, ballast, and fresh water — standing water freezes and cracks.</li>
+      <li><strong>Change lower-unit oil.</strong> Old oil can hold water; fresh oil protects the gears all winter.</li>
+      <li><strong>Remove the battery.</strong> Store it inside on a maintainer. A battery left to discharge all winter is often dead by spring.</li>
+      <li><strong>Protect the outside.</strong> Cover, shrink-wrap, or indoor storage — sun and snow both damage gelcoat and vinyl.</li>
+    </ol>""")
+    + section("Still winterizing?", """<p>See the <a href="/blog/winterize.html">full winterization guide</a> on the blog, or run the checklist in the <a href="/features.html">AftLog app</a> where each step is interactive.</p>"""),
+)
 
 
 # ── Render ──────────────────────────────────────────────────────────────

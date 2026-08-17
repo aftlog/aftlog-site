@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Winterization Planner — Freeze &amp; Ice-Out Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Region-aware winterization timing from the AftLog app: freeze-up and ice-out windows, why it matters, and the guided checklist.">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+<link rel="apple-touch-icon" href="/images/favicon-180.png">
+<meta property="og:title" content="Winterization Planner — Freeze &amp; Ice-Out Guide">
+<meta property="og:description" content="Region-aware winterization timing from the AftLog app: freeze-up and ice-out windows, why it matters, and the guided checklist.">
+<meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://aftlog.com/tools/winterization-planner">
+<link rel="stylesheet" href="/aftlog.css">
+<link rel="stylesheet" href="/aftlog-pages.css">
+<script>
+  (function(){ if (location.hash) history.replaceState(null, '', location.pathname + location.search); })();
+</script>
+</head>
+<body>
+<header class="site-header site-header--dark">
+  <div class="container header-inner">
+    <div class="logo"><a href="/"><img src="/images/aftlog-badge.png" alt="AftLog"></a></div>
+    <nav class="nav" aria-label="Main">
+      <a href="/">Home</a><a href="/features.html">Features</a><a href="/ai.html">AI</a><a href="/portal.html">Portal</a><a href="/pricing.html">Pricing</a><a href="/faq.html">FAQ</a><a href="/support.html">Support</a><a href="/blog/">Blog</a><a href="/updates/">Updates</a><a href="/#waitlist" class="btn btn-primary">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+<main class="pg-main">
+<section class="hero hero--dark pg-hero">
+  <div class="container hero-inner pg-hero-inner">
+    <div class="hero-text">
+      <div class="brand-block"><img class="hero-logo brand-logo" src="/images/aftlog-logo.png" alt="AftLog logo"><span class="kicker brand-slogan">Keeping your boat shipshape!</span></div>
+      <h1>Winterization Planner</h1>
+      <p>Freeze-up and ice-out timing for your region — and a guided checklist to protect your engine through the off-season.</p>
+    </div>
+  </div>
+</section><section class="section section--light"><div class="container"><label for="wz-region" class="pg-hint-label">Choose your region</label><select id="wz-region" class="pg-select"><option value="">Select a region…</option><option value="Southern Manitoba / Winkler">Southern Manitoba / Winkler</option><option value="Winnipeg / Lake Winnipeg">Winnipeg / Lake Winnipeg</option><option value="Northern Manitoba / The Pas">Northern Manitoba / The Pas</option><option value="Ontario south">Ontario south</option><option value="Ontario north">Ontario north</option><option value="US northern states">US northern states</option><option value="US southern states">US southern states</option></select><div class="wz-window" id="wz-window"><span class="wz-fill">Select a region to see your freeze-up and ice-out windows.</span></div><script>
+        (function () {
+          var REGIONS = [
+            {name:'Southern Manitoba / Winkler', freezeUp:'late October', iceOut:'mid-April'},
+            {name:'Winnipeg / Lake Winnipeg', freezeUp:'mid-November', iceOut:'mid-May'},
+            {name:'Northern Manitoba / The Pas', freezeUp:'late October', iceOut:'late May'},
+            {name:'Ontario south', freezeUp:'mid-December', iceOut:'mid-April'},
+            {name:'Ontario north', freezeUp:'mid-November', iceOut:'early May'},
+            {name:'US northern states', freezeUp:'November', iceOut:'April'},
+            {name:'US southern states', freezeUp:'mild', iceOut:'year-round'}
+          ];
+          var sel = document.getElementById('wz-region');
+          var out = document.getElementById('wz-window');
+          sel.addEventListener('change', function () {
+            var r = REGIONS.find(function (x) { return x.name === sel.value; });
+            if (!r) { out.innerHTML = '<span class="wz-fill">Select a region to see your freeze-up and ice-out windows.</span>'; return; }
+            out.innerHTML = '<strong>Freeze-up:</strong> ' + r.freezeUp + ' &nbsp;·&nbsp; <strong>Ice-out:</strong> ' + r.iceOut;
+          });
+        })();
+      </script></div></section><section class="section section--light ">
+  <div class="container">
+    <h2>Why this matters</h2>
+    <p>When water freezes it expands. Left in the engine, block, or manifolds over the off-season, it can crack cast iron and aluminum — the most expensive repair a boat owner faces. Winterizing clears the water and protects the fuel system, battery, and lower unit so the engine starts clean in spring.</p>
+      <p>Winterize after your region's freeze-up window, before the first hard frost. Commission in spring after ice-out.</p>
+  </div>
+</section><section class="section section--light ">
+  <div class="container">
+    <h2>Ready to winterize?</h2>
+    <p>Run the guided winterization checklist — every step you complete saves a photo-worthy step for spring.</p>
+      <p><a class="btn btn-primary" href="/checklists/winterization.html">Start the Winterization Checklist</a></p>
+      <p class="pg-muted">In the app: More → Tools → Winterization Planner.</p>
+  </div>
+</section><section class="section section--light ">
+  <div class="container">
+    <h2>Forgot to winterize?</h2>
+    <p>If it already froze with water in the engine: do <strong>not</strong> crank it. Drain everything, check the block and manifolds for cracks, and call a mechanic if in doubt. Cracked blocks are expensive; frozen-then-thawed ones leak.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer site-footer--dark">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
+      <p>Keeping your boat shipshape. Works without a signal. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="/features.html">Features</a>
+      <a href="/ai.html">AftLog AI</a>
+      <a href="/pricing.html">Pricing — lifetime Pro</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/support.html">Support</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#waitlist">Waitlist</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Portal</h4>
+      <a href="https://portal.aftlog.com/login">Portal login</a>
+      <a href="https://portal.aftlog.com/portal/">Portal dashboard</a>
+      <a href="https://portal.aftlog.com/portal/year-in-review">Year in Review</a>
+      <a href="https://portal.aftlog.com/portal/boats">Boat analytics</a>
+    </div>
+  </div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA. · Platform v1.111</div>
+</footer>
+</body>
+</html>
