@@ -419,7 +419,8 @@ register(
     "pricing",
     "AftLog Pricing — Free & Lifetime Pro",
     "AftLog Pro is a one-time lifetime purchase — no subscriptions, no ads. Free tier for one boat; Pro unlocks the full toolkit.",
-    hero("Free to start. Pro for life.", "One-time $29. No subscription. No ads. Your data stays yours.")
+    hero("Pricing",
+         "Free to start. Pro for life. One-time $29 — no subscription, no ads, your data stays yours.")
     + section("The two tiers", """<div class="cards cards--two pg-price-grid">
       <article class="card pg-price-card">
         <h3>Free</h3>
@@ -430,6 +431,7 @@ register(
           <li>Core checklists</li>
           <li>Works without a signal</li>
         </ul>
+        <p style="margin-top:auto"><a class="btn btn-primary" href="/#waitlist">Get Started Free</a></p>
       </article>
       <article class="card pg-price-card pg-price-card--pro">
         <div class="review-badge">Lifetime</div>
@@ -442,11 +444,26 @@ register(
           <li>Boat Health Score &amp; predictive alerts</li>
           <li>Portal analytics &amp; Year in Review</li>
         </ul>
+        <p style="margin-top:auto"><a class="btn btn-primary" href="%PORTAL%/pro" target="_blank" rel="noopener">Unlock Pro — $29 Lifetime</a></p>
       </article>
-    </div>""")
+    </div>""".replace("%PORTAL%", PORTAL))
     + section("One-time, lifetime — no subscriptions", """<p>AftLog Pro is a <strong>one-time $29 purchase</strong>. Licenses never expire, there are no renewals, and there is no subscription tier. You pay once and the full toolkit is yours.</p>
+      <ul class="pg-list">
+        <li>No subscription</li>
+        <li>No renewal fees</li>
+        <li>No upsells</li>
+        <li>Lifetime access</li>
+      </ul>
       <p>Pro codes are issued as lifetime licenses through the AftLog portal server. <a href="/faq.html">Have a question about pricing?</a></p>""")
-    + section("30-day money-back guarantee", """<p>If AftLog isn't for you, request a refund within 30 days. No forms, no hoops — just contact <a href="/support.html">support</a>.</p>"""),
+    + section("30-day money-back guarantee", """<p>If AftLog isn't for you, request a refund within 30 days. No forms, no hoops — just contact <a href="/support.html">support</a>.</p>""")
+    + section("Pricing questions", """<details class="pg-faq"><summary>Is Pro really lifetime?</summary><p>Yes — one payment, never expires, no renewals.</p></details>
+      <details class="pg-faq"><summary>Does Pro work offline?</summary><p>Yes — every feature works without a signal. Only the AI assistant needs the server, and it uses on-device guidance when offline.</p></details>
+      <details class="pg-faq"><summary>Can I use Pro on multiple devices?</summary><p>Yes — your license follows your AftLog portal account.</p></details>
+      <details class="pg-faq"><summary>Is there a subscription version?</summary><p>No. There is no subscription tier, now or planned.</p></details>""")
+    + (f"<section class=\"section section--alt pg-cta\"><div class=\"container\" style=\"text-align:center\">"
+       f"<h2>Ready when you are.</h2>"
+       f"<p><a class=\"btn btn-primary\" href=\"{PORTAL}/pro\" target=\"_blank\" rel=\"noopener\">Unlock Pro — $29 Lifetime</a></p>"
+       f"<p class=\"pg-muted\" style=\"margin-top:10px\">30-day money-back guarantee · no subscription, ever.</p></div></section>"),
 )
 
 # /faq
