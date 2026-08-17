@@ -233,6 +233,12 @@ def review_badge_note() -> str:
 </div></section>"""
 
 
+def faq_block(items):
+    return "".join(
+        f'<details class="pg-faq"><summary>{html.escape(q)}</summary><p>{a}</p></details>'
+        for q, a in items)
+
+
 # ── Content registry ────────────────────────────────────────────────────
 PAGES = []
 
@@ -467,42 +473,29 @@ register(
 )
 
 # /faq
-FAQ_ITEMS = [
-    ("Does AftLog work without internet?", "Yes. AftLog works without a signal: your data lives on your device and every core feature works with zero signal. The AI assistant uses the server when you're connected and falls back to on-device guidance when you're not."),
-    ("Is AftLog really a one-time purchase?", "Yes. AftLog Pro is $29 one-time for a lifetime license — no subscriptions, no renewals, no ads."),
-    ("Which boats does AftLog support?", "Pleasure craft and fishing boats in Canada and the USA — outboard, inboard, and jet drives, from small runabouts to cabin cruisers."),
-    ("Is my data private?", "Your data stays on your device. There's no forced account, no cloud dependency, and optional portal sync only sends what you choose."),
-    ("What does the AI assistant do?", "Ask AftLog answers maintenance questions grounded in your boat, the Smart Planner schedules what's due, and diagnostics walk symptoms to likely causes. Everything goes through the AftLog server — the app never holds AI keys."),
-    ("What is the Web Portal?", "A free companion dashboard on the web: Year in Review, planner windows, boat health, and trip analytics. Link your app with a one-time code from More → Link to Portal."),
-    ("How do I get support?", "See the <a href='/support'>support page</a> — troubleshooting, contact form, and the FAQ."),
-    ("Do you sell my email or data?", "No. The waitlist email is only used to tell you when AftLog is ready."),
-]
-register(
-    "faq",
-    "AftLog FAQ — Common Questions",
-    "Answers to common questions about AftLog: no-signal use, safety tools, AI features, the Web Portal, pricing, and support.",
-    hero("Questions, answered", "The most common questions about AftLog — and straight answers.")
-    + section("Frequently asked questions", "".join(
-        f'<details class="pg-faq"><summary>{html.escape(q)}</summary><p>{a}</p></details>'
-        for q, a in FAQ_ITEMS))
-    + section("Still have questions?", '<p><a class="btn btn-secondary" href="/support.html">Contact support</a></p>'),
-)
+
 
 # /support
 register(
     "support",
     "AftLog Support — Contact & Help",
     "Get help with AftLog: troubleshooting guides, contact form, and links to the FAQ.",
-    hero("We're here to help", "Troubleshooting first, then a human — in that order.")
-    + section("Troubleshooting", """<ul class="pg-list">
-      <li><strong>App won't install / update?</strong> Make sure you're installing the signed AftLog APK and that 'Install unknown apps' is allowed for your file manager.</li>
-      <li><strong>GPS not tracking?</strong> Grant location permission when the app asks — AftLog uses it only for trip tracking you start yourself.</li>
-      <li><strong>Reminders not firing?</strong> Check notification permission and that the app isn't force-stopped by your battery saver.</li>
-      <li><strong>AI assistant offline?</strong> The assistant needs a connection to the AftLog server; without one it uses on-device guidance.</li>
-      <li><strong>Backup / restore?</strong> Use More → Backup to export a JSON file — keep it somewhere safe.</li>
-    </ul>""")
-    + section("Contact", """<p>For anything else, email <a href="mailto:aftlog@yahoo.com?subject=AftLog%20support">aftlog@yahoo.com</a> or use the form on the <a href="/#contact">landing page</a>. We usually reply within a day.</p>
-      <p>New to the app? Start with the <a href="/blog/">blog</a> — the beginner checklist and winterization guide cover the essentials.</p>"""),
+    hero("Support",
+         "Troubleshooting first, then a human — in that order.")
+    + section("Troubleshooting", faq_block([
+        ("App won't install or update?", "Make sure you're installing the signed AftLog APK and that 'Install unknown apps' is allowed for your file manager."),
+        ("GPS not tracking?", "Grant location permission when the app asks — AftLog uses it only for trip tracking you start yourself."),
+        ("Reminders not firing?", "Check notification permission and ensure the app isn't force-stopped by your battery saver."),
+        ("AI assistant offline?", "The assistant needs a connection to the AftLog server; without one it uses on-device guidance."),
+        ("Backup / restore?", "Use More → Backup to export a JSON file — keep it somewhere safe."),
+    ]))
+    + section("Contact", """<p>For anything else, email aftlog@yahoo.com or use the form on the landing page. We usually reply within a day.</p>
+      <p><a class="btn btn-primary" href="mailto:aftlog@yahoo.com?subject=AftLog%20support">Email Support</a></p>""")
+    + section("New to the app?", """<p>Start with the blog — the beginner checklist and winterization guide cover the essentials.</p>
+      <div class="pg-actions">
+        <a class="btn btn-secondary" href="/blog/beginner-checklist.html">Beginner Checklist</a>
+        <a class="btn btn-secondary" href="/blog/winterize.html">Winterization Guide</a>
+      </div>"""),
 )
 
 # Blog
