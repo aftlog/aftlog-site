@@ -37,7 +37,7 @@ def main():
         "terms.html", "updates/index.html", "blog/index.html",
         "blog/winterize.html", "blog/beginner-checklist.html",
         "blog/outboard-oil.html", "blog/safety-equipment.html",
-        "tools/index.html",
+        "tools/index.html", "catchtales.html",
     ]
     print("AftLog site testing matrix")
 
@@ -237,6 +237,30 @@ def main():
         for m in re.finditer(r'href="(/blog/[a-z-]+\.html)"', bc):
             t = ROOT / m.group(1).lstrip("/")
             check(f"blog link {m.group(1)} exists", t.exists())
+
+    print()
+    # 17. Marine Suite cross-promotion (CatchTales)
+    print("— marine suite (catchtales)")
+    ct = (ROOT / "catchtales.html")
+    check("catchtales.html exists", ct.exists())
+    if ct.exists():
+        c = ct.read_text(encoding="utf-8")
+        check("catchtales: hero + works-with-aftlog", "Works with AftLog" in c and "CatchTales" in c)
+        check("catchtales: points back to AftLog", "/features.html" in c)
+    for p in pages:
+        f = ROOT / p
+        if not f.exists():
+            continue
+        c = f.read_text(encoding="utf-8")
+        check(f"{p}: footer marine strip + catchtales link", "pg-marine-strip" in c and "/catchtales.html" in c)
+    for t in ["tools/trip-log.html", "tools/checklists.html"]:
+        f = ROOT / t
+        if f.exists():
+            c = f.read_text(encoding="utf-8")
+            check(f"{t}: inline marine-suite promo", "ms-promo" in c and "/catchtales.html" in c)
+    hi2 = ROOT / "help" / "index.html"
+    if hi2.exists():
+        check("help/index: marine-suite sidebar", "pg-marine-suite" in hi2.read_text(encoding="utf-8"))
 
     print()
     if FAILS:

@@ -60,6 +60,11 @@ def header(active: str) -> str:
 
 def footer() -> str:
     return """<footer class="site-footer site-footer--dark">
+  <div class="pg-marine-strip"><div class="container pg-marine-strip-inner">
+    <div class="pg-marine-strip-text"><strong>You fish too?</strong>
+      <span>Pair AftLog with CatchTales — offline fishing trips, catches, spots &amp; conditions. Part of the Marine Suite.</span></div>
+    <a class="btn btn-secondary btn-sm" href="/catchtales.html">Meet CatchTales</a>
+  </div></div>
   <div class="container footer-grid">
     <div class="footer-col">
       <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
@@ -85,6 +90,11 @@ def footer() -> str:
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Marine Suite</h4>
+      <a href="/catchtales.html">CatchTales</a>
+      <a href="/#waitlist">Waitlist</a>
     </div>
     <div class="footer-col">
       <h4>Portal</h4>
@@ -2012,6 +2022,9 @@ def generate_help(rooot=ROOT):
         + f'<input class="pg-help-search" id="help-search" type="search" placeholder="Search help topics…" aria-label="Search help">'
         + f'<div class="pg-cat-bar" role="group" aria-label="Filter by category">{cat_btns}</div>'
         + f'<div class="pg-article-grid" id="help-grid">{cards}</div></div></section>'
+        + '<div class="pg-marine-suite"><div class="brand-block"><span class="kicker brand-slogan">Marine Suite</span><h3>Two apps, one day on the water</h3></div>'
+        + '<p>AftLog keeps your boat shipshape. CatchTales logs the fishing — trips, catches, and conditions.</p>'
+        + '<a href="/catchtales.html" class="pg-marine-cta">About CatchTales →</a></div>'
         + section("Still stuck?", '<p><a class="btn btn-secondary" href="/support.html">Contact support</a> · <a class="btn btn-secondary" href="/faq.html">See the FAQ</a></p>')
         + '<script src="/help/help.js"></script>'
     )
@@ -2672,6 +2685,9 @@ def _trip_log_body():
         + '<div class="tl-history"><h2>Trips</h2><div id="tl-trips"></div><h2>Fill-ups</h2><div id="tl-fills"></div>'
         + '<p><button type="button" class="btn btn-sm btn-secondary" onclick="tlClear()">Clear all data</button></p></div>'
         + '<p class="pg-muted">For deeper seasonal analysis (monthly trends, outliers), see the <a href="/tools/trip-patterns.html">Trip Patterns</a> tool.</p>'
+        + '<div class="pg-sidecard ms-promo"><div class="pg-sidecard-head">Marine Suite</div>'
+        + '<p class="pg-muted" style="margin:0 0 8px">On the water to fish? CatchTales logs your catches, spots, and conditions — no signal needed.</p>'
+        + '<a class="btn btn-secondary btn-sm" href="/catchtales.html">Explore CatchTales</a></div>'
         + _TRIP_JS
         + '</div></section>'
     )
@@ -2772,6 +2788,9 @@ def _checklists_body():
         + '<textarea id="chkl-items" class="fp-in" rows="4" placeholder="Fuel up&#10;Check weather&#10;Tell someone the float plan"></textarea>'
         + '<p><button type="button" class="btn btn-primary" onclick="chklAddCustom()">Create checklist</button></p>'
         + '<p class="pg-muted">For a guided used-boat walk-through with photos and a buy/consider/walk report, use the <a href="/tools/buying-advisor.html">Buying Advisor</a>.</p>'
+        + '<div class="pg-sidecard ms-promo"><div class="pg-sidecard-head">Marine Suite</div>'
+        + '<p class="pg-muted" style="margin:0 0 8px">Heading out to fish? CatchTales pairs with this checklist for catches, spots, and conditions.</p>'
+        + '<a class="btn btn-secondary btn-sm" href="/catchtales.html">Explore CatchTales</a></div>'
         + _CHKL_JS
         + '</div></section>'
     )
@@ -3086,6 +3105,41 @@ register("tools/index", "AftLog Tools — Every Free Boating Tool",
          "All 20 free AftLog boating tools in one place: safety, trip & fuel, checklists, buying, cost, maintenance, diagnostics, AI, and reference.",
          _tools_index_body())
 
+def _catchtales_body():
+    return (
+        hero("CatchTales", "Log your trips, catches, spots, and conditions — the fishing half of AftLog's Marine Suite, made to work without a signal.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">CatchTales is the fishing companion to AftLog — AftLog keeps your boat shipshape, CatchTales logs the fishing. Together they cover a full day on the water.</p>'
+        + '<h2>What CatchTales does</h2>'
+        + '<div class="pg-card-grid">'
+        + '<div class="pg-feature-card"><h3>Trips &amp; sessions</h3><p>Start, track, and log a day of fishing — and fish along with friends in a shared live session.</p></div>'
+        + '<div class="pg-feature-card"><h3>Catches</h3><p>Species, weight, length, bait, method, photos — plus a voice tally so wet hands stay free.</p></div>'
+        + '<div class="pg-feature-card"><h3>Spots &amp; depth</h3><p>Save fishing spots with GPS and log depth readings — all offline.</p></div>'
+        + '<div class="pg-feature-card"><h3>Species &amp; AI Fish ID</h3><p>Identify and learn about fish, with sizes, habitats, and identification help.</p></div>'
+        + '<div class="pg-feature-card"><h3>Weather, solunar &amp; tide</h3><p>Plan the best bite window with forecast, solunar, and tide tools.</p></div>'
+        + '<div class="pg-feature-card"><h3>Prepare &amp; tackle</h3><p>Checklists and a tackle box tailored to the species you target.</p></div>'
+        + '<div class="pg-feature-card"><h3>Regulations &amp; launches</h3><p>Fishing rules, invasive-species alerts, and launch info with ramps and access points.</p></div>'
+        + '<div class="pg-feature-card"><h3>Analytics &amp; trophy room</h3><p>Your best spots, best species, and seasonal patterns.</p></div>'
+        + '</div>'
+        + '</div></section>'
+        + '<section class="section section--alt"><div class="container">'
+        + '<h2>Works with AftLog</h2>'
+        + '<p>AftLog handles the boat — maintenance, safety, checklists, seasonal prep. CatchTales handles the fishing — trips, catches, and conditions. Both work without a signal, have no ads, and are built for real days on the water.</p>'
+        + '<div class="pg-marine-suite"><div class="brand-block"><span class="kicker brand-slogan">Marine Suite</span><h3>Two apps, one day on the water</h3></div>'
+        + '<p>AftLog keeps your boat shipshape. CatchTales logs the fishing. Pair them for trips, checklists, and conditions.</p>'
+        + '<a href="/features.html" class="pg-marine-cta">Meet AftLog →</a></div>'
+        + '</div></section>'
+        + '<section class="section section--light"><div class="container">'
+        + '<h2>Get CatchTales</h2>'
+        + '<p class="pg-muted">Direct download arrives at CatchTales launch — coming soon.</p>'
+        + '<p><span class="btn btn-secondary" aria-disabled="true">Coming soon</span></p>'
+        + '<p class="pg-muted">Questions? <a href="mailto:catchtales@yahoo.com">Email CatchTales</a>.</p>'
+        + '</div></section>'
+    )
+
+
+register("catchtales", "CatchTales — Fishing Companion · Works with AftLog", "CatchTales is AftLog's fishing companion — log trips, catches, spots, and conditions offline. Part of the Marine Suite.", _catchtales_body())
+
 
 def main():
     print(f"Generating AftLog site → portal base: {PORTAL}")
@@ -3101,6 +3155,7 @@ def main():
     # sitemap
     static = ["", "features.html", "ai.html", "portal.html", "pricing.html",
               "faq.html", "support.html", "privacy.html", "terms.html",
+              "catchtales.html",
               "updates/", "blog/", "blog/winterize.html",
               "blog/beginner-checklist.html", "blog/outboard-oil.html",
               "blog/safety-equipment.html", "tools/", "tools/index.html"]

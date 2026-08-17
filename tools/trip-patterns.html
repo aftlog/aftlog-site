@@ -40,6 +40,11 @@
 </section><section class="section section--light"><div class="container"><div class="fp-form"><p class="pg-muted">Add trips (date, distance, hours, optional fuel) and the engine computes your patterns. Everything stays in this browser.</p><div class="tp-add"><input id="tp-d" class="fp-in" placeholder="Date  YYYY-MM-DD" style="flex:2"><input id="tp-km" class="fp-in" placeholder="km" type="number" style="flex:1"><input id="tp-h" class="fp-in" placeholder="hours" type="number" style="flex:1"><input id="tp-f" class="fp-in" placeholder="fuel L" type="number" style="flex:1"><button class="btn btn-primary" onclick="tpAdd()">Add trip</button></div><button class="btn btn-secondary btn-sm" onclick="tpReset()">Clear all</button><div id="tp-results"><p class="pg-muted">Add at least one trip to see patterns.</p></div><div class="fp-actions"><button class="btn btn-secondary" onclick="tpExport()">Export .txt</button><button class="btn btn-secondary" onclick="window.print()">Print / Save as PDF</button></div></div></div></section><script src="/tools/trip-patterns.js" defer></script>
 </main>
 <footer class="site-footer site-footer--dark">
+  <div class="pg-marine-strip"><div class="container pg-marine-strip-inner">
+    <div class="pg-marine-strip-text"><strong>You fish too?</strong>
+      <span>Pair AftLog with CatchTales — offline fishing trips, catches, spots &amp; conditions. Part of the Marine Suite.</span></div>
+    <a class="btn btn-secondary btn-sm" href="/catchtales.html">Meet CatchTales</a>
+  </div></div>
   <div class="container footer-grid">
     <div class="footer-col">
       <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
@@ -65,6 +70,11 @@
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Marine Suite</h4>
+      <a href="/catchtales.html">CatchTales</a>
+      <a href="/#waitlist">Waitlist</a>
     </div>
     <div class="footer-col">
       <h4>Portal</h4>
