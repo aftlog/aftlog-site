@@ -1425,6 +1425,23 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 75 — DEEPSEEK STEP 1.1–1.10 (AftLog Foundation: Core + Infra) website audit
+
+**Block:** app entry (main.dart), theme (AftLogApp), first-run gate, splash,
+onboarding, 5-tab home shell (Dashboard/Boats/Log/Checklists/More),
+navigation, pubspec, AndroidManifest, build.sh, offline-first architecture.
+**Audit — pure app-internal infrastructure, no standalone web artifact:**
+app boot / splash timing / onboarding / shell / navigation / manifest /
+version bump are product internals with no public-tool or webpage equivalent.
+Cross-over items confirmed **already covered on the site:**
+- Theme/brand palette (#0B0B0D / #E02020 / #FF4B4B / #F5F5F7) → aftlog.css +
+  aftlog-pages.css, verified by site_check design-system checks;
+- Offline-first ("Works without a signal", on-device storage) → homepage +
+  privacy.html coverage, verified by site_check legal checks;
+- Versioning → footer "Platform v1.111".
+**No code change.** Session log only.
+
+---
 ## 2026-08-17 — Session 74 — DEEPSEEK STEP 3.1–3.16 (Services) + 4.1–4.10 (Widgets & Data) website audit + Parts Locator
 
 **Blocks:** 3.1–3.16 (Database/Boat/Log/Interval/Service/Checklist/HealthScore/
