@@ -242,19 +242,85 @@ def register(slug, title, desc, body, active=None):
 
 
 # /features
+def feature_section(title: str, text: str, bullets: list, shot: str | None = None, alt: bool = False):
+    cls = "section section--alt" if alt else "section section--light"
+    bl = "".join(f"<li>{b}</li>" for b in bullets)
+    body = (
+        f"<div class=\"pg-feature-col\">"
+        f"<h2>{title}</h2>"
+        f"<p>{text}</p>"
+        f"<ul class=\"pg-list pg-feature-bullets\">{bl}</ul>"
+        f"</div>"
+    )
+    if shot:
+        body += (
+            f"<div class=\"pg-feature-shot\"><img src=\"{shot}\" "
+            f"alt=\"{title} screenshot\" loading=\"lazy\"></div>"
+        )
+    return f"<section class=\"{cls}\"><div class=\"container pg-feature-grid\">{body}</div></section>"
+
+
+def feature_cards(cards: list) -> str:
+    items = "".join(
+        f'<div class="pg-feature-card"><div class="pg-feature-icon">{icon}</div>'
+        f'<h3>{title}</h3><ul class="pg-list">' +
+        "".join(f"<li>{b}</li>" for b in bullets) + "</ul></div>"
+        for icon, title, bullets in cards
+    )
+    return (f"<section class=\"section section--light\"><div class=\"container\">"
+            f"<h2>Every tool, in one place</h2>"
+            f"<div class=\"pg-card-grid\">{items}</div></div></section>")
+
+
 register(
     "features",
     "AftLog Features — Checklists, Logs, Wizards, Safety Tools",
     "Explore all AftLog features for boat owners: maintenance logging, checklists, wizards, safety tools, and a no-signal-required design.",
-    hero("Everything you need to keep your boat shipshape",
-         "Logging, checklists, planning, and safety tools — built to work even with zero signal.")
-    + section("Maintenance logging", """<p>Track every service, part, and interval for each boat. AftLog learns your engine's real hours and tells you what's due — spark plugs at 200 hours, impellers on schedule, lower-unit oil when it's time.</p>
-      <p>Fuel-range brain: log fills and trips and AftLog learns your real km/L and km/hr, then shows how far and how long you can run before the tank is low.</p>""")
-    + section("Checklists", """<p>Launch, retrieve, towing, winterization, spring prep, and used-boat inspection — step-by-step checklists that teach as you go. Beginner Mode explains each item instead of just checking it.</p>""")
-    + section("Wizards", """<p>Planner Pro, symptom decoder, buying advisor, winterization planner, float plan, compliance, manual finder, and DIY library — guided flows that turn questions into answers.</p>""")
-    + section("Safety tools", """<p>Emergency 'What to do if…' with GPS share, float plans, due-soon notifications, and a Boat Health Score that catches problems before they strand you.</p>""")
-    + section("Works without a signal", """<p>Every feature works with zero signal — your data lives on your device, no cloud required. The <a href="/ai.html">AftLog AI assistant</a> reaches the server when you're connected and falls back to on-device guidance when you're not.</p>
-      <p>See pricing for the <a href="/pricing.html">free tier and one-time lifetime Pro</a>.</p>"""),
+    hero("Features",
+         "Everything AftLog does for your boat — logging, planning, checklists, and safety, built to work even with zero signal.")
+    + feature_section("Maintenance Logging",
+        "Track every service, part, and interval for each boat. AftLog learns your engine's real hours and tells you what's due — spark plugs at 200 hours, impellers on schedule, lower-unit oil when it's time.",
+        ["Real engine-hour learning", "Smart interval tracking", "Due-soon notifications", "Multi-boat support"],
+        shot="/images/screen-app-dashboard.png", alt=True)
+    + feature_section("Fuel & Range Intelligence",
+        "Log fills and trips and AftLog learns your real km/L and km/hr, then shows how far and how long you can run before the tank is low.",
+        ["Real fuel efficiency learning", "Range prediction", "Time-to-empty estimates", "Trip history"])
+    + feature_section("Checklists",
+        "Launch, retrieve, towing, winterization, spring prep, and used-boat inspection — step-by-step checklists that teach as you go. Beginner Mode explains each item instead of just checking it.",
+        ["Step-by-step guidance", "Beginner Mode explanations", "Seasonal workflows", "Inspection checklists"],
+        shot="/images/screen-app-checklists.png", alt=True)
+    + feature_section("Wizards",
+        "Planner Pro, symptom decoder, buying advisor, winterization planner, float plan, compliance, manual finder, and DIY library — guided flows that turn questions into answers.",
+        ["Planner Pro", "Symptom decoder", "Buying advisor", "Winterization planner", "Float plan generator"],
+        shot="/images/screen-smp-plan.png")
+    + feature_section("Safety Tools",
+        "Emergency 'What to do if…' with GPS share, float plans, due-soon notifications, and a Boat Health Score that catches problems before they strand you.",
+        ["Emergency guidance", "GPS share", "Boat Health Score", "Safety notifications"],
+        shot="/images/screen-portal-health.png", alt=True)
+    + feature_section("Works Without a Signal",
+        "Every feature works with zero signal — your data lives on your device, no cloud required. The <a href=\"/ai.html\">AftLog AI assistant</a> reaches the server when you're connected and uses on-device guidance when you're not.",
+        ["Works without a signal", "On-device storage", "On-device guidance when offline", "Zero cloud dependency"])
+    + feature_cards([
+        ("🧾", "Maintenance History", ["Every service recorded", "Cost insights over time"]),
+        ("🚤", "Trip Log", ["GPS or odometer trips", "Season stats"]),
+        ("⛽", "Fuel Log", ["Fills + odometer", "Real km/L learning"]),
+        ("🚢", "Boat Profiles", ["Multiple boats", "Per-boat records"]),
+        ("🔩", "Parts & Intervals", ["Parts per boat", "Interval reminders"]),
+        ("🗓️", "Smart Planner", ["Prioritized plan", "Seasonal readiness"]),
+        ("🩺", "Diagnostics", ["Symptom decoder", "Likely causes in order"]),
+        ("📖", "Manual Extraction", ["Attach your manual", "Page-cited guidance"]),
+        ("📷", "Photo Assist", ["Point at the engine", "Visual Engine Assist"]),
+        ("🧭", "Float Plans", ["Share your plan", "GPS share"]),
+        ("✅", "Compliance", ["Required gear", "Local rules"]),
+        ("🛠️", "DIY Library", ["Step-by-step jobs", "Safety first"]),
+        ("🌱", "Beginner Mode", ["Simplified dashboard", "Teaches as you go"]),
+        ("📴", "Offline Mode", ["Zero signal needed", "On-device guidance"]),
+        ("💬", "Ask AftLog (AI)", ["Plain-language answers", "Grounded in your boat"]),
+    ])
+    + (f"<section class=\"section section--alt pg-cta\"><div class=\"container\" style=\"text-align:center\">"
+       f"<h2>Free to start. Pro for life.</h2>"
+       f"<p class=\"sec-intro\" style=\"margin-left:auto;margin-right:auto\">One-time $29 lifetime Pro unlocks everything — no subscription, no ads.</p>"
+       f"<p><a class=\"btn btn-primary\" href=\"/pricing.html\">See Pricing</a></p></div></section>"),
 )
 
 # /ai

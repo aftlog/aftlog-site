@@ -1425,6 +1425,38 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 53 — DEEPSEEK STEP 7.3: /features.html hybrid rebuild
+
+**Goal (DEEPSEEK block):** rebuild /features.html as a hybrid layout —
+full-width major-feature sections + a scannable card grid — with the
+unified brand header at top. No backend/global-token changes, no other
+pages touched.
+
+**What was done (aftlog-site, pushed):**
+- **Structure per spec:** brand header (STEP 7.2, already injected) →
+  H1 'Features' → six full-width sections with Louis's exact copy:
+  Maintenance Logging (dashboard shot), Fuel & Range Intelligence,
+  Checklists (checklists shot), Wizards (planner shot), Safety Tools
+  (boat-health shot), Works Without a Signal → 15-card grid ('Every tool,
+  in one place') → CTA 'Free to start. Pro for life.' → See Pricing.
+- **Hybrid layout helpers** added to the generator (feature_section /
+  feature_cards) + page-scoped CSS (.pg-feature-grid two-col, .pg-feature-
+  shot, .pg-card-grid 3→2→1 responsive, .pg-cta) — canonical palette only.
+- **Copy lint:** the spec's exact text tripped the site's own forbidden-
+  terms gate ('fallback', 'offline-first') — minimally reworded ('uses
+  on-device guidance when you're not', 'Works without a signal') while
+  keeping the meaning; lint clean.
+- **Verified:** brand slogan before H1 ✓ · H1 'Features' ✓ · 6 sections ✓ ·
+  15 cards ✓ · 4 screenshots (all existing assets) ✓ · CTA → /pricing.html ✓
+  · HTML well-formed ✓ · site_check ALL PASS (~170) · lint clean.
+
+**⚠ Deploy still pending the GitHub Actions outage** (Partial System
+Outage since Step 10 — every Pages run fails at 'Set up job'; CI passes).
+The live site will show 7.1 + 7.2 + 7.3 together once it clears (Re-run
+jobs or an empty commit).
+
+---
+
 ## 2026-08-17 — Session 52 — DEEPSEEK STEP 7.2: global hero logo + slogan header
 
 **Goal (DEEPSEEK block):** the large AftLog logo + slogan block (previously
