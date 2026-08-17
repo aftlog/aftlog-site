@@ -58,7 +58,7 @@ def footer() -> str:
   <div class="container footer-grid">
     <div class="footer-col">
       <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
-      <p>Keeping your boat shipshape. Offline-first boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+      <p>Keeping your boat shipshape. Works without a signal. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
     </div>
     <div class="footer-col">
       <h4>Product</h4>
@@ -234,7 +234,7 @@ def register(slug, title, desc, body, active=None):
 register(
     "features",
     "AftLog Features — Checklists, Logs, Wizards, Safety Tools",
-    "Explore all AftLog features for boat owners: maintenance logging, checklists, wizards, safety tools, and offline-first architecture.",
+    "Explore all AftLog features for boat owners: maintenance logging, checklists, wizards, safety tools, and a no-signal-required design.",
     hero("Everything you need to keep your boat shipshape",
          "Logging, checklists, planning, and safety tools — built to work even with zero signal.")
     + section("Maintenance logging", """<p>Track every service, part, and interval for each boat. AftLog learns your engine's real hours and tells you what's due — spark plugs at 200 hours, impellers on schedule, lower-unit oil when it's time.</p>
@@ -242,7 +242,7 @@ register(
     + section("Checklists", """<p>Launch, retrieve, towing, winterization, spring prep, and used-boat inspection — step-by-step checklists that teach as you go. Beginner Mode explains each item instead of just checking it.</p>""")
     + section("Wizards", """<p>Planner Pro, symptom decoder, buying advisor, winterization planner, float plan, compliance, manual finder, and DIY library — guided flows that turn questions into answers.</p>""")
     + section("Safety tools", """<p>Emergency 'What to do if…' with GPS share, float plans, due-soon notifications, and a Boat Health Score that catches problems before they strand you.</p>""")
-    + section("Offline-first architecture", """<p>Every feature works with zero signal — SQLite on your device, no cloud required. The <a href="/ai.html">AftLog AI assistant</a> reaches the server when you're connected and falls back to on-device guidance when you're not.</p>
+    + section("Works without a signal", """<p>Every feature works with zero signal — your data lives on your device, no cloud required. The <a href="/ai.html">AftLog AI assistant</a> reaches the server when you're connected and falls back to on-device guidance when you're not.</p>
       <p>See pricing for the <a href="/pricing.html">free tier and one-time lifetime Pro</a>.</p>"""),
 )
 
@@ -300,7 +300,7 @@ register(
           <li>One boat</li>
           <li>Logbook, fuel &amp; service tracking</li>
           <li>Core checklists</li>
-          <li>Offline-first</li>
+          <li>Works without a signal</li>
         </ul>
       </article>
       <article class="card pg-price-card pg-price-card--pro">
@@ -323,7 +323,7 @@ register(
 
 # /faq
 FAQ_ITEMS = [
-    ("Does AftLog work without internet?", "Yes. AftLog is offline-first: your data lives on your device and every core feature works with zero signal. The AI assistant uses the server when you're connected and falls back to on-device guidance when you're not."),
+    ("Does AftLog work without internet?", "Yes. AftLog works without a signal: your data lives on your device and every core feature works with zero signal. The AI assistant uses the server when you're connected and falls back to on-device guidance when you're not."),
     ("Is AftLog really a one-time purchase?", "Yes. AftLog Pro is $29 one-time for a lifetime license — no subscriptions, no renewals, no ads."),
     ("Which boats does AftLog support?", "Pleasure craft and fishing boats in Canada and the USA — outboard, inboard, and jet drives, from small runabouts to cabin cruisers."),
     ("Is my data private?", "Your data stays on your device. There's no forced account, no cloud dependency, and optional portal sync only sends what you choose."),
@@ -335,7 +335,7 @@ FAQ_ITEMS = [
 register(
     "faq",
     "AftLog FAQ — Common Questions",
-    "Answers to common questions about AftLog: offline-first, safety tools, AI features, the Web Portal, pricing, and support.",
+    "Answers to common questions about AftLog: no-signal use, safety tools, AI features, the Web Portal, pricing, and support.",
     hero("Questions, answered", "The most common questions about AftLog — and straight answers.")
     + section("Frequently asked questions", "".join(
         f'<details class="pg-faq"><summary>{html.escape(q)}</summary><p>{a}</p></details>'

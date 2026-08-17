@@ -13,4 +13,4 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate user-facing copy
         run: |
-          python3 tools/lint_release_notes.py index.html updates/index.html
+          python3 tools/lint_release_notes.py index.html updates/index.html ai.html features.html portal.html pricing.html faq.html support.html privacy.html terms.html blog/index.html blog/winterize.html blog/beginner-checklist.html blog/outboard-oil.html blog/safety-equipment.html
