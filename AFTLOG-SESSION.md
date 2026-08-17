@@ -1425,6 +1425,32 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 63 — DEEPSEEK STEP 8.5: Ramp Mode (app + website)
+
+**Goal (block):** Ramp Mode — a simplified, big-button Launch/Retrieve
+screen, session-only, no help/KB. The app had launch (RampModeScreen) +
+retrieve (RetrieveModeScreen) as separate BigButtonChecklist screens tied
+to the checklist system; STEP 8.5 wants ONE unified, session-only screen
+not tied to the checklist DB.
+
+**App:** rewrote lib/screens/ramp_mode_screen.dart into a unified
+**Launch/Retrieve** screen (SegmentedButton mode toggle; session-only item
+list — launch + retrieve sets per the spec's plug/straps/lights/winch/
+rope style; big tappable check items; per-mode **inline safety reminder**;
+**Ready to launch / Ready to road** banner when all checked with green
+progress; **Reset**). Nothing persisted, no analytics, offline. Wired both
+More entries (launch + retrieve) to the unified screen (retrieve starts in
+Retrieve mode). 2 widget tests (launch flow + ready banner + reset; mode
+switch swaps items). Analyzer clean. App rebuilt **1.108.12+159**.
+**Still not installed** (phone disconnected since Session 61 — 1.108.10/11/12
+all pending).
+
+**Website:** /tools/ramp-mode.html — Launch/Retrieve tabs, big-button
+checklist, inline safety reminder, ready banner, green progress, reset;
+session-only (no storage). site_check ALL PASS (~220); lint clean; pages
+behind the ongoing GitHub Pages outage (pushed + locally verified).
+
+---
 ## 2026-08-17 — Session 62 — DEEPSEEK STEP 8.4: Buying Advisor (app + website)
 
 **Goal (block):** used-boat Buying Advisor — boat type, condition,
