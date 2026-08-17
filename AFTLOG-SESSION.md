@@ -1449,6 +1449,13 @@ new-to-app guidance). No backend/global-token changes; no other pages.
   blog links ✓ · slogan before H1 ✓ · HTML well-formed ✓ · site_check ALL
   PASS (~170) · lint clean.
 
+**Deploy state:** 7.6 (pricing) LANDED LIVE (H1 'Pricing' verified). The
+7.7/7.8 deploy failed twice at runner provisioning — GitHub is still in a
+Partial System Outage (intermittent: some runs get through, most fail).
+Content is committed + CI green; an empty-commit re-trigger was pushed
+(ed4026d0) but also failed. Re-run the Pages job from the Actions tab
+once the outage clears — everything is ready to deploy together.
+
 ---
 
 ## 2026-08-17 — Session 55 — DEEPSEEK STEP 7.6: /pricing.html rebuild (Free vs Lifetime Pro)
