@@ -1425,6 +1425,51 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 48 — DEEPSEEK STEP 8: Portal Homepage v1.111 — the AftLog hub
+
+**Goal (DEEPSEEK block):** the Portal Homepage becomes the central entry
+point connecting App → Portal → Website → Server, using only the server
+proxies (no keys anywhere), preserving the Portal design system (no
+redesign).
+
+**What was built (aftlog_server, pushed; 141 tests green):**
+- **Hub page** web/portal/index.html rewritten (v1.111): hero ('AftLog
+  Portal — Analytics, planning, diagnostics, and boat health…' + buttons
+  View Analytics / Smart Planner / Use Ask AftLog / Visit Website) ·
+  **live data strip** (review count from GET /admin/publish, AI
+  Online/Offline from GET /ai/health, portal version v1.111 hardcoded,
+  server version from GET /status) · feature grid (Analytics, Smart
+  Planner, Maintenance, Boat Health, Diagnostics, Manual Extraction,
+  Imports, Ask AftLog, Pro & Settings, Support) · **Ask AftLog widget**
+  with ask/diagnostics/planner presets (POST /ai/gemini + dev key +
+  extra.continue; offline + unreachable messages) · analytics summary ·
+  planner panel · imports panel · ecosystem links (website pages + app
+  Play/sideload) · full footer (Home/Features/AI/Portal/Pricing/FAQ/
+  Support/Blog/Privacy/Terms/Portal login + versions).
+- **New read-only endpoints** (no proxy changes): GET /ai/health
+  (AiProxyService.available → online/offline) and GET /status
+  (portalVersion v1.111, aiAvailable, publisherAvailable). +4 tests.
+- **portal.js**: NAV gains Imports (Overview), Ask AftLog + Diagnostics
+  (Tools), a Site group (Website/Pricing/Support/Blog); the shell footer
+  upgraded to a links footer + version on every portal page.
+- **New page** web/portal/imports.html (Send to Web Portal flow + bundle
+  API + recent imports) + /portal/imports route registered.
+- **portal.css**: hub-* classes (hero, data strip, AI widget, footer)
+  built on the canonical palette — portal light surface #EDEDF2 per
+  Session 38 (the website's own surface is #F5F5F7).
+- **Test matrix** tools/portal_check.py — 40+ structural + live checks:
+  homepage, metadata (title/description/canonical), widget, badge, AI
+  health, all nav/footer links, NO forbidden tokens in web/portal (0),
+  design tokens, live endpoints. ALL PASS. (Lighthouse #20 is a browser
+  test — run manually.)
+
+**Live-verified:** /portal/ (hub), /portal/imports, /status, /ai/health
+all 200; hub HTML carries the proxy refs + metadata; router test updated
+for the hub (the old 'Welcome back' assertion). Manual-generator 302 =
+Pro gate (by design).
+
+---
+
 ## 2026-08-17 — Session 47 — DEEPSEEK STEP 7: multi-page SEO website + server-proxy integration + portal linkage
 
 **Goal (DEEPSEEK block):** rebuild aftlog.com as a full multi-page,
