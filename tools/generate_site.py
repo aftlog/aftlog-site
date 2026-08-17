@@ -717,6 +717,89 @@ register("blog/battery-care-small-boats", "Boat Battery Care Guide — Charging,
          active="/blog/")
 
 
+register("blog/engine-wont-start", "Outboard Won't Start — Step-by-Step Troubleshooting Guide for Small Boats", "Learn what to do when your outboard won't start, the most common causes, how to troubleshoot safely on the water, and when to call for help.",
+         article("engine-wont-start", "How to Handle an Engine That Won't Start",
+                 "Few moments in boating are more frustrating than an engine that won't start. Here's the calm, step-by-step process every boater should follow to diagnose the problem and get back underway safely.",
+                 "Safety", """<img class="blog-hero" src="/images/screen-engine-wont-start.png" alt="Marine electrical system diagram — battery power is the first thing to check when an engine won't start" loading="lazy">
+      <p>Few moments in boating are more stressful than turning the key — or pressing the start button — and hearing nothing. No crank. No click. No ignition. Just silence. Whether you're at the dock, at the ramp, or drifting offshore, an engine that won't start can turn a great day into a tense one.</p>
+      <p>The good news is that most \u201cwon't start\u201d situations are caused by simple, fixable issues. With a calm, methodical approach, you can diagnose the problem quickly and often get the engine running again without tools or technical knowledge.</p>
+      <h2>Stay Calm and Think Systematically</h2>
+      <p>When an engine won't start, panic is your enemy. Outboards are simple machines. They need only three things to start: spark, fuel, and air — plus, rarely, compression. And before any of that, they need electrical power and the safety interlocks satisfied.</p>
+      <p>Most starting failures fall into one of these categories: battery or electrical issue, kill-switch or safety interlock, fuel delivery problem, flooding, vapor lock, starter motor or solenoid issue, or an ignition-system fault.</p>
+      <h2>Step 1 — Check the Kill-Switch (Most Common Cause)</h2>
+      <p>The kill-switch lanyard is responsible for more \u201cwon't start\u201d situations than any other single cause. Make sure the lanyard is clipped in properly — even a slightly loose clip prevents starting. Check for hidden kill-switches: some boats have a helm kill-switch, stern kill-switch, wireless fob kill-switch, or neutral-safety interlock. If any are tripped, the engine will not crank. Typical symptoms are no crank, no click, gauges may still power on, and the starter does nothing. If the kill-switch is the problem, fixing it often restores immediate starting.</p>
+      <h2>Step 2 — Check Battery Power</h2>
+      <p>If the kill-switch is fine, the next most common issue is battery power. Turn on accessories — do the lights, horn, or electronics work? If everything is dead, the battery is fully discharged or disconnected. If accessories work but the engine won't crank, the battery may be weak, corroded, poorly connected, or unable to supply starter current. Check the terminals for corrosion, loose clamps, broken wires, or frayed cables. Tighten terminals firmly; corrosion can be cleaned with a knife, key, or even a coin in an emergency. If the engine cranks now, the issue was a loose or corroded connection.</p>
+      <h2>Step 3 — Check the Gear Selector</h2>
+      <p>Outboards will not start unless the gear selector is in neutral. Move the shifter firmly into neutral — sometimes the detent is soft or misaligned. Try wiggling slightly while starting. Symptoms of a neutral-safety issue are no crank, no click, working gauges, and a fine battery. If the engine starts after adjusting the shifter, the neutral-safety switch was the culprit.</p>
+      <h2>Step 4 — Check the Fuel System</h2>
+      <p>If the engine cranks but won't start, the issue is usually fuel: check the fuel level; check the fuel line for kinks, disconnected fittings, or a collapsed hose; and check the primer bulb — it should be firm when squeezed (if soft, squeeze until firm, listen for fuel entering the engine, and check for air leaks at fittings). Check the tank vent — a closed vent causes vacuum lock (symptoms: engine starts then dies, bulb collapses, fuel flow stops). And check the fuel filter — if you have a clear bowl, look for water, debris, or phase-separated ethanol.</p>
+      <h2>Step 5 — Check for Flooding</h2>
+      <p>Flooding happens when too much fuel enters the cylinders. Symptoms include a strong fuel smell, the engine cranking but not firing, sputtering, and wet spark plugs. To clear flooding: open the throttle fully (fast idle lever or throttle-only mode), crank for 5–10 seconds, release the throttle, then try starting normally.</p>
+      <h2>Step 6 — Check for Vapor Lock (Hot Restart Problems)</h2>
+      <p>Vapor lock occurs when fuel vaporizes in the lines on hot days: the engine ran fine earlier, won't restart after sitting hot, the bulb is soft, and it sputters but won't fire. Fix: squeeze the primer bulb until firm, open the tank vent, wait 2–3 minutes, and try starting again.</p>
+      <h2>Step 7 — Check the Starter Motor and Solenoid</h2>
+      <p>If you hear a click, repeated clicking, or slow cranking, the starter or solenoid may be the issue. Try tapping the starter lightly (sometimes brushes stick), check battery voltage again (low voltage causes slow cranking), and check the main fuse — a blown fuse can prevent starter engagement.</p>
+      <h2>Step 8 — Check Spark</h2>
+      <p>If the engine cranks but won't fire, spark may be the issue — symptoms are normal cranking, no ignition, no sputter, and no attempt to fire. Possible causes are fouled spark plugs, a failed ignition coil, water intrusion, or damaged plug wires. Removing and inspecting one plug can reveal the issue.</p>
+      <h2>Step 9 — If You're on the Water</h2>
+      <ol class="pg-list"><li><strong>Drop anchor if possible</strong> — prevents drifting into hazards.</li><li><strong>Turn on your radio</strong> — monitor channel 16.</li><li><strong>Notify someone if needed</strong> — a simple \u201cengine trouble, anchored, troubleshooting\u201d message is enough.</li><li><strong>Keep calm</strong> — most issues are fixable.</li></ol>
+      <h2>Step 10 — When to Call for Help</h2>
+      <p>Call for assistance if you smell burning, the engine overheated, you struck something, the starter smokes, the battery is completely dead, fuel is leaking, you're drifting into danger, or the weather is worsening. Safety first — engines can be repaired, people cannot.</p>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog's diagnostic tools help you identify symptoms, follow step-by-step troubleshooting, log engine behavior, track battery health, track fuel-system maintenance, store photos of plugs, filters, and terminals, and know when professional service is needed.</p>
+      <h2>Checklist: Engine Won't Start</h2>
+      <ul class="pg-list"><li>Check the kill-switch</li><li>Check battery power</li><li>Check the terminals</li><li>Check the gear selector</li><li>Check fuel level</li><li>Check the primer bulb</li><li>Check the tank vent</li><li>Check for flooding</li><li>Check for vapor lock</li><li>Check the spark plugs</li><li>Check the starter motor</li><li>Anchor if drifting</li><li>Call for help if unsafe</li></ul>
+      <h2>Summary</h2>
+      <p>An engine that won't start is frustrating, but rarely catastrophic. With a calm, systematic approach, you can diagnose most issues quickly and often get back underway without tools. By understanding the common causes — kill-switch, battery, fuel, flooding, vapor lock — you'll be prepared for the moment every boater eventually faces.</p>
+      <p>AftLog guides you through the process step-by-step, so you're never alone when your engine refuses to start.</p>""",
+                 '<li><a href="overheating-on-the-water.html">Overheating on the water: what to do</a></li><li><a href="spark-plug-intervals.html">Spark plug intervals explained</a></li><li><a href="lower-unit-service.html">Lower-unit service: when and why</a></li>'),
+         active="/blog/")
+
+register("blog/overheating-on-the-water", "Outboard Overheating Guide — What to Do, Causes, and How to Prevent Damage", "Learn what to do when your outboard overheats, the warning signs, the most common causes, and how to safely cool the engine and prevent long-term damage.",
+         article("overheating-on-the-water", "Overheating on the Water: What to Do",
+                 "When your outboard overheats, every second counts. Here's how to respond calmly, diagnose the cause, protect your engine, and get back underway safely.",
+                 "Safety", """<img class="blog-hero" src="/images/screen-overheating.png" alt="Cooling-system diagram — the tell-tale and water flow that warn of overheating" loading="lazy">
+      <p>An overheating outboard is one of the most urgent problems a boater can face. When the temperature alarm sounds or the tell-tale stream weakens, you have only minutes to act before serious damage occurs. Overheating can warp heads, melt pistons, destroy thermostats, and cause thousands of dollars in repairs.</p>
+      <p>The good news is that most overheating events are caused by simple, fixable issues — and if you respond quickly and calmly, you can often resolve the problem on the water and prevent long-term damage. This guide explains what to do when your outboard overheats, the most common causes, how to diagnose the issue, and how to prevent overheating in the future.</p>
+      <h2>Recognizing Overheating Symptoms</h2>
+      <ol class="pg-list"><li><strong>Temperature alarm</strong> — a loud, continuous beep or tone; the most reliable warning.</li><li><strong>Reduced power / limp mode</strong> — the engine automatically reduces RPM to protect itself.</li><li><strong>Weak or no tell-tale stream</strong> — cooling water flow is reduced or missing.</li><li><strong>Steam from the tell-tale</strong> — indicates hot water and restricted flow.</li><li><strong>Hot engine cover</strong> — if the cowling feels unusually hot, shut down immediately.</li><li><strong>Rough idle or stalling</strong> — overheating can affect combustion.</li></ol>
+      <p>If you notice any of these signs, act immediately.</p>
+      <h2>Step 1 — Shut Down the Engine Immediately</h2>
+      <p>Continuing to run an overheating engine can cause catastrophic damage. Turn off the engine as soon as the alarm sounds — do not try to \u201climp back\u201d unless you are in immediate danger. Drop anchor if drifting to prevent drifting into hazards while you troubleshoot.</p>
+      <h2>Step 2 — Check the Tell-Tale Stream</h2>
+      <p>The tell-tale is your window into the cooling system. A strong stream means the issue may be internal (thermostat, sensor, blockage). A weak or sputtering stream likely means impeller wear or partial blockage. No stream means cooling water is not reaching the engine — shut down immediately. Steam means water is entering but not circulating properly.</p>
+      <h2>Step 3 — Inspect the Water Intake</h2>
+      <p>Most overheating events are caused by blocked intakes. Check for weeds, mud, sand, plastic bags, fishing line, or debris. Clear the intake manually — with a stick, knife, or your hand (carefully). Restart briefly to check the tell-tale; if the stream returns strong, the blockage was the cause.</p>
+      <h2>Step 4 — Squeeze the Primer Bulb</h2>
+      <p>A soft primer bulb can indicate fuel vapor lock or air in the line, which can indirectly cause overheating by reducing engine RPM and water-pump speed. If the bulb is soft, squeeze until firm, check for leaks, and restart while monitoring the tell-tale.</p>
+      <h2>Step 5 — Check for Shallow Water or Sand Ingestion</h2>
+      <p>Running in shallow water can suck sand into the cooling system — symptoms are a weak tell-tale, sputtering flow, overheating at idle, and debris in the stream. If you suspect sand ingestion: shut down, tilt the engine up, inspect the intakes, and restart briefly to flush. If the tell-tale stays weak, the impeller may be damaged.</p>
+      <h2>Step 6 — Check the Impeller</h2>
+      <p>The impeller is the heart of the cooling system — if it fails, overheating is inevitable. Symptoms of impeller failure are a weak or no tell-tale, overheating at low RPM, steam, and recent sandy or weedy conditions. If the impeller is the cause, you cannot fix it on the water — return to shore at idle or be towed.</p>
+      <h2>Step 7 — Check the Thermostat</h2>
+      <p>Thermostats regulate engine temperature. If one sticks closed, overheating occurs quickly. Symptoms are a strong tell-tale, overheating at mid-range RPM, normal idle temperature, and a sudden alarm after acceleration. Thermostat issues require service but are not usually catastrophic if caught early.</p>
+      <h2>Step 8 — Check for Internal Blockages</h2>
+      <p>Salt, scale, or debris can clog cooling passages. Symptoms are a strong tell-tale, persistent overheating, steam, and inconsistent temperature. This requires professional flushing.</p>
+      <h2>Step 9 — Let the Engine Cool</h2>
+      <ol class="pg-list"><li>After shutting down, <strong>wait 10–15 minutes</strong> and let the engine cool naturally.</li><li><strong>Do not pour cold water on the engine</strong> — rapid cooling can crack components.</li><li><strong>Restart briefly to test</strong> — if the tell-tale is strong and the alarm stays off, you may continue at reduced speed.</li></ol>
+      <h2>Step 10 — Return to Shore Safely</h2>
+      <p>If the engine continues to overheat: idle back slowly (low RPM reduces heat load), avoid planing (high RPM increases cooling demand), and if overheating persists at idle, shut down and call for assistance.</p>
+      <h2>Common Causes of Overheating</h2>
+      <ol class="pg-list"><li>Blocked water intake — weeds, mud, sand, debris</li><li>Worn impeller — most common cause of persistent overheating</li><li>Thermostat failure — stuck closed or clogged</li><li>Sand ingestion — clogs passages and damages the impeller</li><li>High RPM in hot weather — cooling demand exceeds supply</li><li>Low engine RPM due to fuel issues — weak cooling flow</li><li>Internal blockage — salt, scale, corrosion</li><li>Sensor failure — false alarms (rare)</li></ol>
+      <h2>How to Prevent Overheating</h2>
+      <ol class="pg-list"><li>Replace the impeller every 2–3 years — more often in sandy or shallow water</li><li>Avoid running in very shallow water</li><li>Inspect intakes regularly — especially after beaching or weed beds</li><li>Keep the tell-tale clean — salt can clog the outlet</li><li>Flush the engine after saltwater use</li><li>Replace the thermostat every 3–5 years</li><li>Maintain the fuel system — weak RPM reduces cooling flow</li><li>Log overheating events in AftLog</li></ol>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog automatically tracks impeller intervals, logs overheating events, stores photos of tell-tale flow, notes symptoms of cooling issues, reminds you when service is due, provides step-by-step diagnostics, helps identify intake blockages, and tracks thermostat replacement intervals.</p>
+      <h2>Checklist: Overheating Response</h2>
+      <ul class="pg-list"><li>Shut down immediately</li><li>Drop anchor</li><li>Check the tell-tale</li><li>Inspect the water intake</li><li>Clear debris</li><li>Squeeze the primer bulb</li><li>Check for sand ingestion</li><li>Let the engine cool</li><li>Restart briefly</li><li>Idle back if safe</li><li>Call for help if overheating persists</li><li>Log the event in AftLog</li></ul>
+      <h2>Summary</h2>
+      <p>Overheating is one of the most urgent problems an outboard can face, but most causes are simple and fixable. By responding quickly — shutting down, checking the tell-tale, clearing the intake, and inspecting the impeller — you can often resolve the issue on the water and prevent long-term damage. With proper maintenance and awareness, overheating becomes a rare event.</p>
+      <p>AftLog guides you through the process step-by-step, so you're never alone when temperatures rise.</p>""",
+                 '<li><a href="engine-wont-start.html">How to handle an engine that won\'t start</a></li><li><a href="impeller-replacement.html">Impeller replacement: symptoms and timing</a></li><li><a href="battery-care-small-boats.html">Battery care for small boats</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
@@ -726,8 +809,8 @@ BLOG_ARTICLES = [
     ("Impeller replacement: symptoms and timing", "Weak tell-tale? It's usually the impeller. Here's when to change it.", "Maintenance", "/blog/impeller-replacement.html", "/images/screen-impeller.png"),
     ("Battery care for small boats", "Charge, store, and check — batteries die in the off-season, not on the water.", "Maintenance", "/blog/battery-care-small-boats.html", "/images/screen-battery-care.png"),
     ("Boat safety equipment list", "What to carry on board — and how to check it before every launch.", "Safety", "/blog/safety-equipment.html", "/images/screen-portal-health.png"),
-    ("How to handle an engine that won't start", "A calm, ordered checklist for the most frustrating moment in boating.", "Safety", None, None),
-    ("Overheating on the water: what to do", "Recognize it early and know when to stop — before it becomes a big repair.", "Safety", None, None),
+    ("How to handle an engine that won't start", "A calm, ordered checklist for the most frustrating moment in boating.", "Safety", "/blog/engine-wont-start.html", "/images/screen-engine-wont-start.png"),
+    ("Overheating on the water: what to do", "Recognize it early and know when to stop — before it becomes a big repair.", "Safety", "/blog/overheating-on-the-water.html", "/images/screen-overheating.png"),
     ("How to build a float plan", "Tell someone where you're going — it takes two minutes and saves lives.", "Safety", None, None),
     ("Launch checklist: the complete guide", "Plug, pump, battery, gear — everything checked before you leave the ramp.", "Checklists", None, None),
     ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", None, None),
