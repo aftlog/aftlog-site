@@ -190,6 +190,27 @@ def main():
               c.count(">Keeping your boat shipshape!</span>") == 1,
               f"count={c.count('>Keeping your boat shipshape!</span>')}")
 
+    # 13. Blog hub (STEP 7.9)
+    print("— blog hub")
+    blog = ROOT / "blog" / "index.html"
+    if blog.exists():
+        bc = blog.read_text(encoding="utf-8")
+        check("blog: featured row (3)", bc.count("pg-featured-card") == 3,
+              f"count={bc.count('pg-featured-card')}")
+        check("blog: 6 category buttons",
+              bc.count('class="pg-cat-btn') == 6,
+              f"count={bc.count('class=\"pg-cat-btn')}")
+        grid_cards = len(re.findall(r'<a class="pg-blog-card|<div class="pg-blog-card', bc))
+        titles = set(re.findall(r'pg-blog-card[^>]*>.*?<h3>([^<]+)</h3>', bc, re.S))
+        check("blog: 20 unique article cards", len(titles) == 20,
+              f"count={len(titles)} (grid renders {grid_cards} incl. 3 featured repeats)")
+        check("blog: filter script present", "pg-cat-btn" in bc and "addEventListener" in bc)
+        check("blog: CTA to support+faq", "/support.html" in bc and "/faq.html" in bc)
+        # every linked blog card target must exist
+        for m in re.finditer(r'href="(/blog/[a-z-]+\.html)"', bc):
+            t = ROOT / m.group(1).lstrip("/")
+            check(f"blog link {m.group(1)} exists", t.exists())
+
     print()
     if FAILS:
         print(f"FAILED: {len(FAILS)} check(s): {FAILS}")

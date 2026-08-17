@@ -1425,6 +1425,38 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 57 — DEEPSEEK STEP 7.9: /blog/index.html hybrid hub rebuild
+
+**Goal (block):** rebuild the blog index as a modern hybrid hub — featured
+row, horizontal clickable category bar, 20-article grid, CTA. No
+backend/global-token changes; no other pages altered.
+
+**What was done (aftlog-site, pushed):**
+- **Structure:** brand header → H1 'Latest Articles' → Featured row (3:
+  winterize, beginner checklist, AI assistant) → horizontal category bar
+  (All + Maintenance/Safety/Checklists/Seasonal prep/AI & Portal) with
+  an inline no-backend filter (click a category → grid filters) →
+  20-article responsive grid (3/2/1 cols) with thumbnails, category tags,
+  titles + blurbs → CTA 'Support' + 'FAQ'.
+- **20 articles:** 7 Maintenance, 4 Safety, 3 Checklists, 3 Seasonal
+  prep, 3 AI & Portal. Only 4 exist as real pages — the other 16 render
+  as 'Coming soon' cards (no broken links). 3 outline articles map
+  naturally to existing pages: AI assistant → /ai.html, Boat Health Score
+  + Year in Review → /portal.html (linked, not dead).
+- **Category visibility (Section 7):** category tags are accent-colored on
+  white cards; the category BAR is high-contrast (dark section, light
+  text, red active state) — no invisible labels.
+- **CSS:** .pg-featured-row, .pg-cat-bar/btn (hover + active), .pg-thumb,
+  .pg-blog-card (-soon), responsive 3/2/1. Canonical palette only.
+- **Generator:** the blog hub is now a runtime function (blog_hub()) to
+  avoid HTML-in-source quoting issues (apostrophes in blurbs broke string
+  literals on first pass).
+- **site_check:** new blog-hub section (featured 3, 6 category buttons,
+  20 unique article cards, filter script, CTA, every blog link target
+  exists) — ALL PASS (~185 checks). HTML well-formed; lint clean.
+
+---
+
 ## 2026-08-17 — Session 56 — DEEPSEEK STEP 7.7 + 7.8: FAQ + Support full rebuilds
 
 **Goal (blocks):** rebuild /faq.html (structured, full answers, expandable

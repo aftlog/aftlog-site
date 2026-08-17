@@ -502,20 +502,6 @@ register(
 def article_card(slug, title, desc):
     return f'<article class="card"><h3><a href="/blog/{slug}.html">{html.escape(title)}</a></h3><p>{html.escape(desc)}</p></article>'
 
-BLOG_INDEX = (
-    hero("AftLog Blog — Boat Maintenance Tips", "Practical, plain-language articles for boat owners: maintenance, safety, checklists, and seasonal prep.")
-    + section("Latest articles", '<div class="cards cards--two">'
-      + article_card("winterize", "How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.")
-      + article_card("beginner-checklist", "Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.")
-      + article_card("outboard-oil", "How often to change outboard oil", "Intervals, why they matter, and how AftLog tracks them for you.")
-      + article_card("safety-equipment", "Boat safety equipment list", "What to carry on board — and how to check it before every launch.")
-      + "</div>")
-    + section("Categories", """<p><a href="/blog/#maintenance" class="btn btn-secondary btn-sm">Maintenance</a>
-      <a href="/blog/#safety" class="btn btn-secondary btn-sm">Safety</a>
-      <a href="/blog/#checklists" class="btn btn-secondary btn-sm">Checklists</a>
-      <a href="/blog/#seasonal" class="btn btn-secondary btn-sm">Seasonal prep</a></p>""")
-)
-
 
 def article(slug, title, desc, category, body_html, related):
     brand = (
@@ -537,7 +523,81 @@ def article(slug, title, desc, category, body_html, related):
       <h3>Related</h3><ul class="pg-list">{related}</ul>
     </div></section>"""
 
+BLOG_ARTICLES = [
+    ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
+    ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
+    ("How often to change outboard oil", "Intervals, why they matter, and how AftLog tracks them for you.", "Maintenance", "/blog/outboard-oil.html", "/images/screen-smp-plan.png"),
+    ("Lower-unit service: when and why", "Gear oil, seals, and the simple checks that keep your lower unit alive.", "Maintenance", None, None),
+    ("Spark plug intervals explained", "Why 200 hours is the rule, and the symptoms of worn plugs.", "Maintenance", None, None),
+    ("Impeller replacement: symptoms and timing", "Weak tell-tale? It's usually the impeller. Here's when to change it.", "Maintenance", None, None),
+    ("Battery care for small boats", "Charge, store, and check — batteries die in the off-season, not on the water.", "Maintenance", None, None),
+    ("Boat safety equipment list", "What to carry on board — and how to check it before every launch.", "Safety", "/blog/safety-equipment.html", "/images/screen-portal-health.png"),
+    ("How to handle an engine that won't start", "A calm, ordered checklist for the most frustrating moment in boating.", "Safety", None, None),
+    ("Overheating on the water: what to do", "Recognize it early and know when to stop — before it becomes a big repair.", "Safety", None, None),
+    ("How to build a float plan", "Tell someone where you're going — it takes two minutes and saves lives.", "Safety", None, None),
+    ("Launch checklist: the complete guide", "Plug, pump, battery, gear — everything checked before you leave the ramp.", "Checklists", None, None),
+    ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", None, None),
+    ("Used-boat inspection checklist", "The 13-section walkthrough that helps you buy with confidence.", "Checklists", None, None),
+    ("Spring prep: getting your boat ready", "De-winterize, inspect, and launch right the first time.", "Seasonal prep", None, None),
+    ("Fall haul-out checklist", "The off-season routine that makes spring easy.", "Seasonal prep", None, None),
+    ("Fuel storage best practices", "Stabilizer, full tanks, and why ethanol needs a plan.", "Seasonal prep", None, None),
+    ("How AftLog's AI assistant works", "Diagnostics, manual extraction, photo analysis, and predictive alerts.", "AI & Portal", "/ai.html", "/images/screen-vea-result.png"),
+    ("Understanding your Boat Health Score", "What the 0-100 score means and how to raise it.", "AI & Portal", "/portal.html", "/images/screen-portal-year.png"),
+    ("Year in Review: making sense of your season", "Trips, hours, fuel, and milestones — your season at a glance.", "AI & Portal", "/portal.html", "/images/screen-portal-year.png"),
+]
 
+
+def _blog_card(t, b, cat, href, thumb, featured=False):
+    inner = (f'<img class="pg-thumb" src="{thumb}" alt="" loading="lazy">'
+             if thumb else '<div class="pg-thumb pg-thumb-soon"><span>Coming soon</span></div>')
+    inner += f'<span class="pg-cat-tag">{cat}</span><h3>{t}</h3><p>{b}</p>'
+    cls = "pg-blog-card" + (" pg-featured-card" if featured else "")
+    if href:
+        return f'<a class="{cls}" data-cat="{cat.lower()}" href="{href}">{inner}</a>'
+    return f'<div class="{cls} pg-blog-card-soon" data-cat="{cat.lower()}">{inner}</div>'
+
+
+def blog_hub():
+    feat_names = ("How to winterize your boat",
+                  "Boat maintenance checklist for beginners",
+                  "How AftLog's AI assistant works")
+    featured = "".join(_blog_card(*a, featured=True) for a in BLOG_ARTICLES if a[0] in feat_names)
+    cats = ["All", "Maintenance", "Safety", "Checklists", "Seasonal prep", "AI & Portal"]
+    bar = "".join(
+        f'<button type="button" class="pg-cat-btn{" on" if c == "All" else ""}" data-cat="{c.lower()}">{c}</button>'
+        for c in cats)
+    grid = "".join(_blog_card(*a) for a in BLOG_ARTICLES)
+    filter_js = """<script>
+  (function () {
+    var btns = document.querySelectorAll('.pg-cat-btn');
+    var cards = document.querySelectorAll('.pg-blog-card');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+        var cat = b.dataset.cat;
+        cards.forEach(function (c) {
+          c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>"""
+    return (
+        hero("Latest Articles",
+             "Practical, plain-language articles for boat owners: maintenance, safety, checklists, seasonal prep, and the AI Portal.")
+        + section("Featured", f'<div class="pg-featured-row">{featured}</div>')
+        + f'<section class="section section--alt pg-cat-section"><div class="container">'
+        + f'<div class="pg-cat-bar" role="group" aria-label="Filter articles by category">{bar}</div>'
+        + f'<div class="pg-article-grid">{grid}</div></div></section>'
+        + filter_js
+        + section("Need help or have questions?",
+                  '<div class="pg-actions"><a class="btn btn-primary" href="/support.html">Support</a>'
+                  '<a class="btn btn-secondary" href="/faq.html">FAQ</a></div>')
+    )
+
+
+BLOG_INDEX = blog_hub()
 register("blog/index", "AftLog Blog — Boat Maintenance Tips", "Articles for boat owners: maintenance, safety, checklists, and seasonal prep.",
          BLOG_INDEX, active="/blog/")
 
