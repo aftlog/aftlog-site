@@ -29,6 +29,13 @@
   - `screen-fuel-storage.png` — fuel-system diagram (acceptable); needs REAL
     fuel tank / stabilizer-bottle / adding-stabilizer photo if Louis prefers.
   FINAL IMAGE LIST delivered to Louis below.
+  **UPDATE 08-17: 9 app-screen shots now captured live from the connected S23**
+  (launch/retrieve mode, float-plan, used-boat, spring-prep, winterization/fall
+  haul-out, battery, symptom won't-start + overheating) — replaced the generic
+  stand-ins. Still needing Louis's real PHOTOS (no app screen): spark plugs,
+  fuel tank/stabilizer. NOTE: float-plan capture contains real demo boat data
+  (CatchTales/reg ZKG16863M841) — verify Louis is OK publishing or wants a
+  sanitized shot.
   Acceptable as-is (good on-brand diagrams): `screen-lower-unit.png` (gearcase),
   `screen-impeller.png` (water-pump housing). Will re-list all at end of the 13.
 
