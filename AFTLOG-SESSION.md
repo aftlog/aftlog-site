@@ -1425,6 +1425,42 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 70 — DEEPSEEK STEP 8.12–8.20: Screens 4/4 websites (Compliance · Manual Finder · DIY · Battery · Glossary)
+
+**Goal (combined block):** mirror the remaining app screens on the website.
+**App side — confirmed, no code change:** all 9 screens already exist and are
+dispatched from More → Tools (verified in repo): winterization_planner_screen,
+float_plan_screen, compliance_screen, manual_finder_screen, diy_library_screen,
+battery_electronics_screen, glossary_screen, more_screen + seasonal_service
+(winterization_planner_screen hosts the forgotten-winterization warning).
+
+**Website (this session):** 5 new tool pages built in `tools/generate_site.py`
+(mirroring the app data exactly) + registered in `site_check.py`:
+- **tools/compliance.html** — starter Canada/Manitoba rules (registration,
+  operator card, PFDs, safety gear, trailer brakes, plate/insurance) mirrored
+  from `complianceRules` + renewal-reminders note + safety-gear CTA.
+- **tools/manual-finder.html** — 6 categories / 37 sources (OEM engines, general
+  libraries, paid, builders, trailers, electronics) mirrored from
+  `manualCategories`; live client-side search (`mf-search`). Find + link only.
+- **tools/diy-library.html** — 8 step-by-step articles (impeller, gelcoat,
+  gear oil, trailer bearings, bilge pump, battery, small-outboard winterize,
+  vinyl) mirrored from `diyArticles`.
+- **tools/battery-electronics.html** — battery/electronics tracker (localStorage
+  add/edit/remove, 6 defaults from the app) + voltage-drop & cable-sizing
+  guidance linking calculators.html#cal-5 + 4–5 yr battery-life tip.
+- **tools/glossary.html** — 56-term bilingual glossary (plain talk + pro)
+  mirrored from `glossary_terms.dart`; live search (`gl-search`).
+Block 8.12/8.13/8.14/8.20 were **already covered** by the existing
+winterization-planner.html (incl. its "Forgot to winterize?" warning) and
+float-plan.html + checklists/winterization.html (seasonal) — verified, no
+change needed.
+
+**QA:** site_check now **~265 checks ALL PASS**; copy-lint clean (15 files) —
+one glossary phrase (Transom "red flag") reworded to "warning sign" to satisfy
+the developer-term lint; generator + all 5 pages well-formed (cards/sections/
+scripts verified). Only static HTML/JS — no keys, no server calls.
+
+---
 ## 2026-08-17 — Session 69 — DEEPSEEK STEP 8.11: Trip Pattern Engine (app + website)
 
 **Goal (block):** analyze trip logs to compute usage totals, averages,

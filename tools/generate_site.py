@@ -24,6 +24,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PORTAL = os.environ.get("PORTAL_BASE", "https://portal.aftlog.com").rstrip("/")
 DEV_KEY = os.environ.get("AFTLOG_DEV_KEY", "aftlog-dev")
 
+
+def esc(s):
+    return html.escape(s)
+
 # ── Shared navigation ──────────────────────────────────────────────────
 NAV = [
     ("/", "Home"),
@@ -1571,6 +1575,301 @@ def generate_help(rooot=ROOT):
 """
     write("help/help.js", js)
     print(f"  help: {len(topics)} topics, {len(cats)} categories")
+
+
+# ── STEP 8.15–8.20: Compliance / Manual Finder / DIY / Battery / Glossary ──
+
+def _compliance_body():
+    rules = [
+        ("Registration", "In Canada, recreational boats under 15 gross tonnes are registered provincially (licence numbers) — federal Pleasure Craft Licence is the standard. Renewal is typically every 10 years for the PLC, or yearly for provincial stickers where applicable."),
+        ("Operator card", "Anyone born after April 1, 1983 needs a Pleasure Craft Operator Card in Canada. Carry it aboard."),
+        ("PFDs", "One properly-fitting lifejacket/PFD per person, plus one buoyant heaving line and one throwable (if over 6 m). Children under 13 must wear theirs."),
+        ("Safety gear", "Sound-signalling device, flashlight or flares, fire extinguisher (type 5B:C if motorized), and a bailer or bilge pump."),
+        ("Trailer brakes", "Provincial rules vary, but Manitoba requires brakes on trailers above 1,361 kg — check your province's threshold."),
+        ("Licence plate / insurance", "Trailers need plates; boat insurance is optional by law in most provinces but required by many marinas and lenders."),
+    ]
+    cards = "".join(
+        f'<article class="cal-card"><h2>{t}</h2><p class="pg-muted">{d}</p></article>'
+        for t, d in rules)
+    return (
+        hero("Compliance", "Registration, safety gear, and the boating rules that keep you legal — and covered.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Starter guide for Canada / Manitoba boating law. Check your province for the exact numbers.</p>'
+        + '<p><a class="btn btn-primary" href="/blog/safety-equipment.html">See the safety equipment list</a></p>'
+        + cards
+        + '</div></section>'
+        + section("Renewal reminders", "<p>Add your registration and insurance documents under a boat \u2192 Documents, with expiry dates. AftLog reminds you before they lapse.</p>")
+    )
+
+
+register("tools/compliance", "AftLog Compliance — Boating Rules & Safety Gear",
+         "Canada/Manitoba boating compliance starter guide: registration, operator card, PFDs, safety gear, trailer brakes, and insurance rules.",
+         _compliance_body())
+
+
+_MANUAL_CATS = [
+    ("Engine manuals — free (OEM)", [
+        ("Mercury Marine", "https://www.mercurymarine.com/en/us/parts-and-service", "Searchable by serial number"),
+        ("Yamaha Outboards", "https://www.yamaha-motor.ca/en/products/boating", "All models, incl. older"),
+        ("Honda Marine", "https://marine.honda.com/support", "Straightforward PDF downloads"),
+        ("Suzuki Marine", "https://suzukimarine.com/owners-zone/", "Owner + service manuals"),
+        ("Evinrude / BRP", "https://www.evinrude.com", "Discontinued but still hosted"),
+        ("Volvo Penta", "https://www.volvopenta.com", "Gas, diesel, sterndrive, IPS"),
+        ("Mercury MerCruiser", "https://www.mercurymarine.com/en/us/parts-and-service", "Inboard/sterndrive"),
+        ("Tohatsu", "https://www.tohatsu.com/tech_info/index.html", ""),
+    ]),
+    ("General manual libraries", [
+        ("ManualsLib", "https://www.manualslib.com", "Boats, outboards, electronics, trailers, safety gear"),
+        ("ManualsOnline", "https://www.manualsonline.com", "Consumer-electronics heavy"),
+        ("BoatInfo.no", "https://boatinfo.no", "Huge archive — old Johnson/Evinrude, wiring diagrams. Hidden gem"),
+    ]),
+    ("Professional manuals (paid)", [
+        ("Seloc", "https://www.selocmarine.com", "Outboards, inboards, sterndrives, jet — digital or print"),
+        ("Clymer", "https://www.clymer.com", "Similar coverage, often more readable"),
+        ("BoatUS", "https://www.boatus.com", "Specialty manuals and guides"),
+    ]),
+    ("Boat builders", [
+        ("Lund", "https://www.lundboats.com", ""), ("Alumacraft", "https://www.alumacraft.com", ""),
+        ("Crestliner", "https://www.crestliner.com", ""), ("Tracker", "https://www.trackerboats.com", ""),
+        ("Bayliner", "https://www.bayliner.com", ""), ("Sea Ray", "https://www.searay.com", ""),
+        ("Bennington (pontoon)", "https://www.benningtonmarine.com", ""), ("Princecraft (pontoon)", "https://www.princecraft.com", ""),
+    ]),
+    ("Trailers", [
+        ("ShoreLand'r", "https://www.shorelandr.com", ""), ("EZ Loader", "https://www.ezloader.com", ""),
+        ("Karavan", "https://www.karavantrailers.com", ""), ("Load Rite", "https://www.loadrite.com", ""),
+    ]),
+    ("Electronics & safety", [
+        ("Garmin", "https://support.garmin.com", "Incl. legacy units"),
+        ("Lowrance / Simrad", "https://www.lowrance.com/support", ""),
+        ("Raymarine", "https://www.raymarine.com/manuals", ""),
+        ("Minn Kota", "https://www.minnkotamotors.com/support", "Trolling motors"),
+        ("Standard Horizon (VHF)", "https://www.standardhorizon.com", ""),
+        ("ACR (EPIRB/PLB)", "https://www.acrartex.com", ""),
+        ("Mustang Survival (PFD)", "https://www.mustangsurvival.com", ""),
+    ]),
+]
+
+
+def _manual_finder_body():
+    cats = "".join(
+        '<div class="mf-cat" data-cat="%s"><h2>%s</h2><ul class="pg-list">%s</ul></div>' % (
+            esc(c), esc(c), "".join(
+                '<li class="mf-item"><a href="%s" target="_blank" rel="noopener">%s</a>%s</li>' % (
+                    u, esc(n), (" — " + esc(nt)) if nt else "")
+                for n, u, nt in items)
+        ) for c, items in _MANUAL_CATS)
+    js = """<script>
+(function () {
+  var input = document.getElementById('mf-search');
+  var items = document.querySelectorAll('#mf-list .mf-item');
+  if (input) input.addEventListener('input', function () {
+    var q = (input.value || '').toLowerCase();
+    items.forEach(function (it) { it.style.display = it.textContent.toLowerCase().indexOf(q) === -1 ? 'none' : ''; });
+  });
+})();
+</script>"""
+    return (
+        hero("Manual Finder", "Official manuals and parts sources, grouped by category. Find + link only — never hosted.")
+        + '<section class="section section--light"><div class="container">'
+        + '<label class="pg-hint-label" for="mf-search">Search manuals</label>'
+        + '<input id="mf-search" class="fp-in" type="search" placeholder="e.g. Mercury, Garmin, Lund…" aria-label="Search manuals">'
+        + '<div id="mf-list">' + cats + '</div>'
+        + js
+        + '</div></section>'
+    )
+
+
+register("tools/manual-finder", "AftLog Manual Finder — Official Manuals & Sources",
+         "37 categorized links to OEM and public manual sources: engines, boats, trailers, electronics, and safety gear.",
+         _manual_finder_body())
+
+
+_DIY = [
+    ("Replace the impeller", ["Remove the lower unit.", "Pull the old impeller and note the key orientation.", "Grease the new one lightly and install the same way.", "Reassemble — never run it dry."]),
+    ("Small gelcoat chip repair", ["Sand the chip with 220 grit.", "Clean with acetone.", "Apply gelcoat paste and let it cure.", "Sand 400\u21921200 and polish to blend."]),
+    ("Change lower-unit gear oil", ["Drain the lower unit (check for milky oil = water).", "Fill from the bottom vent until oil appears at the top.", "Replace washers and reinstall screws."]),
+    ("Repack trailer bearings", ["Jack and remove the wheel.", "Pull the hub and bearings.", "Clean, inspect, repack with marine grease.", "Reinstall with proper torque."]),
+    ("Install a bilge pump", ["Mount the pump in the lowest bilge point.", "Wire through a fuse to the battery (auto-float switch recommended).", "Route the hose above the waterline.", "Test with water."]),
+    ("Fix a slow cranking battery setup", ["Clean terminals and check voltage (12.6 V+ charged).", "Test with a load.", "Check the charging system at speed.", "Consider a dual-battery switch."]),
+    ("Winterize a small outboard", ["Run with stabilizer, then disconnect fuel.", "Fog the carb.", "Drain water, change lower-unit oil.", "Store upright with the battery on a maintainer."]),
+    ("Deep-clean and condition vinyl seats", ["Vacuum and brush.", "Clean with vinyl-safe cleaner.", "Condition with UV protectant.", "Cover when not in use."]),
+]
+
+
+def _diy_body():
+    cards = "".join(
+        '<article class="cal-card"><h2>%s</h2><ol class="pg-list">%s</ol></article>' % (
+            esc(t), "".join("<li>%s</li>" % esc(s) for s in steps))
+        for t, steps in _DIY)
+    body = (
+        hero("DIY Library", "Clear, step-by-step repairs and maintenance you can do yourself — with gear you already have.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Starter guides. When in doubt, or for anything involving gas, high voltage, or lift points, see a marine professional.</p>'
+        + '<div class="pg-card-grid">' + cards + '</div>'
+        + '</div></section>'
+    )
+    return body
+
+
+register("tools/diy-library", "AftLog DIY Library — Step-by-Step Repairs",
+         "Eight beginner-friendly DIY guides: impeller, gelcoat, gear oil, trailer bearings, bilge pump, battery, winterizing an outboard, and vinyl care.",
+         _diy_body())
+
+
+_BATTERY_DEFAULTS = [
+    ("Starting battery", "Installed — age unknown"),
+    ("Trolling motor battery", "Not set up"),
+    ("Trolling motor", "Not set up"),
+    ("Transducer / fish finder", "Not set up"),
+    ("Charger", "Not set up"),
+    ("Battery switch", "Not set up"),
+]
+
+
+def _battery_body():
+    defaults = json.dumps(_BATTERY_DEFAULTS)
+    js = (r"""<script>
+(function () {
+  var KEY = 'aftlog_battery_gear';
+  var DEFAULTS = __DEFAULTS__;
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || 'null') || JSON.parse(JSON.stringify(DEFAULTS)); } catch(e){ return JSON.parse(JSON.stringify(DEFAULTS)); } }
+  function save(g){ try { localStorage.setItem(KEY, JSON.stringify(g)); } catch(e){} }
+  var box = document.getElementById('bt-list');
+  function render(){
+    var g = load();
+    box.innerHTML = '';
+    g.forEach(function (it, i) {
+      var row = document.createElement('div'); row.className = 'bt-item';
+      row.innerHTML = '<div><strong>' + String(it[0]) + '</strong><div class="pg-muted">' + String(it[1]) + '</div></div>'
+        + '<div><button type="button" class="btn btn-sm btn-secondary" onclick="btEdit(' + i + ')">Edit</button> '
+        + '<button type="button" class="btn btn-sm btn-secondary" onclick="btRemove(' + i + ')">&times;</button></div>';
+      box.appendChild(row);
+    });
+    window.btGear = g;
+  }
+  window.btEdit = function (i) {
+    var g = load(); var name = g[i][0];
+    var health = prompt('Health / notes for ' + name, g[i][1]);
+    if (health !== null) { g[i][1] = health; save(g); render(); }
+  };
+  window.btRemove = function (i) { var g = load(); g.splice(i,1); save(g); render(); };
+  window.btAdd = function () {
+    var g = load(); var name = prompt('Equipment name', '');
+    if (name && name.trim()) { g.push([name.trim(), 'Not set up']); save(g); render(); }
+  };
+  render();
+})();
+</script>""").replace("__DEFAULTS__", defaults)
+    return (
+        hero("Battery & Electronics", "Track the gear that keeps your boat alive — and size your wiring so it never dies at the dock.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">"Battery dying" is one of the most-searched boat problems. Track what you have, when it was bought, and its health here — saved in this browser.</p>'
+        + '<div id="bt-list" class="pg-card-grid"></div>'
+        + '<p><button type="button" class="btn btn-secondary" onclick="btAdd()">+ Add equipment</button></p>'
+        + '<hr class="pg-hr">'
+        + '<h2>Voltage drop & cable sizing</h2>'
+        + '<p class="pg-muted">Long, undersized runs lose voltage. Keep the drop under 3\u0025 for critical gear. Estimate it with the app\u2019s calculator, then size up a gauge if needed.</p>'
+        + '<p><a class="btn btn-primary" href="/tools/calculators.html#cal-5">Open the voltage drop calculator</a></p>'
+        + js
+        + '</div></section>'
+        + section("Battery life", "<p>Most marine batteries last 4\u20135 years. Write the install date on the battery and log it here — age is the \u21161 cause of \u201cdies at the dock\u201d.</p>")
+    )
+
+
+register("tools/battery-electronics", "AftLog Battery & Electronics Tracker",
+         "Track your boat's batteries and electronics, size wiring with the voltage drop calculator, and know when age kills a battery.",
+         _battery_body())
+
+
+_GLOSSARY = [
+    ("Impeller", "The small rubber pump that moves cooling water through an outboard. Weak tell-tale usually means it's worn.", "The rubber water pump that pushes cooling water through the engine. If the \u201cpee stream\u201d (tell-tale) is weak, it's often the impeller. Replace every ~3 years or sooner if overheating."),
+    ("Lower unit", "The bottom gearcase of an outboard. Check its oil for milkiness (water) or metal flakes.", "The gearcase at the bottom of an outboard. Holds the gears and the drive shaft; contains gear oil that should be checked for a milky look (water intrusion)."),
+    ("Bellows", "Rubber boots on a sterndrive that keep water out. Cracked bellows can sink a boat.", "The rubber accordion boots on a sterndrive that keep water out and grease in around the drive shaft and shift cable. Cracked bellows = sinking risk."),
+    ("Gimbal bearing", "A key bearing on a sterndrive that allows the drive to pivot. Water damage causes stiff steering.", "The bearing at the transom where a sterndrive pivots. Gets water-damaged if not greased; hard steering is a symptom."),
+    ("Anode", "A metal piece that corrodes on purpose to protect your engine or outdrive from corrosion.", "A sacrificial zinc (or magnesium/aluminum) bolt that corrodes instead of your outdrive. If half eaten, it's doing its job."),
+    ("Tell-tale", "The cooling-water stream from an outboard. Weak or no stream means pump trouble.", "The small \u201cpee hole\u201d stream of cooling water from an outboard. No stream = water pump problem."),
+    ("Transom", "The back wall of the boat where the engine mounts. Soft spots mean rot.", "The flat back of the boat the engine bolts to. Soft spots here mean rot — a major buying warning sign."),
+    ("Stringers", "Structural beams inside the hull. Rot leads to soft floors and major repairs.", "The internal framing that stiffens the hull. Rot here shows as soft floors."),
+    ("Winterize", "Protecting the boat for winter by draining water, treating fuel, and prepping the engine.", "Preparing the boat for freezing: drain water, fog the engine, stabilize fuel, remove the battery. Skipping it can crack the engine block."),
+    ("Commissioning", "Spring startup: charge battery, check impeller, inspect fuel, and run on muffs.", "Waking the boat up in spring: unwrap, charge the battery, check the impeller and fuel, first fire-up on muffs."),
+    ("Porpoising", "The bow oscillates up and down at speed. Usually caused by trim or engine height.", "The bow bouncing up and down on plane. Usually trim or motor-height related."),
+    ("Prop slip", "How much the prop loses grip in the water. Higher slip = less efficiency.", "The difference between theoretical and actual propeller speed — how efficiently the prop bites the water."),
+    ("Bilge", "The lowest part of the boat where water collects. The bilge pump removes it.", "The lowest inside part of the hull where water collects; the bilge pump removes it."),
+    ("Muffs", "Rubber cups that feed water to an outboard for running it on land.", "The clamp-on ear muffs that feed water to an outboard's cooling system while running it on land."),
+    ("Float plan", "A note telling someone your route and return time. Huge safety benefit.", "Who you tell where you're going and when you'll be back — the single best safety habit."),
+    ("Gear lube", "Oil inside the lower unit. Milky means water; metal means wear.", "The oil in the lower unit. Milky = water got in. Metal flakes = gears are wearing. Both are bad signs when buying."),
+    ("HIN", "The boat's 12-digit serial number. Must match registration.", "Hull Identification Number — the boat's 12-character serial, like a VIN. Found on the transom; verify it matches the registration."),
+    ("Osmosis", "Water blisters under the gelcoat. Cosmetic or structural depending on depth.", "Blisters under the gelcoat from water absorbed into the hull. Common on older fiberglass — can be cosmetic or serious."),
+    ("Skeg", "The fin under the prop. Damage usually means an impact.", "The fin below the propeller that protects the prop and helps steering. Bent or broken = a past impact."),
+    ("Rub rail", "The bumper strip around the hull. Damage shows docking impacts.", "The rubber/plastic bumper strip around the hull's top edge. Separated or cracked = dock or impact history."),
+    ("Splashwell", "A recessed area near the outboard that helps keep water out.", "The recessed area at the back of the boat around the outboard that keeps following water out."),
+    ("Primer bulb", "A rubber bulb that primes fuel to the engine. Should feel firm.", "The squeezable rubber bulb in the fuel line used to prime the engine. Should feel firm; soft or cracked = suspect."),
+    ("Water-separating filter", "A fuel filter that removes water. Replace yearly.", "The fuel filter that catches water before it reaches the engine. Dirty = poor fuel maintenance."),
+    ("Livewell", "A tank with pumps to keep fish alive.", "The tank that keeps caught fish alive — has its own pumps and plumbing."),
+    ("Compression test", "A test of cylinder pressure. Big differences mean engine issues.", "Measures each cylinder's pressure; all should be within 10% of each other. A big difference = expensive engine trouble."),
+    ("Keel", "The centerline ridge on the bottom of the hull. Often scraped or worn.", "The bottom ridge of the hull that takes damage when the boat is beached."),
+    ("Chines", "The edges where the hull bottom meets the sides. Important for stability.", "The hull edges where the bottom meets the sides."),
+    ("Freeboard", "How tall the boat's sides are above the water. More freeboard = safer in waves.", "The height of the hull side above the waterline."),
+    ("Gunwale", "The top edge of the boat's sides. Often used as a handhold.", "The top edge or rail of the hull sides."),
+    ("Trim tab", "A small plate that helps keep the boat level.", "Adjustable plates on the hull or outdrive that correct listing and optimize running attitude."),
+    ("Cavitation", "Air bubbles around the prop that cause vibration and lost power.", "The collapse of vapor bubbles around the propeller blades, causing vibration and thrust loss."),
+    ("Planing", "When the boat rises and skims on top of the water.", "The hydrodynamic state where the hull rises and rides on top of the water, reducing drag."),
+    ("Draft", "How deep the boat sits in the water.", "The vertical distance between the waterline and the lowest point of the hull or drive."),
+    ("Beam", "The width of the boat at its widest point.", "The maximum width of the vessel, influencing stability and interior volume."),
+    ("Deadrise", "How V-shaped the hull is — deeper V = smoother ride.", "The angle between the hull bottom and a horizontal plane; higher angles improve rough-water performance."),
+    ("Chine walk", "A side-to-side wobble at high speed.", "Instability at high speed where the hull oscillates between chines due to trim or weight imbalance."),
+    ("LOA (Length Overall)", "The boat's full length from front to back.", "Total vessel length including appendages such as swim platforms and bow pulpits."),
+    ("LWL (Waterline Length)", "How much of the boat sits in the water.", "The length of the hull at the waterline, affecting hull speed and stability."),
+    ("Trim angle", "How high or low the motor is tilted.", "The angular position of the outboard or sterndrive relative to the transom, affecting lift and efficiency."),
+    ("Heel", "When the boat leans to one side.", "Temporary lateral inclination caused by wind, waves, or turning forces."),
+    ("List", "A steady lean caused by uneven weight.", "Persistent lateral inclination caused by uneven weight distribution."),
+    ("Pitch", "The bow moving up and down.", "Longitudinal motion of the bow and stern in waves."),
+    ("Yaw", "The bow swinging left and right.", "Rotational motion of the bow swinging port-starboard around the vertical axis."),
+    ("Roll", "Side-to-side rocking.", "Side-to-side rotational motion around the vessel's longitudinal axis."),
+    ("Scupper", "Deck drains that let water flow out.", "Deck drainage openings that discharge water overboard; essential for self-bailing systems."),
+    ("Self-bailing cockpit", "A cockpit that drains water overboard instead of into the bilge.", "A cockpit designed to drain water via scuppers without relying on bilge pumps."),
+    ("Hull speed", "The fastest a displacement hull can go efficiently.", "The theoretical maximum efficient speed of a displacement hull, based on waterline length."),
+    ("Displacement hull", "A hull that pushes through the water instead of riding on top.", "A hull form that moves through the water without planing, prioritizing stability over speed."),
+    ("Planing hull", "A hull that lifts and skims on top of the water.", "A hull designed to generate lift and ride above the water at higher speeds."),
+    ("Ventilation (prop)", "When air reaches the prop and causes a sudden loss of thrust.", "Ingress of air to the propeller blades, causing RPM flare and loss of bite."),
+    ("Following seas", "Waves coming from behind the boat.", "Sea conditions where waves approach from astern, affecting steering and stability."),
+    ("Quartering seas", "Waves hitting the boat at an angle.", "Waves approaching at an oblique angle, influencing yaw and roll behavior."),
+    ("Backing down (anchoring)", "Reversing gently to set the anchor.", "Applying reverse thrust to set the anchor firmly into the seabed."),
+    ("Transom angle", "The angle of the back of the boat where the engine mounts.", "The geometric angle of the transom, influencing engine mounting height and trim range."),
+    ("Keel guard", "A strip that protects the keel from scrapes.", "A sacrificial protective strip installed on the keel to prevent abrasion during beaching or loading."),
+    ("Fairlead", "A guide that keeps a rope or anchor line from rubbing.", "A roller or guide that directs a line to prevent chafe and maintain proper lead angle."),
+]
+
+
+def _glossary_body():
+    items = "".join(
+        '<article class="pg-blog-card" data-term="%s"><h3>%s</h3><p class="pg-muted"><strong>Plain talk:</strong> %s</p><p class="pg-muted"><strong>For the pro:</strong> %s</p></article>' % (
+            esc(t.lower()), esc(t), esc(b), esc(p))
+        for t, b, p in _GLOSSARY)
+    js = """<script>
+(function () {
+  var input = document.getElementById('gl-search');
+  var cards = document.querySelectorAll('#gl-grid .pg-blog-card');
+  if (input) input.addEventListener('input', function () {
+    var q = (input.value || '').toLowerCase();
+    cards.forEach(function (c) { c.style.display = (c.dataset.term || '').indexOf(q) === -1 ? 'none' : ''; });
+  });
+})();
+</script>"""
+    return (
+        hero("Glossary", "Boat terms in plain talk — and the technical version for when it matters.")
+        + '<section class="section section--light"><div class="container">'
+        + '<label class="pg-hint-label" for="gl-search">Search boating terms</label>'
+        + '<input id="gl-search" class="fp-in" type="search" placeholder="e.g. impeller, bilge, transom…" aria-label="Search glossary">'
+        + '<div class="pg-card-grid" id="gl-grid">' + items + '</div>'
+        + js
+        + '</div></section>'
+    )
+
+
+register("tools/glossary", "AftLog Glossary — Boating Terms, Plainly Explained",
+         "56 boat terms in plain talk plus the technical definition — impeller, bilge, transom, HIN, and more.",
+         _glossary_body())
 
 
 def main():
