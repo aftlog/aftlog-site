@@ -1388,7 +1388,25 @@ register(
     AID_BODY,
 )
 
-# ── Render ──────────────────────────────────────────────────────────────
+
+register(
+    "tools/ask-aftlog",
+    "Ask AftLog — Grounded Offline Assistant",
+    "A grounded chat assistant that answers boating, maintenance, and troubleshooting questions offline.",
+    hero("Ask AftLog",
+         "A grounded chat assistant — troubleshooting, checklists, calculators, winterization, and planner rules, answered offline.")
+    + '<section class="section section--light"><div class="container"><div class="ask-box">'
+    + '<div id="ask-log" class="ask-log"></div>'
+    + '<div class="ask-row"><input id="ask-input" class="ask-input" placeholder="Ask about your boat…">'
+    + '<button class="btn btn-primary" onclick="ask(document.getElementById(\'ask-input\').value)">Send</button></div>'
+    + '<label class="ask-photo-label"><input type="file" accept="image/*" style="display:none" onchange="askPhoto(this)"> Attach photo (local only)</label>'
+    + '<span class="ask-photo" style="display:none">Photo attached - stored on your device.</span>'
+    + '<div class="fp-actions"><button class="btn btn-secondary" onclick="askExport()">Export conversation (.txt)</button></div>'
+    + '</div></div></section>'
+    + '<script src="/tools/ask-aftlog.js" defer></script>',
+)
+
+
 def write(path: str, content: str):
     f = ROOT / path
     f.parent.mkdir(parents=True, exist_ok=True)
