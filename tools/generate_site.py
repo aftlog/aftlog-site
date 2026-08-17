@@ -893,6 +893,86 @@ register("blog/retrieve-checklist", "Boat Retrieval Checklist — Step-by-Step G
          active="/blog/")
 
 
+register("blog/used-boat-inspection", "Used-Boat Inspection Checklist — What to Look For Before You Buy", "A complete guide to inspecting a used boat, including hull, engine, electrical, trailer, and safety systems — based on AftLog's built-in inspection checklist.",
+         article("used-boat-inspection", "Used-Boat Inspection Checklist",
+                 "Buying a used boat can save thousands — but only if you know what to look for. Here's the complete inspection checklist, based on AftLog's built-in Used-Boat template.",
+                 "Checklists", """<img class="blog-hero" src="/images/screen-used-boat.png" alt="AftLog Used-Boat Inspection checklist (placeholder — to be replaced with the inspection screenshot)" loading="lazy">
+      <p>Buying a used boat can be one of the smartest decisions a boater makes. You can save thousands of dollars, avoid steep depreciation, and often get a well-maintained vessel that performs like new. But used boats vary widely in condition, and a poor inspection can turn a great deal into an expensive mistake.</p>
+      <p>AftLog includes a dedicated Used-Boat Inspection checklist — a structured, big-button guide that walks you through every major system: hull, transom, engine, electrical, fuel, bilge, trailer, and safety gear. This article expands on that checklist, explaining exactly what to look for and how to evaluate a boat before you buy.</p>
+      <h2>Why Used-Boat Inspections Matter</h2>
+      <p>A boat is a collection of systems — hull, transom, engine, lower unit, steering, electrical, fuel, bilge, and trailer. If any is compromised, repairs can be costly. A cracked transom, damaged lower unit, or neglected electrical system can turn a $10,000 boat into a $15,000 project. A structured inspection prevents surprises and gives you confidence in your purchase.</p>
+      <h2>Part 1 — Hull Condition</h2>
+      <p>Check for cracks and stress marks around the bow, near the transom, around cleats and the windshield, and along the chines (hairline cracks are common; deep cracks are not). Check the gelcoat for oxidation, chalkiness, blistering, or repairs. Inspect the underside for gouges, beaching scars, impact marks, or exposed fiberglass. Tap the hull lightly — dull thuds can indicate moisture (water intrusion).</p>
+      <h2>Part 2 — Transom Condition</h2>
+      <p>The transom supports the engine — a weak transom is a deal-breaker. Check for cracks around the mounting bolts, flexing when you push the engine, water intrusion, soft spots, and delamination. Test by grabbing the engine and pushing side-to-side; if the transom flexes, walk away.</p>
+      <h2>Part 3 — Prop & Lower Unit</h2>
+      <p>The lower unit is expensive to repair, so inspect carefully. Check the prop for bent blades, chips, cracks, or fishing line around the shaft (line can cut seals and cause water intrusion). Ask to see the gear oil — healthy oil is clear, amber, and free of metal; milky oil means water intrusion and an expensive repair. Check the skeg for cracks, missing chunks, or welded repairs, and confirm the engine shifts smoothly into forward and reverse.</p>
+      <h2>Part 4 — Steering & Controls</h2>
+      <p>Check the steering for stiffness, binding, uneven resistance, or hydraulic leaks. Check the controls for smooth throttle, smooth shifting, proper idle, and no grinding noises.</p>
+      <h2>Part 5 — Electrical System</h2>
+      <p>Electrical issues are common in used boats. Test the lights, horn, bilge pump, livewell pump, GPS/fish finder, radio, gauges, and ignition. Inspect the wiring for condition, corrosion, and loose connections, plus the battery cables.</p>
+      <h2>Part 6 — Battery Health</h2>
+      <p>Check the battery age, resting voltage (12.6–12.8V), terminal corrosion, and secure mounting. Weak batteries cause hard starting and electrical issues.</p>
+      <h2>Part 7 — Fuel System</h2>
+      <p>Inspect the fuel lines for cracks, stiffness, or leaks; check the primer bulb, tank vent, and fuel filter (for water or debris), and smell for fuel in the compartments. Ask when the fuel filter was last changed and whether the boat has had ethanol-related issues.</p>
+      <h2>Part 8 — Bilge & Pumps</h2>
+      <p>Check the bilge pump operation, float switch, livewell pumps, hoses, and clamps, and look for signs of water intrusion. A wet bilge can indicate leaks or hull issues.</p>
+      <h2>Part 9 — Trailer Condition</h2>
+      <p>The trailer is half the value of the package. Inspect the tires (age, cracks, pressure), bearings (heat after towing), lights, winch strap, bunks and carpet, rust, and frame integrity. Test by spinning each wheel — grinding indicates bad bearings.</p>
+      <h2>Part 10 — Safety Gear</h2>
+      <p>Check for life jackets, throwables, a fire extinguisher, a whistle/horn, anchor and rope, a first-aid kit, and navigation lights. Missing safety gear adds cost.</p>
+      <h2>Part 11 — Engine Start & Water Test</h2>
+      <p>If possible, always test the engine on the water. Check cold-start behavior, tell-tale strength, idle stability, acceleration, top-end RPM, vibration, shifting, temperature, and charging voltage. A water test reveals issues a driveway start cannot.</p>
+      <h2>Part 12 — Paperwork & History</h2>
+      <p>Ask for service records, winterization receipts, ownership documents, the engine serial number, and trailer registration. A well-documented boat is a well-maintained boat.</p>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog's Used-Boat Inspection checklist provides big-button, tap-friendly items, a structured inspection flow, photo attachments for each item, notes for seller comments, a final summary card, and exportable results — a professional-grade inspection process.</p>
+      <h2>Checklist: Used-Boat Inspection (AftLog Preset)</h2>
+      <ul class="pg-list"><li>Hull condition</li><li>Transom condition</li><li>Prop &amp; lower unit</li><li>Steering &amp; controls</li><li>Electrical system</li><li>Battery health</li><li>Fuel system</li><li>Bilge &amp; pumps</li><li>Trailer condition</li><li>Safety gear</li></ul>
+      <h2>Summary</h2>
+      <p>Buying a used boat is a smart move — but only if you inspect it properly. By following AftLog's Used-Boat Inspection checklist, you can evaluate every major system, spot hidden issues, and make a confident, informed purchase. A structured inspection protects your wallet and ensures your new boat is safe, reliable, and ready for the water.</p>""",
+                 '<li><a href="launch-checklist.html">Launch checklist: the complete guide</a></li><li><a href="retrieve-checklist.html">Retrieve checklist: avoid trailer mistakes</a></li><li><a href="engine-wont-start.html">How to handle an engine that won\'t start</a></li>'),
+         active="/blog/")
+
+register("blog/spring-prep-getting-your-boat-ready", "Spring Boat Prep Guide — De-Winterization, Safety Checks, and First-Launch Readiness", "A complete spring boat-prep guide covering de-winterization, engine checks, fuel system inspection, batteries, safety gear, and first-launch procedures.",
+         article("spring-prep-getting-your-boat-ready", "Spring Prep: Getting Your Boat Ready",
+                 "Spring is the most important maintenance moment of the year. Here's the complete guide to de-winterizing your boat, inspecting critical systems, and getting ready for a safe first launch.",
+                 "Seasonal Prep", """<img class="blog-hero" src="/images/screen-spring-prep.png" alt="AftLog app (placeholder for spring-prep — to be replaced with a spring-prep screenshot)" loading="lazy">
+      <p>Spring is the most important maintenance moment of the year for any boat owner. After months of storage, your boat needs a careful, structured de-winterization process to ensure everything is safe, reliable, and ready for the season. A smooth spring prep prevents breakdowns, protects your engine, and sets the tone for a trouble-free summer.</p>
+      <p>AftLog includes seasonal reminders, maintenance intervals, and checklists that make spring prep predictable and easy. This guide expands on those tools, giving you a complete, step-by-step process to get your boat ready for the water.</p>
+      <h2>Why Spring Prep Matters</h2>
+      <p>Winter is hard on boats. Long periods of inactivity, cold temperatures, moisture, and fuel degradation can affect batteries, fuel systems, cooling systems, electrical connections, lower-unit seals, safety gear, and trailer components. Spring prep ensures every system is inspected, tested, and ready for the season.</p>
+      <h2>Part 1 — Remove Winter Covers and Inspect the Boat</h2>
+      <ol class="pg-list"><li>Remove tarps, shrink-wrap, or covers — check for mold, moisture, rodent damage, torn insulation, or missing hardware.</li><li>Inspect the hull — cracks, blisters, scratches, gelcoat damage, signs of impact.</li><li>Inspect the transom — cracks around mounting bolts, flexing, water intrusion, soft spots.</li><li>Inspect the interior — mildew, water pooling, damaged upholstery, loose hardware.</li></ol>
+      <p>Spring is the best time to catch small issues before they become big ones.</p>
+      <h2>Part 2 — Battery and Electrical System</h2>
+      <p>Winter is tough on batteries — most failures happen during storage. Charge the battery fully with a smart charger, check voltage (healthy resting is 12.6–12.8V), inspect terminals for corrosion, loose clamps, or frayed cables, test the lights, horn, bilge pump, livewell pump, GPS/fish finder, radio, and gauges, and inspect wiring for cracked insulation, rodent damage, or loose connectors. AftLog's battery-care reminders help track battery age and condition.</p>
+      <h2>Part 3 — Fuel System</h2>
+      <p>Fuel can degrade over winter, especially ethanol blends. Inspect fuel lines for cracks, stiffness, leaks, or soft spots; check the primer bulb (should be firm); inspect the fuel filter for water, debris, or phase-separated ethanol (replace if needed); check the tank vent is clear; top up with fresh gasoline to dilute old fuel; and add stabilizer if the fuel sat all winter.</p>
+      <h2>Part 4 — Engine and Lower Unit</h2>
+      <ol class="pg-list"><li>Change the engine oil (four-stroke) — if you didn't in the fall.</li><li>Replace the oil filter — always with the oil.</li><li>Change lower-unit gear oil — look for milky oil, metal flakes, or a burnt smell.</li><li>Inspect the prop — bent blades, chips, or fishing line around the shaft.</li><li>Inspect the impeller — replace if it's been 2–3 years.</li><li>Inspect spark plugs — replace if fouled, worn, corroded, or the gap widened.</li><li>Check the tell-tale — start on muffs and verify strong water flow.</li></ol>
+      <p>AftLog tracks all these intervals automatically.</p>
+      <h2>Part 5 — Cooling System</h2>
+      <p>Check the tell-tale stream (strong and steady), inspect the water intakes for sand, weeds, or debris, replace the impeller if due (spring is the best time), and inspect the thermostat (replace every 3–5 years).</p>
+      <h2>Part 6 — Steering and Controls</h2>
+      <p>Check the steering for stiffness, binding, uneven resistance, or hydraulic leaks; check throttle and shift are smooth and responsive; and lubricate pivot points with marine grease.</p>
+      <h2>Part 7 — Bilge and Pumps</h2>
+      <p>Test the bilge pump, test the float switch by lifting it manually, inspect hoses for cracks or loose clamps, and check for water — a wet bilge may indicate leaks.</p>
+      <h2>Part 8 — Trailer Inspection</h2>
+      <p>Your trailer is half the value of your boat. Inspect the tires for cracks, bulges, or low pressure; inspect bearings (spin the wheels — grinding indicates bad bearings); test the lights; inspect the winch strap (replace if frayed); inspect the bunks (carpet and wood); and inspect the safety chains (secure, not rusted).</p>
+      <h2>Part 9 — Safety Gear</h2>
+      <p>Spring is the perfect time to refresh safety gear — check life jackets, throwables, a fire extinguisher, a whistle/horn, anchor and rope, a first-aid kit, navigation lights, spare fuses, and spare prop hardware. Replace anything worn or expired.</p>
+      <h2>Part 10 — First Launch Checklist</h2>
+      <ul class="pg-list"><li>Drain plug in</li><li>Battery switch on</li><li>Kill-switch lanyard clipped</li><li>Fenders on</li><li>Bow line tied</li><li>Fuel level checked</li><li>Engine started on muffs</li><li>Tell-tale verified</li><li>Trailer straps off</li><li>Winch strap loosened</li></ul>
+      <p>AftLog's Launch Mode covers all of these steps.</p>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog provides seasonal reminders, maintenance intervals, launch and retrieve checklists, battery-care guidance, engine-service tracking, photo logs, and safety-gear checklists — so spring prep becomes structured, predictable, and stress-free.</p>
+      <h2>Summary</h2>
+      <p>Spring prep is the foundation of a safe and reliable boating season. By inspecting your hull, engine, fuel system, electrical system, trailer, and safety gear, you prevent breakdowns and protect your investment. With AftLog's seasonal reminders and built-in checklists, de-winterization becomes simple, organized, and confidence-building. A well-prepared boat makes every spring launch feel like a fresh start.</p>""",
+                 '<li><a href="battery-care-small-boats.html">Battery care for small boats</a></li><li><a href="impeller-replacement.html">Impeller replacement: symptoms and timing</a></li><li><a href="launch-checklist.html">Launch checklist: the complete guide</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
@@ -907,8 +987,8 @@ BLOG_ARTICLES = [
     ("How to build a float plan", "Tell someone where you're going — it takes two minutes and saves lives.", "Safety", "/blog/how-to-build-a-float-plan.html", "/images/screen-float-plan.png"),
     ("Launch checklist: the complete guide", "Plug, pump, battery, gear — everything checked before you leave the ramp.", "Checklists", "/blog/launch-checklist.html", "/images/screen-launch-mode.png"),
     ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", "/blog/retrieve-checklist.html", "/images/screen-retrieve-mode.png"),
-    ("Used-boat inspection checklist", "The 13-section walkthrough that helps you buy with confidence.", "Checklists", None, None),
-    ("Spring prep: getting your boat ready", "De-winterize, inspect, and launch right the first time.", "Seasonal prep", None, None),
+    ("Used-boat inspection checklist", "The 13-section walkthrough that helps you buy with confidence.", "Checklists", "/blog/used-boat-inspection.html", "/images/screen-used-boat.png"),
+    ("Spring prep: getting your boat ready", "De-winterize, inspect, and launch right the first time.", "Seasonal prep", "/blog/spring-prep-getting-your-boat-ready.html", "/images/screen-spring-prep.png"),
     ("Fall haul-out checklist", "The off-season routine that makes spring easy.", "Seasonal prep", None, None),
     ("Fuel storage best practices", "Stabilizer, full tanks, and why ethanol needs a plan.", "Seasonal prep", None, None),
     ("How AftLog's AI assistant works", "Diagnostics, manual extraction, photo analysis, and predictive alerts.", "AI & Portal", "/ai.html", "/images/screen-vea-result.png"),
