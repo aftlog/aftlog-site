@@ -1425,6 +1425,36 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 60 — DEEPSEEK STEP 8.2: Winterization Planner (app + website)
+
+**Goal (block):** Winterization Planner as a standalone tool — region-aw
+freeze-up/ice-out guidance, why-it-matters, and a checklist CTA. No help
+system / Knowledge Base / portal integration (explicit).
+
+**App (already present — enhanced to match the spec):** the app's
+WinterizationPlannerScreen already does the block (region selector from
+SettingsService + regionSeasons[], seasonal window, 'Ready to winterize?'
+card + CTA → winterization checklist, offline, no storage/help hooks,
+wired at More → Tools). Added the missing **'Why this matters'** card
+(freeze-expansion rationale + timing guide). New widget test (first-screen
+content: Why this matters / Ready to winterize / Region / Set / CTA).
+App rebuilt **1.108.9+156**, installed on the phone (md5 a6b6e49d…).
+Location/lookup differ from the block's suggested path (kept existing,
+per the no-refactor rule + Session 37 adaptive intent).
+
+**Website:** /tools/winterization-planner.html (region dropdown + seasonal
+window via inline JS + why-this-matters + CTA →
+/checklists/winterization.html + a 'Forgot to winterize?' safety card) and
+/checklists/winterization.html (the 6-step checklist page). Mirrors the
+app's actual regionSeasons data. Blog winterize article now links both.
+Canonical palette; lint clean; site_check ALL PASS (~205 checks).
+
+**Deploy:** pushed; live 404 at check time due to the ongoing intermittent
+GitHub Pages outage — will deploy on the next successful runner (or
+Re-run jobs / empty commit).
+
+---
+
 ## 2026-08-17 — Session 59 — DEEPSEEK STEP 8.1: v1 Help System (app + website + portal)
 
 **Goal (block):** a v1 Help System across the whole ecosystem — in-app
