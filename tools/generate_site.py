@@ -1283,6 +1283,111 @@ register(
     VEA_BODY,
 )
 
+
+def _ai_diag_body():
+    js = """
+<script>
+(function () {
+  var DATA = null;
+  var state = {symptomKey:'', drive:'outboard', answers:{start:'',conditions:'',sounds:'',smells:'',vibrations:'',recentWork:''}, photo:''};
+  var drives = ['outboard','inboard','jet','pontoon','other'];
+  var Q = ['start','conditions','sounds','smells','vibrations','recentWork'];
+  var QL = {start:'When did it start?',conditions:'Conditions (idle/throttle/load)',sounds:'Sounds',smells:'Smells',vibrations:'Vibrations',recentWork:'Recent maintenance'};
+  function load(){ return state; }
+  function save(){ try{ localStorage.setItem('aftlog_ai_diag', JSON.stringify(state)); }catch(e){} }
+  function causesFor(k, dr){ var c=(DATA.symptoms[k]||{}).causes||{}; return c[dr]||c['default']||[]; }
+  function fixesFor(k, dr){ var f=(DATA.symptoms[k]||{}).fixes||{}; return f[dr]||f['default']||[]; }
+  function sevFor(k){ return (DATA.symptoms[k]||{}).severity||'info'; }
+  function fallbackFor(k){ return (DATA.symptoms[k]||{}).ifNotResolved||''; }
+  function pin(req){ return req && req.readyState <= 1; }
+  function paint(){
+    // symptom selector
+    var sel = document.getElementById('aid-symptom');
+    if (sel && !sel.dataset.built && DATA){
+      sel.dataset.built='1';
+      Object.keys(DATA.symptoms).sort().forEach(function(k){ var o=document.createElement('option'); o.value=k; o.textContent=k; sel.appendChild(o); });
+    }
+    if(sel) sel.value = state.symptomKey||'';
+    // drive chips
+    document.querySelectorAll('.ai-drive').forEach(function(b){ b.classList.toggle('on', b.dataset.d===state.drive); });
+    // questions
+    Q.forEach(function(k){ var e=document.getElementById('aiq-'+k); if(e && e.value==='__init') { } });
+    // diagnosis
+    var box = document.getElementById('ai-diagnosis');
+    if(!state.symptomKey || !DATA){ box.innerHTML='<p class="pg-muted">Select a symptom to see the analysis.</p>'; }
+    else {
+      var sev = sevFor(state.symptomKey); var causes=causesFor(state.symptomKey,state.drive); var fixes=fixesFor(state.symptomKey,state.drive); var fb=fallbackFor(state.symptomKey);
+      var sevCls = sev==='stop'?'stop':(sev==='serious'||sev==='attention')?'warn':'info';
+      var h = '<span class="ai-sev ai-sev-'+sevCls+'">'+sev.toUpperCase()+'</span><h3>'+esc(state.symptomKey)+'</h3>';
+      if(causes.length){ h+='<div class="ai-block"><strong>Likely causes</strong><ul>'+causes.map(function(c){return '<li>'+esc(c)+'</li>';}).join('')+'</ul></div>'; }
+      if(fixes.length){ h+='<div class="ai-block"><strong>Next steps</strong><ul>'+fixes.map(function(c){return '<li>'+esc(c)+'</li>';}).join('')+'</ul></div>'; }
+      if(fb){ h+='<div class="ai-block ai-fb"><strong>If not resolved:</strong> '+esc(fb)+'</div>'; }
+      box.innerHTML = h;
+    }
+    // photo preview
+    var pv=document.getElementById('ai-photo-preview');
+    if(pv){ pv.style.display = state.photo ? 'block':'none'; if(state.photo && pv.tagName!=='IMG') {} }
+  }
+  function esc(x){ return (x||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function init(){
+    try{ var s=JSON.parse(localStorage.getItem('aftlog_ai_diag')||'{}'); Object.keys(s).forEach(function(k){ if(k in state) state[k]=s[k]; }); }catch(e){}
+    Q.forEach(function(k){ var e=document.getElementById('aiq-'+k); if(e) e.value=state.answers[k]||''; });
+    if(state.photo) document.getElementById('ai-photo-preview').style.display='block';
+    document.querySelectorAll('.ai-drive').forEach(function(b){ b.addEventListener('click', function(){ state.drive=b.dataset.d; save(); paint(); }); });
+    Q.forEach(function(k){ var e=document.getElementById('aiq-'+k); if(e) e.addEventListener('input', function(){ state.answers[k]=e.value; save(); }); });
+    fetch('/data/vea.json').then(function(r){return r.json();}).then(function(d){ DATA=d; paint(); }).catch(function(){}); 
+    paint();
+  }
+  window.aiSymptom=function(){ if(sel){state.symptomKey=sel.value; save(); paint();} };
+  window.aiSave=function(){ save(); alert('Diagnostic saved on this device.'); };
+  window.aiExport=function(){ save(); window.print(); };
+  window.aiDownload=function(){ save(); var k=state.symptomKey, h='AI DIAGNOSTIC - AFTLOG\nSymptom: '+(k||'?')+'\nEngine: '+state.drive+'\n\nDETAILS\n'; Q.forEach(function(q){ if(state.answers[q]) h += '  '+QL[q]+': '+state.answers[q]+'\n'; }); if(k&&DATA){ h+='\nLIKELY CAUSES\n'; causesFor(k,state.drive).forEach(function(c){h+='  * '+c+'\n';}); h+='\nNEXT STEPS\n'; fixesFor(k,state.drive).forEach(function(c){h+='  - '+c+'\n';}); var fb=fallbackFor(k); if(fb) h+='\nIF NOT RESOLVED\n  '+fb+'\n'; } var blob=new Blob([h],{type:'text/plain'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='aftlog-ai-diagnostics.txt'; a.click(); };
+  window.aiPhoto=function(input){
+    if(!input.files || !input.files[0]) return;
+    var reader=new FileReader(); reader.onload=function(e){
+      state.photo=String(e.target.result).substr(0,240000); save();
+      var pv=document.getElementById('ai-photo-preview'); if(pv) pv.style.display='block';
+    }; reader.readAsDataURL(input.files[0]);
+  };
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+"""
+    body = (
+        hero("AI Diagnostics",
+             "Pick a symptom, answer a few questions, and get the likely causes, next steps, and when to stop. Grounded on-device — nothing is uploaded.")
+        + '<section class="section section--light"><div class="container"><div class="fp-form">'
+        + '<label class="pg-hint-label" for="ai-symptom">Symptom</label>'
+        + '<select id="ai-symptom" class="pg-select" onchange="window.aiSymptom&&aiSymptom()"><option value="">Loading symptoms…</option></select>'
+        + '<label class="pg-hint-label" style="margin-top:14px">Engine type</label>'
+        + '<div class="ai-drives">' + "".join('<button type="button" class="ai-drive" data-d="%s">%s</button>' % (d, d) for d in ["outboard","inboard","jet","pontoon","other"]) + '</div>'
+        + '<label class="pg-hint-label" style="margin-top:14px">Photo (optional — stays on your device)</label>'
+        + '<input type="file" accept="image/*" onchange="aiPhoto(this)" class="ai-file">'
+        + '<div id="ai-photo-preview" style="display:none" class="ai-photo-ok">Photo attached (local only).</div>'
+        + '<h2>Details</h2>'
+        + "".join('<label class="pg-hint-label">%s</label><input id="aiq-%s" class="fp-in" placeholder="Tap to describe">' % (ql, k) for k, ql in [("start","When did it start?"),("conditions","Conditions (idle / throttle / load)"),("sounds","Sounds"),("smells","Smells"),("vibrations","Vibrations"),("recentWork","Recent maintenance")])
+        + '<h2>Diagnosis</h2><div id="ai-diagnosis" class="ai-diagnosis">—</div>'
+        + '<div class="fp-actions">'
+        + '<button class="btn btn-primary" onclick="aiExport()">Print / Save as PDF</button>'
+        + '<button class="btn btn-secondary" onclick="aiDownload()">Download .txt</button>'
+        + '<button class="btn btn-secondary" onclick="aiSave()">Save on this device</button>'
+        + '</div></div></div></section>'
+        + js
+        + section("Grounded, on-device", """<p>This uses the same structured symptom data as the AftLog app — ranked causes, next steps, and a clear stop line. It's guidance, not a certified diagnosis: see a marine mechanic for anything serious.</p>""")
+    )
+    return body
+
+
+AID_BODY = _ai_diag_body()
+
+
+register(
+    "tools/ai-diagnostics",
+    "AI Diagnostics — Guided Symptom Check",
+    "Pick a symptom, answer a few questions, and get likely causes, next steps, and when to stop — grounded on-device.",
+    AID_BODY,
+)
+
 # ── Render ──────────────────────────────────────────────────────────────
 def write(path: str, content: str):
     f = ROOT / path

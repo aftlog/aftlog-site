@@ -221,3 +221,19 @@
 .vea-stuck{border-left:3px solid #F5B041}
 .vea-block ul{margin:4px 0 0;padding-left:18px}
 @media (max-width:860px){.vea-stage{flex-direction:column}}
+
+/* ── STEP 8.8 AI Diagnostics tool ─────────────────────────────────── */
+.ai-drives{display:flex;flex-wrap:wrap;gap:6px}
+.ai-drive{background:var(--card);color:var(--text-light);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer}
+.ai-drive.on{background:var(--red2);border-color:var(--red2);color:#fff}
+.ai-file{margin:6px 0 8px;color:var(--muted-light);font-size:13px}
+.ai-photo-ok{color:#2ECC71;font-size:13px;margin-bottom:8px}
+.ai-diagnosis{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:12px;padding:16px;line-height:1.55}
+.ai-diagnosis h3{margin:6px 0}
+.ai-sev{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+.ai-sev-info{background:var(--bg2);color:var(--muted-light)}
+.ai-sev-warn{background:rgba(245,176,65,.18);color:#F5B041}
+.ai-sev-stop{background:rgba(255,107,107,.2);color:#FF6B6B}
+.ai-block{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;font-size:14px}
+.ai-block ul{margin:6px 0 0;padding-left:18px}
+.ai-fb{border-left:3px solid #F5B041}
