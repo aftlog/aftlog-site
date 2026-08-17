@@ -1366,6 +1366,14 @@ help/website.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔜 SMOKE TEST REVIEW PUBLISHER (Louis, phone 1.108.4):** More →
+  Review Publisher — the count badge should show 5 reviews (it now comes
+  through the server proxy) and a publish should commit to aftlog-site
+  (your DB test 'Proxy Test' review on the live site is real — delete from
+  the repo if unwanted). USB-tethered for the adb reverse.
+- **🔜 Dev server start:** ./aftlog_server/start-dev-server.sh (reads
+  keys from pass, kills stale instances, starts with the proxy env).
+
 - **🔜 SMOKE TEST ASK AFLOG (Louis, phone 1.108.3):** More → Ask AftLog
   should now return REAL Gemini answers through the server proxy (store the
   Mercury bulletin question from the DEEPSEEK spec). USB-tethered for the
@@ -1414,6 +1422,71 @@ help/website.
 - **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
 - **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
 - **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-17 — Session 43 — DEEPSEEK STEP 3: GitHub publisher proxy — token moved to the server
+
+**Goal (DEEPSEEK block):** the Review Publisher's GITHUB_TOKEN and all
+direct GitHub calls leave the APK — publishing goes through the server,
+same pattern as Sessions 41 (License Manager) and 42 (Gemini proxy).
+
+**Server (aftlog_server, pushed, 133 tests green +6):**
+- New lib/services/github_proxy.dart — the GitHub client: reads
+  AFTLOG_GITHUB_TOKEN env (fallback GITHUB_TOKEN), performs the Contents
+  API read-modify-write against aftlog/aftlog-site · data/reviews.json
+  (fetch current sha+content → append review → PUT with commit message
+  'Add review from <name> — N stars'). Plus reviewCount() for the app's
+  badge. Any failure → route 200 {ok:false, error:'github_unavailable'};
+  missing token → route disabled (503) with a one-time startup warning.
+- POST /admin/publish in handlers.dart — same X-Aftlog-Dev-Key gate
+  (AFTLOG_DEV_KEY). Request {type:'review_publish', review:{name, boat,
+  rating, text, preview}} — the spec's resale_pdf/logbook_pdf/
+  bundle_publish types don't exist in this app (applied adaptively per
+  the Session 37 rule; the real publisher action IS the review commit).
+  GET /admin/publish → the review count. Privacy-safe logs: type, payload
+  size, ok, latency — NEVER the token or content.
+- 6 tests: 403 gate, token-missing 503, unsupported type 400, successful
+  append+commit (verifies the PUT body incl. base64 sha roundtrip),
+  GitHub failure contract, count route.
+
+**App (aftlog-app, pushed, analyzer clean, 429 tests +2 known):**
+- lib/services/dev/publisher_service.dart — PublisherService: publishReview
+  POSTs to <portal>/admin/publish with X-Aftlog-Dev-Key (same portal URL +
+  key as License Manager / Ask AftLog); reviewCount GETs the proxy. Spec
+  error messages: ok:false/github_unavailable → 'Publisher is temporarily
+  offline — portal server or GitHub service unavailable.'; network →
+  'Portal server unreachable — is the dev server running?'.
+- github_commit_service.dart DELETED (it was the on-device GitHub client
+  with the dart-define token) + its test replaced by publisher_service_test
+  (one sequential test — flutter_test fake-async makes separate mock-HTTP
+  tests order-dependent, same lesson as Session 42).
+- review_publisher_screen logic rewired (no UI redesign, colors untouched):
+  the 'No GITHUB_TOKEN — rebuild' gate is gone; failures show the spec
+  messages.
+- build.sh: GITHUB_TOKEN read/dart-define REMOVED entirely.
+
+**Verified:**
+- Server restarted with AFTLOG_GITHUB_KEY + AFTLOG_GITHUB_TOKEN + AFTLOG_DEV_KEY
+  (env passed via `env` in front of `dart run` — plain backgrounding had
+  failed silently with 'Address already in use' from stale servers; killed
+  all, single clean instance). GET /admin/publish → reviewCount 4; POST
+  without key → 403; POST with key → 200 ok:true, REAL commit
+  5f794d665... pushed to aftlog/aftlog-site ('Add review from Proxy Test —
+  5 stars'), reviews.json now 5.
+- APK binary probe: 0 × api.github.com, 0 × GITHUB_TOKEN — clean;
+  admin/publish path present. 1.108.4-dev (versionCode 151) chunk-pushed +
+  installed (md5 34a5cf15… verified); adb reverse active.
+
+**⚠ Louis: the live site now shows a 'Proxy Test' review** (aftlog.com/#reviews
+after the ~1min rebuild) — verify the proxy worked end-to-end, then delete
+it from the site repo (data/reviews.json) if you don't want it as a real
+review. Also a good time to smoke-test the phone's Review Publisher
+(More → Review Publisher): the count badge + a real publish from the phone.
+
+**Ops note:** start the dev server with
+  `env AFTLOG_GEMINI_KEY=… AFTLOG_GITHUB_TOKEN=… AFTLOG_DEV_KEY=aftlog-dev
+  dart run bin/server.dart` — worth a start script next time.
 
 ---
 
