@@ -249,3 +249,21 @@
 .pp-sev{font-weight:800;font-size:12px}
 .pp-reason{color:var(--muted-light);font-size:12.5px;margin-top:6px;line-height:1.4}
 .fin{width:100%;max-width:200px;background:var(--bg);color:var(--text-light);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font:inherit;font-size:12px;margin-top:6px}
+
+/* ── STEP 8.11 Trip Patterns tool ─────────────────────────────────── */
+.tp-add{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tp-add .fp-in{flex:1;min-width:90px;margin-bottom:0}
+.tp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.tp-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.tp-stat div{font-size:18px;font-weight:800;color:var(--accent2)}
+.tp-stat span{font-size:11px;color:var(--muted-light)}
+.tp-bar-row{display:flex;gap:10px;margin:14px 0}
+.tp-bar-col{flex:1;text-align:center}
+.tp-bar-bg{height:90px;background:var(--bg2);border-radius:6px;position:relative;overflow:hidden;margin-bottom:4px}
+.tp-bar-fill{position:absolute;bottom:0;left:0;right:0;background:var(--accent2);border-radius:6px 6px 0 0}
+.tp-bar-col span{font-size:11px;color:var(--muted-light)}
+.tp-bar-col b{font-size:13px}
+.tp-trends{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0;font-size:13px}
+.tp-trends b{color:var(--accent2)}
+.tp-out{background:var(--bg2);border-left:3px solid #F5B041;border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13px;line-height:1.5}
+@media (max-width:560px){.tp-stats{grid-template-columns:repeat(2,1fr)}}

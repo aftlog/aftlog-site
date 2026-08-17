@@ -1427,6 +1427,28 @@ register(
 )
 
 
+register(
+    "tools/trip-patterns",
+    "Trip Patterns — Your Season at a Glance",
+    "Analyze your trips: usage totals, seasonality, trends, and unusual trips — all on-device.",
+    hero("Trip Patterns",
+         "Your season at a glance — usage, seasonality, trends, and the trips that stand out.")
+    + '<section class="section section--light"><div class="container"><div class="fp-form">'
+    + '<p class="pg-muted">Add trips (date, distance, hours, optional fuel) and the engine computes your patterns. Everything stays in this browser.</p>'
+    + '<div class="tp-add"><input id="tp-d" class="fp-in" placeholder="Date  YYYY-MM-DD" style="flex:2">'
+    + '<input id="tp-km" class="fp-in" placeholder="km" type="number" style="flex:1">'
+    + '<input id="tp-h" class="fp-in" placeholder="hours" type="number" style="flex:1">'
+    + '<input id="tp-f" class="fp-in" placeholder="fuel L" type="number" style="flex:1">'
+    + '<button class="btn btn-primary" onclick="tpAdd()">Add trip</button></div>'
+    + '<button class="btn btn-secondary btn-sm" onclick="tpReset()">Clear all</button>'
+    + '<div id="tp-results"><p class="pg-muted">Add at least one trip to see patterns.</p></div>'
+    + '<div class="fp-actions"><button class="btn btn-secondary" onclick="tpExport()">Export .txt</button>'
+    + '<button class="btn btn-secondary" onclick="window.print()">Print / Save as PDF</button></div>'
+    + '</div></div></section>'
+    + '<script src="/tools/trip-patterns.js" defer></script>',
+)
+
+
 def write(path: str, content: str):
     f = ROOT / path
     f.parent.mkdir(parents=True, exist_ok=True)
