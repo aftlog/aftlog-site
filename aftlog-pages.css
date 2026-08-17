@@ -170,3 +170,15 @@
 .fp-checkbox .fp-check{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:14px;cursor:pointer}
 .fp-checkbox .fp-check input{accent-color:var(--accent2);width:16px;height:16px}
 .ba-warnings{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.6}
+
+/* ── STEP 8.5 Ramp mode tool ──────────────────────────────────────── */
+.rm-tabs{display:flex;gap:8px;margin-bottom:14px}
+.rm-mode{background:var(--card);color:var(--text-light);border:1px solid var(--line);border-radius:999px;padding:9px 22px;font-weight:700;cursor:pointer}
+.rm-mode.on{background:var(--red2);border-color:var(--red2);color:#fff}
+.rm-progress{width:100%;height:14px;border:none;border-radius:8px;background:var(--line);margin:6px 0 12px;display:block}
+.rm-ready{background:rgba(46,204,113,.15);color:var(--text-light);border-left:3px solid #2ECC71;border-radius:10px;padding:14px;font-weight:700;margin-bottom:10px}
+.rm-remind{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--muted-light);margin-bottom:16px}
+.rm-items{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.rm-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;min-height:58px;cursor:pointer;font-size:16px;font-weight:600}
+.rm-item input{accent-color:var(--red2);width:18px;height:18px;flex-shrink:0}
+.rm-item:has(input:checked){background:rgba(255,75,75,.12);border-color:var(--red2)}

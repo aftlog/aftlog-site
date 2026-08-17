@@ -999,6 +999,88 @@ register(
     BA_BODY,
 )
 
+
+def _ramp_mode_body():
+    launch = [("plug","Drain plug in"),("straps","Transom straps off"),("winch","Winch unhooked"),
+              ("lights","Trailer lights connected"),("bow","Bow rope ready"),("crew","Crew seated, lines clear")]
+    retrieve = [("winch","Winch hooked + tight"),("straps","Transom straps on"),("plug","Drain plug out"),
+                ("lights","Trailer lights + brake check"),("tie","Tie-downs / safety chain"),("gear","Keys + gear in the truck")]
+
+    def items(mode, lst):
+        return "".join('<label class="rm-item" data-mode="%s"><input type="checkbox" data-i="%s"><span class="rm-ic"></span>%s</label>' % (mode, k, v) for k, v in lst)
+
+    js = """
+<script>
+(function () {
+  var rmItems = document.querySelectorAll('.rm-item input');
+  var flat = Array.prototype.filter.call(rmItems, function(c){ return c.checked; });
+  function currentMode(){ return document.querySelector('.rm-mode.on').dataset.mode; }
+  function paint(){
+    var mode = currentMode();
+    Array.prototype.forEach.call(document.querySelectorAll('.rm-item'), function(item){
+      item.style.display = (item.dataset.mode === mode) ? '' : 'none';
+    });
+    var rem = mode === 'launch' ? 'Lights on? Plug in? Straps off before you back down the ramp.' : 'Winch tight, straps on, drain plug OUT before you leave. Check brake lights on the road.';
+    document.getElementById('rm-reminder').textContent = rem;
+    var visible = Array.prototype.filter.call(document.querySelectorAll('.rm-item input'), function(c){
+      if(c.checked){ }
+      return (c.closest('.rm-item').dataset.mode === mode);
+    });
+    var done = visible.filter(function(c){ return c.checked; }).length;
+    var ready = visible.length > 0 && done === visible.length;
+    var bar = document.getElementById('rm-progress');
+    if(bar){ bar.value = visible.length ? done/visible.length : 0; bar.style.backgroundColor = ready ? '#76FF03' : '#FF4B4B'; }
+    var banner = document.getElementById('rm-ready');
+    if(banner){
+      banner.style.display = ready ? 'block' : 'none';
+      banner.textContent = mode === 'launch' ? 'Ready to launch! Drain plug in, straps off, crew set. Take it slow.' : 'Ready for the road! Winch tight, straps on, drain plug out, checks done.';
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.rm-mode'), function(b){
+    b.addEventListener('click', function(){
+      Array.prototype.forEach.call(document.querySelectorAll('.rm-mode'), function(x){ x.classList.remove('on'); });
+      b.classList.add('on'); paint();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.rm-item input'), function(c){
+    c.addEventListener('change', function(){ paint(); });
+  });
+  document.getElementById('rm-reset').addEventListener('click', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.rm-item input'), function(c){ c.checked = false; });
+    paint();
+  });
+  paint();
+})();
+</script>
+"""
+    body = (
+        hero("Ramp Mode",
+             "Launch or retrieve with a distraction-free, big-button checklist — plus the safety reminders that matter.")
+        + '<section class="section section--light"><div class="container"><div class="fp-form">'
+        + '<div class="rm-tabs"><button type="button" class="rm-mode on" data-mode="launch">Launch</button>'
+        + '<button type="button" class="rm-mode" data-mode="retrieve">Retrieve</button></div>'
+        + '<progress id="rm-progress" max="1" value="0" class="rm-progress"></progress>'
+        + '<div id="rm-ready" class="rm-ready" style="display:none"></div>'
+        + '<div class="rm-remind" id="rm-reminder"></div>'
+        + '<div class="rm-items">' + items('launch', launch) + items('retrieve', retrieve) + '</div>'
+        + '<button type="button" id="rm-reset" class="btn btn-secondary">Reset</button>'
+        + '</div></div></section>'
+        + js
+        + section("Why it matters", """<p>Ramps are where most trailer-boat damage happens — and where it's easiest to forget the basics. A fixed checklist keeps the drain plug in, the straps off, and the winch unhooked before you back down. Session-only: nothing is saved.</p>""")
+    )
+    return body
+
+
+RM_BODY = _ramp_mode_body()
+
+
+register(
+    "tools/ramp-mode",
+    "Ramp Mode — Launch & Retrieve Checklist",
+    "A distraction-free, big-button launch and retrieve checklist for the boat ramp, with safety reminders.",
+    RM_BODY,
+)
+
 # ── Render ──────────────────────────────────────────────────────────────
 def write(path: str, content: str):
     f = ROOT / path
