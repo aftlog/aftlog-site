@@ -1425,6 +1425,50 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 46 — DEEPSEEK STEP 6: App AI pipeline → server Gemini proxy (final alignment)
+
+**Goal (DEEPSEEK block):** ALL app AI goes through the server proxy; the
+APK must hold no Gemini credential and call no Google endpoint.
+
+**What the app actually uses AI for:** Ask AftLog (text) + VEA photo
+assist — BOTH already proxied in Step 2. Smart Planner (SMP),
+Diagnostics, Manual extraction and Predictive alerts are rule-based
+(deterministic, no Gemini) — nothing to rewire there; the proxy already
+supports their request shapes (Step 5 added extra-context injection).
+
+**App changes (aftlog-app, pushed, analyzer clean, 429 tests +2 known):**
+- Timeout 35s → **45s** (matches the server proxy timeout from Step 5 —
+  the app no longer cuts slow Gemini answers first).
+- **Offline fallback restored** per the step's rule: canned guidance
+  (no-start / overheating / battery / winterize checklists + manual page
+  refs) is used ONLY for network/server-unreachable — the app never
+  mentions keys and knows none. gemini_unavailable still shows 'Ask
+  AftLog is temporarily offline — portal server or AI service
+  unavailable.' (server reachable, AI down).
+- ask() body now carries extra.continue (the 'continue' flow was already
+  client-side: the screen rewrites the prompt with the last truncated
+  answer; the flag is passed through for the spec's body shape).
+- No UI/color/layout changes; License Manager + Publisher proxies
+  untouched.
+
+**Checklist 7 — APK probe (1.108.6-dev, versionCode 153):**
+AIza 0 · GEMINI_API_KEY 0 · generativelanguage 0 — only ai/gemini +
+admin/publish proxy paths present. Installed on the phone (chunked push,
+md5 ad4e196f… verified; adb reverse active; server up).
+
+**Checklist 1–6 (Louis, on the phone):**
+1. Ask AftLog → real Gemini answer ✓ (proxy live-verified in Sessions
+   42/45; on-phone test = ask anything).
+2–5. Smart Planner / Diagnostics / Manual extraction / Photo assist —
+   the app's versions are rule-based (no Gemini), so nothing to smoke
+   there; VEA photo assist does use the proxy (its on-device fallback
+   stays when offline).
+6. Offline fallback: unit-tested (network → canned 'Offline — …' answer);
+   on the phone: unplug USB (kills the adb reverse) and ask — you get the
+   canned guidance instead of an error wall.
+
+---
+
 ## 2026-08-17 — Session 45 — DEEPSEEK STEP 5: Portal AI pipeline → server Gemini proxy
 
 **Goal (DEEPSEEK block):** all Web Portal AI moves to the server proxy —
