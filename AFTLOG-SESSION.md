@@ -1425,6 +1425,40 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 71 — DEEPSEEK STEP 7.1–7.10: Screens 3/4 websites (Emergency Advisor)
+
+**Goal (combined block):** mirror the App screens 7.1–7.10 on the website.
+**App side — confirmed, no code change:** all screens exist (emergency_screen,
+assistant_screen, symptom_decoder_screen, calculators_screen, more_screen,
+settings, pro upgrade, backup/export, demo loader, reset).
+
+**Already covered by existing site pages (verified, no change):** 7.2 Ask
+AftLog → /tools/ask-aftlog.html; 7.3 Symptom Decoder → /tools/ai-diagnostics.html
+(symptom + drive selector, severity/causes/next-steps); 7.4 Calculators →
+/tools/calculators.html (all 6); 7.7 Pro → /pricing.html (lifetime $29).
+7.5 More-menu / 7.6 Settings / 7.8 Backup-Export / 7.9 Demo loader /
+7.10 Reset are app-internal (no public-site equivalent).
+
+**New this session — /tools/emergency.html (block 7.1):** mirrors
+emergency_screen.dart as a self-contained tool:
+- Intro "Stay calm…" line; **GPS position card** (navigator.geolocation high
+  accuracy, 12s timeout, permission-denied message, Retry-on-web, `Copy
+  coordinates` via navigator.clipboard, `Open in Maps`);
+- **Emergency contact** (tel: input, saved to localStorage, `Call contact`
+  button appears when a number is set — mirrors the app's shared-prefs contact);
+- **8 scenario accordions** (details/summary, amber=#F5B041 / red=#E02020 left
+  rail, numbered steps) — Engine won't start, Taking on water, Overheating,
+  Electrical failure, Lost in fog, Prop damage, Lost GPS, Smoke from engine,
+  content mirrored verbatim from the app;
+- "When to call for help" section.
+New `.em-card`/`pg-em-*` styles appended to aftlog-pages.css; registered in
+site_check. Static HTML/JS only — no keys, no server calls.
+
+**QA:** site_check **~270 checks ALL PASS** (tools/emergency.html registered);
+copy-lint clean (16 files); page well-formed (8 details/cards, handlers
+verified). Committed + pushed.
+
+---
 ## 2026-08-17 — Session 70 — DEEPSEEK STEP 8.12–8.20: Screens 4/4 websites (Compliance · Manual Finder · DIY · Battery · Glossary)
 
 **Goal (combined block):** mirror the remaining app screens on the website.

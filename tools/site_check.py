@@ -209,6 +209,7 @@ def main():
               "tools/buying-advisor.html", "tools/ramp-mode.html", "tools/calculators.html",
               "tools/visual-engine-assist.html", "tools/ai-diagnostics.html", "tools/ask-aftlog.html", "tools/predictive-planner.html", "tools/trip-patterns.html",
               "tools/compliance.html", "tools/manual-finder.html", "tools/diy-library.html", "tools/battery-electronics.html", "tools/glossary.html",
+              "tools/emergency.html",
               "checklists/winterization.html"]:
         check(f"{t} exists", (ROOT / t).exists())
     # 15. v1 Help System (STEP 8.1)

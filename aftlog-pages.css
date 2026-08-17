@@ -267,3 +267,15 @@
 .tp-trends b{color:var(--accent2)}
 .tp-out{background:var(--bg2);border-left:3px solid #F5B041;border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13px;line-height:1.5}
 @media (max-width:560px){.tp-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ── STEP 7.1 Emergency tool ─────────────────────────────────────── */
+.pg-em-pos,.pg-em-contact{max-width:560px}
+.pg-em-coord{margin-top:10px;font-size:15px;letter-spacing:.3px}
+.pg-em-err{font-size:12.5px;min-height:18px;margin-top:8px}
+.em-card{border:1px solid var(--line);border-left:4px solid var(--em,#E02020);border-radius:10px;background:var(--card);margin:10px 0;overflow:hidden}
+.em-card summary{cursor:pointer;font-weight:800;font-size:15px;padding:13px 16px;list-style:none}
+.em-card summary::-webkit-details-marker{display:none}
+.em-card summary::before{content:"▸ ";color:var(--em,#E02020)}
+.em-card[open] summary::before{content:"▾ "}
+.em-card ol{margin:0;padding:0 26px 14px;font-size:13.5px;line-height:1.4}
+.em-card li{margin-bottom:8px}

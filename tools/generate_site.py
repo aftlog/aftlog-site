@@ -1872,6 +1872,169 @@ register("tools/glossary", "AftLog Glossary — Boating Terms, Plainly Explained
          _glossary_body())
 
 
+# ── STEP 7.1: Emergency Advisor ────────────────────────────────────────
+
+_EMERGENCY_SCENARIOS = [
+    ("Engine won't start", "#F5B041", [
+        "Check the kill-switch lanyard is clipped on — it is the #1 cause.",
+        "Is the fuel tank vent open? (Vapor-locked tanks won't prime.)",
+        "Check the battery: dash lights on? Try the horn. No power = battery/connection.",
+        "Press the primer bulb until firm, then try again — but not for more than 10 seconds at a time.",
+        "If it cranks but won't fire: check the fuel filter for water (milky = water).",
+        "Still no start after these: do NOT keep cranking (starter + battery damage). Call a mechanic.",
+    ]),
+    ("Boat is taking on water", "#E02020", [
+        "PUT ON LIFE JACKETS FIRST. Tell everyone to stay calm and stay in the boat.",
+        "Find the leak: bilge pump ON, check the drain plug is in and tight.",
+        "If the plug is the problem, you can wedge it from outside with a rag if safe.",
+        "If a hose split or bellows failed: clamp or pinch it shut if you can reach it safely.",
+        "Slow a small leak by stuffing a rag, towel, or fender into the opening.",
+        "Call for help NOW if water is rising faster than the bilge pump clears it. Share your position (above) with the rescue service.",
+    ]),
+    ("Overheating", "#E02020", [
+        "Reduce throttle to idle immediately — do not shut off unless told to.",
+        "Check the water intake is not blocked by weeds, a plastic bag, or mud (tilt up and clear it).",
+        "Is the tell-tale stream weak or gone? Likely a blocked or worn impeller.",
+        "If it cools at idle, run slowly to the nearest dock, watching the gauge.",
+        "Never run hot at full throttle — a blown head gasket or warped head is a $1000+ bill.",
+        "If the alarm keeps sounding, shut down, drop anchor, and call a mechanic or tow.",
+    ]),
+    ("Electrical failure", "#F5B041", [
+        "Turn OFF the battery switch if there is one. Check for burning smell — if present, isolate power.",
+        "Check battery connections: loose or corroded terminals cause most failures. Tighten/tap with a tool.",
+        "Check the main fuse/breaker on the engine and panel. Spare fuses live in the onboard kit.",
+        "Smell or see smoke? Shut everything down, get everyone clear, and call for help.",
+        "If only some things work (lights but no start), it's a connection or ground issue — not the battery.",
+        "On the water with no power: anchor, use a radio/phone, and wait for help. Don't swim for the ramp.",
+    ]),
+    ("Lost in fog", "#F5B041", [
+        "Slow to a safe idle and STAY PUT if you can't see. Moving blind is how boats collide.",
+        "Turn on navigation lights and a spotlight if dusk or dark.",
+        "Sound the horn: 5 short blasts in fog signals \u201cI'm here — I can't see you\u201d.",
+        "Open your maps/phone and confirm your position before moving at all.",
+        "Listen for waves breaking on shore, other engines, or a ramp to orient yourself.",
+        "If you truly don't know where you are, call the coast guard or a local marina and share your position (above).",
+    ]),
+    ("Prop damage", "#F5B041", [
+        "Reduce throttle to idle immediately — a bent prop vibrates and can damage the drive.",
+        "Check for vibration or a knocking sound from the lower unit.",
+        "If you hit something: inspect the prop, skeg, and check for water entering the bilge.",
+        "A small ding can wait; a badly bent blade means run slow or get towed.",
+        "Do NOT run hard on a damaged prop — it strains the driveshaft and bearings.",
+        "Note the damage (photo) and call a prop shop or mobile mechanic. Many props can be repaired, not replaced.",
+    ]),
+    ("Lost GPS", "#F5B041", [
+        "Stay calm and stop if you can — moving blind makes it worse.",
+        "You are not truly lost: the boat still floats, and you know roughly where you launched.",
+        "Use the old tools: compass heading, landmarks, depth sounder, and your float plan (who knows where you went).",
+        "Dead-reckon from your last known position — check the time and speed since then.",
+        "If you have a VHF radio, call the coast guard or marina and give your best estimate; use your phone's offline maps if available.",
+        "Only call for help if conditions or fuel are unsafe — otherwise head back the way you came, slowly.",
+    ]),
+    ("Smoke from engine", "#E02020", [
+        "Shut the engine down immediately and get everyone away from the engine compartment.",
+        "DO NOT open the engine hatch right away — a sudden rush of air can flash a fire. Wait a few minutes.",
+        "If you can see flames, use the extinguisher ONLY from a safe position, aimed at the base of the fire.",
+        "Electrical smoke smells sharp and acrid; fuel/oil smoke smells heavy — note which, it helps the mechanic.",
+        "Get life jackets on and call for help now if there is any flame or heavy smoke — share your position (above).",
+        "Never restart after smoke until the cause is found and the engine room has been aired out.",
+    ]),
+]
+
+
+_EMERGENCY_JS = r"""<script>
+(function () {
+  var acc = document.querySelector('details.em-card'); if (acc) acc.open = true;
+  var lat = null, lon = null, t = null;
+  var btn = document.getElementById('em-locate');
+  var err = document.getElementById('em-loc-error');
+  var coord = document.getElementById('em-coord');
+  var updated = document.getElementById('em-updated');
+  var panel = document.getElementById('em-pos');
+  var cbtn = document.getElementById('em-copy');
+  var mbtn = document.getElementById('em-maps');
+  function setPos(){
+    if (!lat) return;
+    coord.textContent = lat.toFixed(6) + ', ' + lon.toFixed(6);
+    updated.textContent = 'Updated ' + (t ? 'just now' : '');
+    panel.style.display = '';
+    btn.parentNode.style.display = 'none';
+    err.textContent = '';
+  }
+  function onErr(e){
+    err.textContent = e && e.code === 1
+      ? 'Location permission is off. Allow location to share your position — or open your maps app.'
+      : 'Could not get your position. Try again.';
+  }
+  btn.addEventListener('click', function () {
+    btn.disabled = true; btn.textContent = 'Getting position…';
+    if (!navigator.geolocation) { onErr(null); btn.disabled = false; btn.textContent = 'Get my position'; return; }
+    navigator.geolocation.getCurrentPosition(function (p) {
+      lat = p.coords.latitude; lon = p.coords.longitude; t = Date.now();
+      setPos(); btn.disabled = false; btn.textContent = 'Get my position';
+    }, function (e) { onErr(e); btn.disabled = false; btn.textContent = 'Get my position'; }, { enableHighAccuracy: true, timeout: 12000 });
+  });
+  cbtn.addEventListener('click', function () {
+    if (!lat) return;
+    var txt = lat.toFixed(6) + ', ' + lon.toFixed(6);
+    if (navigator.clipboard) { navigator.clipboard.writeText(txt); }
+    coord.textContent = txt + '  \u2713 copied';
+  });
+  mbtn.addEventListener('click', function () {
+    if (lat) window.open('https://maps.google.com/?q=' + lat + ',' + lon, '_blank', 'noopener');
+  });
+  var ctl = document.getElementById('em-contact');
+  var KS = 'aftlog_emer_contact';
+  try { ctl.value = localStorage.getItem(KS) || ''; } catch(e){}
+  ctl.addEventListener('input', function () { try { localStorage.setItem(KS, ctl.value); } catch(e){} });
+  var call = document.getElementById('em-call');
+  function refreshCall(){
+    var n = (ctl.value || '').replace(/[^0-9+]/g, '');
+    if (n) { call.href = 'tel:' + n; call.style.display = ''; } else { call.style.display = 'none'; }
+  }
+  ctl.addEventListener('input', refreshCall); refreshCall();
+})();
+</script>"""
+
+
+def _emergency_body():
+    cards = "".join(
+        '<details class="em-card" style="--em:%s"><summary>%s</summary><ol class="pg-list">%s</ol></details>' % (
+            color, esc(title), "".join("<li>%s</li>" % esc(s) for s in steps))
+        for title, color, steps in _EMERGENCY_SCENARIOS)
+    return (
+        hero("Emergency — What to do if…", "One tap gets calm, step-by-step guidance — with your exact position ready to share with help.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Stay calm. Read the first step, then the next. Only call for help when a step says so.</p>'
+        + '<article class="cal-card pg-em-pos"><h2>Your exact position</h2>'
+        + '<p class="pg-muted">If you need to tell someone exactly where you are, grab your position.</p>'
+        + '<button type="button" id="em-locate" class="btn btn-primary">Get my position</button>'
+        + '<p class="pg-muted pg-em-coord" id="em-coord" style="font-weight:700"></p>'
+        + '<p class="pg-muted" id="em-updated"></p>'
+        + '<div id="em-pos" style="display:none">'
+        + '<button type="button" id="em-copy" class="btn btn-secondary btn-sm">Copy coordinates</button> '
+        + '<button type="button" id="em-maps" class="btn btn-secondary btn-sm">Open in Maps</button>'
+        + '</div>'
+        + '<p class="pg-em-err" id="em-loc-error" style="color:#E02020"></p>'
+        + '</article>'
+        + '<article class="cal-card pg-em-contact"><h2>Call emergency contact</h2>'
+        + '<p class="pg-muted">Keep a contact you trust who knows your plans and your boat.</p>'
+        + '<label class="pg-hint-label" for="em-contact">Emergency contact number</label>'
+        + '<input id="em-contact" class="fp-in" type="tel" placeholder="+1 555 123 4567">'
+        + '<p><a id="em-call" class="btn btn-primary" href="#" style="display:none">Call contact</a></p>'
+        + '</article>'
+        + cards
+        + _EMERGENCY_JS
+        + '</div></section>'
+        + section("When to call for help", "<p>Call the coast guard, marina, or tow service as soon as the situation is beyond a quick fix — while you still have time, fuel, and daylight. It is always easier to cancel a rescue than to start one too late.</p>")
+    )
+
+
+register("tools/emergency", "AftLog Emergency — What to Do If…",
+         "Calm, step-by-step emergency guidance for the water: engine won't start, taking on water, overheating, electrical failure, fog, prop damage, lost GPS, and smoke.",
+         _emergency_body())
+
+
 def main():
     print(f"Generating AftLog site → portal base: {PORTAL}")
     for p in PAGES:

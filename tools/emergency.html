@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AftLog Emergency — What to Do If…</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Calm, step-by-step emergency guidance for the water: engine won&#x27;t start, taking on water, overheating, electrical failure, fog, prop damage, lost GPS, and smoke.">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+<link rel="apple-touch-icon" href="/images/favicon-180.png">
+<meta property="og:title" content="AftLog Emergency — What to Do If…">
+<meta property="og:description" content="Calm, step-by-step emergency guidance for the water: engine won&#x27;t start, taking on water, overheating, electrical failure, fog, prop damage, lost GPS, and smoke.">
+<meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://aftlog.com/tools/emergency">
+<link rel="stylesheet" href="/aftlog.css">
+<link rel="stylesheet" href="/aftlog-pages.css">
+<script>
+  (function(){ if (location.hash) history.replaceState(null, '', location.pathname + location.search); })();
+</script>
+</head>
+<body>
+<header class="site-header site-header--dark">
+  <div class="container header-inner">
+    <div class="logo"><a href="/"><img src="/images/aftlog-badge.png" alt="AftLog"></a></div>
+    <nav class="nav" aria-label="Main">
+      <a href="/">Home</a><a href="/features.html">Features</a><a href="/ai.html">AI</a><a href="/portal.html">Portal</a><a href="/pricing.html">Pricing</a><a href="/faq.html">FAQ</a><a href="/support.html">Support</a><a href="/blog/">Blog</a><a href="/updates/">Updates</a><a href="/#waitlist" class="btn btn-primary">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+<main class="pg-main">
+<section class="hero hero--dark pg-hero">
+  <div class="container hero-inner pg-hero-inner">
+    <div class="hero-text">
+      <div class="brand-block"><img class="hero-logo brand-logo" src="/images/aftlog-logo.png" alt="AftLog logo"><span class="kicker brand-slogan">Keeping your boat shipshape!</span></div>
+      <h1>Emergency — What to do if…</h1>
+      <p>One tap gets calm, step-by-step guidance — with your exact position ready to share with help.</p>
+    </div>
+  </div>
+</section><section class="section section--light"><div class="container"><p class="pg-muted">Stay calm. Read the first step, then the next. Only call for help when a step says so.</p><article class="cal-card pg-em-pos"><h2>Your exact position</h2><p class="pg-muted">If you need to tell someone exactly where you are, grab your position.</p><button type="button" id="em-locate" class="btn btn-primary">Get my position</button><p class="pg-muted pg-em-coord" id="em-coord" style="font-weight:700"></p><p class="pg-muted" id="em-updated"></p><div id="em-pos" style="display:none"><button type="button" id="em-copy" class="btn btn-secondary btn-sm">Copy coordinates</button> <button type="button" id="em-maps" class="btn btn-secondary btn-sm">Open in Maps</button></div><p class="pg-em-err" id="em-loc-error" style="color:#E02020"></p></article><article class="cal-card pg-em-contact"><h2>Call emergency contact</h2><p class="pg-muted">Keep a contact you trust who knows your plans and your boat.</p><label class="pg-hint-label" for="em-contact">Emergency contact number</label><input id="em-contact" class="fp-in" type="tel" placeholder="+1 555 123 4567"><p><a id="em-call" class="btn btn-primary" href="#" style="display:none">Call contact</a></p></article><details class="em-card" style="--em:#F5B041"><summary>Engine won&#x27;t start</summary><ol class="pg-list"><li>Check the kill-switch lanyard is clipped on — it is the #1 cause.</li><li>Is the fuel tank vent open? (Vapor-locked tanks won&#x27;t prime.)</li><li>Check the battery: dash lights on? Try the horn. No power = battery/connection.</li><li>Press the primer bulb until firm, then try again — but not for more than 10 seconds at a time.</li><li>If it cranks but won&#x27;t fire: check the fuel filter for water (milky = water).</li><li>Still no start after these: do NOT keep cranking (starter + battery damage). Call a mechanic.</li></ol></details><details class="em-card" style="--em:#E02020"><summary>Boat is taking on water</summary><ol class="pg-list"><li>PUT ON LIFE JACKETS FIRST. Tell everyone to stay calm and stay in the boat.</li><li>Find the leak: bilge pump ON, check the drain plug is in and tight.</li><li>If the plug is the problem, you can wedge it from outside with a rag if safe.</li><li>If a hose split or bellows failed: clamp or pinch it shut if you can reach it safely.</li><li>Slow a small leak by stuffing a rag, towel, or fender into the opening.</li><li>Call for help NOW if water is rising faster than the bilge pump clears it. Share your position (above) with the rescue service.</li></ol></details><details class="em-card" style="--em:#E02020"><summary>Overheating</summary><ol class="pg-list"><li>Reduce throttle to idle immediately — do not shut off unless told to.</li><li>Check the water intake is not blocked by weeds, a plastic bag, or mud (tilt up and clear it).</li><li>Is the tell-tale stream weak or gone? Likely a blocked or worn impeller.</li><li>If it cools at idle, run slowly to the nearest dock, watching the gauge.</li><li>Never run hot at full throttle — a blown head gasket or warped head is a $1000+ bill.</li><li>If the alarm keeps sounding, shut down, drop anchor, and call a mechanic or tow.</li></ol></details><details class="em-card" style="--em:#F5B041"><summary>Electrical failure</summary><ol class="pg-list"><li>Turn OFF the battery switch if there is one. Check for burning smell — if present, isolate power.</li><li>Check battery connections: loose or corroded terminals cause most failures. Tighten/tap with a tool.</li><li>Check the main fuse/breaker on the engine and panel. Spare fuses live in the onboard kit.</li><li>Smell or see smoke? Shut everything down, get everyone clear, and call for help.</li><li>If only some things work (lights but no start), it&#x27;s a connection or ground issue — not the battery.</li><li>On the water with no power: anchor, use a radio/phone, and wait for help. Don&#x27;t swim for the ramp.</li></ol></details><details class="em-card" style="--em:#F5B041"><summary>Lost in fog</summary><ol class="pg-list"><li>Slow to a safe idle and STAY PUT if you can&#x27;t see. Moving blind is how boats collide.</li><li>Turn on navigation lights and a spotlight if dusk or dark.</li><li>Sound the horn: 5 short blasts in fog signals “I&#x27;m here — I can&#x27;t see you”.</li><li>Open your maps/phone and confirm your position before moving at all.</li><li>Listen for waves breaking on shore, other engines, or a ramp to orient yourself.</li><li>If you truly don&#x27;t know where you are, call the coast guard or a local marina and share your position (above).</li></ol></details><details class="em-card" style="--em:#F5B041"><summary>Prop damage</summary><ol class="pg-list"><li>Reduce throttle to idle immediately — a bent prop vibrates and can damage the drive.</li><li>Check for vibration or a knocking sound from the lower unit.</li><li>If you hit something: inspect the prop, skeg, and check for water entering the bilge.</li><li>A small ding can wait; a badly bent blade means run slow or get towed.</li><li>Do NOT run hard on a damaged prop — it strains the driveshaft and bearings.</li><li>Note the damage (photo) and call a prop shop or mobile mechanic. Many props can be repaired, not replaced.</li></ol></details><details class="em-card" style="--em:#F5B041"><summary>Lost GPS</summary><ol class="pg-list"><li>Stay calm and stop if you can — moving blind makes it worse.</li><li>You are not truly lost: the boat still floats, and you know roughly where you launched.</li><li>Use the old tools: compass heading, landmarks, depth sounder, and your float plan (who knows where you went).</li><li>Dead-reckon from your last known position — check the time and speed since then.</li><li>If you have a VHF radio, call the coast guard or marina and give your best estimate; use your phone&#x27;s offline maps if available.</li><li>Only call for help if conditions or fuel are unsafe — otherwise head back the way you came, slowly.</li></ol></details><details class="em-card" style="--em:#E02020"><summary>Smoke from engine</summary><ol class="pg-list"><li>Shut the engine down immediately and get everyone away from the engine compartment.</li><li>DO NOT open the engine hatch right away — a sudden rush of air can flash a fire. Wait a few minutes.</li><li>If you can see flames, use the extinguisher ONLY from a safe position, aimed at the base of the fire.</li><li>Electrical smoke smells sharp and acrid; fuel/oil smoke smells heavy — note which, it helps the mechanic.</li><li>Get life jackets on and call for help now if there is any flame or heavy smoke — share your position (above).</li><li>Never restart after smoke until the cause is found and the engine room has been aired out.</li></ol></details><script>
+(function () {
+  var acc = document.querySelector('details.em-card'); if (acc) acc.open = true;
+  var lat = null, lon = null, t = null;
+  var btn = document.getElementById('em-locate');
+  var err = document.getElementById('em-loc-error');
+  var coord = document.getElementById('em-coord');
+  var updated = document.getElementById('em-updated');
+  var panel = document.getElementById('em-pos');
+  var cbtn = document.getElementById('em-copy');
+  var mbtn = document.getElementById('em-maps');
+  function setPos(){
+    if (!lat) return;
+    coord.textContent = lat.toFixed(6) + ', ' + lon.toFixed(6);
+    updated.textContent = 'Updated ' + (t ? 'just now' : '');
+    panel.style.display = '';
+    btn.parentNode.style.display = 'none';
+    err.textContent = '';
+  }
+  function onErr(e){
+    err.textContent = e && e.code === 1
+      ? 'Location permission is off. Allow location to share your position — or open your maps app.'
+      : 'Could not get your position. Try again.';
+  }
+  btn.addEventListener('click', function () {
+    btn.disabled = true; btn.textContent = 'Getting position…';
+    if (!navigator.geolocation) { onErr(null); btn.disabled = false; btn.textContent = 'Get my position'; return; }
+    navigator.geolocation.getCurrentPosition(function (p) {
+      lat = p.coords.latitude; lon = p.coords.longitude; t = Date.now();
+      setPos(); btn.disabled = false; btn.textContent = 'Get my position';
+    }, function (e) { onErr(e); btn.disabled = false; btn.textContent = 'Get my position'; }, { enableHighAccuracy: true, timeout: 12000 });
+  });
+  cbtn.addEventListener('click', function () {
+    if (!lat) return;
+    var txt = lat.toFixed(6) + ', ' + lon.toFixed(6);
+    if (navigator.clipboard) { navigator.clipboard.writeText(txt); }
+    coord.textContent = txt + '  \u2713 copied';
+  });
+  mbtn.addEventListener('click', function () {
+    if (lat) window.open('https://maps.google.com/?q=' + lat + ',' + lon, '_blank', 'noopener');
+  });
+  var ctl = document.getElementById('em-contact');
+  var KS = 'aftlog_emer_contact';
+  try { ctl.value = localStorage.getItem(KS) || ''; } catch(e){}
+  ctl.addEventListener('input', function () { try { localStorage.setItem(KS, ctl.value); } catch(e){} });
+  var call = document.getElementById('em-call');
+  function refreshCall(){
+    var n = (ctl.value || '').replace(/[^0-9+]/g, '');
+    if (n) { call.href = 'tel:' + n; call.style.display = ''; } else { call.style.display = 'none'; }
+  }
+  ctl.addEventListener('input', refreshCall); refreshCall();
+})();
+</script></div></section><section class="section section--light ">
+  <div class="container">
+    <h2>When to call for help</h2>
+    <p>Call the coast guard, marina, or tow service as soon as the situation is beyond a quick fix — while you still have time, fuel, and daylight. It is always easier to cancel a rescue than to start one too late.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer site-footer--dark">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
+      <p>Keeping your boat shipshape. Works without a signal. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="/features.html">Features</a>
+      <a href="/ai.html">AftLog AI</a>
+      <a href="/pricing.html">Pricing — lifetime Pro</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/support.html">Support</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#waitlist">Waitlist</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Portal</h4>
+      <a href="https://portal.aftlog.com/login">Portal login</a>
+      <a href="https://portal.aftlog.com/portal/">Portal dashboard</a>
+      <a href="https://portal.aftlog.com/portal/year-in-review">Year in Review</a>
+      <a href="https://portal.aftlog.com/portal/boats">Boat analytics</a>
+    </div>
+  </div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA. · Platform v1.111</div>
+</footer>
+</body>
+</html>
