@@ -1425,6 +1425,47 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 59 — DEEPSEEK STEP 8.1: v1 Help System (app + website + portal)
+
+**Goal (block):** a v1 Help System across the whole ecosystem — in-app
+Help (primary), website Help (secondary), portal contextual micro-help —
+with a unified content model, steps + screenshots, search + categories,
+and offline-first in the app. No backend/proxy changes.
+
+**Content (unified, canonical):** authored 28 JSON topics under
+`aftlog-site/help/topics/` (5 Core, 4 Logging, 5 Planner, 4 AI, 6 Tools,
+1 Checklist, 1 Seasonal, 2 Backup). Each topic: id/category/title/
+description/steps/tips/related + where/examples/affects (added to meet the
+app's feature-#82 instructional standard). Serves all three surfaces.
+
+**App (primary) — extended the EXISTING help system (features #80–82)
+rather than build a parallel one:** added a `category` field to HelpTopic,
+appended the 28 topics (compiled from the JSON) with full instructional
+content (where/howTo/examples/tips/affects), and upgraded the Knowledge
+Base (More → Help) with a local SEARCH bar + CATEGORY chips. Fully
+offline (compiled-in content). Updated a stale portal-default test.
+Tests: 18 pass (new help_system_test + instructional standard met). App
+1.108.8+155 built + installed on the phone (md5 ae75a93b…).
+
+**Website (secondary):** generator now emits help/index.html (search +
+category bar + topic grid, client-side filter) + 28 help/<id>.html topic
+pages from the same JSON + help.js. FAQ → Help, Support → Help, Blog →
+Help cross-links added. Help checks added to site_check — ALL PASS
+(~200 checks).
+
+**Portal (contextual micro-help):** a per-page 'How to use this page' (?) 
+button in the topbar + a right-side help panel, on every portal shell
+page. Content per page from 6 JSONs (`web/portal/assets/help/portal/
+{home,year-in-review,planner-dashboard,boat-health,trip-patterns,
+imports}.json`) loaded by `openPortalHelp()` in portal.js. Verified live:
+JSON served 200, panel wiring present.
+
+**Fixed during the build:** the generator had a latent bug from Session 56
+(the FAQ register was accidentally deleted — latent, masked by a stale
+faq.html). Restored the FAQ register + cross-linked it to Help.
+
+---
+
 ## 2026-08-17 — Session 58 — DEEPSEEK STEP 7.10: /updates/ hybrid changelog rebuild
 
 **Goal (block):** rebuild the updates page as a clean, factual,
