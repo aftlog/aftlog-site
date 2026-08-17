@@ -212,6 +212,7 @@ def main():
               "tools/emergency.html",
               "tools/trip-log.html", "tools/checklists.html",
               "tools/cost-insights.html",
+              "tools/parts-locator.html",
               "checklists/winterization.html"]:
         check(f"{t} exists", (ROOT / t).exists())
     # 15. v1 Help System (STEP 8.1)

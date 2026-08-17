@@ -324,3 +324,15 @@
 .co-entry{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
 .co-entry h2{margin-top:0;font-size:15px}
 @media(max-width:720px){.co-cards{grid-template-columns:1fr}.co-metrics{grid-template-columns:repeat(2,1fr)}}
+
+/* ── STEP 4.10 Parts Locator tool ──────────────────────────────────── */
+.pl-country-row{display:flex;gap:8px;align-items:center;margin:6px 0}
+.pl-country-row .btn{width:auto}
+.pl-country.on{background:var(--accent2);color:var(--dark);border-color:var(--accent2)}
+.pl-controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.pl-controls label{display:block}
+.pl-controls .pg-select{width:100%}
+.pl-results{margin:10px 0}
+.pl-links{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.pl-link{width:auto}
+@media(max-width:720px){.pl-controls{grid-template-columns:1fr}}

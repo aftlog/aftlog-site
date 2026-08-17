@@ -1425,6 +1425,37 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 74 — DEEPSEEK STEP 3.1–3.16 (Services) + 4.1–4.10 (Widgets & Data) website audit + Parts Locator
+
+**Blocks:** 3.1–3.16 (Database/Boat/Log/Interval/Service/Checklist/HealthScore/
+Journey/Seasonal/AI/Notification/PDF/Units/Settings/Pro/DemoData services) and
+4.1–4.10 (BigButtonChecklist, SymptomFlowView, JourneyCard, NudgeCard,
+TipCard, Glossary data, DIY, Manual finder data, Calculator formulas,
+Part categories + suppliers).
+**Audit — Block 3 (services) is app backend, no public UI; already reflected
+in the existing tools** (planner/trip-log/checklists/cost-insights/
+calculators/AI). **Block 4 mostly already mirrored:** 4.1→ramp-mode,
+4.2→ai-diagnostics+visual-engine-assist, 4.6→glossary, 4.7→diy-library,
+4.8→manual-finder, 4.9→calculators. 4.3/4.4/4.5 (journey/nudge/tip cards) are
+in-app Pro/beginner widgets — marketing, no standalone tool.
+**New this session — tools/parts-locator.html (block 4.10, the affiliate
+stream, previously missing on the site):** mirrors parts_locator.dart:
+- 14 part categories (pick list); US/Canada country toggle;
+- optional engine brand + HP → smart keyword builder (brand+hp+part);
+- 11 supplier search links (Amazon/eBay/Walmart/Bass Pro/Cabela's/West
+  Marine/Canadian Tire/Princess Auto/Academy/AutoZone/O'Reilly) filtered by
+  country, {q} templated exactly like the app's supplierUrl();
+- common cross-reference part numbers per brand (Mercury/Yamaha/Honda/
+  Suzuki/Evinrude) + universal references (bilge/battery/nav/trailer) with
+  the "verify for your model" caveat;
+- affiliate disclosure note (AftLog earns a commission on some suppliers).
+New `pl-*` styles appended to aftlog-pages.css; registered in site_check.
+Static HTML/JS — no keys, no server calls.
+**QA:** site_check **~285 checks ALL PASS** (tools/parts-locator.html);
+copy-lint clean (20 files); page well-formed (14 cats, 11 suppliers,
+brand + universal numbers verified). Committed + pushed.
+
+---
 ## 2026-08-17 — Session 73 — DEEPSEEK STEP 5.1–5.10 (Screens 1/4) + 2.1–2.9 (Models) website audit + Cost Insights
 
 **Blocks:** 5.1–5.10 (Dashboard / Beginner dashboard / Boats / Add boat /

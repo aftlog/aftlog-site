@@ -2391,6 +2391,144 @@ register("tools/cost-insights", "AftLog Cost of Ownership",
          _cost_body())
 
 
+# ── STEP 4.10: Parts Locator tool ─────────────────────────────────────
+
+_PARTS_JS = r"""<script>
+(function () {
+  var CATS = [
+    ['impeller','Impeller / Water Pump Kit','impeller kit'],
+    ['spark','Spark Plugs','marine spark plug'],
+    ['fuel_filter','Fuel Filter','fuel filter'],
+    ['oil_filter','Oil Filter','marine oil filter'],
+    ['gearcase_oil','Gearcase Oil','lower unit oil'],
+    ['thermostat','Thermostat','marine thermostat'],
+    ['anodes','Anodes','zinc anode'],
+    ['propeller','Propeller','boat prop'],
+    ['battery','Battery','marine battery'],
+    ['bilge','Bilge Pump','bilge pump'],
+    ['nav_lights','Navigation Lights','marine nav lights'],
+    ['trailer_wiring','Trailer Wiring','trailer wiring'],
+    ['trim_motor','Trim & Tilt Motor','trim motor'],
+    ['steering','Steering Cable','steering cable']
+  ];
+  var SUPS = [
+    ['Amazon','https://www.amazon.com/s?k={q}','https://www.amazon.ca/s?k={q}'],
+    ['eBay','https://www.ebay.com/sch/i.html?_nkw={q}','https://www.ebay.ca/sch/i.html?_nkw={q}'],
+    ['Walmart','https://www.walmart.com/search?q={q}','https://www.walmart.ca/search?q={q}'],
+    ['Bass Pro','https://www.basspro.com/shop/en/search?q={q}','https://www.basspro.ca/shop/en/search?q={q}'],
+    ["Cabela's",'https://www.cabelas.com/shop/en/search?q={q}','https://www.cabelas.ca/shop/en/search?q={q}'],
+    ['West Marine','https://www.westmarine.com/search.html?q={q}',null],
+    ['Canadian Tire',null,'https://www.canadiantire.ca/en/search-results.html?q={q}'],
+    ['Princess Auto',null,'https://www.princessauto.com/en/search?q={q}'],
+    ['Academy','https://www.academy.com/search?q={q}',null],
+    ['AutoZone','https://www.autozone.com/search?q={q}',null],
+    ["O'Reilly",'https://www.oreillyauto.com/search?q={q}',null]
+  ];
+  var BRANDS = ['Mercury','Yamaha','Honda','Suzuki','Evinrude'];
+  var BRANDROWS = {
+    Mercury:{impeller:'47-879872K1','fuel_filter':'35-883072T03',thermostat:'75692',spark:'NGK IZFR5G',anodes:'97-888756',propeller:'835257K1',gearcase_oil:'92-858064K01',trim_motor:'828708A1'},
+    Yamaha:{impeller:'6H5-44352-00','fuel_filter':'6E5-24305-00',thermostat:'6G8-12411-00',spark:'NGK DPR6EA-9',anodes:'688-45251-02',propeller:'67H-45987-00',gearcase_oil:'Yamalube Marine Gear Oil',trim_motor:'6H1-43880-02'},
+    Honda:{impeller:'06192-ZV1-000','fuel_filter':'16910-ZY3-003',thermostat:'19300-ZW1-003',spark:'NGK IFR6J11',anodes:'41106-ZW1-000',propeller:'41110-ZW1-000',gearcase_oil:'Honda Marine Hypoid',trim_motor:'36120-ZW4-013'},
+    Suzuki:{impeller:'17551-93J00','fuel_filter':'15410-87J00',thermostat:'17670-87J00',spark:'NGK BKR6E',anodes:'55321-87J00',propeller:'57620-87L00',gearcase_oil:'Suzuki Hypoid',trim_motor:'38100-87J00'},
+    Evinrude:{impeller:'774733','fuel_filter':'5004420',thermostat:'5005440',spark:'NGK IZFR6J',anodes:'5007697',propeller:'177284',gearcase_oil:'HPF PRO',trim_motor:'5007083'}
+  };
+  var UNIV = [['Bilge pump','Rule 500/800/1100'],['Bilge float switch','Rule SuperSwitch'],['Navigation lights','Attwood LED'],['Battery','Group 24/27/31'],['Battery switch','Perko 8501'],['Fuses','ATC/ATO marine'],['Breakers','Blue Sea Systems'],['Trailer wiring harness','4-pin/5-pin/7-pin'],['Trailer lights','LED submersible'],['Trailer bearings','1-1/16" or 1-3/8"'],['Trailer tires','ST175/80R13 or ST205/75R14'],['Winch strap','2" x 20-25 ft']];
+  var catSel = document.getElementById('pl-cat');
+  var brandSel = document.getElementById('pl-brand');
+  var hpIn = document.getElementById('pl-hp');
+  var smart = document.getElementById('pl-smart');
+  var country = 'us';
+  function fillCats(){
+    CATS.forEach(function(c){ var o=document.createElement('option'); o.value=c[0]; o.textContent=c[1]; catSel.appendChild(o); });
+    BRANDS.forEach(function(b){ var o=document.createElement('option'); o.value=b; o.textContent=b; brandSel.appendChild(o); });
+  }
+  window.plCountry = function (c){ country=c; Array.prototype.forEach.call(document.querySelectorAll('.pl-country'), function(b){ b.classList.toggle('on', b.dataset.c===c); }); find(); };
+  function catName(id){ for(var i=0;i<CATS.length;i++) if(CATS[i][0]===id) return CATS[i]; return null; }
+  function enc(s){ return encodeURIComponent(s).replace(/%20/g,'+'); }
+  function find(){
+    var cat = catName(catSel.value); if(!cat) return;
+    var base = cat[2];
+    var keyword = base;
+    if (smart.checked) {
+      var b = (brandSel.value||'').trim().toLowerCase().replace(/\s+/g,'+');
+      var hp = parseInt(hpIn.value,10);
+      if (b) keyword = hp>0 ? b+'+'+hp+'hp+'+base : b+'+'+base;
+    }
+    var out = document.getElementById('pl-links');
+    out.innerHTML = '';
+    var added = 0;
+    SUPS.forEach(function(s){
+      var url = country==='ca' ? (s[2]||s[1]) : s[1];
+      if (!url) return;
+      var a = document.createElement('a');
+      a.className = 'btn btn-sm btn-secondary pl-link';
+      a.href = url.replace('{q}', enc(keyword));
+      a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = s[0];
+      out.appendChild(a); added++;
+    });
+    document.getElementById('pl-keyword').textContent = keyword;
+    document.getElementById('pl-count').textContent = added + ' suppliers (' + (country==='ca'?'Canada':'US') + ')';
+    renderNumbers(cat[0], cat[1]);
+  }
+  function renderNumbers(cid, cname){
+    var box = document.getElementById('pl-numbers');
+    var brand = brandSel.value;
+    var html = '';
+    if (brand && BRANDROWS[brand]) {
+      var row = BRANDROWS[brand][cid];
+      html = '<h2>Common part number</h2><p class="pg-muted"><strong>'+brand+' · '+cname+':</strong> '+(row||'—')+'</p>';
+      html += '<p class="pg-muted">Cross-reference numbers vary by model and year — always verify for your engine before buying.</p>';
+    } else if (cid==='bilge'||cid==='battery'||cid==='nav_lights'||cid==='trailer_wiring') {
+      var u = UNIV.filter(function(x){ return (cid==='bilge'&&(x[0].toLowerCase().indexOf('bilge')!==-1)) || (cid==='battery'&&x[0].toLowerCase()==='battery') || (cid==='nav_lights'&&x[0].toLowerCase().indexOf('navigation')!==-1) || (cid==='trailer_wiring'&&x[0].toLowerCase().indexOf('trailer wiring')!==-1); });
+      html = '<h2>Common references</h2>' + u.map(function(x){ return '<div class="tl-row">'+x[0]+' · <strong>'+x[1]+'</strong></div>'; }).join('');
+    } else {
+      html = '<h2>Common part numbers</h2><p class="pg-muted">Choose an engine brand above to see cross-reference part numbers for this part.</p>';
+    }
+    box.innerHTML = html;
+  }
+  catSel.addEventListener('change', find);
+  brandSel.addEventListener('change', find);
+  hpIn.addEventListener('input', find);
+  smart.addEventListener('change', find);
+  fillCats(); plCountry('us');
+})();
+</script>"""
+
+
+def _parts_locator_body():
+    ctry = ('<div class="pl-country-row">'
+            '<span class="pg-muted">Country:</span> '
+            '<button type="button" class="btn btn-sm pl-country on" data-c="us" onclick="plCountry(\'us\')">US</button> '
+            '<button type="button" class="btn btn-sm pl-country" data-c="ca" onclick="plCountry(\'ca\')">Canada</button></div>')
+    return (
+        hero("Parts Locator", "Pick a part, choose your engine, and jump straight to the suppliers who carry it.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Choose a part and a country for direct supplier search links. Optional engine brand + HP builds a smarter search.</p>'
+        + ctry
+        + '<div class="pl-controls">'
+        + '<label class="pg-hint-label" for="pl-cat">Part</label><select id="pl-cat" class="pg-select"></select>'
+        + '<label class="pg-hint-label" for="pl-brand">Engine brand (optional)</label><select id="pl-brand" class="pg-select"><option value="">— none —</option></select>'
+        + '<label class="pg-hint-label" for="pl-hp">Horsepower (optional)</label><input id="pl-hp" class="fp-in" type="number" min="0" placeholder="150" style="max-width:120px">'
+        + '<label class="pg-hint-label"><input type="checkbox" id="pl-smart" checked> Build a smarter search with brand + HP</label>'
+        + '</div>'
+        + '<div class="pl-results">'
+        + '<p class="pg-muted" id="pl-count"></p>'
+        + '<p class="pg-muted">Keyword: <strong id="pl-keyword"></strong></p>'
+        + '<div id="pl-links" class="pl-links"></div>'
+        + '<div id="pl-numbers"></div>'
+        + '</div>'
+        + '<p class="pg-muted">Common part numbers are cross-reference numbers — always verify for your model and year before buying. This is informational; AftLog earns a commission on some suppliers at no cost to you.</p>'
+        + _PARTS_JS
+        + '</div></section>'
+    )
+
+
+register("tools/parts-locator", "AftLog Parts Locator",
+         "14 part categories with US/Canada supplier search links and common cross-reference part numbers for Mercury, Yamaha, Honda, Suzuki, and Evinrude.",
+         _parts_locator_body())
+
+
 def main():
     print(f"Generating AftLog site → portal base: {PORTAL}")
     for p in PAGES:
