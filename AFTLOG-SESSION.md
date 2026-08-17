@@ -1307,6 +1307,20 @@ help/website.
   test codes swept. NOTE: flutter test does not surface --dart-define to
   String.fromEnvironment reliably — live checks use a throwaway test that
   loads the SA via the seam and is deleted before commit.
+### Block 7 (AFTLOG-PRO-APP-UX, RUN) — IMPLEMENTED + LIVE-VERIFIED
+- App a6f5349 (429 tests, +3 widget): ProActivationScreen (license entry
+  + 'Pro Unlocked' card), ProStatusScreen (status card + Enter Pro Code +
+  Link to Portal), showProRequiredDialog ('Requires AftLog Pro' + Enter
+  Pro Code) wired into the boat-limit gate + AI ask-cap gate (upgrade path
+  preserved), ProUpgradeScreen gains 'Have a license code?' row (so every
+  gate funnels to code entry). ProService now writes the Block-7 SPEC
+  keys aftlog_is_pro/aftlog_pro_type/aftlog_pro_expires_at (+ since) while
+  keeping the legacy keys in sync; load() prefers spec keys. More tile is
+  now Pro Status (all users). EN + ES.
+- Server 9f3125b: redeem response adds proSince.
+- LIVE: redeem returns {success, type: yearly, proSince, expiresAt};
+  cleaned up. NOTE: EnterProCodeScreen (Block 5) superseded by
+  ProActivationScreen, kept for reference.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
