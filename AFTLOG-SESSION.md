@@ -1425,6 +1425,26 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 69 — DEEPSEEK STEP 8.11: Trip Pattern Engine (app + website)
+
+**Goal (block):** analyze trip logs to compute usage totals, averages,
+seasonality, trip-type, efficiency + hours trends, and outliers. No help/KB.
+
+**App:** lib/models/trip_pattern.dart (engine: totals/averages from
+LogService trips; seasonal share by month; common trip type by distance
+buckets; fuel-trend via recent vs overall burn; hours-month trend vs prior
+90 days; top-3 outliers by deviation from median distance; local snapshot
+storage) + screen (summary cards grid, pure-Dart seasonal bar chart, trend
+icon/tiles, outlier list, Save + PDF share). Wired at More → Tools. 5
+tests (totals/seasonal/type/outliers/empty). Analyzer clean. App built
+**1.108.16+163** (install still paused; 8 APKs queued).
+
+**Website:** /tools/trip-patterns.html + external trip-patterns.js engine
+(JS mirror: totals/averages/seasonal canvas/trends/outliers), a trip-entry
+form + localStorage trips, .txt + print/PDF export. site_check ALL PASS
+(~250), tools list extended, lint clean.
+
+---
 ## 2026-08-17 — Session 68 — DEEPSEEK STEP 8.10: Predictive Planner (app + website)
 
 **Goal (block):** analyze engine hours + maintenance logs + interval rules
