@@ -1425,6 +1425,41 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 52 — DEEPSEEK STEP 7.2: global hero logo + slogan header
+
+**Goal (DEEPSEEK block):** the large AftLog logo + slogan block (previously
+homepage-only) now appears on EVERY aftlog.com page — same position,
+size, spacing, alignment. No server/proxy/architecture changes.
+
+**What was done (aftlog-site, pushed):**
+- **components/header_brand.html** — canonical shared component (logo +
+  slogan, no navigation): 160px `aftlog-logo.png` + 'Keeping your boat
+  shipshape!' slogan, homepage-exact styling (12px uppercase pill,
+  accent2, 24px/20px spacing).
+- **Injected into every page before the H1** via the generator's hero()
+  and article() templates (features/ai/portal/pricing/faq/support/
+  privacy/terms + blog index and all 4 articles), plus updates/index.html
+  by hand. index.html keeps its ORIGINAL hero block (canonical — no
+  duplicate added per Section 5).
+- **Left-aligned** on page heroes (top-left per spec); homepage stays as
+  it was. Removed the now-redundant small 'AftLog' kicker from generated
+  heroes (the slogan block carries the branding).
+- **Brand rules locked in site_check** (new section): every page has
+  exactly one slogan block BEFORE its H1 + the logo present — ALL PASS
+  (~170 checks). HTML well-formed; lint clean across all 15 pages.
+- Nav badge + footer logos are separate components (the spec's component
+  excludes navigation; Section 5's 'no duplicate logos' = no duplicated
+  hero/header brand blocks — verified none).
+
+**⚠ DEPLOYMENT STILL BLOCKED (GitHub Actions outage — ongoing):** status
+= 'Partial System Outage'; every Pages 'build and deployment' run since
+Step 10 fails at 'Set up job' (runner provisioning). CI passes; content is
+verified and pushed. **Retry when clear:** Re-run jobs in the Actions tab
+or push an empty commit — the live site will then show the 7.1 + 7.2
+changes together (currently serving the Step 9 build).
+
+---
+
 ## 2026-08-17 — Session 51 — DEEPSEEK STEP 7.1: homepage readability + VEA screenshot cleanup
 
 **Goal (DEEPSEEK block):** marketing homepage must be easily readable and
