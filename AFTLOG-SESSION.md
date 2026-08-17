@@ -1425,6 +1425,40 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 51 — DEEPSEEK STEP 7.1: homepage readability + VEA screenshot cleanup
+
+**Goal (DEEPSEEK block):** marketing homepage must be easily readable and
+carry NO Visual Engine Assist (VEA) diagnostic visuals — VEA stays on the
+technical/AI pages only. No server/proxy/architecture changes.
+
+**What was done (aftlog-site, pushed):**
+- **VEA removed from the homepage:** deleted the whole 'Visual Engine
+  Assist — New in 1.106' section (screen-vea-result.png + VEA captions /
+  copy) from index.html. Homepage now greps 0 × 'vea'/'visual engine'.
+- **VEA visual relocated to /ai.html** (Diagnostics section — 'Visual
+  Engine Assist: point your camera at the engine…' + the screenshot in a
+  new .pg-shot figure). The homepage hero was already a clean app-dashboard
+  mockup (no diagnostic UI) — untouched.
+- **Typography (readability):** hero subtitle 1.05rem → 1.15rem;
+  hero-sub disclaimer .88rem → .95rem (aftlog.css). H1 is clamp(30–46px)
+  and body is 16px — already at the Portal DS readability scale. Buttons
+  unchanged. No global DS token changes (portal.css untouched).
+- **Checks:** site_check ALL PASS (~150 checks, now incl. alt-tags + legal
+  coverage); lint_release_notes clean (reworded a comment that tripped the
+  'UI' forbidden term); /ai.html has the VEA image + alt text.
+
+**⚠ DEPLOYMENT BLOCKED BY GITHUB ACTIONS OUTAGE (not our content):**
+GitHub status = 'Partial System Outage · Actions degraded'. The Pages
+'build and deployment' job fails at 'Set up job' (runner provisioning)
+for every push since Step 10 — while CI passes and earlier commits
+(e.g. 7e2f5097, the Step 9 build) deployed fine. The live site is still
+serving the Step 9 build (has VEA on the homepage, no 7.1 changes).
+**Retry when the outage clears:** Re-run jobs in the Actions tab (or push
+an empty commit) — the content is verified and ready. Last retries:
+768b4d3c, 03d28205, d868b926, 8a8a7765 (all 'pages build failure').
+
+---
+
 ## 2026-08-17 — Session 50 — DEEPSEEK STEP 10: production release prep, deployment plan, v1.111 freeze + tags
 
 **Goal (DEEPSEEK block):** prepare v1.111 for production — URL swap,
