@@ -1425,6 +1425,32 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 56 — DEEPSEEK STEP 7.7 + 7.8: FAQ + Support full rebuilds
+
+**Goal (blocks):** rebuild /faq.html (structured, full answers, expandable
+blocks, CTA) and /support.html (troubleshooting details, contact,
+new-to-app guidance). No backend/global-token changes; no other pages.
+
+**What was done (aftlog-site, pushed):**
+- **/faq.html:** brand header → H1 'FAQ' → six structured sections with 15
+  expandable <details> blocks with FULL answers (Getting started ×3,
+  Offline & privacy ×3, AI features ×3, Web Portal ×2, Pricing & license
+  ×3, Support ×1) → 'Still have questions?' CTA → /support.html.
+- **/support.html:** brand header → H1 'Support' → Troubleshooting as 5
+  expandable <details> with the spec's exact answers → Contact section
+  (email + 'Email Support' mailto button) → 'New to the app?' with
+  Beginner Checklist + Winterization Guide buttons.
+- **Adaptation:** the spec's 'Winterization Guide' URL
+  (/blog/winterization-guide.html) doesn't exist — linked to the real
+  article /blog/winterize.html (no broken links; per the Session 37 rule).
+- **Cleanup:** removed the now-unused FAQ_ITEMS list from the generator;
+  faq_block() helper shared by both pages.
+- **Verified:** H1s ✓ · faq 15 details / support 5 details ✓ · mailto +
+  blog links ✓ · slogan before H1 ✓ · HTML well-formed ✓ · site_check ALL
+  PASS (~170) · lint clean.
+
+---
+
 ## 2026-08-17 — Session 55 — DEEPSEEK STEP 7.6: /pricing.html rebuild (Free vs Lifetime Pro)
 
 **Goal (DEEPSEEK block):** rebuild /pricing.html — two-tier cards, no-
