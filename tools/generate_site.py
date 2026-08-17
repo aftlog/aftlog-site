@@ -800,6 +800,40 @@ register("blog/overheating-on-the-water", "Outboard Overheating Guide — What t
          active="/blog/")
 
 
+register("blog/how-to-build-a-float-plan", "How to Build a Float Plan — The Essential Boating Safety Habit", "Learn how to create a proper float plan, what information to include, who to share it with, and why it's one of the most important safety steps before every trip.",
+         article("how-to-build-a-float-plan", "How to Build a Float Plan",
+                 "A float plan tells someone where you're going and when you'll be back. If you're overdue, they call for help with the details. Here's how to build one properly — and why it's the single best safety habit on the water.",
+                 "Safety", """<img class="blog-hero" src="/images/screen-float-plan.png" alt="AftLog Float Plan screen (placeholder — to be replaced with the Float Plan screenshot)" loading="lazy">
+      <p>Before every boating trip — whether it's a short afternoon cruise or a full-day adventure — you should tell someone where you're going and when you'll be back. This simple act is called a float plan, and it's one of the most effective safety habits in boating.</p>
+      <p>Search and rescue organizations emphasize it constantly: if you become overdue, your shore contact can call for help with the details — your destination, your crew, your expected return time, and your boat description. That information dramatically speeds up rescue response and can make the difference between a minor inconvenience and a dangerous situation.</p>
+      <p>A float plan doesn't need to be complicated. It just needs to be clear, shared, and followed. This guide explains how to build a proper float plan, what information to include, who to share it with, and how AftLog makes the process fast and reliable.</p>
+      <h2>Why Float Plans Matter</h2>
+      <p>A float plan is a safety net. If something goes wrong — engine trouble, weather changes, injury, fuel issues, or simply losing track of time — your shore contact knows where you went, who was with you, when you planned to return, how to reach you, and when to call for help. This eliminates guesswork. Without a float plan, responders may not know which lake or river you're on, which launch ramp you used, what direction you traveled, how many people are aboard, or whether you changed plans mid-trip. A float plan gives rescuers a starting point — and that saves time.</p>
+      <blockquote>Search and rescue asks: tell someone where you are going and when you will be back. If you are overdue, they call for help — with the details.</blockquote>
+      <h2>When You Should Create a Float Plan</h2>
+      <p>You should create a float plan for every boating trip, but it's especially important when boating alone, with children, in unfamiliar waters, offshore or on large lakes, in poor or changing weather, at night, during shoulder seasons, or in areas with limited cell coverage. Even short trips benefit — emergencies rarely announce themselves ahead of time.</p>
+      <h2>What Your Float Plan Should Include</h2>
+      <p>A proper float plan includes six essential pieces of information — the same fields shown in your AftLog Float Plan screen:</p>
+      <ol class="pg-list"><li><strong>Boat information</strong> — boat name, make/model, color, registration number; helps responders identify your vessel.</li><li><strong>Destination</strong> — be specific, e.g. \u201cnorth shore of Lake of the Prairies, fishing near the rock wall\u201d or \u201crunning the river to Blind River, stopping at the second bend.\u201d</li><li><strong>Departure time</strong> — when you left or plan to leave.</li><li><strong>Expected return time</strong> — defines when your shore contact should start worrying.</li><li><strong>Crew list</strong> — names of everyone aboard.</li><li><strong>Shore contact</strong> — name and phone number of the person who will monitor your return.</li></ol>
+      <p><strong>Optional but helpful:</strong> your planned route, backup destinations, fuel level, safety gear aboard, engine type and horsepower, trailer license plate, emergency radio channel, and weather conditions at departure.</p>
+      <h2>Who Should Receive Your Float Plan</h2>
+      <p>Share your float plan with someone who will notice if you're late, can call for help, knows your general boating habits, and is reachable by phone or text — a spouse or partner, close friend, parent, neighbor, marina staff, or cottage owner. Avoid people who may forget or ignore the responsibility.</p>
+      <h2>How to Share Your Float Plan</h2>
+      <p>You can share by text message, email, phone call, messaging apps, or by leaving a note at the cottage or marina. The key is that your shore contact receives the plan and understands their role.</p>
+      <h2>What Your Shore Contact Should Do</h2>
+      <ol class="pg-list"><li>Save your float plan message</li><li>Note your expected return time</li><li>Try calling you if you're overdue</li><li>If unreachable, wait 15–30 minutes</li><li>If still overdue, call for help</li><li>Provide the float plan details to responders</li></ol>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog's Float Plan screen is designed to make planning simple and fast — fields for boat, destination, depart/return, crew, and contact; an automatic summary card when the plan is armed; a share button for SMS or messaging; and a clear safety explanation. The summary card shows exactly what you entered, so your plan is complete before you share it.</p>
+      <h2>Common Mistakes to Avoid</h2>
+      <ol class="pg-list"><li><strong>Not sharing the plan</strong> — a float plan only works if someone receives it.</li><li><strong>Being vague about destination</strong> — \u201cgoing fishing\u201d is not a float plan.</li><li><strong>Forgetting to include return time</strong> — your contact won't know when to worry.</li><li><strong>Changing plans without updating</strong> — send a quick update if you explore elsewhere.</li><li><strong>Assuming cell coverage</strong> — remote lakes often have dead zones.</li></ol>
+      <h2>Checklist: Building a Float Plan</h2>
+      <ul class="pg-list"><li>Boat information entered</li><li>Destination clearly defined</li><li>Departure time set</li><li>Return time set</li><li>Crew listed</li><li>Shore contact chosen</li><li>Plan shared</li><li>Phone charged</li><li>Weather checked</li><li>Safety gear aboard</li></ul>
+      <h2>Summary</h2>
+      <p>A float plan is one of the simplest and most effective boating safety habits. By telling someone where you're going and when you'll be back, you give search and rescue the information they need to find you quickly if something goes wrong. With AftLog's Float Plan screen, creating and sharing a plan takes less than a minute — and it could save your life. Whether you're heading out for a quiet evening on the lake or a full-day adventure, build a float plan every time. It's the single best safety habit on the water.</p>""",
+                 '<li><a href="engine-wont-start.html">How to handle an engine that won\'t start</a></li><li><a href="overheating-on-the-water.html">Overheating on the water: what to do</a></li><li><a href="battery-care-small-boats.html">Battery care for small boats</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
@@ -811,7 +845,7 @@ BLOG_ARTICLES = [
     ("Boat safety equipment list", "What to carry on board — and how to check it before every launch.", "Safety", "/blog/safety-equipment.html", "/images/screen-portal-health.png"),
     ("How to handle an engine that won't start", "A calm, ordered checklist for the most frustrating moment in boating.", "Safety", "/blog/engine-wont-start.html", "/images/screen-engine-wont-start.png"),
     ("Overheating on the water: what to do", "Recognize it early and know when to stop — before it becomes a big repair.", "Safety", "/blog/overheating-on-the-water.html", "/images/screen-overheating.png"),
-    ("How to build a float plan", "Tell someone where you're going — it takes two minutes and saves lives.", "Safety", None, None),
+    ("How to build a float plan", "Tell someone where you're going — it takes two minutes and saves lives.", "Safety", "/blog/how-to-build-a-float-plan.html", "/images/screen-float-plan.png"),
     ("Launch checklist: the complete guide", "Plug, pump, battery, gear — everything checked before you leave the ramp.", "Checklists", None, None),
     ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", None, None),
     ("Used-boat inspection checklist", "The 13-section walkthrough that helps you buy with confidence.", "Checklists", None, None),
