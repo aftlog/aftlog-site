@@ -1425,6 +1425,36 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 62 — DEEPSEEK STEP 8.4: Buying Advisor (app + website)
+
+**Goal (block):** used-boat Buying Advisor — boat type, condition,
+engine checks, trailer, paperwork, rule-based risk flags, summary +
+export. No help/KB overlap. (The app's existing 'Buying advisor' is the
+'Find your boat' new-boat style quiz — a different tool; kept, and this
+used-boat evaluator added as a distinct tool.)
+
+**App:** lib/models/buying_advisor.dart (data model + BuyingAdvisorService
+SharedPreferences JSON of the last session + **rule-based risk warnings**
++ verdict + text summary) and lib/screens/used_boat_advisor_screen.dart
+(boat-type chips, condition + engine + trailer rating rows (—/Good/Fair/
+Poor), paperwork checkboxes, notes, live risk-warnings card, Save +
+Export/share PDF via new PdfService.shareBuyingAdvisor). Wired at More →
+Tools. Offline, no analytics, no cloud. _load/_save resilient. 5 unit
+tests (round-trip + risk rules + verdict + summary). Analyzer clean.
+App rebuilt **1.108.11+158**.
+
+**⚠ Still NOT installed on the phone** (USB disconnected since Session 61
+— adb shows no devices; 1.108.10 float-plan ALSO still uninstalled). Both
+APKs built + on repo; install on next USB connect.
+
+**Website:** /tools/buying-advisor.html — same fields, client-side
+localStorage, rating buttons, paper/engine/trailer/condition, live risk
+warnings, Print/PDF + .txt export. Terms 'risk flags' → 'risk warnings'
+to pass the site copy-lint (flags is a forbidden developer term).
+site_check ALL PASS (~215); lint clean. Live 404 at check time (outage).
+
+---
+
 ## 2026-08-17 — Session 61 — DEEPSEEK STEP 8.3: Float Plan (app + website)
 
 **Goal (block):** Float Plan tool — trip details, people aboard, vessel
