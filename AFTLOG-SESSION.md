@@ -1366,6 +1366,14 @@ help/website.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔜 1.108.0 INSTALLED ON PHONE (08-17) — SMOKE TEST PENDING (Louis):** the
+  Licensing Bundle release (Enter Pro Code / Pro Status / Link to Portal /
+  Pro gating) is on the S23 Ultra (versionCode 147). Run: redeem a code
+  from the portal Redeem page → Pro unlocks on-device + offline;
+  More → Link to Portal (one-time 8-char code); confirm Pro features
+  unlock (Ask AftLog / manual guidance); quick regression (dashboard,
+  log entry, BoatRun).
+
 - **🔜 RETEST REVIEW PUBLISHER (Louis):** ~~Bug FOUND + FIXED 08-16 (1.103.17)~~ ✅ **VERIFIED WORKING 08-16** — Louis published a test review from the phone, landed on aftlog.com/#reviews. Root cause had been: GitHub's Contents API returns base64 with a newline every 60 chars and Dart's base64Decode rejects newlines → fixed with `_b64()` whitespace strip (+3 regression tests).
 
 - **🔜 NEXT UP (reconciled 2026-08-16 — several "open" notes were STALE):** All server spec slices are DONE — trip calendar/patterns/heatmap/clustering/forecast + **maintenance/planner/boat-health dashboards shipped in the v1.103–110 analytics pack** (verified 08-16: routes + portal.js renderers + DOM checks, 26 tests green). Per-interval due-soon notifications DONE (feature #72 state-transition alerts). Free-tier gating DONE (#102). 30/90/365 buckets DONE (#101 + server v1.122). **Genuinely open:** ① portal deployment decision (Aug 24 gate — Louis) ② site analytics (GoatCounter/Plausible, planned Aug 11, still zero — no account in pass) ③ Pro purchase: Stripe seam wired, needs backend validation at deployment ④ data blanks (Louis's content: intervals per engine, glossary 29 terms, boat-style prices, quiz weights, calculator assumptions) ⑤ data-level enum labels (DriveType/HullType/DocType/ChecklistType) still EN — future data-layer decision.
@@ -1386,6 +1394,32 @@ help/website.
 - **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
 - **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
 - **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-17 — Session 40 — Release 1.108.0 installed on phone (licensing bundle smoke-ready)
+
+**Installed AftLog 1.108.0 (dev flavor, versionCode 147) on the S23 Ultra
+(R5CW6256YKL)** — the Licensing Bundle release (features #107–108: Link to
+Portal + Pro license codes) built 08-16 but never pushed. Phone was on
+1.107.4+146 until now.
+
+- Sideload per CODING-STANDARDS §3 (Samsung adb stall): split into 11
+  chunks (10×8MB + 8,142,078 B) → 4 chunks dropped/stalled mid-push
+  (afx_00, afx_03, afx_09 ×2 — Samsung `adb push` quirk) → retried
+  individually → all 11 verified on device → `cat` → single APK →
+  **device md5 1fe666c4… = local md5**, size 92,028,158 exact →
+  `pm install -r` Success → `dumpsys` confirmed versionName 1.108.0 /
+  versionCode 147. Temp chunks + APK cleaned from /data/local/tmp and
+  /tmp.
+- Repo state: all three repos clean + pushed (app 1.108.0+147, server
+  v1.123-era, site Session 39 wrap-up). Only untracked items: the two
+  Windows `:Zone.Identifier` junk files in aftlog-site/images (safe to
+  delete anytime).
+- **Smoke test still to run (Louis):** Enter Pro Code (redeem from the
+  portal Redeem page → Pro unlocks offline), Pro Status screen, Link to
+  Portal one-time code, Pro feature unlock (Ask AftLog / manual guidance),
+  quick regression (dashboard, log entry, BoatRun).
 
 ---
 
