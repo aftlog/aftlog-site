@@ -205,7 +205,9 @@ def main():
 
     # 16. Tools (STEP 8.2/8.3)
     print("— tools")
-    for t in ["tools/winterization-planner.html", "tools/float-plan.html", "checklists/winterization.html"]:
+    for t in ["tools/winterization-planner.html", "tools/float-plan.html",
+              "tools/buying-advisor.html", "tools/ramp-mode.html", "tools/calculators.html",
+              "checklists/winterization.html"]:
         check(f"{t} exists", (ROOT / t).exists())
     # 15. v1 Help System (STEP 8.1)
     # 13. Blog hub (STEP 7.9)
