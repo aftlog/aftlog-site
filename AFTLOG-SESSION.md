@@ -1476,6 +1476,17 @@ HTML well-formed (parser check); site pushed — GitHub Pages rebuilds in
 ~1 min. Check https://aftlog.com/ai.html + /portal.html + /pricing.html
 after the rebuild.
 
+**Post-push fixes (same session):** the copy lint flagged 'offline-first'
+(forbidden in user-facing text) in the new footer + content — reworded to
+'Works without a signal' in the generator, index.html and updates/;
+regenerated; lint now clean across all 15 pages (ci.yml updated to lint
+every page). The first Pages build failed alongside the lint failure; the
+second push (lint clean) deployed — LIVE verified: /features.html,
+/ai.html, /pricing.html, /portal.html, /blog/, /sitemap.xml, /robots.txt
+all 200 with correct titles; the /ai.html widget carries the
+x-aftlog-dev-key + extra.continue body; /portal.html carries the
+admin/publish + reviewCount badge; footer portal links live.
+
 **Note for Louis:** the site's widget/badge point at https://portal.aftlog.com
 (PORTAL_BASE — regenerate with `PORTAL_BASE=... python3 tools/generate_site.py`
 when the real portal URL exists; the current placeholder is the domain
