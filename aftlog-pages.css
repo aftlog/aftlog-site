@@ -141,3 +141,20 @@
 .wz-window{margin-top:16px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:12px;font-size:1.05rem;max-width:480px}
 .wz-fill{color:var(--muted-light)}
 .wz-window strong{color:var(--text-light)}
+
+/* ── STEP 8.3 Float plan tool ─────────────────────────────────────── */
+.fp-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;max-width:640px}
+.fp-form h2{font-size:16px;font-weight:800;margin:18px 0 8px}
+.fp-form h2:first-child{margin-top:0}
+.fp-in{width:100%;background:var(--bg);color:var(--text-light);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font:inherit;margin:4px 0 10px;box-sizing:border-box}
+.fp-in:focus{outline:none;border-color:var(--accent2)}
+.fp-row{display:flex;gap:12px}
+.fp-row>div{flex:1}
+.fp-plist{margin:4px 0}
+.fp-prow{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.fp-prow .fp-in{flex:1}
+.fp-x{background:none;border:none;color:var(--muted-light);font-size:20px;cursor:pointer}
+.fp-check{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:14px;cursor:pointer}
+.fp-check input{accent-color:var(--accent2);width:16px;height:16px}
+.fp-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+@media (max-width:520px){.fp-row{flex-direction:column}}
