@@ -299,6 +299,33 @@
   String.fromEnvironment reliably — live checks use a throwaway test that
   loads the SA via the seam and is deleted before commit.
 
+## ✅ RELEASE WRAP-UP STATUS (2026-08-16, end of day)
+
+### Done tonight — Release 1.108.0 content COMPLETE
+- Version 1.108.0+147 (features 107 Link to Portal, 108 Pro license codes).
+- What's New 1.108 (lint clean) + whats_new_test updated → app 429 (+2 known
+  pre-existing LocalBundleServer fails), server 113.
+- Portal changelog "Portal 1.1 — Your account, boats & Pro" (lint clean).
+- Website updates page entry for 1.108 (lint clean). All pushed.
+
+### ⏭️ TOMORROW — send the app to the phone (the ONLY remaining wrap-up step)
+- APK READY: build/app/outputs/flutter-apk/AftLog-v1.108.0-dev.apk
+  (88MB dev, md5 1fe666c4955e59361a6f0ab20deb95e3; dev = APP_VERSION=dev +
+  GEMINI + GITHUB_TOKEN + AFTLOG_SA_JSON all injected).
+- `cd /home/louis/aftlog-app && adb install -r build/app/outputs/flutter-apk/AftLog-v1.108.0-dev.apk`
+  (two earlier attempts timed out mid-transfer → phone is UNTOUCHED, still
+  1.107.4; use a long timeout / split push+install if it stalls).
+- Then ON-DEVICE smoke test (Louis drives; screencap-only):
+  - Boot / splash / About shows v1.108.0 + What's New 1.108.
+  - More → Pro Status (Free) → Link to Portal: set the portal address to
+    the PC's LAN IP, Generate Link Code, enter it on the PC portal
+    (localhost:8080/redeem nearby) → device shown as linked.
+  - More → Pro Status → Enter Pro Code: redeem a code issued by the dev
+    License Manager (More (Dev) → License Manager → Generate) → Pro
+    Status shows Pro active offline after reboot.
+  - Boat upload to portal / boats list on the portal.
+- Finish checklist items 7 (integrity md5 done) + 8 (this log).
+
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
 - **🔒 USER-FACING LANGUAGE ENFORCEMENT (LOCKED 2026-08-16, Louis's rules A–F):**
