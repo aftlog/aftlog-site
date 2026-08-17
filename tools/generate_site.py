@@ -257,7 +257,9 @@ register(
       <p>Try it right here:</p>
       """ + AI_WIDGET)
     + section("Smart Planner", """<p>The maintenance planner turns intervals, usage, and season into a prioritized plan — what's due now, what's coming up, and what to do before the season starts.</p>""")
-    + section("Diagnostics", """<p>Describe a symptom — weak tell-tale, hard starting, overheating — and get the likely causes in order, with what to check first and when a mechanic is the right call.</p>""")
+    + section("Diagnostics", """<p>Describe a symptom — weak tell-tale, hard starting, overheating — and get the likely causes in order, with what to check first and when a mechanic is the right call.</p>
+      <p><strong>Visual Engine Assist:</strong> point your camera at the engine and get instant guidance — part identification, visible-issue detection, manual pages, related tasks, and safety guidance.</p>
+      <figure class=\"pg-shot\"><img src=\"/images/screen-vea-result.png\" alt=\"AftLog Visual Engine Assist result screen\"><figcaption class=\"pg-muted\">Visual Engine Assist — point, identify, and act.</figcaption></figure>""")
     + section("Manual extraction", """<p>Attach your engine manual: AftLog indexes it fully offline and can pull service intervals and guidance from it, citing the exact pages.</p>""")
     + section("Predictive alerts", """<p>Based on your usage patterns and logged services, AftLog predicts what will need attention next — before it strands you.</p>""")
     + section("How it connects", """<p>The AI features run through the AftLog portal server — no keys in your app or this website. Questions are processed server-side and answered back. If the service is offline, the app falls back to on-device guidance so you're never stuck.</p>"""),
