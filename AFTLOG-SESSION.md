@@ -1425,6 +1425,35 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 58 — DEEPSEEK STEP 7.10: /updates/ hybrid changelog rebuild
+
+**Goal (block):** rebuild the updates page as a clean, factual,
+chronological log (newest first) — hybrid narrative + bullets per entry,
+no subscription/hype wording, no giant bottom logo, no duplicated footer.
+No backend/global-token changes; no other pages altered.
+
+**What was done (aftlog-site, pushed):**
+- **Rebuilt updates/index.html** on the shared design system (aftlog.css +
+aftlog-pages.css + brand header + single standard footer). Brand header
+→ H1 'Updates' → 7 chronological entries (newest first) using the spec's
+exact copy: 1.108 (Pro license codes + Link to Portal), 1.106 (Visual
+Engine Assist), 1.105 (Smart Maintenance Planner), Aug 14 (Diagnostic
+Assistant Report), Aug 10 (full structure built), Aug 10 (site live +
+waitlist), and 'What's coming — Phase 1 MVP'. Each entry = narrative
+paragraph + Changes bullet list + optional Free/Pro tier note.
+- **Cleanup:** one footer only (no duplicate nav, no giant bottom logo);
+removed the noindex meta I'd initially added so the page stays consistent
+with the sitemap (indexable); shared header nav with Updates active;
+canonical brand header.
+- **Copy:** the spec's own 'no subscription, no renewals' statement kept
+(exactly what it shipped); lint reword (Offline-first → 'Works without a
+signal'); no hype — plain factual entries.
+- **Verified:** H1 ✓ · slogan before H1 ✓ · 7 entries ✓ · 1 footer, no
+big logo ✓ · nav active ✓ · HTML well-formed ✓ · site_check ALL PASS
+(~185) · lint clean.
+
+---
+
 ## 2026-08-17 — Session 57 — DEEPSEEK STEP 7.9: /blog/index.html hybrid hub rebuild
 
 **Goal (block):** rebuild the blog index as a modern hybrid hub — featured
