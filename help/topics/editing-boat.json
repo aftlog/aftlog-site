@@ -1,0 +1,38 @@
+{
+  "id": "editing-boat",
+  "category": "Core",
+  "title": "Editing boat details",
+  "description": "Update your boat's profile, engine, and photo any time.",
+  "steps": [
+    {
+      "text": "Open the boat hub and tap the pencil (edit) icon.",
+      "image": null
+    },
+    {
+      "text": "Change name, make, model, or year.",
+      "image": null
+    },
+    {
+      "text": "Edit engine details and attach a photo.",
+      "image": null
+    },
+    {
+      "text": "Save your changes.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Changes update everywhere instantly.",
+    "Keep the photo current so boats are easy to tell apart."
+  ],
+  "related": [
+    "creating-boat",
+    "adding-parts"
+  ],
+  "where": "Boat hub → edit (pencil)",
+  "affects": "Feed the dashboard, intervals, and cost insights.",
+  "examples": [
+    "Correcting a typo in the boat name.",
+    "Updating the engine after a repower."
+  ]
+}

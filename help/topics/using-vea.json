@@ -1,0 +1,39 @@
+{
+  "id": "using-vea",
+  "category": "AI",
+  "title": "Using Visual Engine Assist",
+  "description": "Point your camera at the engine for instant guidance.",
+  "steps": [
+    {
+      "text": "Open Visual Engine Assist (More → Tools or the AI screen).",
+      "image": null
+    },
+    {
+      "text": "Grant camera permission, then take a photo.",
+      "image": null
+    },
+    {
+      "text": "AftLog identifies parts and flags visible issues.",
+      "image": null
+    },
+    {
+      "text": "Open manual pages or related tasks from the result.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Works in the app with clear, grounded results.",
+    "Pro saves results to your history."
+  ],
+  "related": [
+    "asking-aftlog",
+    "uploading-manual",
+    "using-diagnostics"
+  ],
+  "where": "More → Tools → Visual Engine Assist",
+  "affects": "Diagnostics, planner, and manual guidance.",
+  "examples": [
+    "A photo of a corroded anode to flag wear.",
+    "A picture of a cracked belt for part ID."
+  ]
+}

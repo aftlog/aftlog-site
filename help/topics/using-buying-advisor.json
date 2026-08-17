@@ -1,0 +1,38 @@
+{
+  "id": "using-buying-advisor",
+  "category": "Tools",
+  "title": "Using buying advisor",
+  "description": "Assess a used boat before you buy.",
+  "steps": [
+    {
+      "text": "Open More → Tools → Buying Advisor.",
+      "image": null
+    },
+    {
+      "text": "Pick a boat style or take the quiz.",
+      "image": null
+    },
+    {
+      "text": "Answer the inspection sections.",
+      "image": null
+    },
+    {
+      "text": "Get a BUY / CONSIDER / WALK-AWAY report.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Add photos as evidence on each section.",
+    "Save the report to My Boats."
+  ],
+  "related": [
+    "creating-boat",
+    "using-calculators"
+  ],
+  "where": "More → Tools → Buying Advisor",
+  "affects": "Safety, planning, and purchase decisions.",
+  "examples": [
+    "Inspecting a used bass boat before a test drive.",
+    "Comparing two similar hulls."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "using-winterization-planner",
+  "category": "Tools",
+  "title": "Using winterization planner",
+  "description": "Winterize the right way for your region.",
+  "steps": [
+    {
+      "text": "Open More → Tools → Winterization Planner.",
+      "image": null
+    },
+    {
+      "text": "Set your region and boat type.",
+      "image": null
+    },
+    {
+      "text": "Follow the ordered steps.",
+      "image": null
+    },
+    {
+      "text": "Check off each task as done.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Timing is based on your first hard-frost window.",
+    "Complements the Winterization checklist."
+  ],
+  "related": [
+    "logging-maintenance",
+    "spring-prep"
+  ],
+  "where": "More → Tools → Winterization Planner",
+  "affects": "Safety, planning, and purchase decisions.",
+  "examples": [
+    "Setting your region before first frost.",
+    "Working through fogging and draining."
+  ]
+}

@@ -123,3 +123,13 @@
 @media (max-width: 520px) {
   .pg-featured-row, .pg-article-grid { grid-template-columns: 1fr; }
 }
+
+/* ── v1 Help System (STEP 8.1) ─────────────────────────────────────── */
+.pg-help { max-width: 760px; }
+.pg-help-search { width: 100%; max-width: 560px; background: var(--card); color: var(--text-light); border: 1px solid var(--line); border-radius: 999px; padding: 12px 18px; font: inherit; margin-bottom: 18px; }
+.pg-help-search:focus { outline: none; border-color: var(--accent2); }
+.pg-help h1 { font-size: 1.8rem; font-weight: 800; margin: 8px 0 6px; }
+.pg-help-desc { font-size: 1.05rem; margin-bottom: 18px; }
+.pg-help h2 { font-size: 1.25rem; font-weight: 700; margin: 22px 0 10px; }
+.pg-help-step { margin-bottom: 10px; }
+.pg-help-img { color: var(--muted-light); font-size: .85rem; font-style: italic; margin-top: 2px; }

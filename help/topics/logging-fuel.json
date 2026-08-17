@@ -1,0 +1,38 @@
+{
+  "id": "logging-fuel",
+  "category": "Logging",
+  "title": "Logging a fuel fill",
+  "description": "Record fills to learn your real fuel consumption.",
+  "steps": [
+    {
+      "text": "Open the Log tab and tap Fuel / Add Fill.",
+      "image": null
+    },
+    {
+      "text": "Enter litres or gallons and the price.",
+      "image": null
+    },
+    {
+      "text": "Add the odometer or hour reading if you have it.",
+      "image": null
+    },
+    {
+      "text": "Save. AftLog learns your real km/L and range.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Consistent fill logs make the fuel-range estimate accurate.",
+    "Use GPS trips for the best accuracy."
+  ],
+  "related": [
+    "logging-trip",
+    "viewing-logbook"
+  ],
+  "where": "Log tab → Fuel",
+  "affects": "Season stats, Year in Review, and the fuel-range brain.",
+  "examples": [
+    "A fill at 220 km with the price.",
+    "A top-up with the pump reading."
+  ]
+}

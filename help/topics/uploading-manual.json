@@ -1,0 +1,39 @@
+{
+  "id": "uploading-manual",
+  "category": "AI",
+  "title": "Uploading your engine manual",
+  "description": "Attach your manual so AftLog can cite it in answers.",
+  "steps": [
+    {
+      "text": "Open Engine Manual in the boat hub.",
+      "image": null
+    },
+    {
+      "text": "Attach your manual PDF (system file picker).",
+      "image": null
+    },
+    {
+      "text": "AftLog indexes it fully offline.",
+      "image": null
+    },
+    {
+      "text": "Diagnostics and Ask AftLog then cite the right pages.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "The index is private and on-device.",
+    "Manual-based intervals (Pro) come from this."
+  ],
+  "related": [
+    "understanding-intervals",
+    "asking-aftlog",
+    "using-diagnostics"
+  ],
+  "where": "Boat hub → Engine Manual",
+  "affects": "Diagnostics, planner, and manual guidance.",
+  "examples": [
+    "Attaching your 150 HP manual PDF.",
+    "Re-indexing after a manual update."
+  ]
+}

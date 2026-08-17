@@ -1,0 +1,38 @@
+{
+  "id": "using-diagnostics",
+  "category": "AI",
+  "title": "Using Diagnostics",
+  "description": "Walk symptoms to likely causes, in order.",
+  "steps": [
+    {
+      "text": "Open the Symptom Decoder / Diagnostics tool.",
+      "image": null
+    },
+    {
+      "text": "Choose or describe your symptom.",
+      "image": null
+    },
+    {
+      "text": "Review ranked causes and what to check first.",
+      "image": null
+    },
+    {
+      "text": "See when a mechanic is the call.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Diagnostics respect your engine type and drive.",
+    "The report ties its notes to your actual logs."
+  ],
+  "related": [
+    "asking-aftlog",
+    "using-vea"
+  ],
+  "where": "More → Symptom Decoder / Diagnostics",
+  "affects": "Diagnostics, planner, and manual guidance.",
+  "examples": [
+    "Choosing won't start and reading ranked causes.",
+    "A report for vibration at cruise speed."
+  ]
+}

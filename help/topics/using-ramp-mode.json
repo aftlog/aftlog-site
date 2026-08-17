@@ -1,0 +1,38 @@
+{
+  "id": "using-ramp-mode",
+  "category": "Tools",
+  "title": "Using ramp mode",
+  "description": "Launch and retrieve with a focused, step-by-step assist.",
+  "steps": [
+    {
+      "text": "Open More → Tools → Ramp / Launch mode.",
+      "image": null
+    },
+    {
+      "text": "Follow each step.",
+      "image": null
+    },
+    {
+      "text": "Mark items done as you go.",
+      "image": null
+    },
+    {
+      "text": "AftLog reminds you of the essentials.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Useful when conditions or crew add pressure.",
+    "Pairs with the launch and retrieve checklists."
+  ],
+  "related": [
+    "logging-trip",
+    "using-checks"
+  ],
+  "where": "More → Tools → Ramp / Launch mode",
+  "affects": "Safety, planning, and purchase decisions.",
+  "examples": [
+    "Launching alone with a guided step list.",
+    "Retrieving in front of a lineup."
+  ]
+}

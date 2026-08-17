@@ -1,0 +1,39 @@
+{
+  "id": "asking-aftlog",
+  "category": "AI",
+  "title": "Asking AftLog a question",
+  "description": "Get plain-language answers grounded in your boat.",
+  "steps": [
+    {
+      "text": "Open More → Ask AftLog.",
+      "image": null
+    },
+    {
+      "text": "Type your question in plain language.",
+      "image": null
+    },
+    {
+      "text": "AftLog uses your boat data to answer.",
+      "image": null
+    },
+    {
+      "text": "Ask a follow-up, or say 'continue' if an answer is cut off.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Answers are concise and safety-first.",
+    "Offline, the app uses on-device guidance so you're never stuck."
+  ],
+  "related": [
+    "using-diagnostics",
+    "using-vea",
+    "uploading-manual"
+  ],
+  "where": "More → Ask AftLog",
+  "affects": "Diagnostics, planner, and manual guidance.",
+  "examples": [
+    "Why is my tell-tale weak? with your boat context.",
+    "What should I check before spring prep?"
+  ]
+}

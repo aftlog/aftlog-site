@@ -1,0 +1,38 @@
+{
+  "id": "emergency",
+  "category": "Tools",
+  "title": "Using the emergency screen",
+  "description": "Get help and guidance fast when something goes wrong.",
+  "steps": [
+    {
+      "text": "Open the Emergency screen (dashboard or More → Tools).",
+      "image": null
+    },
+    {
+      "text": "Tap 'What to do if…' and pick the situation.",
+      "image": null
+    },
+    {
+      "text": "Follow the guidance step by step.",
+      "image": null
+    },
+    {
+      "text": "Use Share location to send your GPS position.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Works even offline.",
+    "Share your location with a contact or marina."
+  ],
+  "related": [
+    "using-float-plan",
+    "using-diagnostics"
+  ],
+  "where": "Dashboard or More → Tools → Emergency",
+  "affects": "Safety, planning, and purchase decisions.",
+  "examples": [
+    "Tapping What to do if for overheating.",
+    "Sharing your GPS position after a breakdown."
+  ]
+}

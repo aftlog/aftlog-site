@@ -1,0 +1,39 @@
+{
+  "id": "adding-engine-hours",
+  "category": "Core",
+  "title": "Adding engine hours",
+  "description": "Record engine hours so intervals and planning stay accurate.",
+  "steps": [
+    {
+      "text": "Open your boat and go to the Log tab.",
+      "image": null
+    },
+    {
+      "text": "Tap to add hours with the current odometer or hour-meter reading.",
+      "image": null
+    },
+    {
+      "text": "AftLog stores the total and keeps it current.",
+      "image": null
+    },
+    {
+      "text": "Update it whenever you run the engine.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Total hours drive interval due-dates and the fuel-range brain.",
+    "Start a GPS trip to log hours automatically."
+  ],
+  "related": [
+    "logging-trip",
+    "logging-maintenance",
+    "logging-fuel"
+  ],
+  "where": "Boat → Log tab",
+  "affects": "Feed the dashboard, intervals, and cost insights.",
+  "examples": [
+    "Recording 250 hours after the instrument service.",
+    "Updating before a long weekend."
+  ]
+}

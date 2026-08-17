@@ -1,0 +1,38 @@
+{
+  "id": "restoring-data",
+  "category": "Backup",
+  "title": "Restoring your data",
+  "description": "Bring your data back on a new or reset device.",
+  "steps": [
+    {
+      "text": "Open More → Settings → Backup → Restore.",
+      "image": null
+    },
+    {
+      "text": "Pick the JSON backup file.",
+      "image": null
+    },
+    {
+      "text": "Confirm the restore.",
+      "image": null
+    },
+    {
+      "text": "Review your boats and logs after it completes.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Restore replaces current data from the backup.",
+    "Make a fresh backup first."
+  ],
+  "related": [
+    "backing-up",
+    "creating-boat"
+  ],
+  "where": "More → Settings → Backup → Restore",
+  "affects": "Data safety across devices.",
+  "examples": [
+    "Moving everything to a new phone.",
+    "Recovering after a factory reset."
+  ]
+}

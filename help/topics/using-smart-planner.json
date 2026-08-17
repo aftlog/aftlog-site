@@ -1,0 +1,39 @@
+{
+  "id": "using-smart-planner",
+  "category": "Planner",
+  "title": "Using Smart Planner",
+  "description": "Turn intervals and usage into one prioritized schedule.",
+  "steps": [
+    {
+      "text": "Open More → Smart Planner (or the Planner tab).",
+      "image": null
+    },
+    {
+      "text": "Review what's due now, upcoming, and seasonal.",
+      "image": null
+    },
+    {
+      "text": "Tap a task to see its details and related manual pages.",
+      "image": null
+    },
+    {
+      "text": "Mark tasks complete as you do them.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "The plan adjusts to your usage, region, and season.",
+    "Pro adds manual-derived intervals and predictive recommendations."
+  ],
+  "related": [
+    "completing-maintenance-task",
+    "understanding-intervals",
+    "viewing-predictive-alerts"
+  ],
+  "where": "More → Smart Planner",
+  "affects": "Boat Health Score, reminders, and seasonal readiness.",
+  "examples": [
+    "Seeing the impeller is due this month.",
+    "Checking seasonal reminders before haul-out."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "using-float-plan",
+  "category": "Tools",
+  "title": "Using float plan",
+  "description": "Tell someone where you're going — fast.",
+  "steps": [
+    {
+      "text": "Open More → Tools → Float Plan.",
+      "image": null
+    },
+    {
+      "text": "Enter destination, route, and return time.",
+      "image": null
+    },
+    {
+      "text": "Share the plan via text.",
+      "image": null
+    },
+    {
+      "text": "Cancel the plan when you're back.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "A float plan is one of the best safety habits.",
+    "Packs a GPS share if you need help."
+  ],
+  "related": [
+    "using-calculators",
+    "emergency"
+  ],
+  "where": "More → Tools → Float Plan",
+  "affects": "Safety, planning, and purchase decisions.",
+  "examples": [
+    "Sending your weekend route to family.",
+    "Sharing your return time before a solo trip."
+  ]
+}

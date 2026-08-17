@@ -1,0 +1,38 @@
+{
+  "id": "using-calculators",
+  "category": "Tools",
+  "title": "Using calculators",
+  "description": "Convert, plan, and budget with the built-in calculators.",
+  "steps": [
+    {
+      "text": "Open More → Tools → Calculators.",
+      "image": null
+    },
+    {
+      "text": "Pick a calculator (fuel burn, range, voltage, etc.).",
+      "image": null
+    },
+    {
+      "text": "Enter your numbers.",
+      "image": null
+    },
+    {
+      "text": "Read the result — some are Pro-gated.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Results update live as you type.",
+    "Check the units toggle for metric or imperial."
+  ],
+  "related": [
+    "logging-fuel",
+    "logging-trip"
+  ],
+  "where": "More → Tools → Calculators",
+  "affects": "Safety, planning, and purchase decisions.",
+  "examples": [
+    "Estimating fuel burn for a 30-mile run.",
+    "Checking battery draw before a trip."
+  ]
+}

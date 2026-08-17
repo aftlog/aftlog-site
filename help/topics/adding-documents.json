@@ -1,0 +1,38 @@
+{
+  "id": "adding-documents",
+  "category": "Core",
+  "title": "Adding documents",
+  "description": "Attach manuals, receipts, and registration to your boat.",
+  "steps": [
+    {
+      "text": "Open the boat hub and go to Documents.",
+      "image": null
+    },
+    {
+      "text": "Tap Add and pick a photo or file.",
+      "image": null
+    },
+    {
+      "text": "Add a name and expiry date if it applies.",
+      "image": null
+    },
+    {
+      "text": "Save. Expiring documents get reminders.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Add your engine manual here to power Manual extraction.",
+    "Useful for insurance, registration, and receipts."
+  ],
+  "related": [
+    "uploading-manual",
+    "adding-parts"
+  ],
+  "where": "Boat hub → Documents",
+  "affects": "Feed the dashboard, intervals, and cost insights.",
+  "examples": [
+    "Saving your insurance PDF.",
+    "Attaching the owner manual for manual extraction."
+  ]
+}

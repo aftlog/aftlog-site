@@ -1,0 +1,39 @@
+{
+  "id": "logging-trip",
+  "category": "Logging",
+  "title": "Logging a trip",
+  "description": "Record a day on the water — distance, hours, and fuel.",
+  "steps": [
+    {
+      "text": "Open the Log tab and tap Add Trip.",
+      "image": null
+    },
+    {
+      "text": "Use GPS Go/Stop to track it, or enter odometer readings.",
+      "image": null
+    },
+    {
+      "text": "Add what you did and any notes.",
+      "image": null
+    },
+    {
+      "text": "Save. AftLog updates season stats.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "GPS trips give the most accurate distance and speed.",
+    "Trips feed the Year in Review and trip analytics."
+  ],
+  "related": [
+    "adding-engine-hours",
+    "logging-fuel",
+    "viewing-logbook"
+  ],
+  "where": "Log tab → Add Trip",
+  "affects": "Season stats, Year in Review, and the fuel-range brain.",
+  "examples": [
+    "A GPS-logged run to the fishing grounds.",
+    "An odometer trip on a day without signal."
+  ]
+}

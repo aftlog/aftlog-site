@@ -1,0 +1,39 @@
+{
+  "id": "logging-maintenance",
+  "category": "Logging",
+  "title": "Logging maintenance",
+  "description": "Record services and repairs as they happen.",
+  "steps": [
+    {
+      "text": "Open the Log tab and tap Add Service/Log.",
+      "image": null
+    },
+    {
+      "text": "Pick what you did — oil, impeller, repair, etc.",
+      "image": null
+    },
+    {
+      "text": "Enter date, cost, and notes.",
+      "image": null
+    },
+    {
+      "text": "Save. It appears in service history and cost insights.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "A complete history helps resale value.",
+    "Overdue intervals update after related services."
+  ],
+  "related": [
+    "logging-fuel",
+    "adding-parts",
+    "viewing-logbook"
+  ],
+  "where": "Log tab → Add Service",
+  "affects": "Season stats, Year in Review, and the fuel-range brain.",
+  "examples": [
+    "Logging an oil change with cost and date.",
+    "Recording an alternator repair."
+  ]
+}

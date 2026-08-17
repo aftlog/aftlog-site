@@ -1,0 +1,38 @@
+{
+  "id": "understanding-boat-health",
+  "category": "Planner",
+  "title": "Understanding your Boat Health Score",
+  "description": "Read the 0–100 score and how to raise it.",
+  "steps": [
+    {
+      "text": "Open Boat Health on the dashboard or boat hub.",
+      "image": null
+    },
+    {
+      "text": "See the overall score and the breakdown.",
+      "image": null
+    },
+    {
+      "text": "Note the areas pulling the score down.",
+      "image": null
+    },
+    {
+      "text": "Complete related tasks to raise it.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "The score reflects intervals, overdue tasks, and engine data.",
+    "It updates as you log and complete work."
+  ],
+  "related": [
+    "using-smart-planner",
+    "completing-maintenance-task"
+  ],
+  "where": "Dashboard → Boat Health",
+  "affects": "Boat Health Score, reminders, and seasonal readiness.",
+  "examples": [
+    "Seeing your score drop for an overdue task.",
+    "Watching it recover after completing work."
+  ]
+}

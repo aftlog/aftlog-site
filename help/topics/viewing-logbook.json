@@ -1,0 +1,38 @@
+{
+  "id": "viewing-logbook",
+  "category": "Logging",
+  "title": "Viewing your logbook",
+  "description": "Browse your full history in one place.",
+  "steps": [
+    {
+      "text": "Open the Log tab to see all entries newest-first.",
+      "image": null
+    },
+    {
+      "text": "Filter by type — trips, fills, services, notes.",
+      "image": null
+    },
+    {
+      "text": "Tap an entry to see details.",
+      "image": null
+    },
+    {
+      "text": "Export the logbook as a PDF for a copy.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "The logbook rides along in your data backup.",
+    "Use it to spot patterns ahead of the season."
+  ],
+  "related": [
+    "logging-trip",
+    "backing-up"
+  ],
+  "where": "Log tab",
+  "affects": "Season stats, Year in Review, and the fuel-range brain.",
+  "examples": [
+    "Scanning what you did last season.",
+    "Exporting the logbook PDF for a buyer."
+  ]
+}

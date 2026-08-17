@@ -1,0 +1,39 @@
+{
+  "id": "understanding-intervals",
+  "category": "Planner",
+  "title": "Understanding intervals",
+  "description": "Know how AftLog decides when maintenance is due.",
+  "steps": [
+    {
+      "text": "Intervals are time- or hours-based (e.g., 200 hours, annually).",
+      "image": null
+    },
+    {
+      "text": "Open an interval in the plan to see its basis.",
+      "image": null
+    },
+    {
+      "text": "Pro can derive intervals from your engine manual.",
+      "image": null
+    },
+    {
+      "text": "Adjust intervals when you know your engine's needs.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Hours-based intervals use your logged engine hours.",
+    "Seasonal intervals fire around your region's season."
+  ],
+  "related": [
+    "using-smart-planner",
+    "viewing-logbook",
+    "uploading-manual"
+  ],
+  "where": "Smart Planner → interval",
+  "affects": "Boat Health Score, reminders, and seasonal readiness.",
+  "examples": [
+    "Why spark plugs are flagged at 200 hours.",
+    "Adjusting an interval to your real usage."
+  ]
+}

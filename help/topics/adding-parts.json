@@ -1,0 +1,38 @@
+{
+  "id": "adding-parts",
+  "category": "Core",
+  "title": "Adding parts",
+  "description": "Track replacement parts and prices per boat.",
+  "steps": [
+    {
+      "text": "Open the boat hub and go to Parts.",
+      "image": null
+    },
+    {
+      "text": "Tap Add part and enter the name, price, and date.",
+      "image": null
+    },
+    {
+      "text": "Tag OEM or aftermarket.",
+      "image": null
+    },
+    {
+      "text": "Save. Parts feed cost insights.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Part costs roll into your cost-of-ownership view.",
+    "Log parts at purchase so the history stays complete."
+  ],
+  "related": [
+    "editing-boat",
+    "logging-maintenance"
+  ],
+  "where": "Boat hub → Parts",
+  "affects": "Feed the dashboard, intervals, and cost insights.",
+  "examples": [
+    "Logging a new impeller kit.",
+    "Recording an OEM prop replacement."
+  ]
+}

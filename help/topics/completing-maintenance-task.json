@@ -1,0 +1,38 @@
+{
+  "id": "completing-maintenance-task",
+  "category": "Planner",
+  "title": "Completing a maintenance task",
+  "description": "Mark a task done and let the planner reschedule it.",
+  "steps": [
+    {
+      "text": "Open Smart Planner and find the task.",
+      "image": null
+    },
+    {
+      "text": "Open the task and tap Mark Completed.",
+      "image": null
+    },
+    {
+      "text": "AftLog records the date and reschedules the next one.",
+      "image": null
+    },
+    {
+      "text": "The plan refreshes automatically.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Completing tasks on time protects your Boat Health Score.",
+    "Intervals roll forward from the completion date."
+  ],
+  "related": [
+    "understanding-intervals",
+    "using-smart-planner"
+  ],
+  "where": "Smart Planner → task",
+  "affects": "Boat Health Score, reminders, and seasonal readiness.",
+  "examples": [
+    "Marking lower unit oil done after servicing.",
+    "Tapping complete right after a DIY job."
+  ]
+}

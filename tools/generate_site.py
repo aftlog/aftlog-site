@@ -16,6 +16,7 @@ Usage:  PORTAL_BASE=https://portal.aftlog.com AFTLOG_DEV_KEY=aftlog-dev \
         python3 tools/generate_site.py
 """
 import html
+import json
 import os
 import pathlib
 
@@ -473,6 +474,40 @@ register(
 )
 
 # /faq
+register(
+    "faq",
+    "AftLog FAQ — Common Questions",
+    "Answers to common questions about AftLog: no-signal use, safety tools, AI features, the Web Portal, pricing, and support.",
+    hero("FAQ", "Straight answers to the most common questions about AftLog.")
+    + section("Getting started", faq_block([
+        ("What is AftLog?", "AftLog is a boat maintenance and logbook app for Canada and the USA. It tracks maintenance, fuel, trips, and costs — then turns them into clear, simple insights. It's built to teach new boaters and keep seasoned owners on schedule."),
+        ("Which boats does AftLog support?", "Pleasure craft and fishing boats — outboard, inboard, and jet drives, from small runabouts to cabin cruisers."),
+        ("Is there a free version?", "Yes. The free tier covers one boat with the core logbook, fuel and service tracking, and checklists."),
+    ]))
+    + section("Offline & privacy", faq_block([
+        ("Does AftLog work without internet?", "Yes. AftLog works without a signal: your data lives on your device and every core feature works offline. The AI assistant uses the server when you're connected and uses on-device guidance when you're not."),
+        ("Is my data private?", "Your data stays on your device. There's no forced account, no cloud dependency, and optional portal sync only sends what you choose."),
+        ("Do you sell my email or data?", "No. The waitlist email is only used to tell you when AftLog is ready, and we never sell personal data or run ads."),
+    ]))
+    + section("AI features", faq_block([
+        ("What does the AI assistant do?", "Ask AftLog answers maintenance questions grounded in your boat, the Smart Planner schedules what's due, and diagnostics walk symptoms to likely causes. Photo analysis identifies parts and visible issues. Everything goes through the AftLog server — the app never holds AI keys."),
+        ("Does the AI work offline?", "The AI needs the AftLog server for answers. Offline, the app uses on-device guidance so you're never stuck on the water."),
+        ("Is my photo or question sent anywhere?", "Only when you choose to ask: questions and photos go to the AftLog server to produce an answer, then the interaction is done."),
+    ]))
+    + section("Web Portal", faq_block([
+        ("What is the Web Portal?", "A free companion dashboard on the web: Year in Review, planner windows, boat health, and trip analytics. Link your app with a one-time code from More → Link to Portal."),
+        ("Is the Portal free?", "The portal is included with the app. Lifetime Pro users unlock the full dashboard including planner windows and boat health."),
+    ]))
+    + section("Pricing & license", faq_block([
+        ("Is AftLog really a one-time purchase?", "Yes. AftLog Pro is $29 one-time for a lifetime license — no subscriptions, no renewals, no ads."),
+        ("Can I use Pro on multiple devices?", "Yes — your lifetime license follows your AftLog portal account."),
+        ("Is there a money-back guarantee?", "Yes — 30 days, no forms. Email support for a refund."),
+    ]))
+    + section("Support", faq_block([
+        ("How do I get help?", "See the support page for troubleshooting and contact, or email aftlog@yahoo.com — we usually reply within a day."),
+    ]))
+    + section("Still have questions?", '<div class="pg-actions"><a class="btn btn-primary" href="/support.html">Contact support</a><a class="btn btn-secondary" href="/help/index.html">Browse Help</a></div>'),
+)
 
 
 # /support
@@ -710,6 +745,123 @@ def write(path: str, content: str):
     print(f"  wrote {f.relative_to(ROOT)} ({len(content)} bytes)")
 
 
+def generate_help(rooot=ROOT):
+    """v1 Help System (DEEPSEEK STEP 8.1): read the canonical topic JSONs
+    in help/topics/ and emit help/index.html + help/<id>.html + a static
+    search index (help/topics-index.js). Shared header/footer + brand block.
+    """
+    topics_dir = (rooot / "help" / "topics")
+    if not topics_dir.exists():
+        print("  (no help/topics — skipping help pages)")
+        return
+    topics = []
+    for f in sorted(topics_dir.glob("*.json")):
+        try:
+            topics.append(json.load(f.open(encoding="utf-8")))
+        except Exception as e:
+            print("  !! bad help json", f.name, e)
+    topics.sort(key=lambda t: t["title"].lower())
+
+    cats = []
+    for t in topics:
+        if t["category"] not in cats:
+            cats.append(t["category"])
+
+    def esc(s): return html.escape(s)
+
+    # topic page
+    def topic_doc(t):
+        steps = "".join(
+            f'<li class="pg-help-step">{esc(item["text"])}'
+            + (f'<div class="pg-help-img">[screenshot: {esc(item["image"])}]</div>' if item.get("image") else '')
+            + '</li>' for item in t["steps"])
+        tips = "".join(f'<li>{esc(tip)}</li>' for tip in t.get("tips", []))
+        related_ids = t.get("related", [])
+        ids = {x["id"]: x for x in topics}
+        related = "".join(
+            f'<li><a href="/help/{esc(rid)}.html">{esc(ids[rid]["title"])}</a></li>'
+            for rid in related_ids if rid in ids)
+        body = (
+            '<section class="section section--light"><div class="container pg-help">'
+            f'<span class="pg-cat-tag">{esc(t["category"])}</span>'
+            f'<h1>{esc(t["title"])}</h1>'
+            f'<p class="pg-muted pg-help-desc">{esc(t["description"])}</p>'
+            f'<h2>Steps</h2>'
+            f'<ol class="pg-list">{steps}</ol>'
+            + (f'<h2>Tips</h2><ul class="pg-list">{tips}</ul>' if tips else '')
+            + (f'<h2>Related</h2><ul class="pg-list">{related}</ul>' if related else '')
+            + '<p class="pg-muted" style="margin-top:22px"><a href="/help/index.html">Back to Help</a></p>'
+            + '</div></section>'
+        )
+        # hero with brand block, but H1 is inside the body (we want the title as H1)
+        # use page() with a custom body that includes its own H1
+        top = (
+            '<section class="hero hero--dark pg-hero"><div class="container hero-inner pg-hero-inner">'
+            '<div class="hero-text">'
+            '<div class="brand-block">'
+            '<img class="hero-logo brand-logo" src="/images/aftlog-logo.png" alt="AftLog logo">'
+            '<span class="kicker brand-slogan">Keeping your boat shipshape!</span>'
+            '</div></div></div></section>'
+        )
+        return page("help", f"{t['title']} — AftLog Help", t["description"],
+                    top + body, active="/help/")
+
+    # index: search + category bar + cards
+    cards = "".join(
+        f'<a class="pg-blog-card" data-cat="{esc(t["category"].lower())}" '
+        f'href="/help/{esc(t["id"])}.html"><span class="pg-cat-tag">{esc(t["category"])}</span>'
+        f'<h3>{esc(t["title"])}</h3><p>{esc(t["description"])}</p></a>'
+        for t in topics)
+    cat_btns = ''.join(
+        f'<button type="button" class="pg-cat-btn{" on" if c == cats[0] else ""}" data-cat="{esc(c.lower())}">{esc(c)}</button>'
+        for c in ["All"] + cats)
+    index_body = (
+        hero("Help", "Step-by-step guides for AftLog — search a topic or browse by category.")
+        + f'<section class="section section--alt pg-cat-section"><div class="container">'
+        + f'<input class="pg-help-search" id="help-search" type="search" placeholder="Search help topics…" aria-label="Search help">'
+        + f'<div class="pg-cat-bar" role="group" aria-label="Filter by category">{cat_btns}</div>'
+        + f'<div class="pg-article-grid" id="help-grid">{cards}</div></div></section>'
+        + section("Still stuck?", '<p><a class="btn btn-secondary" href="/support.html">Contact support</a> · <a class="btn btn-secondary" href="/faq.html">See the FAQ</a></p>')
+        + '<script src="/help/help.js"></script>'
+    )
+    write("help/index.html", page("help/index", "AftLog Help — Guides & How-To", "Step-by-step help topics for AftLog: logging, maintenance, planner, AI, tools, and backup.", index_body, active="/help/"))
+
+    for t in topics:
+        write(f"help/{t['id']}.html", topic_doc(t))
+
+    # search/filter JS
+    js = """(function () {
+  var input = document.getElementById('help-search');
+  var btns = document.querySelectorAll('.pg-cat-btn');
+  var cards = document.querySelectorAll('#help-grid .pg-blog-card');
+  var curCat = 'all';
+  function apply() {
+    var q = (input.value || '').toLowerCase();
+    cards.forEach(function (c) {
+      var ok = true;
+      if (curCat !== 'all' && c.dataset.cat !== curCat) ok = false;
+      if (ok && q) {
+        var text = (c.textContent || '').toLowerCase();
+        if (text.indexOf(q) === -1) ok = false;
+      }
+      c.style.display = ok ? '' : 'none';
+    });
+  }
+  if (input) input.addEventListener('input', apply);
+  if (btns) btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      curCat = b.dataset.cat;
+      apply();
+    });
+  });
+})();
+"""
+    write("help/help.js", js)
+    print(f"  help: {len(topics)} topics, {len(cats)} categories")
+
+
 def main():
     print(f"Generating AftLog site → portal base: {PORTAL}")
     for p in PAGES:
@@ -718,6 +870,8 @@ def main():
             write("blog/index.html", html_doc)
         else:
             write(f"{p['slug']}.html", html_doc)
+
+    generate_help()
 
     # sitemap
     static = ["", "features.html", "ai.html", "portal.html", "pricing.html",

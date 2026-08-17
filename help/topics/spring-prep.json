@@ -1,0 +1,38 @@
+{
+  "id": "spring-prep",
+  "category": "Seasonal",
+  "title": "Spring prep checklist",
+  "description": "De-winterize and launch right the first time.",
+  "steps": [
+    {
+      "text": "Open the Spring Prep checklist.",
+      "image": null
+    },
+    {
+      "text": "Work through each item in order.",
+      "image": null
+    },
+    {
+      "text": "Check off tasks as you complete them.",
+      "image": null
+    },
+    {
+      "text": "Launch with confidence.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Pairs with the Winterization planner from last fall.",
+    "Beginner Mode explains each item."
+  ],
+  "related": [
+    "logging-maintenance",
+    "using-winterization-planner"
+  ],
+  "where": "Checklists → Spring Prep",
+  "affects": "Off-season protection and a smooth spring.",
+  "examples": [
+    "De-winterizing the fuel system.",
+    "Checking the battery before first launch."
+  ]
+}

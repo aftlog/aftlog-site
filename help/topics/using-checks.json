@@ -1,0 +1,38 @@
+{
+  "id": "using-checks",
+  "category": "Checklists",
+  "title": "Using checklists",
+  "description": "Run step-by-step checklists that teach as you go.",
+  "steps": [
+    {
+      "text": "Open a checklist from the Checklists tab or a mode.",
+      "image": null
+    },
+    {
+      "text": "Work through each item.",
+      "image": null
+    },
+    {
+      "text": "Beginner Mode explains each one.",
+      "image": null
+    },
+    {
+      "text": "Mark items done and finish.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Checklists cover launch, retrieve, towing, spring prep, and more.",
+    "Start one from the water without fumbling."
+  ],
+  "related": [
+    "using-ramp-mode",
+    "logging-trip"
+  ],
+  "where": "Checklists tab",
+  "affects": "Launch/retrieve readiness and seasonal prep.",
+  "examples": [
+    "A launch checklist at the ramp.",
+    "A retrieve checklist with the trailer."
+  ]
+}

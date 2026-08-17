@@ -1,0 +1,39 @@
+{
+  "id": "creating-boat",
+  "category": "Core",
+  "title": "Creating your boat",
+  "description": "Set up your first boat in AftLog so tracking starts off right.",
+  "steps": [
+    {
+      "text": "Tap + on the Boats tab, or 'Add Boat'.",
+      "image": null
+    },
+    {
+      "text": "Enter the make, model, and year.",
+      "image": null
+    },
+    {
+      "text": "Add engine details — type, make, model, horsepower.",
+      "image": null
+    },
+    {
+      "text": "Save. AftLog creates your boat dashboard and log.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "You can add more boats later (Pro unlocks unlimited).",
+    "Engine details power the fuel-range and interval features."
+  ],
+  "related": [
+    "editing-boat",
+    "adding-engine-hours",
+    "adding-documents"
+  ],
+  "where": "Boats tab → Add Boat",
+  "affects": "Feed the dashboard, intervals, and cost insights.",
+  "examples": [
+    "A 2008 Lund 1650 with a 90 HP outboard.",
+    "Your fishing rig with the engine model filled in."
+  ]
+}

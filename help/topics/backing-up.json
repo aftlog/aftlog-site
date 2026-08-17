@@ -1,0 +1,38 @@
+{
+  "id": "backing-up",
+  "category": "Backup",
+  "title": "Backing up your data",
+  "description": "Keep a safe copy of your AftLog data.",
+  "steps": [
+    {
+      "text": "Open More → Settings → Backup.",
+      "image": null
+    },
+    {
+      "text": "Tap Export / Backup to create a JSON file.",
+      "image": null
+    },
+    {
+      "text": "AftLog saves it to your Downloads folder.",
+      "image": null
+    },
+    {
+      "text": "Keep it somewhere safe — cloud, computer, or USB.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Backups include boats, logs, intervals, and manuals.",
+    "Do one before switching phones or restoring."
+  ],
+  "related": [
+    "restoring-data",
+    "viewing-logbook"
+  ],
+  "where": "More → Settings → Backup",
+  "affects": "Data safety across devices.",
+  "examples": [
+    "Exporting before a phone upgrade.",
+    "A monthly backup to cloud storage."
+  ]
+}

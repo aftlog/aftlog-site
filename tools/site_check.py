@@ -190,6 +190,20 @@ def main():
               c.count(">Keeping your boat shipshape!</span>") == 1,
               f"count={c.count('>Keeping your boat shipshape!</span>')}")
 
+    # 14. v1 Help System (STEP 8.1)
+    print("— help system")
+    hi = ROOT / "help" / "index.html"
+    check("help/index.html exists", hi.exists())
+    if hi.exists():
+        hc = hi.read_text(encoding="utf-8")
+        check("help: search input", 'help-search' in hc and 'type="search"' in hc)
+        check("help: category bar", 'pg-cat-bar' in hc)
+        check("help: topic cards", 'pg-blog-card' in hc)
+        for m in re.finditer(r'href="(/help/[a-z0-9-]+\.html)"', hc):
+            t = ROOT / m.group(1).lstrip('/')
+            check(f"help card {m.group(1)} exists", t.exists())
+
+    # 15. v1 Help System (STEP 8.1)
     # 13. Blog hub (STEP 7.9)
     print("— blog hub")
     blog = ROOT / "blog" / "index.html"

@@ -1,0 +1,34 @@
+{
+  "id": "viewing-predictive-alerts",
+  "category": "Planner",
+  "title": "Viewing predictive alerts",
+  "description": "See what's likely to need attention next.",
+  "steps": [
+    {
+      "text": "Open the Planner tab and look at recommendations.",
+      "image": null
+    },
+    {
+      "text": "Alerts flag overdue, upcoming, and seasonal items.",
+      "image": null
+    },
+    {
+      "text": "Tap an alert to jump to the task.",
+      "image": null
+    }
+  ],
+  "tips": [
+    "Alerts are based on your usage patterns and logged services.",
+    "Heed overdue ones first."
+  ],
+  "related": [
+    "understanding-intervals",
+    "using-smart-planner"
+  ],
+  "where": "Planner → recommendations",
+  "affects": "Boat Health Score, reminders, and seasonal readiness.",
+  "examples": [
+    "A notice the water pump is likely due soon.",
+    "A seasonal reminder before winterization."
+  ]
+}
