@@ -158,3 +158,15 @@
 .fp-check input{accent-color:var(--accent2);width:16px;height:16px}
 .fp-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 @media (max-width:520px){.fp-row{flex-direction:column}}
+
+/* ── STEP 8.4 Buying advisor tool ─────────────────────────────────── */
+.ba-types{display:flex;flex-wrap:wrap;gap:8px}
+.ba-type{background:var(--card);color:var(--text-light);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:600}
+.ba-type.on{background:var(--red2);border-color:var(--red2);color:#fff}
+.ba-rating{display:flex;gap:6px;margin-bottom:10px}
+.ba-rate{background:var(--card);color:var(--muted-light);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px}
+.ba-rate.on{background:var(--red2);border-color:var(--red2);color:#fff}
+.fp-checkbox{display:flex;flex-direction:column}
+.fp-checkbox .fp-check{display:flex;align-items:center;gap:10px;padding:4px 0;font-size:14px;cursor:pointer}
+.fp-checkbox .fp-check input{accent-color:var(--accent2);width:16px;height:16px}
+.ba-warnings{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.6}

@@ -903,6 +903,102 @@ register(
     FP_BODY,
 )
 
+
+def _buying_advisor_body():
+    conditions = [("hull","Hull"),("transom","Transom"),("deck","Deck"),("wiring","Wiring"),("fuel","Fuel system"),("engine","Engine condition")]
+    engine = [("compression","Compression"),("spark","Spark"),("idle","Idle behavior"),("corrosion","Corrosion")]
+    trailer = [("frame","Frame"),("tires","Tires"),("lights","Lights")]
+    paper = [("title","Title / bill of sale"),("registration","Registration"),("serials","Hull & engine serial numbers"),("records","Service records")]
+    kinds = ["outboard","sterndrive","inboard","pwc"]
+
+    def rating_group(prefix, items):
+        rows = ""
+        for key, label in items:
+            rows += ("<label class=\"pg-hint-label\">"+label+"</label><div class=\"ba-rating\">"
+                     '<button type="button" class="ba-rate" data-g="'+prefix+'" data-k="'+key+'" data-v="">&mdash;</button>'
+                     '<button type="button" class="ba-rate" data-g="'+prefix+'" data-k="'+key+'" data-v="good">Good</button>'
+                     '<button type="button" class="ba-rate" data-g="'+prefix+'" data-k="'+key+'" data-v="fair">Fair</button>'
+                     '<button type="button" class="ba-rate" data-g="'+prefix+'" data-k="'+key+'" data-v="poor">Poor</button></div>')
+        return rows
+
+    type_btns = "".join('<button type="button" class="ba-type" data-t="%s">%s</button>' % (t, t.title()) for t in kinds)
+    paper_box = "".join('<label class="fp-check"><input type="checkbox" data-p="%s">%s</label>' % (k, v) for k, v in paper)
+
+    js = """
+<script>
+(function () {
+  var K = {condition:["hull","transom","deck","wiring","fuel","engine"], engine:["compression","spark","idle","corrosion"], trailer:["frame","tires","lights"], paper:["title","registration","serials","records"]};
+  var state = {boatType:'outboard', condition:{}, engine:{}, trailer:{}, paper:{}, notes:''};
+  function load(){ try{ return Object.assign(state, JSON.parse(localStorage.getItem('aftlog_buying_advisor')||'{}')); }catch(e){ return state; } }
+  function save(){ try{ localStorage.setItem('aftlog_buying_advisor', JSON.stringify(state)); }catch(e){} }
+  function riskFlags(){
+    var f=[]; var s=state; var miss=K.paper.filter(function(k){return !s.paper[k];});
+    if(miss.length){ f.push('HIGH RISK - missing paperwork: '+miss.join(', ')+'.'); }
+    ['hull','transom'].forEach(function(k){ if(s.condition[k]==='poor') f.push('CRITICAL - '+k+' rated POOR.'); });
+    if(['hull','transom','deck'].some(function(k){return s.condition[k]==='fair';})) f.push('WATCH - structure rated fair.');
+    var engPoor = K.engine.some(function(k){return s.engine[k]==='poor';}) || s.condition.engine==='poor';
+    if(engPoor) f.push('HIGH RISK - engine issues detected.');
+    if(K.trailer.some(function(k){return s.trailer[k]==='poor';})) f.push('HIGH RISK - trailer condition POOR.');
+    var unrated = K.condition.filter(function(k){return !s.condition[k];}).length + K.engine.filter(function(k){return !s.engine[k];}).length;
+    if(unrated>=6) f.push('INCOMPLETE - several sections not rated.');
+    if(!f.length) f.push('No major risk warnings found.');
+    return f;
+  }
+  function verdict(){ var f=riskFlags(); if(f.some(function(x){return x.indexOf('CRITICAL')===0;})) return 'WALK AWAY'; if(f.filter(function(x){return x.indexOf('HIGH')===0;}).length) return 'CONSIDER - with caution'; return 'LOOKS GOOD - get a sea trial + survey'; }
+  function paint(){
+    var f=riskFlags();
+    document.getElementById('ba-warnings').innerHTML = '<strong>Verdict: '+verdict()+'</strong><br>'+f.map(function(x){return '&bull; '+x;}).join('<br>');
+    document.querySelectorAll('.ba-type').forEach(function(b){ b.className = 'ba-type'+(state.boatType===b.dataset.t?' on':''); });
+    document.querySelectorAll('.ba-rate').forEach(function(b){ var g=b.dataset.g, k=b.dataset.k; var v=state[g]?state[g][k]:null; b.className='ba-rate'+(v===b.dataset.v?' on':''); });
+    document.querySelectorAll('[data-p]').forEach(function(c){ c.checked = !!state.paper[c.dataset.p]; });
+  }
+  document.querySelectorAll('.ba-type').forEach(function(b){ b.addEventListener('click', function(){ state.boatType=b.dataset.t; save(); paint(); }); });
+  document.querySelectorAll('.ba-rate').forEach(function(b){ b.addEventListener('click', function(){ state[b.dataset.g]=state[b.dataset.g]||{}; state[b.dataset.g][b.dataset.k]=b.dataset.v; save(); paint(); }); });
+  document.querySelectorAll('[data-p]').forEach(function(c){ c.addEventListener('change', function(){ state.paper[c.dataset.p]=c.checked; save(); paint(); }); });
+  var notes=document.getElementById('ba-notes'); if(notes){ notes.value=state.notes||''; notes.addEventListener('input', function(){ state.notes=notes.value; save(); }); }
+  window.baExport=function(){ save(); window.print(); };
+  window.baSave=function(){ save(); alert('Buying advisor saved on this device.'); };
+  window.baDownload=function(){ save(); var labels={hull:'Hull',transom:'Transom',deck:'Deck',wiring:'Wiring',fuel:'Fuel system',engine:'Engine condition',compression:'Compression',spark:'Spark',idle:'Idle behavior',corrosion:'Corrosion',frame:'Frame',tires:'Tires',lights:'Lights'};
+    var t='USED-BOAT BUYING ADVISOR - AFTLOG\nBoat type: '+state.boatType+'\n'; ['condition','engine','trailer'].forEach(function(g){ t += '\n'+g.toUpperCase()+'\n'; Object.keys(state[g]||{}).forEach(function(k){ if(state[g][k]) t += '  '+labels[k]+': '+state[g][k]+'\n'; }); });
+    t += '\nVERDICT: '+verdict()+'\nRISK WARNINGS\n'; riskFlags().forEach(function(x){ t += '  * '+x+'\n'; }); if(state.notes) t += '\nNOTES\n  '+state.notes+'\n';
+    var blob=new Blob([t],{type:'text/plain'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='aftlog-buying-advisor.txt'; a.click();
+  };
+  load(); paint();
+})();
+</script>
+"""
+    body = (
+        hero("Buying Advisor",
+             "Evaluate a used boat before you buy — condition, engine, trailer, and paperwork, with rule-based risk warnings.")
+        + '<section class="section section--light"><div class="container"><div class="fp-form">'
+        + '<p class="pg-muted">Answer honestly — AftLog warns on risk using simple rules. A screening aid, not a certified survey. Your session saves in this browser; Print (Save as PDF) or download a copy.</p>'
+        + '<h2>Boat type</h2><div class="ba-types">' + type_btns + '</div>'
+        + '<h2>Condition</h2>' + rating_group('condition', conditions)
+        + '<h2>Engine checks</h2>' + rating_group('engine', engine)
+        + '<h2>Trailer (if applicable)</h2>' + rating_group('trailer', trailer)
+        + '<h2>Paperwork</h2><div class="fp-checkbox">' + paper_box + '</div>'
+        + '<h2>Notes</h2><textarea id="ba-notes" class="fp-in" rows="3" placeholder="Asking price, observations…"></textarea>'
+        + '<h2>Risk warnings</h2><div id="ba-warnings" class="ba-warnings">—</div>'
+        + '<div class="fp-actions">'
+        + '<button class="btn btn-primary" onclick="baExport()">Print / Save as PDF</button>'
+        + '<button class="btn btn-secondary" onclick="baDownload()">Download .txt</button>'
+        + '<button class="btn btn-secondary" onclick="baSave()">Save on this device</button>'
+        + '</div></div></div></section>'
+        + js
+    )
+    return body
+
+
+BA_BODY = _buying_advisor_body()
+
+
+register(
+    "tools/buying-advisor",
+    "Buying Advisor — Evaluate a Used Boat",
+    "Screen a used boat before you buy: condition, engine, trailer, paperwork, and rule-based risk warnings with a shareable PDF.",
+    BA_BODY,
+)
+
 # ── Render ──────────────────────────────────────────────────────────────
 def write(path: str, content: str):
     f = ROOT / path
