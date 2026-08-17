@@ -2287,6 +2287,110 @@ register("tools/checklists", "AftLog Checklists — Launch, Retrieve, Towing & S
          _checklists_body())
 
 
+# ── STEP 5.10: Cost Insights tool ─────────────────────────────────────
+
+_COST_JS = r"""<script>
+(function () {
+  var KS = 'aftlog_cost';
+  var state = { hours: [], services: [], fuel: [] };
+  try { var s = JSON.parse(localStorage.getItem(KS) || 'null'); if (s) state = Object.assign({ hours: [], services: [], fuel: [] }, s); } catch(e){}
+  function save(){ try { localStorage.setItem(KS, JSON.stringify(state)); } catch(e){} }
+  window.coHours = function () {
+    var h = parseFloat(document.getElementById('co-hrs').value || '');
+    if (!(h>0)) { alert('Enter hours.'); return; }
+    state.hours.push({ h: h, ts: Date.now() });
+    document.getElementById('co-hrs').value=''; save(); renderH(); compute();
+  };
+  window.coService = function () {
+    var name = (document.getElementById('co-sname').value||'').trim() || 'Service';
+    var c = parseFloat(document.getElementById('co-scost').value || '');
+    if (!(c>=0)) { alert('Enter a cost.'); return; }
+    state.services.push({ name: name, c: c, ts: Date.now() });
+    document.getElementById('co-sname').value=''; document.getElementById('co-scost').value=''; save(); renderS(); compute();
+  };
+  window.coFuel = function () {
+    var lit = parseFloat(document.getElementById('co-flit').value || '');
+    var c = parseFloat(document.getElementById('co-fcost').value || '');
+    c = isNaN(c) ? null : c; lit = isNaN(lit) ? null : lit;
+    if (c===null && lit===null) { alert('Enter a cost and/or litres.'); return; }
+    state.fuel.push({ L: lit, c: c, ts: Date.now() });
+    document.getElementById('co-flit').value=''; document.getElementById('co-fcost').value=''; save(); renderF(); compute();
+  };
+  window.coClear = function () { if(!confirm('Clear all cost data on this device?')) return; state={hours:[],services:[],fuel:[]}; save(); renderH(); renderS(); renderF(); compute(); };
+  window.coExport = function () { window.print(); };
+  window.coTxt = function () {
+    var t = 'COST OF OWNERSHIP - AFTLOG\n\n';
+    t += 'TOTAL: $' + sum('services')+sum('fuel') + '\n';
+    var h = hi(); t += 'PER HOUR: $' + (h>0 ? ((sum('services')+sum('fuel'))/h).toFixed(2) : '0.00') + ' (over ' + h + ' hrs)\n\n';
+    t += 'SERVICES\n'; state.services.forEach(function(x){ t += '- ' + x.name + ': $' + x.c + '\n'; });
+    t += '\nFUEL\n'; state.fuel.forEach(function(x){ t += '- ' + new Date(x.ts).toLocaleDateString() + ': $' + (x.c||'?') + (x.L?' ('+x.L+' L)':'') + '\n'; });
+    var blob = new Blob([t], {type:'text/plain'}); var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='aftlog-cost.txt'; a.click();
+  };
+  function sum(k){ return state[k].reduce(function(a,x){ return a+(x.c||0); },0); }
+  function hi(){ return state.hours.reduce(function(a,x){ return a+(x.h||0); },0); }
+  function litres(){ return state.fuel.reduce(function(a,x){ return a+(x.L||0); },0); }
+  function compute(){
+    var services = sum('services');
+    var fuel = sum('fuel');
+    var total = services + fuel;
+    var hours = hi();
+    var per = hours>0 ? total/hours : 0;
+    var burn = (hours>0 && litres()>0) ? litres()/hours : null;
+    setT('co-big-total', '$'+total.toFixed(0));
+    setT('co-big-perhr', '$'+per.toFixed(2));
+    setT('co-services', '$'+services.toFixed(0));
+    setT('co-fuel', '$'+fuel.toFixed(0));
+    setT('co-burn', burn!==null ? burn.toFixed(1)+' L/hr' : '—');
+    setT('co-hours', hours.toFixed(0)+' hrs');
+  }
+  function setT(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+  function row(x){ return '<div class="tl-row">'+new Date(x.ts).toLocaleDateString()+' · '+(x.name||'')+(x.c!=null?' · $'+x.c.toFixed(2):'')+(x.L?' · '+x.L+' L':'')+(x.h?' · '+x.h+' hrs':'')+'</div>'; }
+  function renderH(){ var el=document.getElementById('co-list-hrs'); el.innerHTML = state.hours.slice().reverse().map(row).join('') || '<p class="pg-muted">No hours logged yet.</p>'; }
+  function renderS(){ var el=document.getElementById('co-list-svc'); el.innerHTML = state.services.slice().reverse().map(row).join('') || '<p class="pg-muted">No service or maintenance expenses yet.</p>'; }
+  function renderF(){ var el=document.getElementById('co-list-fuel'); el.innerHTML = state.fuel.slice().reverse().map(row).join('') || '<p class="pg-muted">No fuel logs yet.</p>'; }
+  renderH(); renderS(); renderF(); compute();
+})();
+</script>"""
+
+
+def _cost_body():
+    return (
+        hero("Cost of Ownership", "See the real cost of running your boat — total spent, per hour, services, fuel, and fuel burn.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Log your engine hours, services, and fuel fills — everything is saved in this browser and rolled up into your cost of ownership.</p>'
+        + '<div class="co-cards">'
+        + '<div class="co-big"><div id="co-big-total">$0</div><span>Total spent</span></div>'
+        + '<div class="co-big"><div id="co-big-perhr">$0.00</div><span>Per hour</span></div>'
+        + '</div>'
+        + '<div class="co-metrics">'
+        + '<div class="co-metric"><div id="co-services">$0</div><span>Services</span></div>'
+        + '<div class="co-metric"><div id="co-fuel">$0</div><span>Fuel</span></div>'
+        + '<div class="co-metric"><div id="co-burn">—</div><span>Fuel burn</span></div>'
+        + '<div class="co-metric"><div id="co-hours">0 hrs</div><span>Engine hours</span></div>'
+        + '</div>'
+        + '<div class="co-entry"><h2>Log engine hours</h2>'
+        + '<div class="tl-inline"><input id="co-hrs" class="fp-in" type="number" min="0" step="0.1" placeholder="Hours"><button type="button" class="btn btn-primary" onclick="coHours()">+ Add hours</button></div>'
+        + '<div id="co-list-hrs"></div></div>'
+        + '<div class="co-entry"><h2>Add a service / expense</h2>'
+        + '<div class="tl-inline"><input id="co-sname" class="fp-in" placeholder="e.g. impeller, winterize"><input id="co-scost" class="fp-in" type="number" min="0" step="0.01" placeholder="$"><button type="button" class="btn btn-primary" onclick="coService()">Add</button></div>'
+        + '<div id="co-list-svc"></div></div>'
+        + '<div class="co-entry"><h2>Log a fuel fill</h2>'
+        + '<div class="tl-inline"><input id="co-flit" class="fp-in" type="number" min="0" step="0.1" placeholder="Litres"><input id="co-fcost" class="fp-in" type="number" min="0" step="0.01" placeholder="$"><button type="button" class="btn btn-primary" onclick="coFuel()">Add</button></div>'
+        + '<div id="co-list-fuel"></div></div>'
+        + '<p><button type="button" class="btn btn-secondary" onclick="coExport()">Print / Save as PDF</button> '
+        + '<button type="button" class="btn btn-secondary" onclick="coTxt()">Download .txt</button> '
+        + '<button type="button" class="btn btn-sm btn-secondary" onclick="coClear()">Clear all</button></p>'
+        + '<p class="pg-muted">Log fuel costs and services consistently and this shows the real cost of running your boat — the number that surprises every owner.</p>'
+        + _COST_JS
+        + '</div></section>'
+    )
+
+
+register("tools/cost-insights", "AftLog Cost of Ownership",
+         "Track service and fuel expenses plus engine hours, and see your total cost, per-hour cost, and fuel burn.",
+         _cost_body())
+
+
 def main():
     print(f"Generating AftLog site → portal base: {PORTAL}")
     for p in PAGES:

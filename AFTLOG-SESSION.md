@@ -1425,6 +1425,38 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 73 — DEEPSEEK STEP 5.1–5.10 (Screens 1/4) + 2.1–2.9 (Models) website audit + Cost Insights
+
+**Blocks:** 5.1–5.10 (Dashboard / Beginner dashboard / Boats / Add boat /
+Boat detail / Photos / Documents / Parts / Service history / Cost insights)
+and 2.1–2.9 (data models: Boat, Checklist+Item, LogEntry, ServiceInterval,
+ServiceRecord, Part, BoatPhoto, BoatDocument, HealthScore, JourneyMilestone,
+Nudge).
+**Audit — most of this is the app's core boat-manager + data layer, which is
+product/marketing story (not standalone public tools):**
+- Block 2 (models): pure data shapes, no UI. Their substance already appears
+  across the existing tools — ServiceInterval → predictive-planner, LogEntry →
+  trip-log, Checklist → checklists, Part → manual-finder/diy, HeathScore →
+  marketing + predictive. No new tool warranted.
+- Block 5 dashboard/boats/add/detail/photos/docs/parts/service-history: the
+  in-app boat manager — the website analogue is the product story on
+  features.html, not a web clone of the app (would conflict with the product).
+  Beginner dashboard = beginner-mode marketing. No new tools.
+**New this session — tools/cost-insights.html (block 5.10):** mirrors
+cost_insights_screen.dart + cost_insights_service.dart as a standalone tool:
+- Log engine hours, service/expense rows (name + $), and fuel fills (litres +
+  $) — all localStorage-persisted;
+- Rolls up **Total spent, Per-hour cost, Services, Fuel, Fuel burn (L/hr),
+  Engine hours** exactly mirroring the app's service math
+  (services=fuel → total; perHour=total/hours; burn=litres/hours);
+- Print/Save-as-PDF + .txt export + clear; history lists per category.
+New `co-*` styles appended to aftlog-pages.css; registered in site_check.
+Static HTML/JS only.
+**QA:** site_check **~280 checks ALL PASS** (tools/cost-insights.html registered);
+copy-lint clean (19 files); page well-formed (stray-paren bug caught + fixed).
+Committed + pushed.
+
+---
 ## 2026-08-17 — Session 72 — DEEPSEEK STEP 6.1–6.10: Screens 2/4 websites (Trip & Fuel Log + Checklists)
 
 **Goal (combined block):** mirror blocks 6.1–6.10 on the website.
