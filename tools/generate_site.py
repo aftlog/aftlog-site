@@ -834,6 +834,65 @@ register("blog/how-to-build-a-float-plan", "How to Build a Float Plan — The Es
          active="/blog/")
 
 
+register("blog/launch-checklist", "Boat Launch Checklist — Step-by-Step Guide for a Smooth Ramp Experience", "Learn the complete boat launch checklist, including ramp preparation, trailer steps, safety checks, and how AftLog's Launch Mode keeps everything organized.",
+         article("launch-checklist", "Launch Checklist: The Complete Guide",
+                 "Launching a boat should be smooth, calm, and predictable. Here's the complete launch checklist — from parking-lot prep to backing down the ramp — based on AftLog's built-in Launch Mode.",
+                 "Checklists", """<img class="blog-hero" src="/images/screen-launch-mode.png" alt="AftLog Launch Mode checklist (placeholder — to be replaced with the Launch Mode screenshot)" loading="lazy">
+      <p>Launching a boat is one of the most common — and most stressful — moments in recreational boating. Ramps can be busy, crowded, and fast-moving. A smooth launch depends on preparation, calmness, and a clear checklist. That's why AftLog includes a dedicated Launch Mode, a big-button, hands-free friendly checklist designed to make every launch predictable and safe.</p>
+      <p>This guide walks through the complete launch process, explains each checklist item, and shows how AftLog's Launch Mode helps you stay organized at the ramp.</p>
+      <h2>Why a Launch Checklist Matters</h2>
+      <p>A launch checklist prevents ramp delays, forgotten drain plugs, trailer damage, boat damage, ramp accidents, engine-starting issues, and safety oversights. Most launch mistakes happen when boaters rush or skip steps. A checklist ensures nothing is forgotten — especially under pressure. AftLog's Launch Mode is built around this idea, with a simple, tap-friendly interface and a clear completion banner: \u201cReady to launch! Drain plug in, straps off, crew set. Take it slow.\u201d</p>
+      <h2>Part 1 — Parking-Lot Preparation (Before You Approach the Ramp)</h2>
+      <p>The ramp is not the place to prepare your boat. Do everything you can in the parking lot before you get in line. This keeps the ramp flowing smoothly and reduces stress.</p>
+      <ol class="pg-list"><li><strong>Drain plug in</strong> — the most important step; a missing drain plug can sink a boat at the dock.</li><li><strong>Trailer straps off</strong> — remove transom straps, rear tie-downs, and any additional restraints; leave the winch strap attached until you're at the water.</li><li><strong>Winch unhooked (at the water only)</strong> — loosen the winch strap in the parking lot, but unhook only when the boat is at the waterline.</li><li><strong>Bow line tied</strong> — so you can guide the boat once it floats off the trailer.</li><li><strong>Fenders on</strong> — on the side you'll tie up after launching.</li><li><strong>Key and kill-switch lanyard in</strong> — key in the ignition, lanyard clipped, before backing down the ramp.</li><li><strong>Battery switch on</strong> — set to ON or 1/BOTH depending on your setup.</li><li><strong>Fuel tank full or noted</strong> — check fuel, and note it in your log so you know your range.</li></ol>
+      <h2>Part 2 — Approaching the Ramp</h2>
+      <p>Once your boat is fully prepared, get in line. Be patient, don't block the ramp, don't prepare your boat on the ramp, move with purpose but not haste, and communicate clearly with your crew. A calm launch is a safe launch.</p>
+      <h2>Part 3 — Backing Down the Ramp</h2>
+      <p>AftLog's Launch Mode includes \u201cBack it in slowly\u201d — the most important ramp behavior. Use mirrors, keep steering inputs small, back slowly and steadily, ask a crew member to guide you, avoid sudden movements, and stop when the stern begins to float. The correct trailer depth varies, but generally wheels are partially submerged, bunks just below the waterline, and the bow still supported by the winch post. Too deep and the boat floats early; too shallow and it won't slide off.</p>
+      <h2>Part 4 — Launching the Boat</h2>
+      <ol class="pg-list"><li><strong>Stop the vehicle</strong> — park and set the parking brake.</li><li><strong>Unhook the winch strap</strong> — once the boat is floating.</li><li><strong>Guide the boat with the bow line</strong> — walk it off the trailer gently.</li><li><strong>Move the boat to the dock</strong> — tie off securely using fenders.</li><li><strong>Start the engine</strong> — check the tell-tale stream, idle stability, battery voltage, and fuel level.</li></ol>
+      <h2>Part 5 — Parking the Trailer</h2>
+      <ol class="pg-list"><li>Drive the vehicle to the parking area — quickly but safely.</li><li>Park straight and centered — respect the trailer-parking lines.</li><li>Lock your vehicle — keep keys secure.</li><li>Return to the boat — your crew should remain with the boat until you return.</li></ol>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog's Launch Mode is designed for real-world ramp use: big buttons for hands-free tapping, a simple linear checklist, a clear completion banner, no emojis (brand rule), safety-first ordering, and fast access from the dashboard. It ensures you never forget critical steps like the drain plug, kill-switch, or battery switch.</p>
+      <h2>Checklist: Launch Mode (AftLog Preset)</h2>
+      <ul class="pg-list"><li>Drain plug in</li><li>Trailer straps off</li><li>Winch unhooked</li><li>Bow line tied</li><li>Fenders on</li><li>Key and kill-switch lanyard in</li><li>Battery switch on</li><li>Fuel tank full or noted</li><li>Back it in slowly</li></ul>
+      <h2>Summary</h2>
+      <p>Launching a boat doesn't need to be stressful. With proper preparation, clear steps, and AftLog's Launch Mode guiding you, every launch becomes smooth, safe, and predictable. By following the checklist — drain plug, straps, bow line, fenders, kill-switch, battery, fuel, and slow backing — you eliminate the most common ramp mistakes and keep your boating day on track.</p>""",
+                 '<li><a href="retrieve-checklist.html">Retrieve checklist: avoid trailer mistakes</a></li><li><a href="how-to-build-a-float-plan.html">How to build a float plan</a></li><li><a href="battery-care-small-boats.html">Battery care for small boats</a></li>'),
+         active="/blog/")
+
+register("blog/retrieve-checklist", "Boat Retrieval Checklist — Step-by-Step Guide for a Safe and Smooth Haul-Out", "Learn the complete boat retrieval checklist, including ramp approach, trailer alignment, safety steps, and how AftLog's Retrieve Mode prevents common mistakes.",
+         article("retrieve-checklist", "Retrieve Checklist: Avoid Trailer Mistakes",
+                 "Retrieving your boat at the ramp is where most trailer mistakes happen. Here's the complete retrieval checklist — based on AftLog's built-in Retrieve Mode — to keep your haul-out smooth and safe.",
+                 "Checklists", """<img class="blog-hero" src="/images/screen-retrieve-mode.png" alt="AftLog Retrieve Mode checklist (placeholder — to be replaced with the Retrieve Mode screenshot)" loading="lazy">
+      <p>Retrieving your boat at the ramp is often more stressful than launching. You're tired, the ramp is busy, the wind may be pushing you sideways, and you're trying to line up the trailer perfectly while other boaters wait. This is where most trailer mistakes happen — forgotten straps, missing drain plugs, misaligned trailers, and rushed maneuvers.</p>
+      <p>AftLog includes a dedicated Retrieve Mode, a big-button checklist designed to make haul-out predictable and safe. This guide walks through the complete retrieval process, explains each checklist item, and shows how AftLog helps you avoid the most common mistakes at the ramp.</p>
+      <h2>Why a Retrieval Checklist Matters</h2>
+      <p>Retrieving a boat involves more moving parts than launching: trailer alignment, boat positioning, ramp traffic, wind and current, safety gear, engine shutdown, and securing the boat for travel. Missing even one step — like forgetting the winch hook or leaving the drain plug in — can cause damage or safety issues. AftLog's Retrieve Mode is built around preventing these mistakes, with a clear completion banner: \u201cRetrieve complete. Plug out, straps on, winch hooked. Safe to drive.\u201d</p>
+      <h2>Part 1 — Preparing the Boat at the Dock</h2>
+      <ol class="pg-list"><li><strong>Bow line tied</strong> — you'll need it to guide the boat onto the trailer.</li><li><strong>Fenders on</strong> — keep them on while maneuvering near the dock; remove only after the boat is secured on the trailer.</li><li><strong>Key out</strong> — turn off the engine and remove the key.</li><li><strong>Kill-switch lanyard off</strong> — unclip so it doesn't snag or get lost.</li><li><strong>Battery switch off</strong> — turn off before trailering.</li></ol>
+      <h2>Part 2 — Bringing the Trailer Down the Ramp</h2>
+      <p>Move with purpose, don't block the ramp, avoid preparing the boat on the ramp, and communicate clearly with your crew. The correct trailer depth generally has wheels partially submerged, bunks just below the waterline, and the winch post above water. Too deep and the boat floats sideways; too shallow and it won't climb the bunks.</p>
+      <h2>Part 3 — Guiding the Boat Onto the Trailer</h2>
+      <p>Use the bow line to guide the boat straight onto the trailer. Approach slowly, use wind and current to your advantage, keep the bow centered, use short controlled movements, and avoid powering onto the trailer unless permitted. Once the bow reaches the winch post, secure it immediately.</p>
+      <h2>Part 4 — Securing the Boat for Travel</h2>
+      <p>This is where most retrieval mistakes happen. AftLog's Retrieve Mode includes the essential steps:</p>
+      <ol class="pg-list"><li><strong>Winch hooked</strong> — attach the winch hook to the bow eye and crank tight.</li><li><strong>Straps on</strong> — install transom straps, rear tie-downs, and any additional restraints.</li><li><strong>Drain plug out</strong> — so water can drain during travel.</li><li><strong>Fenders off (optional)</strong> — remove once the boat is fully secured.</li><li><strong>Check trailer lights</strong> — verify brake lights and turn signals.</li><li><strong>Check safety chains</strong> — ensure they're crossed and secure.</li><li><strong>Check hitch lock</strong> — confirm the hitch is latched and locked.</li></ol>
+      <h2>Part 5 — Driving Up the Ramp</h2>
+      <p>AftLog includes \u201cBack it out slowly\u201d, which applies in reverse during retrieval. Drive up slowly and steadily — avoid sudden acceleration, the boat is heavy and wet — watch for pedestrians and other trailers, and move to the parking area quickly to clear the ramp.</p>
+      <h2>Part 6 — Final Parking-Lot Checks</h2>
+      <ol class="pg-list"><li>Re-check winch strap tension — wet boats can shift slightly</li><li>Re-check transom straps — ensure they're tight</li><li>Verify the drain plug is out — water should be draining</li><li>Inspect trailer tires — look for bulges or low pressure</li><li>Check engine position — tilt the engine up for travel</li><li>Secure loose items — coolers, rods, tackle, and gear</li></ol>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog's Retrieve Mode is designed for real-world ramp use: big buttons for hands-free tapping, a simple linear checklist, a clear completion banner, no emojis (brand rule), safety-first ordering, and fast access from the dashboard. It ensures you never forget critical steps like the winch hook, drain plug, or transom straps.</p>
+      <h2>Checklist: Retrieve Mode (AftLog Preset)</h2>
+      <ul class="pg-list"><li>Bow line tied</li><li>Fenders on</li><li>Key out</li><li>Kill-switch lanyard off</li><li>Battery switch off</li><li>Drain plug out</li><li>Straps on</li><li>Winch hooked</li><li>Back it out slowly</li></ul>
+      <h2>Summary</h2>
+      <p>Retrieving your boat doesn't need to be stressful. With proper preparation, clear steps, and AftLog's Retrieve Mode guiding you, every haul-out becomes smooth, safe, and predictable. By following the checklist — bow line, fenders, key, kill-switch, battery, drain plug, straps, winch, and slow driving — you eliminate the most common ramp mistakes and protect your boat and trailer.</p>""",
+                 '<li><a href="launch-checklist.html">Launch checklist: the complete guide</a></li><li><a href="how-to-build-a-float-plan.html">How to build a float plan</a></li><li><a href="engine-wont-start.html">How to handle an engine that won\'t start</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
@@ -846,8 +905,8 @@ BLOG_ARTICLES = [
     ("How to handle an engine that won't start", "A calm, ordered checklist for the most frustrating moment in boating.", "Safety", "/blog/engine-wont-start.html", "/images/screen-engine-wont-start.png"),
     ("Overheating on the water: what to do", "Recognize it early and know when to stop — before it becomes a big repair.", "Safety", "/blog/overheating-on-the-water.html", "/images/screen-overheating.png"),
     ("How to build a float plan", "Tell someone where you're going — it takes two minutes and saves lives.", "Safety", "/blog/how-to-build-a-float-plan.html", "/images/screen-float-plan.png"),
-    ("Launch checklist: the complete guide", "Plug, pump, battery, gear — everything checked before you leave the ramp.", "Checklists", None, None),
-    ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", None, None),
+    ("Launch checklist: the complete guide", "Plug, pump, battery, gear — everything checked before you leave the ramp.", "Checklists", "/blog/launch-checklist.html", "/images/screen-launch-mode.png"),
+    ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", "/blog/retrieve-checklist.html", "/images/screen-retrieve-mode.png"),
     ("Used-boat inspection checklist", "The 13-section walkthrough that helps you buy with confidence.", "Checklists", None, None),
     ("Spring prep: getting your boat ready", "De-winterize, inspect, and launch right the first time.", "Seasonal prep", None, None),
     ("Fall haul-out checklist", "The off-season routine that makes spring easy.", "Seasonal prep", None, None),

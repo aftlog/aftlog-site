@@ -2,7 +2,7 @@
 
 > Read `AFTLOG-CODING-STANDARDS.md` + `DECISIONS.md` first every session.
 
-- **📸 BLOG SERIES (1/13 → 7/13 done 2026-08-17) — IMAGE TRACKER for Louis:**
+- **📸 BLOG SERIES (1/13 → 9/13 done 2026-08-17) — IMAGE TRACKER for Louis:**
   Blog articles are being added with `/images/screen-*.<ext>` screenshots. Where
   no real photo exists yet I used an on-brand app diagram as a stand-in. List of
   images still needing Louis's real photo (drop-in at `/images/`, trivial swap):
@@ -16,6 +16,10 @@
     needs real "overheat alarm / weak tell-tale" photo.
   - `screen-float-plan.png` — currently generic app-screenshot **stand-in**; needs
     the REAL AftLog Float Plan screen screenshot (HIGHEST priority).
+  - `screen-launch-mode.png` — generic app-screen **stand-in**; needs REAL
+    Launch Mode (big-button checklist) screenshot.
+  - `screen-retrieve-mode.png` — generic app-screen **stand-in**; needs REAL
+    Retrieve Mode (big-button checklist) screenshot.
   Acceptable as-is (good on-brand diagrams): `screen-lower-unit.png` (gearcase),
   `screen-impeller.png` (water-pump housing). Will re-list all at end of the 13.
 
