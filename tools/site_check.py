@@ -145,6 +145,34 @@ def main():
         check("robots allows indexing", "Allow: /" in rc)
         check("robots points at sitemap", "sitemap.xml" in rc.lower())
 
+    # 10. Accessibility: every <img> carries an alt attribute
+    print("— accessibility (alt tags)")
+    for p in pages:
+        f = ROOT / p
+        if not f.exists():
+            continue
+        c = f.read_text(encoding="utf-8")
+        imgs = re.findall(r"<img[^>]*>", c)
+        missing = [i[:60] for i in imgs if "alt=" not in i]
+        check(f"{p}: all {len(imgs)} images have alt", not missing,
+              f"missing: {missing}")
+
+    # 11. Legal coverage (STEP 10 review prep)
+    print("— privacy/terms coverage")
+    coverage = {
+        "privacy.html": ["on-device", "without a signal", "ai",
+                          "one-time", "rights", "contact"],
+        "terms.html": ["one-time", "lifetime", "refund", "termination",
+                        "warranty", "contact"],
+    }
+    for p, needles in coverage.items():
+        f = ROOT / p
+        if not f.exists():
+            continue
+        c = f.read_text(encoding="utf-8").lower()
+        for n in needles:
+            check(f"{p} covers '{n}'", n.lower() in c)
+
     print()
     if FAILS:
         print(f"FAILED: {len(FAILS)} check(s): {FAILS}")

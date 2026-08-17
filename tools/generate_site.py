@@ -468,6 +468,13 @@ register("privacy", "AftLog Privacy Policy", "How AftLog handles your data: on-d
       <li><strong>Optional portal sync.</strong> If you link to the AftLog Portal, only what you send is stored on the server, tied to your portal account.</li>
       <li><strong>AI questions.</strong> Questions you ask the AI assistant are processed by the AftLog server to produce an answer; the app and website never hold AI keys.</li>
       <li><strong>Waitlist email.</strong> Used only to contact you about AftLog availability.</li>
+      <li><strong>License.</strong> AftLog Pro is a one-time lifetime purchase ($29, no subscription) — no recurring billing data is collected.</li>
+    </ul>
+    <h3>Your rights</h3>
+    <ul class="pg-list">
+      <li>Export your data any time (app: More → Backup / CSV export).</li>
+      <li>Delete your data by removing the app or contacting us — we'll remove anything stored server-side on request.</li>
+      <li>Contact: <a href="mailto:aftlog@yahoo.com?subject=AftLog%20privacy">aftlog@yahoo.com</a>.</li>
     </ul>
     <p class="pg-muted">Questions? <a href="/support.html">Contact us</a>.</p>"""))
 register("terms", "AftLog Terms of Use", "The short version: use AftLog safely, don't abuse it, and remember it's a tool — not a replacement for a marine professional.",
@@ -479,7 +486,14 @@ register("terms", "AftLog Terms of Use", "The short version: use AftLog safely, 
       <li>Don't misuse the service, resell access, or attempt to breach the servers.</li>
       <li>We may update these terms; continued use means you accept the updates.</li>
     </ul>
-    <p class="pg-muted">Questions? <a href="/support.html">Contact us</a>.</p>"""))
+    <p class="pg-muted">Questions? <a href="/support.html">Contact us</a>.</p>""")
+         + section("Your rights, refunds &amp; termination", """<ul class="pg-list">
+      <li><strong>Refunds.</strong> AftLog Pro comes with a 30-day money-back guarantee. Email <a href="mailto:aftlog@yahoo.com?subject=AftLog%20refund">aftlog@yahoo.com</a> within 30 days of purchase for a full refund.</li>
+      <li><strong>Your data.</strong> Your boat data is yours. You can export it at any time (More → Backup / CSV export) and delete it by removing the app or contacting support.</li>
+      <li><strong>Termination.</strong> We may suspend or terminate access for abuse (reselling licenses, attempting to breach servers, illegal use). You can stop using AftLog at any time — no notice needed.</li>
+      <li><strong>Warranty.</strong> The app is provided as-is. We keep it reliable, but we don't guarantee the app or the AI assistant will be error-free, and we're not liable for damage arising from how you use it.</li>
+      <li><strong>Contact.</strong> Questions about these terms: <a href="mailto:aftlog@yahoo.com?subject=AftLog%20terms">aftlog@yahoo.com</a>.</li>
+    </ul>"""))
 
 
 # ── Render ──────────────────────────────────────────────────────────────

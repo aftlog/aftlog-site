@@ -57,7 +57,7 @@ Website ──GET  /admin/publish──▶ Server (review count)
 
 ## 2. What's in v1.111
 
-### App (Android) — internal label: app 1.108.6 (versionCode 153)
+### App (Android) — internal label: app 1.108.7 (versionCode 154)
 AI proxy integration (Ask AftLog + VEA photo assist via `/ai/gemini`) ·
 Smart Planner · Diagnostics (rule-based) · Manual extraction (Engine
 Manual Assist) · Offline-first logging · Checklists + Wizards · Emergency
@@ -93,9 +93,9 @@ AI proxy · Publisher proxy · License manager (lifetime-only) ·
 | Portal | v1.111 | `web/portal/index.html` (hub badge + `/status`) |
 | Server | v1.111 | `GET /status` → `portalVersion: v1.111` |
 | Website | v1.111 | site footer ("Platform v1.111") |
-| App | v1.111 (internal label) | app 1.108.6+153 — see note |
+| App | v1.111 (internal label) | app 1.108.7+154 — see note |
 
-> **Note:** the app keeps its feature-based semver (`1.108.6`, per
+> **Note:** the app keeps its feature-based semver (`1.108.7`, per
 > Decision #11 amended: minor = FEATURES.md count). "App v1.111" is the
 > platform label for this manifest; the app's own version is authoritative
 > for builds/installs.

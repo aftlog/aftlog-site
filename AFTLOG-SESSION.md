@@ -1425,6 +1425,51 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 50 — DEEPSEEK STEP 10: production release prep, deployment plan, v1.111 freeze + tags
+
+**Goal (DEEPSEEK block):** prepare v1.111 for production — URL swap,
+Lighthouse/SEO prep, legal review prep, Play Store prep, launch checklist,
+rollback plan, monitoring, tags. No new features.
+
+**What was done:**
+- **URL swap:** audited all repos — no `dev.portal.aftlog.com` / `dev.aftlog`
+  strings exist (the Session 38 placeholder was already the production
+  domain). App's portal default changed `localhost:8080` →
+  `https://portal.aftlog.com` (fresh-install default; dev still configurable
+  via Link to Portal). Site regenerated with
+  `PORTAL_BASE=https://portal.aftlog.com`. App rebuilt 1.108.7+154,
+  APK-probed (production URL present, localhost gone, 0 tokens),
+  installed on the phone. App pushed; manifest app version updated.
+- **Lighthouse/SEO:** no browser in this environment — structural SEO audit
+  instead (all pages: unique metadata ✓ canonical ✓ alt tags ✓ sitemap ✓
+  robots ✓); Lighthouse runs documented in LAUNCH-CHECKLIST (manual,
+  with known perf notes — hero PNGs may want WebP/lazy).
+- **Legal review prep:** privacy + terms strengthened to cover all six
+  required items — data storage, offline-first, AI usage, license (one-time
+  lifetime), user rights (export/delete/refund/termination/warranty),
+  contact. site_check now LOCKS alt-tags + legal coverage (~150 checks
+  ALL PASS). Legal SIGN-OFF still Louis's (flag in launch checklist).
+- **Play Store prep:** PLAY-STORE-RELEASE.md — user-facing release notes
+  (copy-linted), tracks (internal → closed → production), store assets
+  (privacy/terms/support URLs, screenshot list), pre-upload checks
+  (release-flavor build — never dev flavor — + APK probe), monitoring.
+- **Docs:** LAUNCH-CHECKLIST.md — the 15-item launch matrix (14 ✅, 2 ⏳
+  Louis: Lighthouse, legal sign-off) + rollback plan + monitoring table.
+- **Tags:** aftlog-app / aftlog-server / aftlog-site tagged **v1.111**
+  (there is no separate aftlog-portal repo — the portal lives in
+  aftlog_server) + pushed.
+
+**State:** Portal/Server/Website v1.111 · App 1.108.7+154 (platform label
+v1.111). All tests green (server 141, app 429+2 known, site ~150, portal
+40+). All proxies live. Everything pushed + tagged.
+
+**Louis's remaining launch items:** ① Lighthouse runs (browser) ② legal
+sign-off on Privacy/Terms ③ portal deployment to portal.aftlog.com
+(Aug 24 gate) ④ Play Console upload (release flavor) ⑤ analytics account
+(monitoring row).
+
+---
+
 ## 2026-08-17 — Session 49 — DEEPSEEK STEP 9: platform consolidation, architecture freeze, release manifest v1.111
 
 **Goal (DEEPSEEK block):** freeze the architecture, generate the Release
