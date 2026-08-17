@@ -2,6 +2,17 @@
 
 > Read `AFTLOG-CODING-STANDARDS.md` + `DECISIONS.md` first every session.
 
+- **📸 BLOG SERIES (1/13 → 4/13 done 2026-08-17) — IMAGE TRACKER for Louis:**
+  Blog articles are being added with `/images/screen-*.<ext>` screenshots. Where
+  no real photo exists yet I used an on-brand app diagram as a stand-in. List of
+  images still needing Louis's real photo (drop-in at `/images/`, trivial swap):
+  - `screen-spark-plugs.png` — currently ignition-system diagram **stand-in**;
+    needs real "new vs. fouled" spark-plug photo.
+  - `screen-battery-care.png` — currently battery-system diagram **stand-in**;
+    needs real marine-battery / terminals / charger photo.
+  Acceptable as-is (good on-brand diagrams): `screen-lower-unit.png` (gearcase),
+  `screen-impeller.png` (water-pump housing). Will re-list all at end of the 13.
+
 - **🏷️ SPEC MIRROR PASS (Blocks 1–8) COMPLETE (2026-08-17):** the full DeepSeek
   spec (foundation, models, services, widgets/data, screens 1–4, tools,
   wizards, diagnostics, calculators) was processed as website mirror coverage

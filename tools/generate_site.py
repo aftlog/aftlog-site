@@ -649,14 +649,82 @@ register("blog/spark-plug-intervals", "Outboard Spark Plug Intervals — When to
          active="/blog/")
 
 
+register("blog/impeller-replacement", "Outboard Impeller Replacement — Symptoms, Timing, and Why It Matters", "Learn when to replace your outboard impeller, how to spot early symptoms of failure, and why timely water-pump service prevents overheating and engine damage.",
+         article("impeller-replacement", "Impeller Replacement: Symptoms and Timing",
+                 "Your impeller is the heart of your cooling system. When it wears out, your engine overheats — fast. Here's how to know when it's time to replace it, what symptoms to watch for, and how often to service it.",
+                 "Maintenance", """<img class="blog-hero" src="/images/screen-impeller.png" alt="Outboard water-pump diagram — the impeller sits inside the water-pump housing it shows" loading="lazy">
+      <p>Your outboard's impeller is a small rubber component with flexible vanes that spin inside the water-pump housing. Its job is simple: pull water from outside the boat and push it through the engine to keep it cool. Without it, your engine overheats within minutes.</p>
+      <p>Despite its importance, the impeller is one of the most overlooked maintenance items on small boats. Many owners don't know when to replace it, what symptoms indicate trouble, or how impeller wear affects engine performance. This guide explains when to replace your impeller, why timing matters, how to spot early symptoms, and what happens if you ignore the warning signs.</p>
+      <h2>Why Impeller Replacement Matters</h2>
+      <p>The impeller is made of rubber. Over time rubber dries out, cracks, stiffens, loses flexibility, becomes brittle, and wears unevenly. When the vanes can't flex properly, the pump loses pressure, cooling water flow drops, and the engine overheats.</p>
+      <p>Overheating is one of the fastest ways to damage an outboard. It can cause warped heads, melted pistons, scored cylinders, blown head gaskets, failed thermostats, and damaged sensors. A <strong>$20–$40 impeller</strong> prevents a <strong>$1,000–$4,000 repair</strong>.</p>
+      <h2>Recommended Impeller Replacement Intervals</h2>
+      <p>Most manufacturers recommend replacing the impeller <strong>every 2–3 years</strong> for recreational use — but there are important exceptions.</p>
+      <p><strong>Replace every year if</strong> you run in sandy or silty water, operate in shallow rivers, beach your boat frequently, run in weedy lakes, store the engine for long periods, or run high hours (150+ per season). <strong>Replace immediately if</strong> the tell-tale stream weakens, the engine overheats, you sucked up sand or debris, the impeller sat dry for months, or you bought a used engine with unknown history.</p>
+      <p>AftLog tracks impeller intervals automatically based on your engine model and logged hours.</p>
+      <h2>Symptoms of a Worn or Failing Impeller</h2>
+      <p>Impeller failure rarely happens suddenly. Instead, symptoms appear gradually — if you know what to look for:</p>
+      <ol class="pg-list"><li><strong>Weak or intermittent tell-tale stream</strong> — the most common early warning sign. A healthy impeller produces a strong, steady stream; a failing one produces weak flow, sputtering flow, delayed flow after startup, or flow that disappears at idle.</li><li><strong>Engine overheating</strong> — if the temperature alarm sounds, check the impeller first.</li><li><strong>High idle temperature</strong> — if idle temps creep higher over time, the impeller may be losing efficiency.</li><li><strong>Steam in the tell-tale</strong> — indicates hot water and restricted flow.</li><li><strong>No tell-tale at startup</strong> — if it doesn't appear within 5–10 seconds, shut down immediately.</li><li><strong>Debris in the water-pump housing</strong> — sand, silt, or weeds can damage the vanes.</li><li><strong>Rubber smell</strong> — a faint burning-rubber smell can indicate vane friction or failure.</li></ol>
+      <h2>What Happens If You Don't Replace the Impeller</h2>
+      <ol class="pg-list"><li><strong>Vanes stiffen</strong> — cooling efficiency drops.</li><li><strong>Vanes crack</strong> — water flow becomes inconsistent.</li><li><strong>Vanes break off</strong> — pieces of rubber travel through the cooling system.</li><li><strong>Water passages clog</strong> — overheating becomes severe.</li><li><strong>Engine overheats</strong> — the temperature alarm sounds.</li><li><strong>Internal damage</strong> — pistons, cylinders, and head gaskets fail.</li><li><strong>Engine shutdown</strong> — severe overheating forces an emergency stop.</li></ol>
+      <p>Replacing the impeller every 2–3 years prevents all of this.</p>
+      <h2>How Impeller Replacement Works</h2>
+      <p>Impeller replacement is moderately simple and takes 30–60 minutes.</p>
+      <ol class="pg-list"><li><strong>Remove the lower unit</strong> — unbolt the gearcase from the midsection.</li><li><strong>Access the water-pump housing</strong> — located on top of the lower unit.</li><li><strong>Remove the housing</strong> — inspect for sand, silt, or debris.</li><li><strong>Remove the old impeller</strong> — check for missing vanes.</li><li><strong>Install the new impeller</strong> — lubricate with water-pump grease.</li><li><strong>Replace the housing gasket</strong> — ensures proper sealing.</li><li><strong>Reinstall the lower unit</strong> — align the driveshaft and shift shaft.</li><li><strong>Test the tell-tale</strong> — start the engine and verify strong flow.</li></ol>
+      <p>If vanes are missing, the cooling passages may need flushing.</p>
+      <h2>DIY vs. Professional Replacement</h2>
+      <p>Impeller replacement is DIY-friendly if you're comfortable removing the lower unit, your engine is small (2–60 HP), bolts are accessible, and you have a manual. Use a professional if your engine is large (90–300 HP), bolts are corroded, you suspect overheating damage, vanes are missing, or you want a full cooling-system inspection.</p>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog automatically tracks impeller intervals, logs replacement dates, stores photos of impeller condition, notes symptoms (weak tell-tale, overheating), reminds you when service is due, and links to your engine's maintenance schedule.</p>
+      <h2>Checklist: Impeller Replacement</h2>
+      <ul class="pg-list"><li>Remove the lower unit</li><li>Inspect the housing for debris</li><li>Remove the old impeller</li><li>Check for missing vanes</li><li>Install the new impeller</li><li>Replace the gasket</li><li>Reinstall the lower unit</li><li>Test the tell-tale</li><li>Log the service in AftLog</li></ul>
+      <h2>Summary</h2>
+      <p>Your impeller is the heart of your cooling system. Replacing it every 2–3 years — or sooner in harsh conditions — prevents overheating, protects your engine, and ensures reliable performance. By watching for symptoms like weak tell-tale flow and rising temperatures, you can catch impeller wear early and avoid costly repairs.</p>
+      <p>AftLog tracks your intervals automatically, so you never miss a replacement.</p>""",
+                 '<li><a href="spark-plug-intervals.html">Spark plug intervals explained</a></li><li><a href="lower-unit-service.html">Lower-unit service: when and why</a></li><li><a href="battery-care-small-boats.html">Battery care for small boats</a></li>'),
+         active="/blog/")
+
+register("blog/battery-care-small-boats", "Boat Battery Care Guide — Charging, Storage, and Seasonal Maintenance", "Learn how to care for your boat's battery, prevent off-season failure, extend lifespan, and keep your electrical system reliable all season long.",
+         article("battery-care-small-boats", "Battery Care for Small Boats",
+                 "Boat batteries rarely die on the water — they die in storage. Here's how to charge, maintain, and store your battery properly so your boat starts strong every time.",
+                 "Maintenance", """<img class="blog-hero" src="/images/screen-battery-care.png" alt="Marine battery system diagram — charging, terminals, and connections" loading="lazy">
+      <p>A reliable battery is one of the most important components on a small boat. It powers your starter motor, electronics, bilge pump, lights, GPS, fish finder, radio, and safety equipment. When a battery fails, your day on the water can end abruptly — or worse, you may find yourself unable to start the engine or call for help.</p>
+      <p>The surprising truth is that most boat batteries don't fail on the water. They fail in storage, during the off-season, when they sit unused, slowly discharging, sulfating, and deteriorating. Proper battery care is simple, inexpensive, and dramatically extends battery life. This guide explains how to care for your battery, store it, charge it, prevent early failure, and how AftLog tracks battery health.</p>
+      <h2>Why Boat Batteries Fail</h2>
+      <p>Boat batteries live a harder life than car batteries. They face vibration, moisture, temperature swings, long periods of inactivity, deep discharges, inconsistent charging, and corrosion from salt or humidity. The most common failure causes are:</p>
+      <ol class="pg-list"><li><strong>Sulfation</strong> — when a battery sits partially discharged, lead sulfate crystals form on the plates, reducing capacity.</li><li><strong>Deep discharge</strong> — running electronics for hours without charging can drain the battery below safe levels.</li><li><strong>Off-season neglect</strong> — batteries slowly discharge over winter; below 10.5 volts causes permanent damage.</li><li><strong>Corroded terminals</strong> — loose or corroded terminals reduce voltage and cause hard starting.</li><li><strong>Overcharging</strong> — cheap chargers can overcharge and boil the electrolyte.</li><li><strong>Vibration damage</strong> — loose batteries can crack plates or damage internal connections.</li></ol>
+      <h2>Types of Boat Batteries</h2>
+      <p><strong>Flooded lead-acid (FLA)</strong> — traditional, affordable, reliable; but requires topping up water, is sensitive to vibration, and prone to sulfation. <strong>AGM (absorbed glass mat)</strong> — sealed, maintenance-free, vibration-resistant, charges faster, low self-discharge; but more expensive and sensitive to overcharging. <strong>Lithium (LiFePO4)</strong> — modern, lightweight, long-lasting, deep-cycle friendly, stable voltage; but expensive, needs a compatible charger, and isn't ideal for cold climates.</p>
+      <p>AftLog lets you specify your battery type so maintenance reminders match your setup.</p>
+      <h2>How to Charge Your Boat Battery Properly</h2>
+      <p>Charging is the most important part of battery care. Use a <strong>smart charger</strong> — it regulates voltage, prevents overcharging, maintains float charge, desulfates plates, and shuts off when full. Avoid cheap trickle chargers, which can overcharge. Charge after every outing (even short trips drain the battery slightly), keep the battery above <strong>12.4 volts</strong> (below this sulfation begins), avoid deep discharges (never below 50% unless it's a deep-cycle model), and check charging-system output — your outboard should produce 13.8–14.4 volts at cruising RPM, or the alternator/regulator may be failing.</p>
+      <h2>Off-Season Battery Storage</h2>
+      <p>Most battery failures happen during winter storage. Here's how to prevent them:</p>
+      <ol class="pg-list"><li><strong>Fully charge the battery before storage</strong> — less likely to sulfate.</li><li><strong>Disconnect the terminals</strong> — prevents parasitic drain.</li><li><strong>Store in a cool, dry place</strong> — ideal 5–15°C (40–60°F); avoid freezing.</li><li><strong>Use a smart maintainer</strong> — holds a safe float voltage all winter.</li><li><strong>Check voltage monthly</strong> — below 12.4V, recharge immediately.</li><li><strong>Avoid concrete floors</strong> — moisture can still cause discharge.</li><li><strong>Clean terminals before storage</strong> — corrosion accelerates in inactivity.</li></ol>
+      <h2>How to Inspect Your Battery</h2>
+      <ol class="pg-list"><li><strong>Check voltage</strong> — healthy resting voltage is 12.6–12.8V.</li><li><strong>Check terminals</strong> — corrosion, loose connections, or frayed cables.</li><li><strong>Check the case</strong> — swelling or bulging indicates internal damage.</li><li><strong>Check electrolyte</strong> (flooded batteries) — plates covered; top up with distilled water.</li><li><strong>Check age</strong> — lead-acid 3–5 years, AGM 4–7 years, lithium 8–12 years; replace proactively if older.</li></ol>
+      <h2>Symptoms of a Weak or Failing Battery</h2>
+      <ul class="pg-list"><li>Slow cranking</li><li>Clicking sound when starting</li><li>Dim lights</li><li>Electronics shutting off</li><li>Voltage dropping quickly under load</li><li>Battery not holding a charge</li><li>Corrosion buildup</li><li>Swollen case</li></ul>
+      <p>If you notice any of these, test or replace the battery.</p>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog automatically tracks battery age, logs voltage readings, stores photos of terminal condition, reminds you to charge after trips, provides off-season storage checklists, notes symptoms of battery failure, and helps diagnose electrical issues.</p>
+      <h2>Checklist: Battery Care</h2>
+      <ul class="pg-list"><li>Charge after every outing</li><li>Keep voltage above 12.4V</li><li>Inspect terminals monthly</li><li>Clean corrosion immediately</li><li>Use a smart charger</li><li>Store fully charged</li><li>Disconnect terminals for winter</li><li>Check voltage monthly during storage</li><li>Log battery age in AftLog</li></ul>
+      <h2>Summary</h2>
+      <p>Boat batteries are simple, but they require consistent care. Charging properly, storing correctly, and inspecting regularly will dramatically extend battery life and prevent off-season failure. Whether you use lead-acid, AGM, or lithium, following these steps ensures your boat starts strong every time.</p>
+      <p>AftLog tracks battery health automatically — so you're never caught off guard.</p>""",
+                 '<li><a href="impeller-replacement.html">Impeller replacement: symptoms and timing</a></li><li><a href="spark-plug-intervals.html">Spark plug intervals explained</a></li><li><a href="lower-unit-service.html">Lower-unit service: when and why</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
     ("How often to change outboard oil", "Intervals, why they matter, and how AftLog tracks them for you.", "Maintenance", "/blog/outboard-oil.html", "/images/screen-smp-plan.png"),
     ("Lower-unit service: when and why", "Gear oil, seals, and the simple checks that keep your lower unit alive.", "Maintenance", "/blog/lower-unit-service.html", "/images/screen-lower-unit.png"),
     ("Spark plug intervals explained", "Why 200 hours is the rule, and the symptoms of worn plugs.", "Maintenance", "/blog/spark-plug-intervals.html", "/images/screen-spark-plugs.png"),
-    ("Impeller replacement: symptoms and timing", "Weak tell-tale? It's usually the impeller. Here's when to change it.", "Maintenance", None, None),
-    ("Battery care for small boats", "Charge, store, and check — batteries die in the off-season, not on the water.", "Maintenance", None, None),
+    ("Impeller replacement: symptoms and timing", "Weak tell-tale? It's usually the impeller. Here's when to change it.", "Maintenance", "/blog/impeller-replacement.html", "/images/screen-impeller.png"),
+    ("Battery care for small boats", "Charge, store, and check — batteries die in the off-season, not on the water.", "Maintenance", "/blog/battery-care-small-boats.html", "/images/screen-battery-care.png"),
     ("Boat safety equipment list", "What to carry on board — and how to check it before every launch.", "Safety", "/blog/safety-equipment.html", "/images/screen-portal-health.png"),
     ("How to handle an engine that won't start", "A calm, ordered checklist for the most frustrating moment in boating.", "Safety", None, None),
     ("Overheating on the water: what to do", "Recognize it early and know when to stop — before it becomes a big repair.", "Safety", None, None),
