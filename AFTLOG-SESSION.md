@@ -1321,6 +1321,21 @@ help/website.
 - LIVE: redeem returns {success, type: yearly, proSince, expiresAt};
   cleaned up. NOTE: EnterProCodeScreen (Block 5) superseded by
   ProActivationScreen, kept for reference.
+- Server 9e29ec0 (113 tests, +6): gatePro helper (Manual Generator + Ask
+  AftLog AI need isPro for REAL authed users — 403 requires pro; lab stays
+  Pro), GET /pro-confirmation (login-gated), /redeem redirects there on
+  success, /pro gains the profile-driven panel (Pro Active badge or Not
+  Pro + Enter Pro Code), manual-generator page client-side requires-Pro
+  panel (PORTAL_PRO=false deployments). No rules change needed (already
+  deny client Pro writes).
+- LIVE: non-Pro user 403 on generator -> redeem -> 200; /pro shows Pro;
+  pro-confirmation gated. Cleanup done.
+- ★ LICENSING BUNDLE COMPLETE (Blocks 5–8). BOTH BUNDLES DONE: Foundation
+  (1–4) + Licensing (5–8). Server 113 tests, app 429 (+2 known
+  pre-existing LocalBundleServer fails). NEXT: full release checklist
+  (RELEASE-CHECKLIST.md in aftlog-site) + session log + version bumps +
+  app build/install (dev build includes License Manager + GITHUB_TOKEN +
+  AFTLOG_SA_JSON).
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
