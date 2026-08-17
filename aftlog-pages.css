@@ -346,3 +346,6 @@
 .pg-tool-card p{margin:0;font-size:13px;line-height:1.45}
 @media(max-width:860px){.pg-tools-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.pg-tools-grid{grid-template-columns:1fr}}
+
+/* ── Blog article hero screenshot ──────────────────────────────────── */
+.blog-hero{width:100%;max-width:640px;display:block;margin:0 auto 20px;border:1px solid var(--line);border-radius:12px;background:var(--bg);}

@@ -567,11 +567,52 @@ def article(slug, title, desc, category, body_html, related):
       <h3>Related</h3><ul class="pg-list">{related}</ul>
     </div></section>"""
 
+register("blog/lower-unit-service", "Lower-Unit Service Guide — When to Change Gear Oil and Why It Matters", "Learn when to service your outboard's lower unit, how often to change gear oil, symptoms of trouble, and how proper maintenance prevents costly failures.",
+         article("lower-unit-service", "Lower-Unit Service: When and Why",
+                 "Your outboard's lower unit is one of the hardest-working parts of the engine — and one of the easiest to maintain. Here's when to service it, why it matters, and how to avoid expensive failures.",
+                 "Maintenance", """<img class="blog-hero" src="/images/screen-lower-unit.png" alt="Lower unit (gearcase) diagram showing the drain and vent screws" loading="lazy">
+      <p>Your outboard's lower unit — the gearcase at the bottom of the engine — is a compact, sealed system that transfers power from the driveshaft to the propeller. Inside it are gears, bearings, seals, and oil. It's simple, rugged, and designed to survive thousands of hours on the water. But it has one vulnerability: water intrusion.</p>
+      <p>Lower-unit service is one of the most important maintenance tasks for any boat owner. It's inexpensive, quick, and prevents catastrophic failures. Yet many owners overlook it until something goes wrong — usually when the prop stops turning, the engine revs freely, and the day is over.</p>
+      <h2>Why Lower-Unit Service Matters</h2>
+      <p>The lower unit is a sealed gearbox filled with specialized gear oil. That oil:</p>
+      <ul class="pg-list"><li>Lubricates gears and bearings</li><li>Reduces friction</li><li>Prevents corrosion</li><li>Carries away heat</li><li>Protects against wear</li></ul>
+      <p>If water enters the gearcase — through a worn seal, fishing line wrapped around the prop shaft, or a damaged gasket — the oil becomes milky, thin, and ineffective. Once that happens, the gears grind themselves apart.</p>
+      <p>A lower-unit rebuild can cost <strong>$800–$2,500</strong>, depending on the engine. A replacement gearcase can cost <strong>$1,500–$4,000</strong>. A bottle of gear oil costs <strong>$10–$15</strong>. That's why lower-unit service is one of the highest-value maintenance tasks you can perform.</p>
+      <h2>When to Service the Lower Unit</h2>
+      <p>Manufacturers generally recommend <strong>every 100 hours or once per season</strong> — whichever comes first. For most recreational boaters, that means once in fall (during winterization) and once in spring (during de-winterization). But there are additional times you should check or change the oil:</p>
+      <ul class="pg-list"><li><strong>After hitting bottom or striking debris</strong> — a hard impact can damage seals.</li><li><strong>After running through heavy weeds or fishing line</strong> — line around the prop shaft can cut the seal.</li><li><strong>If you notice milky oil during a mid-season check</strong> — milky means water intrusion, an immediate service.</li><li><strong>If the prop feels loose or wobbly</strong> — this can indicate bearing wear.</li><li><strong>If you hear grinding or whining at low speeds</strong> — gear wear often starts quietly.</li><li><strong>If the engine sat unused for more than a year</strong> — oil degrades over long storage.</li></ul>
+      <p>AftLog's maintenance tracker uses the manufacturer's interval (100 hours) and your logged trips to remind you automatically.</p>
+      <h2>How Lower-Unit Service Works</h2>
+      <p>Lower-unit service is simple and takes 10–20 minutes.</p>
+      <ol class="pg-list"><li><strong>Remove the drain screw</strong> — located at the bottom of the gearcase.</li><li><strong>Remove the vent screw</strong> — located above the drain screw, so the oil flows out quickly.</li><li><strong>Inspect the oil</strong> — the most important step. Look for milky oil (water intrusion), metal flakes (gear wear), a burnt smell (overheating), or very dark oil (overdue service).</li><li><strong>Replace the crush washers</strong> — these small gaskets prevent leaks.</li><li><strong>Pump in fresh gear oil</strong> — fill from the bottom until oil flows out the top vent.</li><li><strong>Reinstall screws</strong> — tighten to manufacturer torque specs.</li></ol>
+      <p>That's it — one of the simplest services on the engine.</p>
+      <h2>What Happens If You Ignore Lower-Unit Service</h2>
+      <p>Skipping lower-unit service doesn't cause immediate failure. Instead, damage builds slowly and silently:</p>
+      <ol class="pg-list"><li><strong>Water intrusion begins</strong> — a seal wears out or fishing line cuts the prop-shaft seal.</li><li><strong>Oil becomes milky</strong> — lubrication drops dramatically.</li><li><strong>Bearings begin to wear</strong> — you may hear faint whining at idle.</li><li><strong>Gears begin to pit</strong> — metal flakes appear in the oil.</li><li><strong>Gear teeth strip</strong> — the prop stops turning; the engine revs but the boat doesn't move.</li><li><strong>Complete failure</strong> — the lower unit must be rebuilt or replaced.</li></ol>
+      <p>This entire chain of events can be prevented by changing the oil twice a year.</p>
+      <h2>Common Symptoms of Lower-Unit Problems</h2>
+      <p>If you notice any of these, service the lower unit immediately:</p>
+      <ul class="pg-list"><li>Milky oil</li><li>Metal flakes in oil</li><li>Grinding or whining noises</li><li>Prop shaft wobble</li><li>Oil leaking around the prop</li><li>Difficulty shifting into gear</li><li>Vibration at low speeds</li></ul>
+      <p>AftLog's symptom decoder can help identify these issues and recommend next steps.</p>
+      <h2>How to Prevent Lower-Unit Damage</h2>
+      <p>Lower-unit failures are almost always preventable:</p>
+      <ol class="pg-list"><li><strong>Change gear oil twice a year</strong> — spring and fall.</li><li><strong>Inspect the prop shaft regularly</strong> — remove the prop and check for fishing line.</li><li><strong>Replace seals proactively</strong> — especially in weedy or debris-heavy areas.</li><li><strong>Avoid shifting aggressively</strong> — slamming into gear stresses the clutch dog and gears.</li><li><strong>Don't run aground</strong> — even soft sand can damage seals.</li><li><strong>Store the engine upright</strong> — keeps water from settling in the gearcase.</li><li><strong>Use manufacturer-approved gear oil</strong> — engines differ in viscosity and additives.</li></ol>
+      <h2>DIY vs. Professional Service</h2>
+      <p>Lower-unit service is one of the easiest DIY tasks — you need a screwdriver, a gear-oil pump, two bottles of gear oil, and new crush washers. But consider professional service if the oil is milky, metal flakes are present, seals are damaged, the prop shaft wobbles, shifting feels rough, or you suspect internal wear. A technician can pressure-test the gearcase to find leaks.</p>
+      <h2>Checklist: Lower-Unit Service</h2>
+      <ul class="pg-list"><li>Remove the prop and inspect for fishing line</li><li>Check the prop shaft for wobble</li><li>Remove the drain and vent screws</li><li>Inspect oil for color, smell, and metal</li><li>Replace crush washers</li><li>Pump fresh oil from the bottom until full</li><li>Reinstall screws to proper torque</li><li>Clean the exterior of the gearcase</li><li>Log the service in AftLog</li></ul>
+      <h2>Summary</h2>
+      <p>Lower-unit service is simple, inexpensive, and essential. Changing gear oil twice a year prevents water intrusion, protects gears and bearings, and saves you from costly repairs. Whether you do it yourself or have a shop handle it, staying ahead of lower-unit maintenance is one of the smartest things you can do for your boat.</p>
+      <p>AftLog tracks your hours, logs your trips, and reminds you when service is due — so your lower unit stays healthy season after season.</p>""",
+                 '<li><a href="outboard-oil.html">How often to change outboard oil</a></li><li><a href="winterize.html">How to winterize your boat</a></li><li><a href="beginner-checklist.html">Boat maintenance checklist for beginners</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
     ("How often to change outboard oil", "Intervals, why they matter, and how AftLog tracks them for you.", "Maintenance", "/blog/outboard-oil.html", "/images/screen-smp-plan.png"),
-    ("Lower-unit service: when and why", "Gear oil, seals, and the simple checks that keep your lower unit alive.", "Maintenance", None, None),
+    ("Lower-unit service: when and why", "Gear oil, seals, and the simple checks that keep your lower unit alive.", "Maintenance", "/blog/lower-unit-service.html", "/images/screen-lower-unit.png"),
     ("Spark plug intervals explained", "Why 200 hours is the rule, and the symptoms of worn plugs.", "Maintenance", None, None),
     ("Impeller replacement: symptoms and timing", "Weak tell-tale? It's usually the impeller. Here's when to change it.", "Maintenance", None, None),
     ("Battery care for small boats", "Charge, store, and check — batteries die in the off-season, not on the water.", "Maintenance", None, None),
