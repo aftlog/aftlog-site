@@ -64,3 +64,11 @@
 .pg-shot { margin: 18px 0 6px; }
 .pg-shot img { width: 100%; max-width: 640px; border: 1px solid var(--line); border-radius: 12px; display: block; }
 .pg-shot figcaption { margin-top: 8px; font-size: .88rem; }
+
+/* Shared brand header (STEP 7.2) — logo + slogan before every H1.
+   Mirrors the homepage hero exactly (160px logo, 12px uppercase pill
+   slogan, same spacing) — left-aligned for the page heroes. */
+.brand-block { margin: 0; }
+.brand-logo { width: 160px; height: auto; display: block; margin: 0 0 24px; filter: drop-shadow(0 0 14px rgba(80, 120, 255, 0.22)); }
+.brand-slogan { display: block; width: fit-content; margin: 0 0 20px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent2); border: 1px solid rgba(255,75,75,.5); border-radius: 999px; padding: 6px 14px; font-weight: 700; text-align: left; }
+.pg-hero-inner .pg-hero-inner h1 { margin-top: 0; }

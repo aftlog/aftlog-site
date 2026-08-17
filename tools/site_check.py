@@ -173,6 +173,23 @@ def main():
         for n in needles:
             check(f"{p} covers '{n}'", n.lower() in c)
 
+    # 12. Shared brand header (STEP 7.2): exactly one logo+slogan block,
+    # before the H1, on every page
+    print("— brand header")
+    for p in pages:
+        f = ROOT / p
+        if not f.exists():
+            continue
+        c = f.read_text(encoding="utf-8")
+        h1 = c.find("<h1>")
+        slogan = c.find("Keeping your boat shipshape")
+        logo = c.find("aftlog-logo.png")
+        check(f"{p}: slogan before H1", slogan != -1 and h1 != -1 and slogan < h1)
+        check(f"{p}: logo present", logo != -1)
+        check(f"{p}: exactly one slogan block",
+              c.count(">Keeping your boat shipshape!</span>") == 1,
+              f"count={c.count('>Keeping your boat shipshape!</span>')}")
+
     print()
     if FAILS:
         print(f"FAILED: {len(FAILS)} check(s): {FAILS}")

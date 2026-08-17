@@ -131,10 +131,21 @@ def page(slug: str, title: str, desc: str, body: str, active: str | None = None)
 
 
 def hero(title: str, sub: str) -> str:
+    # Shared brand header (STEP 7.2): the same logo + slogan block the
+    # homepage hero uses, injected BEFORE the page H1 — top-left, same
+    # sizes/spacing. The component source of truth lives in
+    # components/header_brand.html.
+    brand = (
+        '<div class="brand-block">'
+        '<img class="hero-logo brand-logo" src="/images/aftlog-logo.png" '
+        'alt="AftLog logo">'
+        '<span class="kicker brand-slogan">Keeping your boat shipshape!</span>'
+        '</div>'
+    )
     return f"""<section class="hero hero--dark pg-hero">
   <div class="container hero-inner pg-hero-inner">
     <div class="hero-text">
-      <span class="kicker">AftLog</span>
+      {brand}
       <h1>{title}</h1>
       <p>{sub}</p>
     </div>
@@ -382,7 +393,15 @@ BLOG_INDEX = (
 
 
 def article(slug, title, desc, category, body_html, related):
+    brand = (
+        '<div class="brand-block">'
+        '<img class="hero-logo brand-logo" src="/images/aftlog-logo.png" '
+        'alt="AftLog logo">'
+        '<span class="kicker brand-slogan">Keeping your boat shipshape!</span>'
+        '</div>'
+    )
     return f"""<section class="hero hero--dark pg-hero"><div class="container hero-inner pg-hero-inner"><div class="hero-text">
+      {brand}
       <span class="kicker">{category} · AftLog Blog</span>
       <h1>{title}</h1>
       <p>{desc}</p>
