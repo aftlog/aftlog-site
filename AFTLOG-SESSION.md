@@ -1425,6 +1425,55 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 45 — DEEPSEEK STEP 5: Portal AI pipeline → server Gemini proxy
+
+**Goal (DEEPSEEK block):** all Web Portal AI moves to the server proxy —
+the portal must never hold Gemini credentials or call Google directly.
+
+**What the portal actually uses AI for:** one direct caller — AskAftLogAi
+(lib/services/ask_aftlog_ai.dart), the manual-generator photo assist
+(field suggestions, sandboxed, never auto-fills). The spec's other
+'portal AI features' (predictive maintenance, diagnostic reasoning,
+Year-in-Review, forecasting) don't exist as AI in this portal — they're
+pure-Dart analytics. Applied adaptively (Session 37 rule): the portal
+proxy now supports their request shapes, ready for future portal AI
+features.
+
+**Server (aftlog_server, pushed, 137 tests green):**
+- ask_aftlog_ai.dart rewritten — NO Gemini key, NO HttpClient, NO
+  generativelanguage URL: ask() calls the in-process AiProxyService (the
+  same /ai/gemini contract the app uses; the portal IS the server, so
+  in-process beats an HTTP round-trip). Sandbox rules (allowed/blocked
+  fields, never guess capacity/HP, no auto-fill) pass as the proxy's new
+  systemPrompt param — the portal's sandbox behavior is byte-preserved.
+  Errors → 'Portal AI is temporarily offline — server or AI service
+  unavailable.' (spec message). maxImageBytes/EXIF strip/mime detect
+  unchanged. grep proof: the ONLY direct Gemini refs left in lib/ are
+  inside ai_proxy.dart (the intended single owner).
+- ai_proxy.dart (additive): systemPrompt override + `extra` context is
+  now INJECTED into the prompt (symptom/logs/stats/history per the spec's
+  request shapes — it was accepted but ignored before; the model
+  literally said 'you did not include the symptom'). Timeout 30s→45s:
+  Gemini diagnostic/planner calls have run 30s+ (saw 34.8s); the app's
+  35s client window still catches most (app-side alignment is Step 6).
+- Tests: portal AI offline/success/vision/failure via the proxy seam (+3),
+  extra-injection (+1). 137 total.
+
+**Verified live (all five spec scenarios through /ai/gemini, real Gemini):**
+1. Manual extraction (planner + manual) → tasks with intervals ✓
+2. Predictive maintenance (planner + extra.logs, 510h) → 'oil change due
+   now at 510 hours' ✓
+3. Diagnostics (diagnostic + extra.symptom) → likely causes, safety first ✓
+4. Year-in-Review (ask + extra.stats) → same shape as #5 ✓
+5. Forecasting (ask + extra.history) → trip/hour projections ✓
+Server logs show exactly the spec's shape: mode=… ok=1 latencyMs=… —
+never key/prompt/answer.
+
+**No app changes this step** (constraint — Step 6 handles the app AI
+pipeline); no APK rebuild/install needed.
+
+---
+
 ## 2026-08-17 — Session 44 — License Manager: lifetime-only (product rule fix)
 
 **Louis caught:** the License Manager's 'Yearly code' toggle let him generate
