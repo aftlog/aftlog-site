@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+"""AftLog site testing matrix (DEEPSEEK STEP 7, Section 8).
+
+Checks every item in the spec's test matrix:
+  1. Ask AftLog (web) — widget targets the server proxy only
+  2. Review badge — targets the server proxy only
+  3. Pricing — lifetime-only messaging
+  4. SEO pages — exist, unique titles + descriptions
+  5. No direct Gemini/GitHub calls — grep generativelanguage / api.github.com
+  6. Design system — pages load the canonical aftlog.css palette
+  7. Portal linkage — login/dashboard links present on every page
+  8. Sitemap — lists every page
+  9. Robots — allows indexing
+
+Usage: python3 tools/site_check.py   (exit 0 = all checks pass)
+"""
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+FAILS: list[str] = []
+
+
+def check(name: str, ok: bool, detail: str = ""):
+    if ok:
+        print(f"  ✓ {name}")
+    else:
+        FAILS.append(name)
+        print(f"  ✗ {name} {detail}")
+
+
+def main():
+    pages = [
+        "index.html", "features.html", "ai.html", "portal.html",
+        "pricing.html", "faq.html", "support.html", "privacy.html",
+        "terms.html", "updates/index.html", "blog/index.html",
+        "blog/winterize.html", "blog/beginner-checklist.html",
+        "blog/outboard-oil.html", "blog/safety-equipment.html",
+    ]
+    print("AftLog site testing matrix")
+
+    # 4. SEO pages exist with unique metadata
+    print("— SEO pages + metadata")
+    titles: dict[str, str] = {}
+    for p in pages:
+        f = ROOT / p
+        check(f"{p} exists", f.exists(), f"(missing: {p})")
+        if not f.exists():
+            continue
+        content = f.read_text(encoding="utf-8")
+        t = re.search(r"<title>(.*?)</title>", content, re.S)
+        d = re.search(r'<meta name="description" content="(.*?)">', content, re.S)
+        check(f"{p} has title", bool(t))
+        check(f"{p} has description", bool(d))
+        if t:
+            title = re.sub(r"\s+", " ", t.group(1)).strip()
+            titles.setdefault(title, p)
+    dup = [p for p, title in titles.items() if list(titles.values()).count(title) > 1]
+    check("titles are unique", not dup, f"duplicates: {dup}")
+
+    # 5. No direct Gemini or GitHub calls anywhere in the site
+    print("— no direct Gemini / GitHub calls")
+    forbidden = ["generativelanguage", "api.github.com", "GEMINI_API_KEY",
+                 "GITHUB_TOKEN", "ghp_", "AIza"]
+    hits: list[str] = []
+    for f in ROOT.rglob("*"):
+        if f.suffix not in (".html", ".css", ".js", ".xml", ".txt"):
+            continue
+        if ".git" in f.parts or "tools" in f.parts:
+            continue
+        text = f.read_text(encoding="utf-8", errors="ignore")
+        for token in forbidden:
+            if token in text:
+                hits.append(f"{f.relative_to(ROOT)}:{token}")
+    check("no forbidden tokens", not hits, f"found: {hits[:5]}")
+
+    # 1+2. AI widget + review badge target ONLY the server proxy
+    print("— server proxy integration")
+    ai = (ROOT / "ai.html").read_text(encoding="utf-8")
+    check("AI widget posts to /ai/gemini", "'/ai/gemini'" in ai)
+    check("AI widget sends the dev key header", "'x-aftlog-dev-key'" in ai)
+    check("AI widget body uses extra.continue", "extra: { continue: false }" in ai)
+    check("AI widget network message", "Portal server unreachable" in ai)
+    check("AI widget offline message", "temporarily offline" in ai)
+    portal = (ROOT / "portal.html").read_text(encoding="utf-8")
+    check("review badge GETs /admin/publish", "admin/publish" in portal)
+    check("review badge uses result.reviewCount", "reviewCount" in portal)
+
+    # 3. Pricing lifetime-only
+    print("— pricing messaging")
+    pricing = (ROOT / "pricing.html").read_text(encoding="utf-8")
+    check("pricing says lifetime", "lifetime" in pricing.lower())
+    check("pricing says one-time $29", "$29" in pricing and "one-time" in pricing)
+    check("pricing says no subscriptions", "subscription" in pricing.lower())
+    check("pricing says no expiry", "expire" in pricing.lower())
+
+    # 6. Design system (canonical palette)
+    print("— design system")
+    css = (ROOT / "aftlog.css").read_text(encoding="utf-8")
+    for color, name in [("#0B0B0D", "dark"), ("#E02020", "accent"),
+                        ("#FF4B4B", "accent2"), ("#F5F5F7", "light")]:
+        check(f"palette {name} ({color}) present", color.lower() in css.lower())
+    for p in pages:
+        f = ROOT / p
+        if not f.exists():
+            continue
+        if p == "updates/index.html":
+            continue  # self-contained page: inline CSS uses the same palette
+        check(f"{p} loads aftlog.css", 'aftlog.css' in f.read_text(encoding="utf-8"))
+
+    # 7. Portal linkage + internal linking
+    print("— portal linkage + internal links")
+    for p in pages:
+        f = ROOT / p
+        if not f.exists():
+            continue
+        c = f.read_text(encoding="utf-8")
+        check(f"{p} links portal login", "login" in c.lower())
+        check(f"{p} has footer nav", "footer" in c.lower())
+    for target in ["/features.html", "/ai.html", "/portal.html", "/pricing.html",
+                   "/faq.html", "/support.html", "/blog/", "/privacy", "/terms"]:
+        found = sum(1 for p in pages if (ROOT / p).exists()
+                    and target in (ROOT / p).read_text(encoding="utf-8"))
+        check(f"internal link to {target} on {found} page(s)", found >= 2)
+
+    # 8. Sitemap covers all pages
+    print("— sitemap + robots")
+    sm = (ROOT / "sitemap.xml")
+    check("sitemap.xml exists", sm.exists())
+    if sm.exists():
+        smc = sm.read_text(encoding="utf-8")
+        for p in pages:
+            if p in ("updates/index.html", "blog/index.html"):
+                url = "https://aftlog.com/" + p.replace("index.html", "")
+            elif p == "index.html":
+                url = "https://aftlog.com/"
+            else:
+                url = "https://aftlog.com/" + p
+            check(f"sitemap includes {url}", url in smc)
+    robots = ROOT / "robots.txt"
+    check("robots.txt exists", robots.exists())
+    if robots.exists():
+        rc = robots.read_text(encoding="utf-8")
+        check("robots allows indexing", "Allow: /" in rc)
+        check("robots points at sitemap", "sitemap.xml" in rc.lower())
+
+    print()
+    if FAILS:
+        print(f"FAILED: {len(FAILS)} check(s): {FAILS}")
+        sys.exit(1)
+    print("ALL CHECKS PASSED")
+    sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
 <link rel="apple-touch-icon" href="../images/favicon-180.png">
+<link rel="stylesheet" href="../aftlog-pages.css">
 <meta property="og:title" content="Updates — AftLog">
 <meta property="og:description" content="Progress updates for AftLog, the boat maintenance logbook that works without a signal.">
 <meta property="og:image" content="https://aftlog.com/images/og-image.png">
@@ -27,6 +28,10 @@
     --text:#FFFFFF;
     --muted:#9A9AA3;
     --maxw:760px;
+    /* aftlog-pages.css aliases (same canonical palette) */
+    --bg-dark:#0B0B0D;
+    --text-dark:#F5F5F7;
+    --muted-dark:#9A9AA3;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
@@ -100,9 +105,12 @@
     <div class="logo"><a href="/"><img src="../images/aftlog-badge.png" alt="AftLog"></a></div>
     <nav>
       <a href="/">Home</a>
-      <a href="/#pain">Why it exists</a>
-      <a href="/#features">Features</a>
-      <a href="/#price">Pricing</a>
+      <a href="/features.html">Features</a>
+      <a href="/ai.html">AI</a>
+      <a href="/portal.html">Portal</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/blog/">Blog</a>
       <a class="on" href="/updates/">Updates</a>
     </nav>
   </div>
@@ -211,11 +219,41 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <p><a href="/#pain">Why it exists</a><a href="/#features">Features</a><a href="/#price">Pricing</a><a href="/updates/">Updates</a></p>
-    <p style="margin-top:12px">AftLog — keeping your boat shipshape.</p>
+<footer class="site-footer site-footer--dark">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="../images/aftlog-logo.png" alt="AftLog"></div>
+      <p>Keeping your boat shipshape. Offline-first boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="/features.html">Features</a>
+      <a href="/ai.html">AftLog AI</a>
+      <a href="/pricing.html">Pricing — lifetime Pro</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/support.html">Support</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#waitlist">Waitlist</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Portal</h4>
+      <a href="https://portal.aftlog.com/login">Portal login</a>
+      <a href="https://portal.aftlog.com/portal/">Portal dashboard</a>
+      <a href="https://portal.aftlog.com/portal/year-in-review">Year in Review</a>
+      <a href="https://portal.aftlog.com/portal/boats">Boat analytics</a>
+    </div>
   </div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA.</div>
 </footer>
 
 </body>
