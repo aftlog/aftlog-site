@@ -1425,6 +1425,65 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 47 — DEEPSEEK STEP 7: multi-page SEO website + server-proxy integration + portal linkage
+
+**Goal (DEEPSEEK block):** rebuild aftlog.com as a full multi-page,
+SEO-optimized, server-connected site — no keys anywhere, only proxy
+calls, canonical branding preserved (no redesign).
+
+**What was built (aftlog-site, pushed; all 134 test-matrix checks green):**
+- **Site generator** tools/generate_site.py — shared header nav + footer,
+  page registry, renders: /features, /ai, /portal, /pricing, /faq,
+  /support, /blog/ (+4 real articles: winterize, beginner checklist,
+  outboard oil, safety equipment), /privacy, /terms. Portals with spec
+  metadata (unique titles + descriptions) + canonical tags.
+- **aftlog-pages.css** — page-only patterns (footer grid, price cards,
+  FAQ details, article layout, AI widget) using ONLY the canonical
+  palette variables from aftlog.css (dark #0B0B0D / #E02020 / #FF4B4B /
+  #F5F5F7). No new colors, no gradients, no redesign.
+- **Internal linking:** every page links to Home/Features/AI/Portal/
+  Pricing/FAQ/Support/Blog (nav) + footer columns Product/Resources/
+  Legal/Sitemap + Portal login/dashboard/analytics links.
+- **Server-proxy integration:** /ai page hosts an Ask AftLog widget that
+  POSTs <portal>/ai/gemini with x-aftlog-dev-key (body matches the spec:
+  prompt/mode/extra.continue); /portal page shows a live review-count
+  badge from GET <portal>/admin/publish. Both degrade gracefully offline.
+- **Pricing page** — lifetime-only messaging ($29 one-time, no
+  subscriptions, no expiry), Free vs Pro cards.
+- **sitemap.xml** (all 15 pages) + robots.txt (Allow: / + sitemap).
+- index.html: metadata updated to the spec's / intent (title 'AftLog —
+  Boat Maintenance & Logbook App'), nav + footer converted to the
+  multi-page structure; updates/ page converted to the same nav + footer.
+- **Test matrix** tools/site_check.py — 134 checks: SEO pages exist +
+  unique titles/descriptions, NO generativelanguage/api.github.com/
+  keys anywhere, widget/badge target only the proxy, lifetime pricing,
+  palette present, portal linkage on every page, sitemap coverage,
+  robots. ALL PASS.
+
+**Server (aftlog_server, pushed; 137 tests green):** CORS middleware in
+bin/server.dart (OPTIONS 204 preflight + Access-Control-Allow-Origin:*)
+so the GitHub Pages site can call /ai/gemini + /admin/publish
+cross-origin. Additive — proxy logic untouched.
+
+**Gotchas caught before push:** (1) GitHub Pages doesn't do clean URLs
+without Jekyll — extensionless /features would 404, so all links use
+features.html etc. (directories /blog/ + /updates/ stay clean);
+(2) without CORS the site's fetches would silently fail — verified live:
+OPTIONS → 204 with the allow headers, GET badge with key → 200 + ACAO:*.
+
+**Live-verified:** every page serves 200 from a local static serve;
+HTML well-formed (parser check); site pushed — GitHub Pages rebuilds in
+~1 min. Check https://aftlog.com/ai.html + /portal.html + /pricing.html
+after the rebuild.
+
+**Note for Louis:** the site's widget/badge point at https://portal.aftlog.com
+(PORTAL_BASE — regenerate with `PORTAL_BASE=... python3 tools/generate_site.py`
+when the real portal URL exists; the current placeholder is the domain
+from Session 38). Privacy/Terms are plain-language placeholders — review
+before public launch. The waitlist Formspree capture is unchanged.
+
+---
+
 ## 2026-08-17 — Session 46 — DEEPSEEK STEP 6: App AI pipeline → server Gemini proxy (final alignment)
 
 **Goal (DEEPSEEK block):** ALL app AI goes through the server proxy; the
