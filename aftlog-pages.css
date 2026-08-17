@@ -336,3 +336,13 @@
 .pl-links{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 .pl-link{width:auto}
 @media(max-width:720px){.pl-controls{grid-template-columns:1fr}}
+
+/* ── /tools/ index ─────────────────────────────────────────────────── */
+.pg-tools-group{margin:26px 0}
+.pg-tools-group h2{border-left:4px solid var(--accent2);padding-left:10px;font-size:20px}
+.pg-tools-grid{grid-template-columns:repeat(3,1fr)}
+.pg-tool-card{text-decoration:none;display:block}
+.pg-tool-card h3{color:var(--text-light);margin:0 0 6px;font-size:15px}
+.pg-tool-card p{margin:0;font-size:13px;line-height:1.45}
+@media(max-width:860px){.pg-tools-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pg-tools-grid{grid-template-columns:1fr}}

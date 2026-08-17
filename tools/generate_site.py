@@ -74,6 +74,7 @@ def footer() -> str:
     </div>
     <div class="footer-col">
       <h4>Resources</h4>
+      <a href="/tools/">Tools</a>
       <a href="/blog/">Blog</a>
       <a href="/support.html">Support</a>
       <a href="/updates/">Updates</a>
@@ -328,6 +329,10 @@ register(
         ("📴", "Offline Mode", ["Zero signal needed", "On-device guidance"]),
         ("💬", "Ask AftLog (AI)", ["Plain-language answers", "Grounded in your boat"]),
     ])
+    + (f"<section class=\"section section--light\"><div class=\"container\" style=\"text-align:center\">"
+       f"<h2>Try the free web tools now</h2>"
+       f"<p class=\"sec-intro\" style=\"margin-left:auto;margin-right:auto\">No install, no account — 20 boating tools that work right in your browser, offline.</p>"
+       f"<p><a class=\"btn btn-secondary\" href=\"/tools/\">Browse all tools</a></p></div></section>")
     + (f"<section class=\"section section--alt pg-cta\"><div class=\"container\" style=\"text-align:center\">"
        f"<h2>Free to start. Pro for life.</h2>"
        f"<p class=\"sec-intro\" style=\"margin-left:auto;margin-right:auto\">One-time $29 lifetime Pro unlocks everything — no subscription, no ads.</p>"
@@ -2113,11 +2118,30 @@ _TRIP_JS = r"""<script>
   function fmtL(L){ return lD(L).toFixed(1) + ' ' + (_u==='metric'?'L':'US gal'); }
   function renderTrips(){ var el=document.getElementById('tl-trips'); el.innerHTML = state.trips.slice().reverse().map(function(t){ return '<div class="tl-row">'+new Date(t.ts).toLocaleDateString()+' · '+fmtD(t.km)+' · '+(t.hrs*60).toFixed(0)+' min'+(t.src==='GPS'?' · GPS':'')+'</div>'; }).join('') || '<p class="pg-muted">No trips yet.</p>'; }
   function renderFills(){ var el=document.getElementById('tl-fills'); el.innerHTML = state.fills.slice().reverse().map(function(f){ return '<div class="tl-row">'+new Date(f.ts).toLocaleDateString()+' · '+fmtL(f.L)+(f.cost?' · $'+f.cost.toFixed(2):'')+'</div>'; }).join('') || '<p class="pg-muted">No fill-ups yet.</p>'; }
+  // Per-cycle efficiency mirroring log_service.efficiencyKmPerL: for each
+  // fill, distance travelled since it (until the next fill); average the last
+  // up-to-3 cycles with distance. Falls back to overall km/L if no cycles.
+  function efficiencyKmPerL(){
+    var fl = state.fills.filter(function(f){ return f.L>0; }).slice().sort(function(a,b){ return a.ts-b.ts; });
+    if (!fl.length) return 0;
+    var effs = [];
+    for (var i=0;i<fl.length;i++){
+      var start = fl[i].ts;
+      var d = (i < fl.length-1)
+        ? state.trips.reduce(function(a,t){ return (t.ts>start && t.ts<=fl[i+1].ts) ? a+t.km : a; }, 0)
+        : state.trips.reduce(function(a,t){ return t.ts>start ? a+t.km : a; }, 0);
+      if (d>0) effs.push(d / fl[i].L);
+    }
+    if (!effs.length) return 0;
+    var recent = effs.slice(Math.max(0, effs.length-3));
+    return recent.reduce(function(a,b){return a+b;},0) / recent.length;
+  }
   function compute(){
     var km = state.trips.reduce(function(a,t){return a+t.km;},0);
     var hrs = state.trips.reduce(function(a,t){return a+t.hrs;},0);
     var fuel = state.fills.reduce(function(a,f){return a+f.L;},0);
-    var eff = (km>0 && fuel>0) ? km/fuel : 0;   // km/L
+    var eff = efficiencyKmPerL();
+    if (!(eff>0)) eff = (km>0 && fuel>0) ? km/fuel : 0;   // otherwise, overall km/L
     var spd = hrs>0 ? km/hrs : 0;               // km/hr
     var lph = hrs>0 ? fuel/hrs : 0;             // L/hr
     var tank = state.tank || 30;
@@ -2518,7 +2542,7 @@ def _parts_locator_body():
         + '<div id="pl-links" class="pl-links"></div>'
         + '<div id="pl-numbers"></div>'
         + '</div>'
-        + '<p class="pg-muted">Common part numbers are cross-reference numbers — always verify for your model and year before buying. This is informational; AftLog earns a commission on some suppliers at no cost to you.</p>'
+        + '<p class="pg-muted">Common part numbers are cross-reference numbers — always verify for your model and year before buying. Some suppliers may offer referral benefits.</p>'
         + _PARTS_JS
         + '</div></section>'
     )
@@ -2527,6 +2551,69 @@ def _parts_locator_body():
 register("tools/parts-locator", "AftLog Parts Locator",
          "14 part categories with US/Canada supplier search links and common cross-reference part numbers for Mercury, Yamaha, Honda, Suzuki, and Evinrude.",
          _parts_locator_body())
+
+
+# ── Central /tools/ index (looks-up every tool) ──────────────────────
+
+_TOOLS_CATALOG = [
+    ("Safety & planning", [
+        ("/tools/emergency.html", "Emergency — What to Do If…", "Calm steps + your GPS position ready to share with help."),
+        ("/tools/float-plan.html", "Float Plan", "Tell someone where you're going and when you'll be back."),
+        ("/tools/compliance.html", "Compliance", "Registration, safety gear, and the boating rules."),
+        ("/tools/ramp-mode.html", "Ramp Mode", "Big-button launch and retrieve checklist for the ramp."),
+    ]),
+    ("Trip & fuel", [
+        ("/tools/trip-log.html", "Trip & Fuel Log", "Log trips and fills; see your real fuel range and time-to-empty."),
+        ("/tools/trip-patterns.html", "Trip Patterns", "Totals, averages, seasonality, and outliers from your trips."),
+        ("/tools/predictive-planner.html", "Predictive Planner", "What's due next by hours, months, and severity."),
+    ]),
+    ("Checklists & seasonal", [
+        ("/tools/checklists.html", "Checklists", "Launch, retrieve, towing and seasonal checklists with saved progress."),
+        ("/tools/winterization-planner.html", "Winterization Planner", "Freeze-up and ice-out timing for your region."),
+    ]),
+    ("Buying & cost", [
+        ("/tools/buying-advisor.html", "Buying Advisor", "Rule-based used-boat evaluation with risk warnings."),
+        ("/tools/cost-insights.html", "Cost of Ownership", "Total spent, per-hour cost, services, fuel, and fuel burn."),
+    ]),
+    ("Maintenance & parts", [
+        ("/tools/diy-library.html", "DIY Library", "Step-by-step repairs you can do yourself."),
+        ("/tools/manual-finder.html", "Manual Finder", "Official manuals and parts sources, grouped."),
+        ("/tools/parts-locator.html", "Parts Locator", "Pick a part and jump to suppliers who carry it."),
+        ("/tools/battery-electronics.html", "Battery & Electronics", "Track your gear and size wiring."),
+    ]),
+    ("Diagnostics & AI", [
+        ("/tools/ai-diagnostics.html", "AI Diagnostics", "Symptom + drive selector with causes and next steps."),
+        ("/tools/visual-engine-assist.html", "Visual Engine Assist", "Tap a part on the diagram and get the check for it."),
+        ("/tools/ask-aftlog.html", "Ask AftLog", "Boat-specific AI answers, grounded and offline."),
+    ]),
+    ("Reference & math", [
+        ("/tools/calculators.html", "Calculators", "Fuel burn, prop slip, anchor, voltage drop, oil mix."),
+        ("/tools/glossary.html", "Glossary", "Boat terms in plain talk — and the technical version."),
+    ]),
+]
+
+
+def _tools_index_body():
+    groups = "".join(
+        '<div class="pg-tools-group"><h2>%s</h2><div class="pg-card-grid pg-tools-grid">%s</div></div>' % (
+            esc(group),
+            "".join(
+                '<a class="pg-blog-card pg-tool-card" href="%s"><h3>%s</h3><p>%s</p></a>' % (url, esc(name), esc(desc))
+                for url, name, desc in tools)
+        )
+        for group, tools in _TOOLS_CATALOG)
+    return (
+        hero("AftLog Tools", "Every free boating tool in one place — planning, tracking, maintenance, diagnostics, and reference.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">20 tools, all free and all work offline in your browser. For the full boat-manager experience — logbook, intervals, checklists, documents and more — use the <a href="/features.html">AftLog app</a> on your phone.</p>'
+        + groups
+        + '</div></section>'
+    )
+
+
+register("tools/index", "AftLog Tools — Every Free Boating Tool",
+         "All 20 free AftLog boating tools in one place: safety, trip & fuel, checklists, buying, cost, maintenance, diagnostics, AI, and reference.",
+         _tools_index_body())
 
 
 def main():
@@ -2545,7 +2632,7 @@ def main():
               "faq.html", "support.html", "privacy.html", "terms.html",
               "updates/", "blog/", "blog/winterize.html",
               "blog/beginner-checklist.html", "blog/outboard-oil.html",
-              "blog/safety-equipment.html"]
+              "blog/safety-equipment.html", "tools/", "tools/index.html"]
     urls = "".join(f"  <url><loc>https://aftlog.com/{s}</loc></url>\n" for s in static)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
 

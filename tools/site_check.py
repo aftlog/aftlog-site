@@ -37,6 +37,7 @@ def main():
         "terms.html", "updates/index.html", "blog/index.html",
         "blog/winterize.html", "blog/beginner-checklist.html",
         "blog/outboard-oil.html", "blog/safety-equipment.html",
+        "tools/index.html",
     ]
     print("AftLog site testing matrix")
 

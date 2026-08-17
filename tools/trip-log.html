@@ -113,11 +113,30 @@
   function fmtL(L){ return lD(L).toFixed(1) + ' ' + (_u==='metric'?'L':'US gal'); }
   function renderTrips(){ var el=document.getElementById('tl-trips'); el.innerHTML = state.trips.slice().reverse().map(function(t){ return '<div class="tl-row">'+new Date(t.ts).toLocaleDateString()+' · '+fmtD(t.km)+' · '+(t.hrs*60).toFixed(0)+' min'+(t.src==='GPS'?' · GPS':'')+'</div>'; }).join('') || '<p class="pg-muted">No trips yet.</p>'; }
   function renderFills(){ var el=document.getElementById('tl-fills'); el.innerHTML = state.fills.slice().reverse().map(function(f){ return '<div class="tl-row">'+new Date(f.ts).toLocaleDateString()+' · '+fmtL(f.L)+(f.cost?' · $'+f.cost.toFixed(2):'')+'</div>'; }).join('') || '<p class="pg-muted">No fill-ups yet.</p>'; }
+  // Per-cycle efficiency mirroring log_service.efficiencyKmPerL: for each
+  // fill, distance travelled since it (until the next fill); average the last
+  // up-to-3 cycles with distance. Falls back to overall km/L if no cycles.
+  function efficiencyKmPerL(){
+    var fl = state.fills.filter(function(f){ return f.L>0; }).slice().sort(function(a,b){ return a.ts-b.ts; });
+    if (!fl.length) return 0;
+    var effs = [];
+    for (var i=0;i<fl.length;i++){
+      var start = fl[i].ts;
+      var d = (i < fl.length-1)
+        ? state.trips.reduce(function(a,t){ return (t.ts>start && t.ts<=fl[i+1].ts) ? a+t.km : a; }, 0)
+        : state.trips.reduce(function(a,t){ return t.ts>start ? a+t.km : a; }, 0);
+      if (d>0) effs.push(d / fl[i].L);
+    }
+    if (!effs.length) return 0;
+    var recent = effs.slice(Math.max(0, effs.length-3));
+    return recent.reduce(function(a,b){return a+b;},0) / recent.length;
+  }
   function compute(){
     var km = state.trips.reduce(function(a,t){return a+t.km;},0);
     var hrs = state.trips.reduce(function(a,t){return a+t.hrs;},0);
     var fuel = state.fills.reduce(function(a,f){return a+f.L;},0);
-    var eff = (km>0 && fuel>0) ? km/fuel : 0;   // km/L
+    var eff = efficiencyKmPerL();
+    if (!(eff>0)) eff = (km>0 && fuel>0) ? km/fuel : 0;   // otherwise, overall km/L
     var spd = hrs>0 ? km/hrs : 0;               // km/hr
     var lph = hrs>0 ? fuel/hrs : 0;             // L/hr
     var tank = state.tank || 30;
@@ -153,6 +172,7 @@
     </div>
     <div class="footer-col">
       <h4>Resources</h4>
+      <a href="/tools/">Tools</a>
       <a href="/blog/">Blog</a>
       <a href="/support.html">Support</a>
       <a href="/updates/">Updates</a>
