@@ -279,3 +279,35 @@
 .em-card[open] summary::before{content:"▾ "}
 .em-card ol{margin:0;padding:0 26px 14px;font-size:13.5px;line-height:1.4}
 .em-card li{margin-bottom:8px}
+
+/* ── STEP 6.1–6.4 Trip & Fuel Log tool ─────────────────────────────── */
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.tl-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.tl-card h2{margin-top:0}
+.tl-inline{display:flex;gap:8px}
+.tl-inline .fp-in{flex:1;margin-bottom:8px}
+.tl-inline .pg-select{margin-bottom:8px;width:auto}
+.tl-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.tl-stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.tl-stat div{font-size:17px;font-weight:800;color:var(--accent2)}
+.tl-stat span{font-size:11px;color:var(--muted-light)}
+.tl-tank-row{display:flex;align-items:center;gap:10px;margin:4px 0}
+.tl-tank-row label{margin:0}
+.tl-warn{font-size:13px;font-weight:700;color:var(--muted-light);min-height:20px;margin-top:6px}
+.tl-warn.on{color:#E02020;background:rgba(224,32,32,.1);border-left:3px solid #E02020;padding:8px 10px;border-radius:6px}
+.tl-history h2{margin-bottom:6px}
+.tl-row{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:13.5px}
+@media(max-width:720px){.tl-grid{grid-template-columns:1fr}.tl-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ── STEP 6.5–6.8 Checklists tool ──────────────────────────────────── */
+.chkl-list{display:flex;flex-direction:column;gap:14px;margin:14px 0}
+.chkl{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.chkl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.chkl-head strong{font-size:15px}
+.chkl-pct{font-size:12px;color:var(--accent2);font-weight:700}
+.chkl-items{display:flex;flex-direction:column;gap:6px}
+.chkl-item{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.35;cursor:pointer}
+.chkl-item input{margin-top:3px}
+.chkl-bar-bg{height:6px;background:var(--bg2);border-radius:999px;margin-top:12px;overflow:hidden}
+.chkl-bar{height:100%;width:0;background:var(--accent2);border-radius:999px;transition:width .2s}
+.chkl textarea,.chkl input{font-family:inherit}

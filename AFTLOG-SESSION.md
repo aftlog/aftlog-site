@@ -1425,6 +1425,37 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 72 — DEEPSEEK STEP 6.1–6.10: Screens 2/4 websites (Trip & Fuel Log + Checklists)
+
+**Goal (combined block):** mirror blocks 6.1–6.10 on the website.
+**App side — confirmed, no code change:** log_screen/log_service (fuel-cycle
+brain), gps_tracker, checklists_screen, checklist_detail wizard + diagrams +
+journey/reminders all exist.
+**Already covered by existing site pages:** 6.9 Diagrams →
+/tools/visual-engine-assist.html; 6.10 Journey & Reminders →
+/tools/predictive-planner.html (overdue/upcoming service).
+**New this session — two tools:**
+- **tools/trip-log.html (6.1–6.4):** fuel-cycle brain mirroring log_service —
+  GPS Go/Stop tracking (watchPosition + haversine, 60 m accuracy filter),
+  manual trip entry (km/mi), fill-up logging (L/gal + optional cost), tank
+  size; computes **km/L, avg km/hr, L/hr, and "X km / Y hrs to empty"** with a
+  LOW warning when under ~20% of tank; localStorage persistence; metric/imperial
+  toggle + conversion; trip/fill history lists; cross-links trip-patterns for
+  deep seasonal analysis. Storage stays metric internally, converts for display.
+- **tools/checklists.html (6.5–6.8):** template grid (Launch / Retrieve /
+  Towing / Spring Prep / Winterization — recurring/operational only, mirroring
+  the app's 6.6 filter) + **custom checklists** (create by name += one item per
+  line, localStorage) with per-checklist progress bars. One delegated change
+  listener for all checkboxes (templates + custom). Used-boat wizard
+  cross-linked to buying-advisor.html. Only winterization was previously on the
+  site (checklists/winterization.html) — this adds the other templates + custom.
+New `tl-*` / `chkl-*` styles appended to aftlog-pages.css; both tools registered
+in site_check. Static HTML/JS only — no keys, no server calls.
+**QA:** site_check **~275 checks ALL PASS**; copy-lint clean (18 files); pages
+well-formed (5 template cards + 38 items, stats ids, haversine + unit toggle +
+LOW warning verified). Committed + pushed.
+
+---
 ## 2026-08-17 — Session 71 — DEEPSEEK STEP 7.1–7.10: Screens 3/4 websites (Emergency Advisor)
 
 **Goal (combined block):** mirror the App screens 7.1–7.10 on the website.

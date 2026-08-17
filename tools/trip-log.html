@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AftLog Trip &amp; Fuel Log</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Log trips by GPS or manually, track fill-ups, and see your learned fuel range: km/L, avg speed, fuel burn, and km/hours to empty.">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+<link rel="apple-touch-icon" href="/images/favicon-180.png">
+<meta property="og:title" content="AftLog Trip &amp; Fuel Log">
+<meta property="og:description" content="Log trips by GPS or manually, track fill-ups, and see your learned fuel range: km/L, avg speed, fuel burn, and km/hours to empty.">
+<meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://aftlog.com/tools/trip-log">
+<link rel="stylesheet" href="/aftlog.css">
+<link rel="stylesheet" href="/aftlog-pages.css">
+<script>
+  (function(){ if (location.hash) history.replaceState(null, '', location.pathname + location.search); })();
+</script>
+</head>
+<body>
+<header class="site-header site-header--dark">
+  <div class="container header-inner">
+    <div class="logo"><a href="/"><img src="/images/aftlog-badge.png" alt="AftLog"></a></div>
+    <nav class="nav" aria-label="Main">
+      <a href="/">Home</a><a href="/features.html">Features</a><a href="/ai.html">AI</a><a href="/portal.html">Portal</a><a href="/pricing.html">Pricing</a><a href="/faq.html">FAQ</a><a href="/support.html">Support</a><a href="/blog/">Blog</a><a href="/updates/">Updates</a><a href="/#waitlist" class="btn btn-primary">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+<main class="pg-main">
+<section class="hero hero--dark pg-hero">
+  <div class="container hero-inner pg-hero-inner">
+    <div class="hero-text">
+      <div class="brand-block"><img class="hero-logo brand-logo" src="/images/aftlog-logo.png" alt="AftLog logo"><span class="kicker brand-slogan">Keeping your boat shipshape!</span></div>
+      <h1>Trip & Fuel Log</h1>
+      <p>Log trips and fill-ups and AftLog learns your real fuel range — how far, how fast, and how many km/hours you have left.</p>
+    </div>
+  </div>
+</section><section class="section section--light"><div class="container"><p class="pg-muted">Track a trip by GPS or enter it manually, log your fill-ups, set your tank size, and see your learned efficiency plus “X km / Y hrs to empty”.</p><button type="button" class="btn btn-sm btn-secondary" id="tl-unit">Switch to imperial</button><div class="tl-grid"><div class="tl-card"><h2>Track a trip</h2><p><button type="button" class="btn btn-primary" id="tl-gps" onclick="tlGps()">Start GPS trip</button></p><p class="pg-muted" id="tl-gps-status"></p><hr class="pg-hr"><p class="pg-muted">Or manual entry:</p><label class="pg-hint-label" id="tl-lab-dist" for="tl-dist">Distance</label><div class="tl-inline"><input id="tl-dist" class="fp-in" type="number" min="0" step="0.1" placeholder="10"><select id="tl-unit-in" class="pg-select"><option value="km">km</option><option value="mi">mi</option></select></div><label class="pg-hint-label" for="tl-mins">Time (minutes)</label><input id="tl-mins" class="fp-in" type="number" min="1" placeholder="45"><p><button type="button" class="btn btn-primary" onclick="tlAddTrip()">+ Add trip</button></p></div><div class="tl-card"><h2>Log a fill-up</h2><label class="pg-hint-label" id="tl-lab-fuel" for="tl-litres">Fuel added</label><div class="tl-inline"><input id="tl-litres" class="fp-in" type="number" min="0" step="0.1"><select id="tl-unit-in2" class="pg-select"><option value="L">L</option><option value="gal">US gal</option></select></div><label class="pg-hint-label" for="tl-cost">Cost ($, optional)</label><input id="tl-cost" class="fp-in" type="number" min="0" step="0.01"><p><button type="button" class="btn btn-primary" onclick="tlAddFill()">+ Add fill-up</button></p></div></div><div class="tl-yours"><h2>Your numbers</h2><div class="tl-stats"><div class="tl-stat"><div id="tl-kml">—</div><span>Efficiency</span></div><div class="tl-stat"><div id="tl-kph">—</div><span>Avg speed</span></div><div class="tl-stat"><div id="tl-lph">—</div><span>Fuel burn</span></div><div class="tl-stat"><div id="tl-empty">—</div><span>To empty</span></div><div class="tl-stat"><div id="tl-emptyhr">—</div><span>…in hours</span></div></div><div class="tl-tank-row"><label class="pg-hint-label" for="tl-tank">Tank size:</label><input id="tl-tank" class="fp-in" type="number" min="1" value="30" style="max-width:110px"><button type="button" class="btn btn-sm btn-secondary" onclick="tlSetTank()">Set</button></div><div class="tl-warn" id="tl-warn"></div></div><div class="tl-history"><h2>Trips</h2><div id="tl-trips"></div><h2>Fill-ups</h2><div id="tl-fills"></div><p><button type="button" class="btn btn-sm btn-secondary" onclick="tlClear()">Clear all data</button></p></div><p class="pg-muted">For deeper seasonal analysis (monthly trends, outliers), see the <a href="/tools/trip-patterns.html">Trip Patterns</a> tool.</p><script>
+(function () {
+  var KS = 'aftlog_triplog';
+  // Storage is always METRIC (km, L, hrs). Display converts by unit.
+  var state = { tank: 30, trips: [], fills: [] };
+  try { var s = JSON.parse(localStorage.getItem(KS) || 'null'); if (s) state = Object.assign({ tank: 30, trips: [], fills: [] }, s); } catch(e){}
+  function save(){ try { localStorage.setItem(KS, JSON.stringify(state)); } catch(e){} }
+  var _u = 'metric';
+  var uBtn = document.getElementById('tl-unit');
+  function kmD(km){ return _u==='metric' ? km : km/1.60934; }   // metric km -> display
+  function lD(L){ return _u==='metric' ? L : L/3.78541; }        // metric L -> display
+  var watch = null; var gps = {running:false, last:null, km:0, sec:0, timer:null};
+  var gpsBtn = document.getElementById('tl-gps');
+  var gpsStatus = document.getElementById('tl-gps-status');
+  function haversine(a,b){ var R=6371, dLon=(b.lng-a.lng)*Math.PI/180, dLat=(b.lat-a.lat)*Math.PI/180; var x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2); return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)); }
+  function startGps(){
+    if (!navigator.geolocation) { gpsStatus.textContent = 'Geolocation not available — use the manual entry instead.'; return; }
+    gps = {running:true, last:null, km:0, sec:0, timer:null};
+    gpsBtn.textContent = 'Stop & save trip'; gpsBtn.className = 'btn btn-secondary';
+    gpsStatus.textContent = 'Tracking…';
+    gps.timer = setInterval(function(){
+      gps.sec += 1;
+      gpsStatus.textContent = 'Tracking… ' + kmD(gps.km).toFixed(1) + ' ' + (_u==='metric'?'km':'mi') + ' · ' + (gps.sec/60).toFixed(1) + ' min';
+    }, 1000);
+    watch = navigator.geolocation.watchPosition(function (p) {
+      if (p.coords.accuracy > 60) return; // drop noisy fixes
+      if (gps.last) gps.km += haversine(gps.last, p.coords);
+      gps.last = p.coords;
+    }, function(){ gpsStatus.textContent = 'Location error — use manual entry.'; }, { enableHighAccuracy:true, maximumAge:5000 });
+  }
+  function stopGps(){
+    if (watch !== null) navigator.geolocation.clearWatch(watch);
+    if (gps.timer) clearInterval(gps.timer);
+    var hrs = gps.sec/3600;
+    state.trips.push({ km: gps.km, hrs: hrs, ts: Date.now(), src:'GPS' });
+    save(); renderTrips(); compute();
+    var saved = kmD(gps.km).toFixed(1) + ' ' + (_u==='metric'?'km':'mi');
+    gps = {running:false};
+    gpsBtn.textContent = 'Start GPS trip'; gpsBtn.className = 'btn btn-primary';
+    gpsStatus.textContent = 'Trip saved (' + saved + ').';
+  }
+  window.tlGps = function () { if (gps.running) stopGps(); else startGps(); };
+  window.tlAddTrip = function () {
+    var dist = parseFloat(document.getElementById('tl-dist').value || '');
+    var mins = parseFloat(document.getElementById('tl-mins').value || '');
+    var unit = document.getElementById('tl-unit-in').value;
+    if (!(dist>0) || !(mins>0)) { alert('Enter a distance and a time.'); return; }
+    var km = unit==='mi' ? dist*1.60934 : dist;
+    state.trips.push({ km: km, hrs: mins/60, ts: Date.now(), src:'Manual' });
+    document.getElementById('tl-dist').value=''; document.getElementById('tl-mins').value='';
+    save(); renderTrips(); compute();
+  };
+  window.tlAddFill = function () {
+    var v = parseFloat(document.getElementById('tl-litres').value || '');
+    var unit = document.getElementById('tl-unit-in2').value;
+    var cost = parseFloat(document.getElementById('tl-cost').value || '');
+    if (!(v>0)) { alert('Enter how much fuel you added.'); return; }
+    var L = unit==='gal' ? v*3.78541 : v;
+    state.fills.push({ L: L, cost: isNaN(cost)?null:cost, ts: Date.now() });
+    document.getElementById('tl-litres').value=''; document.getElementById('tl-cost').value='';
+    save(); renderFills(); compute();
+  };
+  window.tlSetTank = function () { var v=parseFloat(document.getElementById('tl-tank').value||''); if(!(v>0)) return; state.tank = _u==='metric' ? v : v*3.78541; save(); compute(); };
+  window.tlClear = function () { if(!confirm('Clear all trips and fills on this device?')) return; state.trips=[]; state.fills=[]; save(); renderTrips(); renderFills(); compute(); };
+  window.tlUnit = function () { _u = _u==='metric' ? 'imperial' : 'metric'; uBtn.textContent = (_u==='metric'?'Switch to imperial':'Switch to metric'); paintUnits(); renderTrips(); renderFills(); compute(); };
+  function paintUnits(){
+    document.getElementById('tl-lab-dist').textContent = 'Distance ('+(_u==='metric'?'km':'mi')+')';
+    document.getElementById('tl-lab-fuel').textContent = 'Fuel added ('+(_u==='metric'?'L':'US gal')+')';
+    document.getElementById('tl-unit-in').value = _u==='metric' ? 'km' : 'mi';
+    document.getElementById('tl-unit-in2').value = _u==='metric' ? 'L' : 'gal';
+    document.getElementById('tl-tank').value = Math.round(lD(state.tank));
+  }
+  function fmtD(km){ return kmD(km).toFixed(1) + ' ' + (_u==='metric'?'km':'mi'); }
+  function fmtL(L){ return lD(L).toFixed(1) + ' ' + (_u==='metric'?'L':'US gal'); }
+  function renderTrips(){ var el=document.getElementById('tl-trips'); el.innerHTML = state.trips.slice().reverse().map(function(t){ return '<div class="tl-row">'+new Date(t.ts).toLocaleDateString()+' · '+fmtD(t.km)+' · '+(t.hrs*60).toFixed(0)+' min'+(t.src==='GPS'?' · GPS':'')+'</div>'; }).join('') || '<p class="pg-muted">No trips yet.</p>'; }
+  function renderFills(){ var el=document.getElementById('tl-fills'); el.innerHTML = state.fills.slice().reverse().map(function(f){ return '<div class="tl-row">'+new Date(f.ts).toLocaleDateString()+' · '+fmtL(f.L)+(f.cost?' · $'+f.cost.toFixed(2):'')+'</div>'; }).join('') || '<p class="pg-muted">No fill-ups yet.</p>'; }
+  function compute(){
+    var km = state.trips.reduce(function(a,t){return a+t.km;},0);
+    var hrs = state.trips.reduce(function(a,t){return a+t.hrs;},0);
+    var fuel = state.fills.reduce(function(a,f){return a+f.L;},0);
+    var eff = (km>0 && fuel>0) ? km/fuel : 0;   // km/L
+    var spd = hrs>0 ? km/hrs : 0;               // km/hr
+    var lph = hrs>0 ? fuel/hrs : 0;             // L/hr
+    var tank = state.tank || 30;
+    var kmEmpty = eff>0 ? Math.max(0,(tank-fuel)*eff) : null;
+    var hrEmpty = (kmEmpty!==null && spd>0) ? kmEmpty/spd : null;
+    setTxt('tl-kml', eff>0 ? (_u==='metric' ? eff.toFixed(2)+' km/L' : (eff*0.4251).toFixed(1)+' MPG') : '—');
+    setTxt('tl-kph', spd>0 ? (_u==='metric' ? spd.toFixed(1)+' km/hr' : (spd*0.621371).toFixed(1)+' mph') : '—');
+    setTxt('tl-lph', lph>0 ? (_u==='metric' ? lph.toFixed(1)+' L/hr' : lD(lph).toFixed(1)+' gal/hr') : '—');
+    setTxt('tl-empty', kmEmpty!==null ? kmD(kmEmpty).toFixed(0)+' '+(_u==='metric'?'km':'mi') : '—');
+    setTxt('tl-emptyhr', hrEmpty!==null ? hrEmpty.toFixed(1)+' hrs' : '—');
+    var warn = document.getElementById('tl-warn');
+    if (kmEmpty!==null && kmEmpty < 0.2*tank) { warn.textContent = 'LOW — roughly '+kmD(kmEmpty).toFixed(0)+' '+(_u==='metric'?'km':'mi')+' to empty. Fill up soon.'; warn.className='tl-warn on'; }
+    else { warn.textContent=''; warn.className='tl-warn'; }
+  }
+  function setTxt(id, v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+  uBtn.addEventListener('click', tlUnit);
+  paintUnits(); renderTrips(); renderFills(); compute();
+})();
+</script></div></section>
+</main>
+<footer class="site-footer site-footer--dark">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
+      <p>Keeping your boat shipshape. Works without a signal. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="/features.html">Features</a>
+      <a href="/ai.html">AftLog AI</a>
+      <a href="/pricing.html">Pricing — lifetime Pro</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/support.html">Support</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#waitlist">Waitlist</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Portal</h4>
+      <a href="https://portal.aftlog.com/login">Portal login</a>
+      <a href="https://portal.aftlog.com/portal/">Portal dashboard</a>
+      <a href="https://portal.aftlog.com/portal/year-in-review">Year in Review</a>
+      <a href="https://portal.aftlog.com/portal/boats">Boat analytics</a>
+    </div>
+  </div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA. · Platform v1.111</div>
+</footer>
+</body>
+</html>

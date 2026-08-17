@@ -2035,6 +2035,258 @@ register("tools/emergency", "AftLog Emergency — What to Do If…",
          _emergency_body())
 
 
+# ── STEP 6.1–6.4: Trip + Fuel log (fuel-cycle brain) ──────────────────
+
+_TRIP_JS = r"""<script>
+(function () {
+  var KS = 'aftlog_triplog';
+  // Storage is always METRIC (km, L, hrs). Display converts by unit.
+  var state = { tank: 30, trips: [], fills: [] };
+  try { var s = JSON.parse(localStorage.getItem(KS) || 'null'); if (s) state = Object.assign({ tank: 30, trips: [], fills: [] }, s); } catch(e){}
+  function save(){ try { localStorage.setItem(KS, JSON.stringify(state)); } catch(e){} }
+  var _u = 'metric';
+  var uBtn = document.getElementById('tl-unit');
+  function kmD(km){ return _u==='metric' ? km : km/1.60934; }   // metric km -> display
+  function lD(L){ return _u==='metric' ? L : L/3.78541; }        // metric L -> display
+  var watch = null; var gps = {running:false, last:null, km:0, sec:0, timer:null};
+  var gpsBtn = document.getElementById('tl-gps');
+  var gpsStatus = document.getElementById('tl-gps-status');
+  function haversine(a,b){ var R=6371, dLon=(b.lng-a.lng)*Math.PI/180, dLat=(b.lat-a.lat)*Math.PI/180; var x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2); return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)); }
+  function startGps(){
+    if (!navigator.geolocation) { gpsStatus.textContent = 'Geolocation not available — use the manual entry instead.'; return; }
+    gps = {running:true, last:null, km:0, sec:0, timer:null};
+    gpsBtn.textContent = 'Stop & save trip'; gpsBtn.className = 'btn btn-secondary';
+    gpsStatus.textContent = 'Tracking…';
+    gps.timer = setInterval(function(){
+      gps.sec += 1;
+      gpsStatus.textContent = 'Tracking… ' + kmD(gps.km).toFixed(1) + ' ' + (_u==='metric'?'km':'mi') + ' · ' + (gps.sec/60).toFixed(1) + ' min';
+    }, 1000);
+    watch = navigator.geolocation.watchPosition(function (p) {
+      if (p.coords.accuracy > 60) return; // drop noisy fixes
+      if (gps.last) gps.km += haversine(gps.last, p.coords);
+      gps.last = p.coords;
+    }, function(){ gpsStatus.textContent = 'Location error — use manual entry.'; }, { enableHighAccuracy:true, maximumAge:5000 });
+  }
+  function stopGps(){
+    if (watch !== null) navigator.geolocation.clearWatch(watch);
+    if (gps.timer) clearInterval(gps.timer);
+    var hrs = gps.sec/3600;
+    state.trips.push({ km: gps.km, hrs: hrs, ts: Date.now(), src:'GPS' });
+    save(); renderTrips(); compute();
+    var saved = kmD(gps.km).toFixed(1) + ' ' + (_u==='metric'?'km':'mi');
+    gps = {running:false};
+    gpsBtn.textContent = 'Start GPS trip'; gpsBtn.className = 'btn btn-primary';
+    gpsStatus.textContent = 'Trip saved (' + saved + ').';
+  }
+  window.tlGps = function () { if (gps.running) stopGps(); else startGps(); };
+  window.tlAddTrip = function () {
+    var dist = parseFloat(document.getElementById('tl-dist').value || '');
+    var mins = parseFloat(document.getElementById('tl-mins').value || '');
+    var unit = document.getElementById('tl-unit-in').value;
+    if (!(dist>0) || !(mins>0)) { alert('Enter a distance and a time.'); return; }
+    var km = unit==='mi' ? dist*1.60934 : dist;
+    state.trips.push({ km: km, hrs: mins/60, ts: Date.now(), src:'Manual' });
+    document.getElementById('tl-dist').value=''; document.getElementById('tl-mins').value='';
+    save(); renderTrips(); compute();
+  };
+  window.tlAddFill = function () {
+    var v = parseFloat(document.getElementById('tl-litres').value || '');
+    var unit = document.getElementById('tl-unit-in2').value;
+    var cost = parseFloat(document.getElementById('tl-cost').value || '');
+    if (!(v>0)) { alert('Enter how much fuel you added.'); return; }
+    var L = unit==='gal' ? v*3.78541 : v;
+    state.fills.push({ L: L, cost: isNaN(cost)?null:cost, ts: Date.now() });
+    document.getElementById('tl-litres').value=''; document.getElementById('tl-cost').value='';
+    save(); renderFills(); compute();
+  };
+  window.tlSetTank = function () { var v=parseFloat(document.getElementById('tl-tank').value||''); if(!(v>0)) return; state.tank = _u==='metric' ? v : v*3.78541; save(); compute(); };
+  window.tlClear = function () { if(!confirm('Clear all trips and fills on this device?')) return; state.trips=[]; state.fills=[]; save(); renderTrips(); renderFills(); compute(); };
+  window.tlUnit = function () { _u = _u==='metric' ? 'imperial' : 'metric'; uBtn.textContent = (_u==='metric'?'Switch to imperial':'Switch to metric'); paintUnits(); renderTrips(); renderFills(); compute(); };
+  function paintUnits(){
+    document.getElementById('tl-lab-dist').textContent = 'Distance ('+(_u==='metric'?'km':'mi')+')';
+    document.getElementById('tl-lab-fuel').textContent = 'Fuel added ('+(_u==='metric'?'L':'US gal')+')';
+    document.getElementById('tl-unit-in').value = _u==='metric' ? 'km' : 'mi';
+    document.getElementById('tl-unit-in2').value = _u==='metric' ? 'L' : 'gal';
+    document.getElementById('tl-tank').value = Math.round(lD(state.tank));
+  }
+  function fmtD(km){ return kmD(km).toFixed(1) + ' ' + (_u==='metric'?'km':'mi'); }
+  function fmtL(L){ return lD(L).toFixed(1) + ' ' + (_u==='metric'?'L':'US gal'); }
+  function renderTrips(){ var el=document.getElementById('tl-trips'); el.innerHTML = state.trips.slice().reverse().map(function(t){ return '<div class="tl-row">'+new Date(t.ts).toLocaleDateString()+' · '+fmtD(t.km)+' · '+(t.hrs*60).toFixed(0)+' min'+(t.src==='GPS'?' · GPS':'')+'</div>'; }).join('') || '<p class="pg-muted">No trips yet.</p>'; }
+  function renderFills(){ var el=document.getElementById('tl-fills'); el.innerHTML = state.fills.slice().reverse().map(function(f){ return '<div class="tl-row">'+new Date(f.ts).toLocaleDateString()+' · '+fmtL(f.L)+(f.cost?' · $'+f.cost.toFixed(2):'')+'</div>'; }).join('') || '<p class="pg-muted">No fill-ups yet.</p>'; }
+  function compute(){
+    var km = state.trips.reduce(function(a,t){return a+t.km;},0);
+    var hrs = state.trips.reduce(function(a,t){return a+t.hrs;},0);
+    var fuel = state.fills.reduce(function(a,f){return a+f.L;},0);
+    var eff = (km>0 && fuel>0) ? km/fuel : 0;   // km/L
+    var spd = hrs>0 ? km/hrs : 0;               // km/hr
+    var lph = hrs>0 ? fuel/hrs : 0;             // L/hr
+    var tank = state.tank || 30;
+    var kmEmpty = eff>0 ? Math.max(0,(tank-fuel)*eff) : null;
+    var hrEmpty = (kmEmpty!==null && spd>0) ? kmEmpty/spd : null;
+    setTxt('tl-kml', eff>0 ? (_u==='metric' ? eff.toFixed(2)+' km/L' : (eff*0.4251).toFixed(1)+' MPG') : '—');
+    setTxt('tl-kph', spd>0 ? (_u==='metric' ? spd.toFixed(1)+' km/hr' : (spd*0.621371).toFixed(1)+' mph') : '—');
+    setTxt('tl-lph', lph>0 ? (_u==='metric' ? lph.toFixed(1)+' L/hr' : lD(lph).toFixed(1)+' gal/hr') : '—');
+    setTxt('tl-empty', kmEmpty!==null ? kmD(kmEmpty).toFixed(0)+' '+(_u==='metric'?'km':'mi') : '—');
+    setTxt('tl-emptyhr', hrEmpty!==null ? hrEmpty.toFixed(1)+' hrs' : '—');
+    var warn = document.getElementById('tl-warn');
+    if (kmEmpty!==null && kmEmpty < 0.2*tank) { warn.textContent = 'LOW — roughly '+kmD(kmEmpty).toFixed(0)+' '+(_u==='metric'?'km':'mi')+' to empty. Fill up soon.'; warn.className='tl-warn on'; }
+    else { warn.textContent=''; warn.className='tl-warn'; }
+  }
+  function setTxt(id, v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+  uBtn.addEventListener('click', tlUnit);
+  paintUnits(); renderTrips(); renderFills(); compute();
+})();
+</script>"""
+
+
+def _trip_log_body():
+    return (
+        hero("Trip & Fuel Log", "Log trips and fill-ups and AftLog learns your real fuel range — how far, how fast, and how many km/hours you have left.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Track a trip by GPS or enter it manually, log your fill-ups, set your tank size, and see your learned efficiency plus \u201cX km / Y hrs to empty\u201d.</p>'
+        + '<button type="button" class="btn btn-sm btn-secondary" id="tl-unit">Switch to imperial</button>'
+        + '<div class="tl-grid">'
+        + '<div class="tl-card"><h2>Track a trip</h2>'
+        + '<p><button type="button" class="btn btn-primary" id="tl-gps" onclick="tlGps()">Start GPS trip</button></p>'
+        + '<p class="pg-muted" id="tl-gps-status"></p>'
+        + '<hr class="pg-hr"><p class="pg-muted">Or manual entry:</p>'
+        + '<label class="pg-hint-label" id="tl-lab-dist" for="tl-dist">Distance</label>'
+        + '<div class="tl-inline"><input id="tl-dist" class="fp-in" type="number" min="0" step="0.1" placeholder="10"><select id="tl-unit-in" class="pg-select"><option value="km">km</option><option value="mi">mi</option></select></div>'
+        + '<label class="pg-hint-label" for="tl-mins">Time (minutes)</label><input id="tl-mins" class="fp-in" type="number" min="1" placeholder="45">'
+        + '<p><button type="button" class="btn btn-primary" onclick="tlAddTrip()">+ Add trip</button></p>'
+        + '</div>'
+        + '<div class="tl-card"><h2>Log a fill-up</h2>'
+        + '<label class="pg-hint-label" id="tl-lab-fuel" for="tl-litres">Fuel added</label>'
+        + '<div class="tl-inline"><input id="tl-litres" class="fp-in" type="number" min="0" step="0.1"><select id="tl-unit-in2" class="pg-select"><option value="L">L</option><option value="gal">US gal</option></select></div>'
+        + '<label class="pg-hint-label" for="tl-cost">Cost ($, optional)</label><input id="tl-cost" class="fp-in" type="number" min="0" step="0.01">'
+        + '<p><button type="button" class="btn btn-primary" onclick="tlAddFill()">+ Add fill-up</button></p>'
+        + '</div>'
+        + '</div>'
+        + '<div class="tl-yours">'
+        + '<h2>Your numbers</h2>'
+        + '<div class="tl-stats">'
+        + '<div class="tl-stat"><div id="tl-kml">—</div><span>Efficiency</span></div>'
+        + '<div class="tl-stat"><div id="tl-kph">—</div><span>Avg speed</span></div>'
+        + '<div class="tl-stat"><div id="tl-lph">—</div><span>Fuel burn</span></div>'
+        + '<div class="tl-stat"><div id="tl-empty">—</div><span>To empty</span></div>'
+        + '<div class="tl-stat"><div id="tl-emptyhr">—</div><span>…in hours</span></div>'
+        + '</div>'
+        + '<div class="tl-tank-row"><label class="pg-hint-label" for="tl-tank">Tank size:</label><input id="tl-tank" class="fp-in" type="number" min="1" value="30" style="max-width:110px"><button type="button" class="btn btn-sm btn-secondary" onclick="tlSetTank()">Set</button></div>'
+        + '<div class="tl-warn" id="tl-warn"></div>'
+        + '</div>'
+        + '<div class="tl-history"><h2>Trips</h2><div id="tl-trips"></div><h2>Fill-ups</h2><div id="tl-fills"></div>'
+        + '<p><button type="button" class="btn btn-sm btn-secondary" onclick="tlClear()">Clear all data</button></p></div>'
+        + '<p class="pg-muted">For deeper seasonal analysis (monthly trends, outliers), see the <a href="/tools/trip-patterns.html">Trip Patterns</a> tool.</p>'
+        + _TRIP_JS
+        + '</div></section>'
+    )
+
+
+register("tools/trip-log", "AftLog Trip & Fuel Log",
+         "Log trips by GPS or manually, track fill-ups, and see your learned fuel range: km/L, avg speed, fuel burn, and km/hours to empty.",
+         _trip_log_body())
+
+
+# ── STEP 6.5–6.8: Checklists tool ─────────────────────────────────────
+
+_CHKL_TEMPLATES = [
+    ("launch", "Launch", ["Bilge plug is in and tight", "Key in / lanyard clipped on", "Safety gear aboard (PFDs, extinguisher, horn)", "Fuel — enough for the trip, vent open", "Engine trimmed for launch", "Cast-off lines clear", "Everyone has a fitted lifejacket", "Throttle / gear in neutral"]),
+    ("retrieve", "Retrieve", ["Approach the ramp slow", "Kill the engine in neutral", "Tilt / trim the engine up", "Pull the bilge plug at the ramp", "Tie down the boat to the trailer", "Take gear off and stow", "Flush the engine (freshwater) if used in salt", "Cover the boat"]),
+    ("towing", "Towing", ["Safety chains crossed under the coupler", "Coupler locked to the ball — verify the pin", "Trailer lights working", "Breakaway lanyard connected", "Tires at correct pressure + spare onboard", "Load balanced on the trailer (10% tongue)", "Straps and winch secured", "Boat plug and tie-downs left in"]),
+    ("spring", "Spring Prep", ["Charge the battery, clean terminals", "Check / replace the impeller", "Inspect fuel lines and primer bulb", "Change lower-unit gear oil", "New spark plugs if due", "Run on muffs — check the tell-tale", "Check trailer lights and bearings", "Refresh the safety-gear kit"]),
+    ("winter", "Winterization", ["Add fuel stabilizer and run it through", "Fog the engine", "Drain water systems (block, livewell, ballast)", "Change lower-unit gear oil", "Remove and store the battery on a maintainer", "Protect the outside — cover or indoor storage"]),
+]
+
+
+_CHKL_JS = r"""<script>
+(function () {
+  var KEY = 'aftlog_chkl_';
+  var CUST_KEY = 'aftlog_chkl_custom';
+  var store = {};
+  function persist(id){ try { localStorage.setItem(KEY+id, JSON.stringify(store[id]||[])); } catch(e){} }
+  function load(id){ try { return JSON.parse(localStorage.getItem(KEY+id)||'[]'); } catch(e){ return []; } }
+  function customList(){ try { return JSON.parse(localStorage.getItem(CUST_KEY)||'[]'); } catch(e){ return []; } }
+  function saveCustom(c){ try { localStorage.setItem(CUST_KEY, JSON.stringify(c)); } catch(e){} }
+  // one delegated listener for ALL checkboxes (templates + custom)
+  document.addEventListener('change', function (e) {
+    var it = e.target.closest && e.target.closest('.chkl-item');
+    if (!it) return;
+    var id = it.dataset.id, i = +it.dataset.i;
+    if (!store[id]) store[id] = load(id);
+    var k = store[id].indexOf(i);
+    if (k === -1) store[id].push(i); else store[id].splice(k, 1);
+    persist(id); paintBar(id);
+  });
+  function paintBar(id){
+    var items = document.querySelectorAll('.chkl-item[data-id="'+id+'"]');
+    var done = 0; items.forEach(function(it){ if ((store[id]||[]).indexOf(+it.dataset.i)!==-1) done++; });
+    var p = items.length ? Math.round(100*done/items.length) : 0;
+    var bar = document.getElementById('chkl-bar-'+id); var txt = document.getElementById('chkl-pct-'+id);
+    if (bar) bar.style.width = p+'%';
+    if (txt) txt.textContent = done+'/'+items.length;
+  }
+  function itemHtml(id, i, label, checked){
+    return '<label class="chkl-item" data-id="'+id+'" data-i="'+i+'"><input type="checkbox"'+(checked?' checked':'')+'><span>'+String(label)+'</span></label>';
+  }
+  function renderCustom(){
+    var holder = document.getElementById('chkl-custom');
+    if (!holder) return;
+    var data = customList();
+    holder.innerHTML = data.map(function(c, idx){
+      var id = 'custom'+idx;
+      store[id] = load(id);
+      var items = (c.items||[]).map(function(it, i){ return itemHtml(id, i, it, (store[id]||[]).indexOf(i)!==-1); }).join('');
+      return '<div class="chkl" data-id="'+id+'"><div class="chkl-head"><strong>'+String(c.name)+'</strong><span class="chkl-pct" id="chkl-pct-'+id+'"></span></div><div class="chkl-items">'+items+'</div><div class="chkl-bar-bg"><div class="chkl-bar" id="chkl-bar-'+id+'"></div></div></div>';
+    }).join('') || '<p class="pg-muted">No custom checklists yet — create one below.</p>';
+    data.forEach(function(c, idx){ paintBar('custom'+idx); });
+  }
+  window.chklAddCustom = function () {
+    var name = (document.getElementById('chkl-name').value||'').trim();
+    var items = (document.getElementById('chkl-items').value||'').split(/\n/).map(function(s){return s.trim();}).filter(Boolean);
+    if (!name || !items.length) { alert('Give it a name and at least one item (one per line).'); return; }
+    var c = customList(); c.push({name:name, items:items}); saveCustom(c);
+    document.getElementById('chkl-name').value=''; document.getElementById('chkl-items').value='';
+    renderCustom();
+  };
+  document.querySelectorAll('.chkl[data-id]').forEach(function(box){ var id=box.dataset.id; store[id]=load(id); paintBar(id); });
+  renderCustom();
+})();
+</script>"""
+
+
+def _checklists_body():
+    cards = "".join(
+        '<div class="chkl" data-id="%s"><div class="chkl-head"><strong>%s</strong><span class="chkl-pct" id="chkl-pct-%s"></span></div><div class="chkl-items">%s</div><div class="chkl-bar-bg"><div class="chkl-bar" id="chkl-bar-%s"></div></div></div>' % (
+            key, esc(label), key,
+            "".join(
+                '<label class="chkl-item" data-id="%s" data-i="%d"><input type="checkbox"><span>%s</span></label>' % (key, i, esc(it))
+                for i, it in enumerate(items)),
+            key)
+        for key, label, items in _CHKL_TEMPLATES)
+    return (
+        hero("Checklists", "Step-by-step launch, retrieve, towing, and seasonal checklists — with your progress saved in this browser.")
+        + '<section class="section section--light"><div class="container">'
+        + '<p class="pg-muted">Tap each item as you do it. Your progress is saved on this device so you can pick up where you left off.</p>'
+        + '<div class="chkl-list">' + cards + '</div>'
+        + '<hr class="pg-hr">'
+        + '<h2>My checklists</h2>'
+        + '<div id="chkl-custom" class="chkl-list"></div>'
+        + '<label class="pg-hint-label" for="chkl-name">New checklist name</label>'
+        + '<input id="chkl-name" class="fp-in" placeholder="e.g. Weekend trip">'
+        + '<label class="pg-hint-label" for="chkl-items">Items — one per line</label>'
+        + '<textarea id="chkl-items" class="fp-in" rows="4" placeholder="Fuel up&#10;Check weather&#10;Tell someone the float plan"></textarea>'
+        + '<p><button type="button" class="btn btn-primary" onclick="chklAddCustom()">Create checklist</button></p>'
+        + '<p class="pg-muted">For a guided used-boat walk-through with photos and a buy/consider/walk report, use the <a href="/tools/buying-advisor.html">Buying Advisor</a>.</p>'
+        + _CHKL_JS
+        + '</div></section>'
+    )
+
+
+register("tools/checklists", "AftLog Checklists — Launch, Retrieve, Towing & Seasonal",
+         "Interactive launch, retrieve, towing, spring-prep, and winterization checklists with saved progress, plus your own custom checklists.",
+         _checklists_body())
+
+
 def main():
     print(f"Generating AftLog site → portal base: {PORTAL}")
     for p in PAGES:
