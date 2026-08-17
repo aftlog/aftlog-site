@@ -8,102 +8,34 @@
 <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192.png">
 <link rel="apple-touch-icon" href="../images/favicon-180.png">
-<link rel="stylesheet" href="../aftlog-pages.css">
 <meta property="og:title" content="Updates — AftLog">
-<meta property="og:description" content="Progress updates for AftLog, the boat maintenance logbook that works without a signal.">
-<meta property="og:image" content="https://aftlog.com/images/og-image.png">
-<script>
-  /* Strip stale anchor hashes on load — browser autofill can land on e.g. /#pain */
-  (function(){
-    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-  })();
-</script>
+<meta property="og:description" content="Progress updates for AftLog.">
+<link rel="stylesheet" href="../aftlog.css">
+<link rel="stylesheet" href="../aftlog-pages.css">
 <style>
-  :root{
-    --bg:#0B0B0D;
-    --card:#141417;
-    --line:#232329;
-    --accent:#E02020;
-    --accent2:#FF4B4B;
-    --text:#FFFFFF;
-    --muted:#9A9AA3;
-    --maxw:760px;
-    /* aftlog-pages.css aliases (same canonical palette) */
-    --bg-dark:#0B0B0D;
-    --text-dark:#F5F5F7;
-    --muted-dark:#9A9AA3;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-  header{
-    border-bottom:1px solid var(--line);
-    background:rgba(11,11,13,.92);
-    position:sticky;top:0;z-index:10;
-    backdrop-filter:blur(8px);
-  }
-  .header-inner{
-    max-width:960px;margin:0 auto;padding:14px 24px;
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .logo img{height:64px;width:auto;display:block}
-  nav a{
-    color:var(--muted);text-decoration:none;font-size:14.5px;margin-left:26px;
-    transition:color .15s;
-  }
-  nav a:hover{color:var(--accent2)}
-  nav a.on{color:var(--accent2)}
-  @media(max-width:640px){ nav a{display:none} }
-
-  .page{padding:56px 24px 40px}
-  .sec-label{
-    font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);
-    font-weight:700;margin-bottom:12px;
-  }
-  h1{font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
-  .intro{color:var(--muted);font-size:16px;margin-top:14px;max-width:620px}
-
-  .entry{
-    background:var(--card);border:1px solid var(--line);border-radius:18px;
-    padding:26px 28px;margin-top:22px;
-  }
-  .entry .date{color:var(--accent2);font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-  .entry h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin:8px 0 10px}
-  .entry p{color:var(--muted);font-size:14.5px;line-height:1.6}
-  .entry ul{list-style:none;margin-top:10px}
-  .entry li{color:#D6D6DC;font-size:14.5px;padding:5px 0 5px 24px;position:relative}
-  .entry li::before{
-    content:"";position:absolute;left:0;top:13px;
-    width:10px;height:10px;border-radius:50%;
-    background:var(--accent);
-  }
-
-  .coming{
-    margin-top:36px;background:var(--card);border:1px solid rgba(224,32,32,.4);
-    border-radius:18px;padding:26px 28px;
-  }
-  .coming h2{font-size:18px;font-weight:800}
-  .coming p{color:var(--muted);font-size:14px;margin-top:8px}
-
-  footer{border-top:1px solid var(--line);padding:32px 24px;text-align:center}
-  footer p{color:#6E6E77;font-size:13.5px}
-  footer a{color:var(--muted);text-decoration:none;margin:0 12px;font-size:13.5px}
-  footer a:hover{color:var(--accent2)}
+  /* Changelog entry styles (canonical palette only) */
+  .up-list { max-width: 820px; margin: 0 auto; }
+  .up-entry { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px 28px; margin-bottom: 20px; box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+  .up-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; margin-bottom: 12px; }
+  .up-ver { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); font-weight: 700; }
+  .up-date { color: var(--muted-light); font-size: .92rem; }
+  .up-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 10px; }
+  .up-entry p { color: var(--muted-light); font-size: 1rem; line-height: 1.6; margin: 0 0 12px; }
+  .up-changes { margin: 8px 0; padding-left: 20px; line-height: 1.6; color: var(--text-light); }
+  .up-changes li { margin-bottom: 5px; }
+  .up-tier { margin-top: 10px; padding: 10px 14px; background: var(--bg2); border-left: 3px solid var(--accent2); border-radius: 8px; color: var(--muted-light); font-size: .95rem; }
+  .up-empty { color: var(--muted-light); }
 </style>
+<script>
+  (function(){ if (location.hash) history.replaceState(null, '', location.pathname + location.search); })();
+</script>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
+<header class="site-header site-header--dark">
+  <div class="container header-inner">
     <div class="logo"><a href="/"><img src="../images/aftlog-badge.png" alt="AftLog"></a></div>
-    <nav>
+    <nav class="nav" aria-label="Main">
       <a href="/">Home</a>
       <a href="/features.html">Features</a>
       <a href="/ai.html">AI</a>
@@ -112,121 +44,142 @@
       <a href="/faq.html">FAQ</a>
       <a href="/blog/">Blog</a>
       <a class="on" href="/updates/">Updates</a>
+      <a href="/#waitlist" class="btn btn-primary">Join the waitlist</a>
     </nav>
   </div>
 </header>
 
-<section class="page">
-  <div class="wrap">
-    <div class="brand-block">
-      <img class="hero-logo brand-logo" src="../images/aftlog-logo.png" alt="AftLog logo">
-      <span class="kicker brand-slogan">Keeping your boat shipshape!</span>
+<main>
+  <section class="hero hero--dark">
+    <div class="container">
+      <div class="brand-block">
+        <img class="hero-logo brand-logo" src="../images/aftlog-logo.png" alt="AftLog logo">
+        <span class="kicker brand-slogan">Keeping your boat shipshape!</span>
+      </div>
+      <h1>Updates</h1>
+      <p style="color:var(--muted-dark);max-width:40em">A plain, factual log of what's shipping — newest first.</p>
     </div>
-    <h1>Updates</h1>
+  </section>
 
-    <article class="entry">
-      <div class="date">2026-08-17</div>
-      <h2>Version 1.108 — Pro license codes + Link to Portal</h2>
-      <p>AftLog Pro now unlocks with a license code — no subscription, and it keeps working with no signal. And your app can connect to the new web portal.</p>
-      <ul>
-        <li>Link to Portal: connect this device to your portal account with a one-time code</li>
-        <li>Enter Pro Code: unlock Pro on this device, fully offline after activation</li>
-        <li>Pro Status: see your plan, renewal and active date</li>
-        <li>Web portal: sign in, manage your boats, check your Pro status, redeem codes</li>
-      </ul>
-    </article>
+  <section class="section section--light">
+    <div class="container up-list">
 
-    <article class="entry">
-      <div class="date">2026-08-16</div>
-      <h2>Version 1.106 — Visual Engine Assist</h2>
-      <p>AftLog now includes Visual Engine Assist — identify parts, detect issues, open manual pages, and see related maintenance tasks.</p>
-      <ul>
-        <li>Part identification</li>
-        <li>Fault detection</li>
-        <li>Manual page deep-links</li>
-        <li>Related maintenance tasks</li>
-        <li>Related diagnostics</li>
-        <li>Safety assessment</li>
-        <li>Save results to history</li>
-      </ul>
-      <p style="margin-top:10px">Free tier: Visual Engine Assist preview. Pro: the full experience, with results saved to your history.</p>
-    </article>
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Version 1.108</span><span class="up-date">2026-08-17</span></div>
+        <h2 class="up-title">Pro license codes + Link to Portal</h2>
+        <p>AftLog Pro now unlocks with a lifetime license code — no subscription, no renewals, and it works fully offline after activation. The app can also connect to the new web portal using a one-time link code.</p>
+        <ul class="up-changes">
+          <li>Link to Portal: connect this device to your portal account with a one-time code</li>
+          <li>Enter Pro Code: unlock Pro on this device, works offline after activation</li>
+          <li>Pro Status: see your license state and activation date</li>
+          <li>Web Portal: sign in, manage boats, view Pro status, redeem codes</li>
+        </ul>
+      </article>
 
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Version 1.106</span><span class="up-date">2026-08-16</span></div>
+        <h2 class="up-title">Visual Engine Assist</h2>
+        <p>AftLog now includes Visual Engine Assist — identify parts, detect issues, open manual pages, and see related maintenance tasks. Designed to work on the water with clear, grounded results.</p>
+        <ul class="up-changes">
+          <li>Part identification</li>
+          <li>Fault detection</li>
+          <li>Manual page deep-links</li>
+          <li>Related maintenance tasks</li>
+          <li>Related diagnostics</li>
+          <li>Safety assessment</li>
+          <li>Save results to history</li>
+        </ul>
+        <p class="up-tier"><strong>Free tier:</strong> preview mode · <strong>Pro:</strong> full experience with saved history</p>
+      </article>
 
-    <article class="entry">
-      <div class="date">2026-08-16</div>
-      <h2>Version 1.105 — Smart Maintenance Planner</h2>
-      <p>The Smart Maintenance Planner turns your engine manual, usage logs, region and season into one intelligent maintenance schedule.</p>
-      <ul>
-        <li>Manual-based intervals (Pro)</li>
-        <li>Usage, region, and season adjustments (Pro)</li>
-        <li>Predictive maintenance recommendations (Pro)</li>
-        <li>Basic maintenance schedule (free)</li>
-        <li>Task completion with automatic rescheduling</li>
-        <li>Interval review for manual-derived tasks</li>
-        <li>&ldquo;Open Page&rdquo; deep-link into your engine manual</li>
-        <li>Diagnostics + Ask AftLog maintenance guidance</li>
-        <li>Persistent maintenance settings</li>
-        <li>Enhanced Pro experience</li>
-      </ul>
-      <p style="margin-top:10px">Free tier: basic maintenance schedule. Pro: intervals extracted from your engine manual, usage-based adjustments, and predictive recommendations.</p>
-    </article>
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Version 1.105</span><span class="up-date">2026-08-16</span></div>
+        <h2 class="up-title">Smart Maintenance Planner</h2>
+        <p>The Smart Maintenance Planner turns your engine manual, usage logs, region, and season into one intelligent maintenance schedule.</p>
+        <ul class="up-changes">
+          <li>Manual-based intervals (Pro)</li>
+          <li>Usage, region, and season adjustments (Pro)</li>
+          <li>Predictive maintenance recommendations (Pro)</li>
+          <li>Basic maintenance schedule (free)</li>
+          <li>Task completion with automatic rescheduling</li>
+          <li>Interval review for manual-derived tasks</li>
+          <li>"Open Page" deep-link into your engine manual</li>
+          <li>Diagnostics + Ask AftLog maintenance guidance</li>
+          <li>Persistent maintenance settings</li>
+        </ul>
+        <p class="up-tier"><strong>Free tier:</strong> basic schedule · <strong>Pro:</strong> manual-derived intervals + usage-based adjustments + predictive recommendations</p>
+      </article>
 
-    <p class="intro">Progress notes as we build AftLog. Newest first. No hype, just what's actually happening.</p>
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Diagnostic reports</span><span class="up-date">Aug 14, 2026</span></div>
+        <h2 class="up-title">Diagnostic Assistant Report</h2>
+        <p>When something acts up (won't start, overheating, vibration), AftLog now writes a plain-language report instead of just listing causes.</p>
+        <ul class="up-changes">
+          <li>Clear explanation of what the symptom usually means</li>
+          <li>Notes tied to your actual logs (trips, fills, hours)</li>
+          <li>Ranked causes with what you can check yourself</li>
+          <li>Mechanic escalation guidance</li>
+          <li>Photo notes if you attached images</li>
+        </ul>
+        <p class="up-empty">Printable PDF version coming next.</p>
+      </article>
 
-    <div class="entry">
-      <div class="date">Aug 14, 2026</div>
-      <h2>Diagnostic Assistant Report — the friendly version of the "why"</h2>
-      <p>When something acts up (engine won't start, overheating, vibration), AftLog now writes you a plain-language report instead of just handing you a list:</p>
-      <ul>
-        <li>What this usually means — plain language, no jargon</li>
-        <li>What your logs show — tied to your actual trips, fills, and hours</li>
-        <li>Most likely causes, what you can check yourself, and what a mechanic will look at</li>
-        <li>Things to watch for, plus a note on any photos you've attached</li>
-      </ul>
-      <p>It's a summary you can read on the water or hand to a mechanic. A printable PDF version is next.</p>
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Build complete</span><span class="up-date">Aug 10, 2026</span></div>
+        <h2 class="up-title">The full app structure is built</h2>
+        <p>AftLog's full structure is now complete and running offline on a phone.</p>
+        <ul class="up-changes">
+          <li>Boat hub: profile, engine details, documents, parts, photo timeline, service history, intervals, cost-of-ownership, resale report PDF, logbook PDF</li>
+          <li>Fuel-range brain: tank size, Fill Up, GPS/odometer trips, real km/L learning</li>
+          <li>13 tools: reminders, AI assistant, symptom decoder, ramp mode, calculators, buying advisor, winterization planner, float plan, compliance, manual finder, DIY repairs, battery &amp; electronics, glossary</li>
+          <li>Checklists: launch, retrieve, towing, first outing, spring prep, winterization, used-boat inspection</li>
+          <li>Free tier + $29 lifetime Pro</li>
+          <li>5 languages</li>
+          <li>Metric/imperial</li>
+          <li>Backup &amp; restore</li>
+        </ul>
+        <p class="up-empty">Next: refining with real boat content and finishing polish.</p>
+      </article>
+
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Launch</span><span class="up-date">Aug 10, 2026</span></div>
+        <h2 class="up-title">Site is live and the waitlist is open</h2>
+        <p>AftLog is real: name locked, domain secured, and the $29 lifetime price is set.</p>
+        <ul class="up-changes">
+          <li>Brand + tagline locked</li>
+          <li>aftlog.com live</li>
+          <li>Distribution gated on build quality</li>
+          <li>Keystore secured</li>
+          <li>Repos organized</li>
+          <li>Research confirmed the gap in the market</li>
+          <li>Waitlist open at $29 lifetime</li>
+        </ul>
+        <p class="up-empty">Next: winterization content, used-boat inspection guides, buying quiz.</p>
+      </article>
+
+      <article class="up-entry">
+        <div class="up-head"><span class="up-ver">Upcoming</span><span class="up-date">Phase 1 — MVP</span></div>
+        <h2 class="up-title">What's coming</h2>
+        <ul class="up-changes">
+          <li>Engine hours + fuel log</li>
+          <li>Service history + intervals</li>
+          <li>Reminders (hours + seasons)</li>
+          <li>Spring/winterize checklists</li>
+          <li>Works without a signal</li>
+          <li>5 languages</li>
+          <li>Free tier + $29 Pro</li>
+        </ul>
+      </article>
+
     </div>
-
-    <div class="entry">
-      <div class="date">Aug 10, 2026 — end of day</div>
-      <h2>The full app structure is built</h2>
-      <p>Big day. Beyond the site, the app itself now has its complete structure, working offline on a phone:</p>
-      <ul>
-        <li>Boat hub: profile + photo, engine details, documents with expiry, parts, photo timeline, service history, maintenance intervals, cost-of-ownership, resale report PDF, logbook PDF</li>
-        <li>Fuel-range brain: set your tank size, hit Fill up, track trips with GPS or odometer — AftLog learns your real km/L and tells you how far you can go</li>
-        <li>13 tools: reminders, AI assistant, symptom decoder, ramp mode, calculators, buying advisor, winterization planner, float plan, compliance, manual finder, DIY repairs, battery &amp; electronics, glossary</li>
-        <li>Checklists for launch, retrieve, towing, first outing, spring prep, winterization, used-boat inspection</li>
-        <li>Free tier + $29 one-time Pro, 5 languages, metric/imperial, backup &amp; restore</li>
-      </ul>
-      <p>Next: refining with real boat content and finishing the polish.</p>
-    </div>
-
-    <div class="entry">
-      <div class="date">Aug 10, 2026</div>
-      <h2>Site is live and the waitlist is open</h2>
-      <p>AftLog is real: name locked, domain secured, and the $29 one-time price is on the table. Here's what's happened so far:</p>
-      <ul>
-        <li>Name, brand, and tagline locked — "Keeping your boat shipshape!"</li>
-        <li>aftlog.com registered and the landing page is live</li>
-        <li>Foundations done the right way: distribution gated on build quality, keystore secured, repos organized, decisions written down before code</li>
-        <li>Research confirmed the gap: no dominant boat-maintenance app, and boat owners are searching for checklists, logs, and "why won't my engine start" answers</li>
-        <li>Waitlist open at $29 one-time — no subscription, no ads, ever</li>
-      </ul>
-      <p>Next: the 2-week waitlist window tells us if this is the app boat owners want. Meanwhile we start the content: winterize checklists, used-boat inspection guides, and the buying quiz that helps you pick the right boat in the first place.</p>
-    </div>
-
-    <div class="coming">
-      <h2>What's coming</h2>
-      <p>Phase 1 — the MVP: engine hours and fuel log, service history with intervals, reminders that fire on hours and seasons, spring/winterize checklists, works without a signal, 5 languages, free tier + $29 Pro.</p>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer class="site-footer site-footer--dark">
   <div class="container footer-grid">
     <div class="footer-col">
       <div class="footer-brand"><img src="../images/aftlog-logo.png" alt="AftLog"></div>
-      <p>Keeping your boat shipshape. Works without a signal. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+      <p>Keeping your boat shipshape. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
     </div>
     <div class="footer-col">
       <h4>Product</h4>
@@ -256,7 +209,7 @@
       <a href="https://portal.aftlog.com/portal/boats">Boat analytics</a>
     </div>
   </div>
-  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA. · Platform v1.111</div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. · Platform v1.111</div>
 </footer>
 
 </body>
