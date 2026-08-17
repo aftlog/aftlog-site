@@ -1425,6 +1425,48 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 49 — DEEPSEEK STEP 9: platform consolidation, architecture freeze, release manifest v1.111
+
+**Goal (DEEPSEEK block):** freeze the architecture, generate the Release
+Manifest + Integration Spec (single source of truth), verify all proxies
+and cross-system links, ensure zero client credentials, lock versions.
+No new features.
+
+**Deliverables (aftlog-site, pushed):**
+- **RELEASE-MANIFEST-v1.111.md** — the frozen architecture (AI pipeline:
+  App/Portal/Website → server proxy → Gemini; publisher pipeline; server-
+  only lifetime license manager; Portal DS = canonical with Website
+  aligned, App unchanged; routing per component), what's in v1.111 per
+  component, version lock (Portal/Server/Website v1.111; App internal
+  label v1.111 = app 1.108.6+153 — the app keeps its feature-based semver
+  per Decision #11, noted transparently), security freeze + SEO freeze
+  (both verified).
+- **INTEGRATION-SPEC.md** — single source of truth: every contract
+  (/ai/gemini body+headers+response, /admin/publish + GET count,
+  /admin/licenses lifetime-only, /ai/health + /status, website
+  integration incl. .html URL rule, app integration incl. portal URL +
+  APK probe rule, CORS).
+- **aftlog_server/README.md** — points at both docs + credentials table
+  + start script + route list.
+- Website footer: 'Platform v1.111' added (generator + index + updates,
+  regenerated).
+
+**Verification matrix (all green):**
+- Server: dart test 141 ✓ · portal_check.py ALL PASS ✓
+- Website: site_check.py ALL PASS (134 checks) ✓
+- App: flutter analyze clean · 429 tests + 2 known pre-existing ✓
+- Live proxies: /ai/gemini ok · /admin/publish count=5 · /admin/licenses
+  codes=3 · /ai/health online · /status v1.111 ai/pub True ✓
+- CORS: OPTIONS 204 · ACAO * on GET ✓
+- Forbidden-token audit: app lib 0 · build.sh only comments · site 0 ·
+  portal web/ 0 · server lib/ only the 2 proxy owners · APK probe (latest
+  1.108.6): AIza/GEMINI_API_KEY/generativelanguage/api.github.com all 0 ✓
+
+**Frozen state:** Portal v1.111 hub · Server v1.111 · Website v1.111 ·
+App 1.108.6 (platform label v1.111). Everything pushed.
+
+---
+
 ## 2026-08-17 — Session 48 — DEEPSEEK STEP 8: Portal Homepage v1.111 — the AftLog hub
 
 **Goal (DEEPSEEK block):** the Portal Homepage becomes the central entry

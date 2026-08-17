@@ -88,7 +88,7 @@ def footer() -> str:
       <a href="%PORTAL%/portal/boats">Boat analytics</a>
     </div>
   </div>
-  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA.</div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA. · Platform v1.111</div>
 </footer>""".replace("%PORTAL%", PORTAL)
 
 
