@@ -237,3 +237,15 @@
 .ai-block{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;font-size:14px}
 .ai-block ul{margin:6px 0 0;padding-left:18px}
 .ai-fb{border-left:3px solid #F5B041}
+
+/* ── STEP 8.10 Predictive Planner tool ────────────────────────────── */
+.pp-inputs{display:flex;gap:14px;flex-wrap:wrap}
+.pp-inputs label{flex:1;min-width:180px}
+.pp-head{font-weight:800;font-size:16px;margin:8px 0 12px}
+.pp-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.pp-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.pp-row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.pp-left strong{font-size:14px}
+.pp-sev{font-weight:800;font-size:12px}
+.pp-reason{color:var(--muted-light);font-size:12.5px;margin-top:6px;line-height:1.4}
+.fin{width:100%;max-width:200px;background:var(--bg);color:var(--text-light);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font:inherit;font-size:12px;margin-top:6px}

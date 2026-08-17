@@ -1407,6 +1407,26 @@ register(
 )
 
 
+register(
+    "tools/predictive-planner",
+    "Predictive Planner — Anticipate Maintenance",
+    "Predict upcoming maintenance from engine hours, logged services, and interval rules — with hours remaining, dates, and severity.",
+    hero("Predictive Planner",
+         "Anticipate what's next — from your engine hours, logged services, and interval rules.")
+    + '<section class="section section--light"><div class="container"><div class="fp-form">'
+    + '<p class="pg-muted">Enter current engine hours and avg hours/month, then the last-service hours/date per item. Everything is saved in this browser.</p>'
+    + '<div class="pp-inputs"><label class="pg-hint-label">Current engine hours<input id="pp-hours" class="fp-in" type="number" value="250"></label>'
+    + '<label class="pg-hint-label">Avg hours / month<input id="pp-avg" class="fp-in" type="number" value="20"></label></div>'
+    + '<div id="pp-head" class="pp-head">-</div>'
+    + '<div id="pp-list" class="pp-list"></div>'
+    + '<div class="fp-actions">'
+    + '<button class="btn btn-primary" onclick="ppExport()">Print / Save as PDF</button>'
+    + '<button class="btn btn-secondary" onclick="ppDownload()">Download .txt</button>'
+    + '</div></div></div></section>'
+    + '<script src="/tools/predictive-planner.js" defer></script>',
+)
+
+
 def write(path: str, content: str):
     f = ROOT / path
     f.parent.mkdir(parents=True, exist_ok=True)
