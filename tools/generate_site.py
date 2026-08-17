@@ -608,12 +608,53 @@ register("blog/lower-unit-service", "Lower-Unit Service Guide — When to Change
          active="/blog/")
 
 
+register("blog/spark-plug-intervals", "Outboard Spark Plug Intervals — When to Replace Them and Why It Matters", "Learn when to change outboard spark plugs, the symptoms of worn plugs, how intervals differ by engine type, and how AftLog tracks replacement schedules automatically.",
+         article("spark-plug-intervals", "Spark Plug Intervals Explained",
+                 "Spark plugs are small, inexpensive, and critical. Replacing them on schedule keeps your outboard starting easily, idling smoothly, and running at full power. Here's how often to change them — and how to spot trouble early.",
+                 "Maintenance", """<img class="blog-hero" src="/images/screen-spark-plugs.png" alt="Outboard ignition system diagram — spark plugs are part of the ignition system, which the guide covers" loading="lazy">
+      <p>Spark plugs are the unsung heroes of your outboard engine. They ignite the air-fuel mixture thousands of times per minute, under heat, pressure, vibration, and moisture. They're small, inexpensive, and easy to replace — yet they have a massive impact on how your engine starts, idles, accelerates, and performs under load.</p>
+      <p>Replacing spark plugs on schedule is one of the simplest ways to keep your outboard reliable. But many boat owners aren't sure how often to change them, what symptoms to watch for, or how plug wear affects engine performance. This guide explains when to replace spark plugs, why the interval matters, how to identify worn plugs, and what happens if you push them too far.</p>
+      <h2>Why Spark Plug Intervals Matter</h2>
+      <p>Spark plugs degrade over time due to heat cycles, carbon buildup, fuel quality, moisture exposure, electrode wear, oil fouling, and ethanol-related deposits. As plugs wear, they produce a weaker spark, which leads to:</p>
+      <ul class="pg-list"><li>Hard starting</li><li>Rough idle</li><li>Misfires</li><li>Poor acceleration</li><li>Reduced fuel economy</li><li>Lower top-end power</li><li>Increased emissions</li><li>Unburned fuel washing down the cylinder walls</li></ul>
+      <p>A $6 spark plug can prevent a $600 repair. That's why manufacturers specify strict replacement intervals — and why AftLog tracks them automatically based on your engine model and logged hours.</p>
+      <h2>Recommended Spark Plug Intervals</h2>
+      <p>Most outboard manufacturers follow similar guidelines: <strong>every 100 hours or once per season</strong>, whichever comes first. This applies to Mercury, Yamaha, Honda, Suzuki, Evinrude (legacy), and Tohatsu. But there are exceptions based on engine type.</p>
+      <h3>Two-Stroke vs. Four-Stroke Intervals</h3>
+      <p><strong>Two-stroke outboards</strong> burn oil with fuel, which creates more deposits — expect <strong>every 50–100 hours</strong>, and foul sooner if you troll a lot or idle at low RPM. <strong>Four-stroke outboards</strong> burn cleaner — <strong>every 100 hours</strong>. Some modern EFI engines can stretch to 200 hours, but only with perfect fuel quality and ideal running conditions.</p>
+      <h3>EFI vs. Carbureted Engines</h3>
+      <p><strong>Carbureted engines</strong> are more prone to rich mixtures, uneven fuel distribution, and carbon buildup — <strong>every 50–75 hours</strong>. <strong>EFI engines</strong> have more precise fuel control — <strong>every 100 hours</strong>.</p>
+      <h3>High-Performance or High-Load Use</h3>
+      <p>If you run long distances at WOT, tow tubes or skiers, carry heavy loads, run offshore, or operate in extreme heat, plugs wear faster — <strong>every 75 hours</strong>.</p>
+      <h2>Symptoms of Worn Spark Plugs</h2>
+      <p>Spark plug wear is gradual, but the symptoms are easy to spot once you know them:</p>
+      <ol class="pg-list"><li><strong>Hard starting</strong> — the engine cranks longer than usual or needs throttle to start.</li><li><strong>Rough idle</strong> — vibration, sputtering, or inconsistent RPM at idle.</li><li><strong>Misfires</strong> — a momentary stumble or hesitation when accelerating.</li><li><strong>Poor fuel economy</strong> — you burn more fuel to hold the same speed.</li><li><strong>Reduced power</strong> — the engine feels sluggish or struggles to reach top RPM.</li><li><strong>Black, sooty, or wet plugs</strong> — indicates fouling or a rich mixture.</li><li><strong>White or burned electrodes</strong> — indicates overheating or a lean mixture.</li><li><strong>Fuel smell at idle</strong> — unburned fuel from a weak spark.</li></ol>
+      <p>If you notice any of these, replace the plugs immediately — even if you haven't reached the hour interval.</p>
+      <h2>How to Inspect Spark Plugs</h2>
+      <p>Spark plug inspection is simple and takes 10 minutes.</p>
+      <ol class="pg-list"><li><strong>Remove one plug at a time</strong> — prevents mixing up the wires.</li><li><strong>Check color</strong> — healthy plugs are light tan, dry, and clean around the electrode.</li><li><strong>Check deposits</strong> — black soot means a rich mixture; wet or oily means fouling; white crust means overheating; metallic specks mean internal wear.</li><li><strong>Check the gap</strong> — with a feeler gauge; a widened gap means the plug is worn.</li><li><strong>Check threads and insulator</strong> — cracks or damage mean immediate replacement.</li></ol>
+      <h2>What Happens If You Don't Replace Spark Plugs</h2>
+      <ol class="pg-list"><li><strong>Weak spark</strong> — hard starting and rough idle begin.</li><li><strong>Misfires</strong> — acceleration becomes inconsistent.</li><li><strong>Fuel washdown</strong> — unburned fuel removes oil from the cylinder walls.</li><li><strong>Carbon buildup</strong> — deposits form on valves and pistons.</li><li><strong>Coil stress</strong> — ignition coils work harder and may fail.</li><li><strong>Engine damage</strong> — long-term misfires can damage rings and valves.</li></ol>
+      <p>A $6 plug can prevent a $300 coil failure or a $1,200 valve job.</p>
+      <h2>DIY vs. Professional Replacement</h2>
+      <p>Spark plug replacement is one of the easiest DIY tasks. You need a socket wrench, a spark plug socket, a feeler gauge, dielectric grease, and manufacturer-specified plugs. DIY is recommended if you're comfortable with basic tools, your engine is easily accessible, and you want to save money. Use a professional if plugs are hard to reach, you suspect deeper issues, plugs show abnormal wear, or you want a full tune-up.</p>
+      <h2>How AftLog Tracks Spark Plug Intervals</h2>
+      <p>AftLog automatically reads your engine model, applies manufacturer intervals, tracks your logged hours, reminds you when plugs are due, logs replacement dates, stores photos of plug condition, and notes symptoms that mean it's time to replace them early — keeping your ignition system healthy season after season.</p>
+      <h2>Checklist: Spark Plug Replacement</h2>
+      <ul class="pg-list"><li>Remove one plug at a time</li><li>Inspect color and deposits</li><li>Check the gap</li><li>Install the new plug</li><li>Apply dielectric grease</li><li>Torque to manufacturer spec</li><li>Reconnect the wire firmly</li><li>Log the replacement in AftLog</li></ul>
+      <h2>Summary</h2>
+      <p>Spark plugs are small but critical. Replacing them every 100 hours — or sooner for two-strokes and carbureted engines — keeps your outboard starting easily, idling smoothly, and running at full power. By watching for symptoms and inspecting plugs regularly, you can prevent misfires, fuel waste, and long-term engine damage.</p>
+      <p>AftLog tracks your intervals automatically — so you never miss a replacement.</p>""",
+                 '<li><a href="lower-unit-service.html">Lower-unit service: when and why</a></li><li><a href="outboard-oil.html">How often to change outboard oil</a></li><li><a href="winterize.html">How to winterize your boat</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
     ("How often to change outboard oil", "Intervals, why they matter, and how AftLog tracks them for you.", "Maintenance", "/blog/outboard-oil.html", "/images/screen-smp-plan.png"),
     ("Lower-unit service: when and why", "Gear oil, seals, and the simple checks that keep your lower unit alive.", "Maintenance", "/blog/lower-unit-service.html", "/images/screen-lower-unit.png"),
-    ("Spark plug intervals explained", "Why 200 hours is the rule, and the symptoms of worn plugs.", "Maintenance", None, None),
+    ("Spark plug intervals explained", "Why 200 hours is the rule, and the symptoms of worn plugs.", "Maintenance", "/blog/spark-plug-intervals.html", "/images/screen-spark-plugs.png"),
     ("Impeller replacement: symptoms and timing", "Weak tell-tale? It's usually the impeller. Here's when to change it.", "Maintenance", None, None),
     ("Battery care for small boats", "Charge, store, and check — batteries die in the off-season, not on the water.", "Maintenance", None, None),
     ("Boat safety equipment list", "What to carry on board — and how to check it before every launch.", "Safety", "/blog/safety-equipment.html", "/images/screen-portal-health.png"),
