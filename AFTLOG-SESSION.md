@@ -1425,6 +1425,41 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 61 — DEEPSEEK STEP 8.3: Float Plan (app + website)
+
+**Goal (block):** Float Plan tool — trip details, people aboard, vessel
+(from the Boat model), emergency contacts, inline safety-equipment
+checklist, notes, local storage + export/share, offline. No help-system / KB overlap.
+
+**App:** replaced the old basic FloatPlanScreen (single field + stub share)
+with the full spec — new `lib/models/float_plan.dart` (FloatPlan +
+FloatPerson + FloatPlanService with SharedPreferences JSON persistence of
+the last plan) and a rebuilt float_plan_screen.dart: vessel prefilled from
+the primary boat (name/reg-HIN/length), trip (from/to/eta), addable
+people + emergency contacts (name+phone rows), an INLINE safety-equipment
+checkbox checklist (8 items), notes, Save-on-device, and **Export /**
+**Share as PDF** via the existing PdfService (new renderFloatPlan /
+shareFloatPlan one-pager, reusing the pdf/printing pattern — no new
+deps). Offline, no cloud/analytics. _load() made exception-resilient for
+no-prefs/no-DB contexts. Tests: model round-trip + summary unit test, and
+a screen-structure widget test (+2). Full suite: 429 + 2 known
+pre-existing. App rebuilt **1.108.10+157** (md5 7dd5792e…).
+
+**⚠ Not yet installed:** the phone's USB disconnected mid-session (adb
+shows no devices), so 1.108.10 could not be pushed. APK is built + on
+repo; install on next USB connect.
+
+**Website:** /tools/float-plan.html — same fields, client-side localStorage
+save, Print/Save-as-PDF + Download .txt export, people/contacts rows,
+equipment checkboxes, notes. Standalone tool (no KB links). Tool checks
+added to site_check — ALL PASS (~210) + lint clean.
+
+**Note:** building the site generator's float-plan page hit repeated
+HTML-in-Python quoting issues — resolved by building the page HTML/JS as
+plain string constants + a runtime builder function (no embedding).
+
+---
+
 ## 2026-08-17 — Session 60 — DEEPSEEK STEP 8.2: Winterization Planner (app + website)
 
 **Goal (block):** Winterization Planner as a standalone tool — region-aw
