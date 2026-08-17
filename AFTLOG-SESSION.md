@@ -1425,6 +1425,34 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 64 — DEEPSEEK STEP 8.6: Calculators (app formalize + website)
+
+**Goal (block):** the app already ships 6 calculators (fuel burn, prop
+slip, tongue weight, anchor rode, voltage drop, oil mix) with real
+formulas; formalize/lock them, confirm wiring, and mirror them on the
+website with exact JS formula parity. No help/KB.
+
+**App (no behavior change):** confirmed the 6 calculators are wired at
+More → Tools (LiveCalcMixin, _CalcCard pattern, metric/imperial),
+including Oil Mix (already present). Added test/reference_data_test.dart
+locking the 5 reference_data formulas (fuelBurnEstimate, propSlip w/ 0-100
+clamp, tongueWeight, anchorRode, voltageDrop) with spot-check values —
+5 tests pass; full suite still 429 + 2 known. Analyzer clean. No rebuild.
+
+**Website:** /tools/calculators.html — all 6 calculators (fuel burn, prop
+slip, tongue weight, anchor scope, voltage drop, oil mix) with JS
+mirroring the Dart exactly (same constants 0.014/0.010/0.000507/0.017,
+same formulas + clamps), metric/imperial toggle, inputs clamped, outputs
+colour-coded green/yellow/red (slip <10/<20/≥20; voltage <3/<10/≥10;
+tongue pct <7/≤15/else; anchor scope ≥5 green; oil ratio 20-100 valid).
+site_check ALL PASS (~225), tools list now covers ramp-mode/calculators/
+buying-advisor. Lint clean.
+
+**Deploy:** behind the ongoing GitHub Pages outage (pushed + locally
+verified via formula grep + checks). App fine — no install needed for a
+test-only change.
+
+---
 ## 2026-08-17 — Session 63 — DEEPSEEK STEP 8.5: Ramp Mode (app + website)
 
 **Goal (block):** Ramp Mode — a simplified, big-button Launch/Retrieve
