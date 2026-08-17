@@ -1366,6 +1366,18 @@ help/website.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔜 SMOKE TEST LICENSE MANAGER (Louis, phone 1.108.2):** More →
+  License Manager (Dev) should now LIST codes from the dev server (via
+  adb reverse) and GENERATE new ones — no credential banner, no eternal
+  'Loading…'. If 'portal server unreachable' shows, the phone needs the
+  USB attached (adb reverse active) or the portal URL set to the dev
+  machine's LAN IP.
+- **🔜 VERIFY AI IS REAL (Louis, 30s):** Ask AftLog a question that needs
+  the real model; the GEMINI_API_KEY value was absent from every APK
+  since ~1.66 (offline-fallback suspicion). Also test Review Publisher
+  (GITHUB_TOKEN) once on the new build — both were embedded as short
+  dart-defines whose reliability is now in doubt (see Session 41).
+
 - **🔜 1.108.0 INSTALLED ON PHONE (08-17) — SMOKE TEST PENDING (Louis):** the
   Licensing Bundle release (Enter Pro Code / Pro Status / Link to Portal /
   Pro gating) is on the S23 Ultra (versionCode 147). Run: redeem a code
@@ -1394,6 +1406,71 @@ help/website.
 - **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
 - **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
 - **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-17 — Session 41 — License Manager fixed: server-side writer (CatchTales pattern)
+
+**Problem (Louis found on the phone):** License Manager (dev tool) showed
+'Admin credential not configured — dev build without AFTLOG_SA_JSON' at
+the top and 'Issued codes: Loading…' forever at the bottom.
+
+**Root cause (dug deep this session):**
+- The Block 6 design embedded the server's service-account JSON via the
+  AFTLOG_SA_JSON dart-define — wrong on two counts: (1) on-device
+  credentials contradict the app's own design ('no Firebase credentials
+  on-device by design'); (2) technically, the define NEVER survives the
+  Flutter 3.44 AOT pipeline. Verified three ways: probed libapp.so (key
+  present, value absent), the frontend_server log showed the complete
+  3172-char base64 define reaching the compiler while the produced kernel
+  resolved `String.fromEnvironment` to its DEFAULT (grep trace across
+  .dart_tool/flutter_build kernels), and finally an exact-command FES
+  repro that embedded defines for a standalone entry file but not for the
+  app's main.dart. Also confirmed the Gemini API key value is absent from
+  every APK since at least 1.66 — see the ⚠ cleanup item below.
+- Because the credential failed, `isConfigured` was false → the screen
+  showed the banner and `_refresh()` bailed early → eternal 'Loading…'.
+
+**Fix (aligned with CatchTales' dev-options → web admin pattern):** the
+server is the single writer for pro_licenses; the app's dev tool talks to
+the dev server over HTTP with a dev-key header — no credential in the APK.
+- Server (aftlog_server, pushed): LicenseService.issue() (12-char
+  unambiguous charset, writes the full doc) + listAll(); routes
+  POST/GET /admin/licenses gated by X-Aftlog-Dev-Key vs AFTLOG_DEV_KEY
+  env (lab default 'aftlog-dev', 403 otherwise). +6 tests → 119 green.
+- App (aftlog-app, pushed): AdminLicenseService reworked to call the
+  routes via the same portal URL PortalLinkService uses (the phone reaches
+  the dev machine with `adb reverse tcp:8080 tcp:8080` on USB);
+  firebase_admin_client.dart DELETED; build.sh no longer injects
+  AFTLOG_SA_JSON; screen shows 'portal server unreachable — is the dev
+  server running?' instead of the stale credential banner / eternal
+  loading. Analyzer clean, 430 tests (2 known pre-existing).
+
+**Live-verified:** server restarted; POST /admin/licenses → 403 without
+key, 200 + PRO-WMBT-D4TW-R9QP with it (yearly, issuedBy 'curl-smoke',
+written to real Firestore — a disposable test code Louis may delete).
+APK 1.108.2-dev (versionCode 149) chunk-pushed + installed (md5
+bd9eb45d… verified); adb reverse active on USB.
+
+**Louis: smoke test on the phone** (More → License Manager (Dev)): the
+list should load the curl-smoke code, and Generate should mint a new one
+straight into Firestore.
+
+**⚠ CLEANUP ITEMS (Louis):**
+1. **Gemini AI likely running on OFFLINE FALLBACK since ~1.66** — the
+   GEMINI_API_KEY value is absent from every APK probed (1.66.0-gemini →
+   1.108.0). Ask AftLog may never have hit the real model on device.
+   Same risk applies to GITHUB_TOKEN (Review Publisher). Both are SHORT
+   defines, so they may work (APP_VERSION=dev demonstrably does), but the
+   tooling evidence says define embedding is unreliable in Flutter 3.44.4
+   — worth a 30-second on-device check (AI answer that only the real
+   model would produce; Review Publisher publish) and, if broken, a
+   server-proxy or config-file mechanism instead.
+2. The disposable test code PRO-WMBT-D4TW-R9QP (yearly → 2027) lives in
+   real Firestore — delete from the Firestore console or via the License
+   Manager once the new build is confirmed.
+3. /tmp/defprobe, /tmp/envdump, /tmp/vbuild.log, /tmp/kerneltest left
+   from the investigation — safe to delete.
 
 ---
 
