@@ -1366,6 +1366,14 @@ help/website.
 
 ## ⚠️ REMINDERS FOR NEXT SESSION
 
+- **🔜 SMOKE TEST ASK AFLOG (Louis, phone 1.108.3):** More → Ask AftLog
+  should now return REAL Gemini answers through the server proxy (store the
+  Mercury bulletin question from the DEEPSEEK spec). USB-tethered for the
+  adb reverse. VEA (feature #106) falls back on its own when offline.
+- **🔜 Server env for AI:** the dev server must run with
+  AFTLOG_GEMINI_KEY (pass api/gemini) + AFTLOG_DEV_KEY. restartServer.sh
+  (if any) should include it; otherwise start it manually (see Session 42).
+
 - **🔜 SMOKE TEST LICENSE MANAGER (Louis, phone 1.108.2):** More →
   License Manager (Dev) should now LIST codes from the dev server (via
   adb reverse) and GENERATE new ones — no credential banner, no eternal
@@ -1406,6 +1414,62 @@ help/website.
 - **Versioning (Decision #11 AMENDED 2026-08-13):** minor = number of shipped features per `FEATURES.md` (currently 50 → **1.50.0+40**). `./build.sh` = patch+1 (1.50.1+41) · `./build.sh --feature` = minor+1, patch→0 (1.51.0+41) — MUST be used for new features with FEATURES.md updated first. Release builds signed with aftlog-release.keystore. Never raw flutter build.
 - **Diagram background inconsistency:** Motor = white, Boat/Lower Unit = dark navy, a few gray — Louis to standardize (app is dark `#0B0B0D`) if desired.
 - **Editor dropdown sync:** `tools/aftlog-diagram-editor.html` has a hardcoded symptom list — update when flows are added to `symptoms.dart`.
+
+---
+
+## 2026-08-17 — Session 42 — DEEPSEEK STEP 2: Gemini proxy — key moved to the server (CatchTales pattern)
+
+**Goal (DEEPSEEK block):** the Gemini API key and all direct Gemini calls
+leave the APK; Ask AftLog goes through the server, same pattern as the
+License Manager fix (Session 41).
+
+**Server (aftlog_server, pushed, 127 tests green +8):**
+- New lib/services/ai_proxy.dart — the Gemini client: reads
+  AFTLOG_GEMINI_KEY env (falls back to GEMINI_API_KEY so the portal's
+  photo-assist AI shares one key), model gemini-3.6-flash, 30s timeout,
+  text + vision (inline_data), AftLog assistant prompt authored SERVER-SIDE
+  (concise, 6 bullets, <150 words, safety first, boat + manual grounding,
+  page refs never long quotes). Response contract {ok, mode, answer,
+  details{truncated, finishReason}, error}. Any upstream failure →
+  ok:false + error:'gemini_unavailable'. Missing key → the route is
+  disabled (503 + gemini_unavailable) with a one-time clear startup warning.
+- POST /ai/gemini in handlers.dart — same X-Aftlog-Dev-Key gate as the
+  License Manager (AFTLOG_DEV_KEY env, lab default 'aftlog-dev'), accepts
+  {prompt, mode ask|diagnostic|planner, boat, manual, extra,
+  imageBase64, imageMimeType}. Privacy-safe logs: mode, lengths, image
+  flag, ok, latency — NEVER the key/prompt/answer.
+- 8 tests: 403 gate, key-missing contract, answer mapping, MAX_TOKENS→
+  truncated, vision payload, upstream failure, empty prompt 400, unknown
+  mode→ask.
+
+**App (aftlog-app, pushed, analyzer clean, 431 tests +2 known pre-existing):**
+- lib/services/ai_service.dart rewritten — NO _apiKey, NO dart-define, NO
+  Google URL: every ask() and analyzeImage() POSTs to <portal>/ai/gemini
+  with X-Aftlog-Dev-Key (same portal URL + key as the License Manager).
+  Error messages per spec: ok:false/gemini_unavailable → 'Ask AftLog is
+  temporarily offline — portal server or AI service unavailable.'; network
+  failure/timeout → 'Portal server unreachable — is the dev server running?'.
+  Truncated answers still surface for the 'continue' flow; VEA vision
+  returns null on failure (keeps its on-device path).
+- build.sh: GEMINI_API_KEY read/dart-define REMOVED entirely — the APK
+  can no longer carry the key.
+- PortalLinkService gained a debugPortalUrlOverride test seam.
+
+**Verified:**
+- APK binary probe: 0 × AIza, 0 × GEMINI_API_KEY, 0 × generativelanguage
+  (old direct URL) — clean; ai/gemini path present.
+- Server restarted with AFTLOG_GEMINI_KEY (pass api/gemini) +
+  AFTLOG_DEV_KEY: /ai/gemini 403 without key; LIVE call with key → 200
+  ok:true with a real boat-grounded Gemini answer (latency 21.6s).
+- APK 1.108.3-dev (versionCode 150) chunk-pushed + installed (md5
+  e9fb0013… verified); adb reverse tcp:8080 active.
+
+**Louis: smoke test on the phone** — More → Ask AftLog: real answers now
+come from the live proxy (the offline-fallback suspicion from Session 41
+is resolved — Gemini was confirmed NOT embedded before; it IS reachable
+via the server now). VEA still uses the on-device flow when the proxy is
+down. If 'Portal server unreachable' shows, ensure the phone is USB-tethered
+(adb reverse) or set the portal URL to the machine's LAN IP.
 
 ---
 
