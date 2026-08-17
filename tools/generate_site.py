@@ -1192,6 +1192,97 @@ register(
     CALCS_BODY,
 )
 
+
+def _vea_body():
+    js = """
+<script>
+(function () {
+  var DATA = null; var active = 0;
+  function load(){
+    fetch('/data/vea.json').then(function(r){ return r.json(); }).then(function(d){
+      DATA = d;
+      var sel = document.getElementById('vea-diagram');
+      (d.diagrams||[]).forEach(function(dg, i){
+        var o = document.createElement('option'); o.value = i; o.textContent = dg.title; sel.appendChild(o);
+      });
+      if((d.diagrams||[]).length) { paint(0); }
+    }).catch(function(){ var el=document.getElementById('vea-canvas'); if(el) el.textContent='Could not load diagram data.'; });
+  }
+  function paint(i){
+    var dg = DATA.diagrams[i];
+    var canvas = document.getElementById('vea-canvas');
+    var img = document.getElementById('vea-img');
+    img.src = dg.asset;
+    var iv = document.getElementById('vea-interactive');
+    iv.innerHTML = '';
+    (dg.hotspots||[]).forEach(function(h){
+      var s = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      s.setAttribute('viewBox','0 0 100 100'); s.setAttribute('preserveAspectRatio','none');
+      var el = document.createElementNS('http://www.w3.org/2000/svg', h.shape==='circle'?'circle':'rect');
+      if(h.shape==='circle'){ el.setAttribute('cx', h.x*100); el.setAttribute('cy', h.y*100); el.setAttribute('r', Math.max(h.w,h.h)*50); }
+      else { el.setAttribute('x', h.x*100); el.setAttribute('y', h.y*100); el.setAttribute('width', h.w*100); el.setAttribute('height', h.h*100); }
+      el.setAttribute('class','vea-hot');
+      el.addEventListener('click', function(){ return false; });
+      iv.appendChild(s); iv.lastChild.appendChild(el);
+      el.addEventListener('click', function(){ openSymptom(h); });
+      el.title = h.label;
+    });
+  }
+  function esc(x){ return (x||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function openSymptom(h){
+    var panel = document.getElementById('vea-panel');
+    var sym = DATA.symptoms[h.symptomKey];
+    var sev = sym ? (sym.severity||'info') : 'info';
+    var sevLabel = {info:'Info', attention:'ATTENTION', serious:'SERIOUS', stop:'STOP'}[sev] || sev;
+    var causes = '';
+    var cs = sym && sym.causes ? sym.causes : {};
+    Object.keys(cs).forEach(function(drive){
+      if((cs[drive]||[]).length){ causes += '<div class=\"vea-drive\">'+esc(drive)+'</div><ul>' + cs[drive].map(function(c){ return '<li>'+esc(c)+'</li>'; }).join('') + '</ul>'; }
+    });
+    panel.innerHTML =
+      '<div class=\"vea-sev vea-sev-'+sev+'\">'+esc(sevLabel)+'</div>' +
+      '<h3>'+esc(h.label)+'</h3>' +
+      (h.purpose ? '<p class=\"vea-purpose\">'+esc(h.purpose)+'</p>' : '') +
+      '<p class=\"vea-check\"><strong>Check:</strong> '+esc(h.check)+'</p>' +
+      (sym && sym.start ? '<div class=\"vea-block\"><strong>Start here:</strong> '+esc(sym.start)+'</div>' : '') +
+      (causes ? '<div class=\"vea-block\"><strong>Likely causes:</strong>'+causes+'</div>' : '') +
+      (sym && sym.ifNotResolved ? '<div class=\"vea-block vea-stuck\"><strong>If not resolved:</strong> '+esc(sym.ifNotResolved)+'</div>' : '') +
+      '<button type=\"button\" class=\"btn btn-secondary btn-sm\" onclick=\"closePanel()\">Close</button>';
+    panel.classList.add('open');
+  }
+  window.closePanel = function(){ document.getElementById('vea-panel').classList.remove('open'); };
+  document.addEventListener('DOMContentLoaded', load);
+  window.vSelect = function(i){ paint(+i); };
+})();
+</script>
+"""
+    body = (
+        hero("Visual Engine Assist",
+             "Tap a part on the engine to open its trouble-shooting flow — plain-language causes and what to check first.")
+        + '<section class="section section--light"><div class="container">'
+        + '<label class="pg-hint-label" for="vea-diagram">Choose a system</label>'
+        + '<select id="vea-diagram" class="pg-select" onchange="vSelect(this.value)"><option value="">Loading systems…</option></select>'
+        + '<div class="vea-stage">'
+        + '<div class="vea-canvas" id="vea-canvas"><img id="vea-img" alt="Engine diagram"><div id="vea-interactive" class="vea-hotzone"></div></div>'
+        + '<aside class="vea-panel" id="vea-panel"></aside>'
+        + '</div>'
+        + '<p class="pg-muted">Zoom with your browser/scroll. Tap a highlighted area to open its troubleshooting flow. Offline-friendly — nothing is uploaded.</p>'
+        + '</div></section>'
+        + js
+    )
+    return body
+
+
+VEA_BODY = _vea_body()
+
+
+register(
+    "tools/visual-engine-assist",
+    "Visual Engine Assist — Tap Any Engine Part",
+    "Interactive engine diagram: tap a part to open its plain-language troubleshooting flow with causes, severity, and next steps.",
+    VEA_BODY,
+)
+
 # ── Render ──────────────────────────────────────────────────────────────
 def write(path: str, content: str):
     f = ROOT / path

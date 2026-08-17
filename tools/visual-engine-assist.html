@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Visual Engine Assist — Tap Any Engine Part</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interactive engine diagram: tap a part to open its plain-language troubleshooting flow with causes, severity, and next steps.">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+<link rel="apple-touch-icon" href="/images/favicon-180.png">
+<meta property="og:title" content="Visual Engine Assist — Tap Any Engine Part">
+<meta property="og:description" content="Interactive engine diagram: tap a part to open its plain-language troubleshooting flow with causes, severity, and next steps.">
+<meta property="og:image" content="https://aftlog.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://aftlog.com/tools/visual-engine-assist">
+<link rel="stylesheet" href="/aftlog.css">
+<link rel="stylesheet" href="/aftlog-pages.css">
+<script>
+  (function(){ if (location.hash) history.replaceState(null, '', location.pathname + location.search); })();
+</script>
+</head>
+<body>
+<header class="site-header site-header--dark">
+  <div class="container header-inner">
+    <div class="logo"><a href="/"><img src="/images/aftlog-badge.png" alt="AftLog"></a></div>
+    <nav class="nav" aria-label="Main">
+      <a href="/">Home</a><a href="/features.html">Features</a><a href="/ai.html">AI</a><a href="/portal.html">Portal</a><a href="/pricing.html">Pricing</a><a href="/faq.html">FAQ</a><a href="/support.html">Support</a><a href="/blog/">Blog</a><a href="/updates/">Updates</a><a href="/#waitlist" class="btn btn-primary">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+<main class="pg-main">
+<section class="hero hero--dark pg-hero">
+  <div class="container hero-inner pg-hero-inner">
+    <div class="hero-text">
+      <div class="brand-block"><img class="hero-logo brand-logo" src="/images/aftlog-logo.png" alt="AftLog logo"><span class="kicker brand-slogan">Keeping your boat shipshape!</span></div>
+      <h1>Visual Engine Assist</h1>
+      <p>Tap a part on the engine to open its trouble-shooting flow — plain-language causes and what to check first.</p>
+    </div>
+  </div>
+</section><section class="section section--light"><div class="container"><label class="pg-hint-label" for="vea-diagram">Choose a system</label><select id="vea-diagram" class="pg-select" onchange="vSelect(this.value)"><option value="">Loading systems…</option></select><div class="vea-stage"><div class="vea-canvas" id="vea-canvas"><img id="vea-img" alt="Engine diagram"><div id="vea-interactive" class="vea-hotzone"></div></div><aside class="vea-panel" id="vea-panel"></aside></div><p class="pg-muted">Zoom with your browser/scroll. Tap a highlighted area to open its troubleshooting flow. Offline-friendly — nothing is uploaded.</p></div></section>
+<script>
+(function () {
+  var DATA = null; var active = 0;
+  function load(){
+    fetch('/data/vea.json').then(function(r){ return r.json(); }).then(function(d){
+      DATA = d;
+      var sel = document.getElementById('vea-diagram');
+      (d.diagrams||[]).forEach(function(dg, i){
+        var o = document.createElement('option'); o.value = i; o.textContent = dg.title; sel.appendChild(o);
+      });
+      if((d.diagrams||[]).length) { paint(0); }
+    }).catch(function(){ var el=document.getElementById('vea-canvas'); if(el) el.textContent='Could not load diagram data.'; });
+  }
+  function paint(i){
+    var dg = DATA.diagrams[i];
+    var canvas = document.getElementById('vea-canvas');
+    var img = document.getElementById('vea-img');
+    img.src = dg.asset;
+    var iv = document.getElementById('vea-interactive');
+    iv.innerHTML = '';
+    (dg.hotspots||[]).forEach(function(h){
+      var s = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      s.setAttribute('viewBox','0 0 100 100'); s.setAttribute('preserveAspectRatio','none');
+      var el = document.createElementNS('http://www.w3.org/2000/svg', h.shape==='circle'?'circle':'rect');
+      if(h.shape==='circle'){ el.setAttribute('cx', h.x*100); el.setAttribute('cy', h.y*100); el.setAttribute('r', Math.max(h.w,h.h)*50); }
+      else { el.setAttribute('x', h.x*100); el.setAttribute('y', h.y*100); el.setAttribute('width', h.w*100); el.setAttribute('height', h.h*100); }
+      el.setAttribute('class','vea-hot');
+      el.addEventListener('click', function(){ return false; });
+      iv.appendChild(s); iv.lastChild.appendChild(el);
+      el.addEventListener('click', function(){ openSymptom(h); });
+      el.title = h.label;
+    });
+  }
+  function esc(x){ return (x||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function openSymptom(h){
+    var panel = document.getElementById('vea-panel');
+    var sym = DATA.symptoms[h.symptomKey];
+    var sev = sym ? (sym.severity||'info') : 'info';
+    var sevLabel = {info:'Info', attention:'ATTENTION', serious:'SERIOUS', stop:'STOP'}[sev] || sev;
+    var causes = '';
+    var cs = sym && sym.causes ? sym.causes : {};
+    Object.keys(cs).forEach(function(drive){
+      if((cs[drive]||[]).length){ causes += '<div class="vea-drive">'+esc(drive)+'</div><ul>' + cs[drive].map(function(c){ return '<li>'+esc(c)+'</li>'; }).join('') + '</ul>'; }
+    });
+    panel.innerHTML =
+      '<div class="vea-sev vea-sev-'+sev+'">'+esc(sevLabel)+'</div>' +
+      '<h3>'+esc(h.label)+'</h3>' +
+      (h.purpose ? '<p class="vea-purpose">'+esc(h.purpose)+'</p>' : '') +
+      '<p class="vea-check"><strong>Check:</strong> '+esc(h.check)+'</p>' +
+      (sym && sym.start ? '<div class="vea-block"><strong>Start here:</strong> '+esc(sym.start)+'</div>' : '') +
+      (causes ? '<div class="vea-block"><strong>Likely causes:</strong>'+causes+'</div>' : '') +
+      (sym && sym.ifNotResolved ? '<div class="vea-block vea-stuck"><strong>If not resolved:</strong> '+esc(sym.ifNotResolved)+'</div>' : '') +
+      '<button type="button" class="btn btn-secondary btn-sm" onclick="closePanel()">Close</button>';
+    panel.classList.add('open');
+  }
+  window.closePanel = function(){ document.getElementById('vea-panel').classList.remove('open'); };
+  document.addEventListener('DOMContentLoaded', load);
+  window.vSelect = function(i){ paint(+i); };
+})();
+</script>
+
+</main>
+<footer class="site-footer site-footer--dark">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="logo"><img src="/images/aftlog-badge.png" alt="AftLog"></div>
+      <p>Keeping your boat shipshape. Works without a signal. Boat maintenance &amp; logbook app for Canada &amp; USA.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="/features.html">Features</a>
+      <a href="/ai.html">AftLog AI</a>
+      <a href="/pricing.html">Pricing — lifetime Pro</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="/blog/">Blog</a>
+      <a href="/support.html">Support</a>
+      <a href="/updates/">Updates</a>
+      <a href="/#waitlist">Waitlist</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Portal</h4>
+      <a href="https://portal.aftlog.com/login">Portal login</a>
+      <a href="https://portal.aftlog.com/portal/">Portal dashboard</a>
+      <a href="https://portal.aftlog.com/portal/year-in-review">Year in Review</a>
+      <a href="https://portal.aftlog.com/portal/boats">Boat analytics</a>
+    </div>
+  </div>
+  <div class="container footer-note">AftLog — keeping your boat shipshape. Designed for pleasure craft and fishing boats in Canada + USA. · Platform v1.111</div>
+</footer>
+</body>
+</html>
