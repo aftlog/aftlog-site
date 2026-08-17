@@ -1425,6 +1425,33 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 66 — DEEPSEEK STEP 8.8: AI Diagnostics (app + website)
+
+**Goal (block):** guided, offline-first diagnostic assistant — structured
+symptom inputs + optional local photo, resolved against the decision-flow
+data (the same engine as VEA). No help/KB.
+
+**App:** lib/models/ai_diagnostic.dart (data model + AiDiagnosticService
+local JSON + resolve() using symptoms.dart helpers: severityFor,
+causesFor, fixesFor, fallbackFor, startFor per drive) and
+lib/screens/tools/ai_diagnostics_screen.dart — symptom selector (all
+symptoms keys), drive selector, optional photo via image_picker copied to
+app docs (local-only), 6 structured question fields (when/conditions/
+sounds/smells/vibrations/recentWork), live severity badge + likely causes
++ next steps + if-not-resolved panel, Save + PDF share
+(PdfService.shareAiDiagnostic). Wired at More → Tools. Offline, no
+analytics/cloud. 3 tests (resolve Overheating/outboard, graceful unknown,
+JSON round-trip). Analyzer clean. App built **1.108.13+160** — install
+still pending (phone disconnected since Session 61).
+
+**Website:** /tools/ai-diagnostics.html — symptom + drive selector,
+structured questions, **local-only photo** (FileReader preview), severity
+badge, likely causes / next steps / if-not-resolved from the same
+symptom data, localStorage save, Print/PDF + .txt export. vea.json
+extended to include `fixes` (next steps). site_check ALL PASS (~235),
+tools list extended, lint clean. Deploy behind the GitHub Pages outage.
+
+---
 ## 2026-08-17 — Session 65 — DEEPSEEK STEP 8.7: Visual Engine Assist (app confirm + website)
 
 **Goal (block):** interactive engine diagram — tap a hotspot to open its
