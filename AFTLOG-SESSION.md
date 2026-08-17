@@ -2,7 +2,7 @@
 
 > Read `AFTLOG-CODING-STANDARDS.md` + `DECISIONS.md` first every session.
 
-- **📸 BLOG SERIES (1/13 → 11/13 done 2026-08-17) — IMAGE TRACKER for Louis:**
+- **📸 BLOG SERIES — ALL 13/13 DONE 2026-08-17 — IMAGE TRACKER for Louis:**
   Blog articles are being added with `/images/screen-*.<ext>` screenshots. Where
   no real photo exists yet I used an on-brand app diagram as a stand-in. List of
   images still needing Louis's real photo (drop-in at `/images/`, trivial swap):
@@ -24,6 +24,11 @@
     Used-Boat Inspection checklist screenshot.
   - `screen-spring-prep.png` — generic app-screen **stand-in**; needs REAL
     spring-prep (boater at engine/battery/safety-gear) photo/screenshot.
+  - `screen-fall-haul-out.png` — generic app-screen **stand-in**; needs REAL
+    hauled-out / winterized boat photo.
+  - `screen-fuel-storage.png` — fuel-system diagram (acceptable); needs REAL
+    fuel tank / stabilizer-bottle / adding-stabilizer photo if Louis prefers.
+  FINAL IMAGE LIST delivered to Louis below.
   Acceptable as-is (good on-brand diagrams): `screen-lower-unit.png` (gearcase),
   `screen-impeller.png` (water-pump housing). Will re-list all at end of the 13.
 

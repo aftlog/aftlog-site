@@ -973,6 +973,71 @@ register("blog/spring-prep-getting-your-boat-ready", "Spring Boat Prep Guide —
          active="/blog/")
 
 
+register("blog/fall-haul-out-checklist", "Fall Boat Haul-Out Checklist — Winterization, Engine Care, and Storage Prep", "A complete fall haul-out guide covering winterization, engine protection, fuel stabilization, lower-unit care, battery storage, and trailer preparation.",
+         article("fall-haul-out-checklist", "Fall Haul-Out Checklist",
+                 "Fall haul-out is the most important maintenance moment of the year. Here's the complete checklist for winterizing your boat, protecting your engine, and storing everything safely until spring.",
+                 "Seasonal Prep", """<img class="blog-hero" src="/images/screen-fall-haul-out.png" alt="AftLog app (placeholder for fall haul-out — to be replaced with a haul-out/winterization photo)" loading="lazy">
+      <p>Fall haul-out is the single most important maintenance moment of the year. Winter is hard on boats — freezing temperatures, moisture, fuel degradation, and long periods of inactivity can damage engines, batteries, and hull components. A proper haul-out protects your investment and ensures your boat is ready for a trouble-free spring.</p>
+      <p>AftLog includes seasonal reminders, maintenance intervals, and structured checklists that make fall haul-out predictable and stress-free. This guide expands on those tools, giving you a complete, step-by-step process to prepare your boat for winter.</p>
+      <h2>Why Fall Haul-Out Matters</h2>
+      <p>Winter can damage engines, lower units, cooling systems, batteries, fuel systems, electrical connections, the hull and transom, and trailer components. A structured haul-out prevents freeze damage, corrosion, fuel separation, battery failure, lower-unit water intrusion, mold and mildew, and rodent damage. Fall is your chance to reset the boat, protect every system, and start next season fresh.</p>
+      <h2>Part 1 — Final Fall Trip and Ramp Retrieval</h2>
+      <p>Before winterization, take a final trip to burn off old fuel, listen for unusual noises, check tell-tale strength, verify charging voltage, and note any issues for spring service. Then retrieve using AftLog's Retrieve Mode — bow line tied, fenders on, key out, kill-switch lanyard off, battery switch off, drain plug out, straps on, winch hooked, back it out slowly.</p>
+      <h2>Part 2 — Drain Water and Moisture</h2>
+      <ol class="pg-list"><li><strong>Remove the drain plug</strong> — let the hull drain completely.</li><li><strong>Tilt the engine down</strong> — drains the cooling passages, lower unit, and exhaust housing.</li><li><strong>Drain livewells and bait tanks</strong> — remove plugs and let them dry.</li><li><strong>Drain the bilge</strong> — use the bilge pump if needed.</li><li><strong>Remove wet gear</strong> — coolers, ropes, anchors, and life jackets should dry before storage.</li></ol>
+      <h2>Part 3 — Engine Winterization</h2>
+      <ol class="pg-list"><li><strong>Stabilize the fuel</strong> — add marine fuel stabilizer and run for 5–10 minutes to circulate it.</li><li><strong>Fog the engine</strong> (two-stroke and some four-stroke) — fogging oil protects internal components from corrosion.</li><li><strong>Change engine oil</strong> (four-stroke) — fall is best: contaminants removed, fresh oil sits all winter, moisture minimized.</li><li><strong>Replace the oil filter</strong> — always with the oil.</li><li><strong>Change lower-unit gear oil</strong> — look for milky oil, metal flakes, or a burnt smell; changing in fall prevents freeze damage.</li><li><strong>Inspect the prop</strong> — bent blades, chips, or fishing line around the shaft (remove line — it cuts seals).</li><li><strong>Grease all fittings</strong> — steering pivot, tilt tube, prop shaft, throttle linkage.</li><li><strong>Check the thermostat</strong> — replace every 3–5 years.</li><li><strong>Inspect the impeller</strong> — replace if it's been 2–3 years.</li></ol>
+      <h2>Part 4 — Fuel System Protection</h2>
+      <p>Add fuel stabilizer (prevents ethanol separation), top up the tank (a full tank reduces condensation), inspect fuel lines for cracks or stiffness, replace the fuel filter (fall is the best time), and check the primer bulb (should be firm).</p>
+      <h2>Part 5 — Battery Storage</h2>
+      <p>Most battery failures happen during winter. Fully charge the battery with a smart charger, disconnect the terminals to prevent parasitic drain, remove the battery and store indoors if possible, use a smart maintainer, and check voltage monthly (healthy resting is 12.6–12.8V).</p>
+      <h2>Part 6 — Electrical System</h2>
+      <p>Inspect wiring for cracked insulation, rodent damage, or corrosion; test electronics (GPS, fish finder, radio, lights); and remove sensitive electronics to store indoors.</p>
+      <h2>Part 7 — Interior and Hull Protection</h2>
+      <p>Clean the interior to remove dirt, moisture, and debris; remove food and scented items to prevent rodent attraction; inspect the hull for cracks or damage; wash and wax the hull (wax protects gelcoat during winter); and dry all compartments to prevent mold.</p>
+      <h2>Part 8 — Trailer Inspection</h2>
+      <p>Inspect the tires for cracks and proper pressure, grease the bearings, inspect the lights (wiring and bulbs), inspect the winch strap (replace if frayed), inspect the bunks (carpet and wood), and inspect the safety chains to ensure they're secure.</p>
+      <h2>Part 9 — Covering and Storage</h2>
+      <ol class="pg-list"><li>Use a proper boat cover — avoid cheap tarps that trap moisture.</li><li>Support the cover — prevent pooling.</li><li>Ventilate — moisture causes mold.</li><li>Store indoors if possible — best protection.</li><li>If storing outdoors — use shrink-wrap or a high-quality cover.</li></ol>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog provides seasonal reminders, maintenance intervals, haul-out checklists, battery-care guidance, engine-service tracking, photo logs, and safety-gear checklists — so fall haul-out becomes structured, predictable, and stress-free.</p>
+      <h2>Summary</h2>
+      <p>Fall haul-out is the foundation of a safe, reliable spring launch. By winterizing your engine, stabilizing fuel, draining water, protecting your battery, inspecting your trailer, and covering your boat properly, you prevent freeze damage, corrosion, and costly repairs. A well-prepared boat sleeps safely all winter — and wakes up ready for spring.</p>""",
+                 '<li><a href="fuel-storage-best-practices.html">Fuel storage best practices</a></li><li><a href="spring-prep-getting-your-boat-ready.html">Spring prep: getting your boat ready</a></li><li><a href="winterize.html">How to winterize your boat</a></li>'),
+         active="/blog/")
+
+register("blog/fuel-storage-best-practices", "Boat Fuel Storage Best Practices — Prevent Ethanol Damage, Water Contamination, and Winter Degradation", "Learn how to store boat fuel safely, prevent ethanol separation, avoid water contamination, protect your engine over winter, and ensure reliable spring starts.",
+         article("fuel-storage-best-practices", "Fuel Storage Best Practices",
+                 "Fuel is the lifeblood of your engine — but it degrades quickly when stored. Here's how to store boat fuel properly, prevent ethanol problems, and keep your engine safe through winter.",
+                 "Seasonal Prep", """<img class="blog-hero" src="/images/screen-fuel-storage.png" alt="Fuel system diagram — tank, lines, and stabilizer for safe fuel storage" loading="lazy">
+      <p>Fuel is the lifeblood of your outboard engine. But gasoline — especially ethanol-blended fuel — degrades quickly when stored. Over time, fuel absorbs moisture, separates, forms varnish, and loses volatility. Poor fuel storage is one of the most common causes of hard starting, rough idle, stalling, and springtime engine trouble.</p>
+      <p>Whether you're storing your boat for winter, keeping fuel in portable tanks, or managing fuel for a full season, proper storage protects your engine and prevents expensive repairs. This guide explains how fuel degrades, how to store it safely, how to prevent ethanol problems, and how AftLog helps you track fuel health.</p>
+      <h2>Why Fuel Storage Matters</h2>
+      <p>Gasoline begins degrading within 30–60 days, especially ethanol blends (E10). As fuel ages it suffers <strong>moisture absorption</strong> (ethanol attracts water, causing phase separation, corrosion, poor combustion, stalling, and injector damage), <strong>phase separation</strong> (a water-ethanol layer at the tank bottom and a low-octane layer above — engines draw from the bottom, the worst part), <strong>varnish formation</strong> (sticky deposits that clog carburetors, injectors, fuel pumps, and filters), <strong>loss of volatility</strong> (hard starting, rough idle, misfires), and <strong>corrosion</strong> in tanks, lines, fittings, and carburetor bowls.</p>
+      <h2>Part 1 — Choosing the Right Fuel</h2>
+      <p>Most boaters use <strong>E10</strong> because it's widely available, but it requires careful storage. <strong>Non-ethanol marine fuel</strong>, when available, is ideal for long-term storage, small outboards, carbureted engines, and seasonal boats. On octane: use what your engine manufacturer recommends — freshness matters more than octane.</p>
+      <h2>Part 2 — Fuel Stabilizer: Your Best Defense</h2>
+      <p>Stabilizer is essential for any fuel stored longer than 30–60 days. It slows oxidation, prevents phase separation, reduces moisture absorption, protects injectors and carburetors, and keeps fuel fresh for 6–12 months. Add it before winter storage, before storing portable tanks, before long periods of inactivity, or whenever fuel may sit more than 60 days. Add stabilizer, fill with fresh fuel, then run the engine 5–10 minutes so treated fuel reaches the carburetor, injectors, and fuel pump.</p>
+      <h2>Part 3 — Storing Fuel in Boat Tanks</h2>
+      <ol class="pg-list"><li>Fill the tank 90–95% full — reduces condensation; leave a small air gap for expansion.</li><li>Add stabilizer — treat the entire tank.</li><li>Run the engine — circulate stabilized fuel.</li><li>Close the tank vent (if safe) — check manufacturer guidance.</li><li>Inspect the tank — corrosion, leaks, loose fittings, cracked hoses.</li><li>Store the boat level — prevents water pooling in the tank.</li></ol>
+      <h2>Part 4 — Storing Fuel in Portable Tanks</h2>
+      <p>Portable tanks need special care: empty or fill them entirely (never half-full — half-full promotes condensation), store indoors to avoid temperature swings, use stabilizer on all portable fuel, inspect the cap seal (a damaged seal lets moisture in), check the primer bulb (replace if cracked or soft), and safely dispose of fuel older than 6–12 months.</p>
+      <h2>Part 5 — Fuel Lines and Filters</h2>
+      <p>Fuel lines degrade over time, especially with ethanol. Inspect for cracks, stiffness, leaks, soft spots, or discoloration. Replace fuel filters annually (fall is best), check the primer bulb (firm when squeezed), and inspect the tank vent (clear and functioning).</p>
+      <h2>Part 6 — Carbureted Engines vs. EFI Engines</h2>
+      <p>Carbureted engines are more sensitive to old fuel — varnish forms in jets, bowls, and floats, so drain carburetors before long-term storage. EFI engines are more tolerant, but injectors can still clog, so stabilizer is essential.</p>
+      <h2>Part 7 — Winter Storage: The Complete Process</h2>
+      <ol class="pg-list"><li>Add stabilizer — treat the entire tank.</li><li>Fill the tank 90–95% — minimize condensation.</li><li>Run the engine — circulate stabilized fuel.</li><li>Replace the fuel filter — remove contaminants.</li><li>Inspect fuel lines — replace if cracked.</li><li>Store the boat level — prevent water pooling.</li><li>Check portable tanks — treat or empty them.</li></ol>
+      <h2>Part 8 — Spring Fuel Preparation</h2>
+      <ol class="pg-list"><li>Inspect fuel — look for water or cloudiness.</li><li>Check the filter — replace if needed.</li><li>Check the primer bulb — should be firm.</li><li>Add fresh fuel — dilute any remaining winter fuel.</li><li>Start the engine on muffs — verify smooth idle and strong tell-tale.</li></ol>
+      <h2>How AftLog Helps</h2>
+      <p>AftLog provides seasonal reminders, fuel-system maintenance intervals, checklists for fall haul-out and spring prep, photo logs of fuel filters and lines, notes for fuel type and stabilizer use, and alerts for symptoms of fuel degradation.</p>
+      <h2>Summary</h2>
+      <p>Fuel storage is one of the most important — and most overlooked — parts of boat maintenance. By using stabilizer, filling tanks properly, inspecting fuel lines, replacing filters, and storing fuel correctly, you prevent ethanol problems, water contamination, and springtime engine trouble. Fresh fuel means a fresh start every season.</p>""",
+                 '<li><a href="fall-haul-out-checklist.html">Fall haul-out checklist</a></li><li><a href="spring-prep-getting-your-boat-ready.html">Spring prep: getting your boat ready</a></li><li><a href="winterize.html">How to winterize your boat</a></li>'),
+         active="/blog/")
+
+
 BLOG_ARTICLES = [
     ("How to winterize your boat", "A step-by-step winterization plan — fuel, engine, water systems, battery, and cover.", "Maintenance", "/blog/winterize.html", "/images/screen-app-dashboard.png"),
     ("Boat maintenance checklist for beginners", "The 12 checks every new owner should know before launching.", "Maintenance", "/blog/beginner-checklist.html", "/images/screen-app-checklists.png"),
@@ -989,8 +1054,8 @@ BLOG_ARTICLES = [
     ("Retrieve checklist: avoid trailer mistakes", "The five-minute routine that prevents ramp-day damage.", "Checklists", "/blog/retrieve-checklist.html", "/images/screen-retrieve-mode.png"),
     ("Used-boat inspection checklist", "The 13-section walkthrough that helps you buy with confidence.", "Checklists", "/blog/used-boat-inspection.html", "/images/screen-used-boat.png"),
     ("Spring prep: getting your boat ready", "De-winterize, inspect, and launch right the first time.", "Seasonal prep", "/blog/spring-prep-getting-your-boat-ready.html", "/images/screen-spring-prep.png"),
-    ("Fall haul-out checklist", "The off-season routine that makes spring easy.", "Seasonal prep", None, None),
-    ("Fuel storage best practices", "Stabilizer, full tanks, and why ethanol needs a plan.", "Seasonal prep", None, None),
+    ("Fall haul-out checklist", "The off-season routine that makes spring easy.", "Seasonal prep", "/blog/fall-haul-out-checklist.html", "/images/screen-fall-haul-out.png"),
+    ("Fuel storage best practices", "Stabilizer, full tanks, and why ethanol needs a plan.", "Seasonal prep", "/blog/fuel-storage-best-practices.html", "/images/screen-fuel-storage.png"),
     ("How AftLog's AI assistant works", "Diagnostics, manual extraction, photo analysis, and predictive alerts.", "AI & Portal", "/ai.html", "/images/screen-vea-result.png"),
     ("Understanding your Boat Health Score", "What the 0-100 score means and how to raise it.", "AI & Portal", "/portal.html", "/images/screen-portal-year.png"),
     ("Year in Review: making sense of your season", "Trips, hours, fuel, and milestones — your season at a glance.", "AI & Portal", "/portal.html", "/images/screen-portal-year.png"),
