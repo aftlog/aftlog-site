@@ -1425,6 +1425,32 @@ help/website.
 
 ---
 
+## 2026-08-17 — Session 67 — DEEPSEEK STEP 8.9: Ask AftLog (app + website)
+
+**Goal (block):** the app already had the Ask AftLog chat (AI proxy +
+canned offline). STEP 8.9 wants a grounding engine + offline local answers
++ conversation persistence/export. No help/KB merge.
+
+**App:** built **AskGrounding** (lib/services/ask_grounding.dart) — a local
+intent engine: classify a query (troubleshooting via symptoms.dart
+decision flows / help topics via help_content / calculators via
+reference_data / checklists / planner rules / general) and return grounded
+answers + 3 follow-up suggestions. Wired into assistant_screen as the
+OFFLINE path (a grounded local intent is answered locally, saving a free
+AI ask; otherwise AI, then local fallback). Added conversation persistence
+(SharedPreferences JSON) + restore + **share conversation as PDF**
+(PdfService.shareConversation) + tappable suggestion chips. 6 grounding
+tests. Analyzer clean. App built **1.108.14+161** (install still pending —
+phone disconnected since Session 61; 6 APKs queued).
+
+**Website:** /tools/ask-aftlog.html + a separate tools/ask-aftlog.js
+grounding engine (mirrors the app: troubleshooting / checklists /
+winterization / calculators / planner / launch), chat UI, local-only photo,
+localStorage conversation, export .txt. Built JS as an external file (the
+HTML-in-Python embedding kept breaking on quotes — the same recurring
+trap). site_check ALL PASS (~240), tools list extended, lint clean.
+
+---
 ## 2026-08-17 — Session 66 — DEEPSEEK STEP 8.8: AI Diagnostics (app + website)
 
 **Goal (block):** guided, offline-first diagnostic assistant — structured
