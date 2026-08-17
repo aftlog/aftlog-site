@@ -1081,6 +1081,117 @@ register(
     RM_BODY,
 )
 
+
+def _calculators_body():
+    imports = (
+        '<section class="section section--light"><div class="container">'
+        '<p class="pg-muted">Same formulas as the AftLog app. Metric-first with imperial conversions. Inputs are clamped to safe ranges; results are colour-coded.</p>'
+        '<div class="cal-toggle"><button type="button" class="btn btn-sm cal-unit on" data-u="metric">Metric</button>'
+        '<button type="button" class="btn btn-sm cal-unit" data-u="imperial">Imperial</button></div>'
+    )
+    def card(idnum, name, desc, fields_html, out_id):
+        head = '<article class="cal-card" id="cal-%d"><h2>%d. %s</h2><p class="pg-muted">%s</p>' % (
+            idnum, idnum, name, desc)
+        return head + fields_html + '<div class="cal-out" id="%s">—</div></article>' % (out_id)
+    f_fuel = ('<div class="cal-fields"><label>Horsepower<input id="fu_hp" type="number" value="150" min="1"></label>'
+              '<label>Throttle fraction (0-1, cruise ~0.7)<input id="fu_t" type="number" value="0.7" step="0.05" min="0.1" max="1"></label>'
+              '<label class="cal-check"><input id="fu_2s" type="checkbox">2-stroke</label></div>')
+    f_slip = ('<div class="cal-fields"><label>Speed <span data-uf="kmh">km/h</span><input id="sl_sp" type="number" value="40"></label>'
+              '<label>RPM<input id="sl_rpm" type="number" value="4000"></label>'
+              '<label>Prop pitch (inches)<input id="sl_p" type="number" value="19"></label></div>')
+    f_tongue = ('<div class="cal-fields"><label>Total weight <span data-uf="kg">kg</span><input id="tw_w" type="number" value="1000"></label>'
+                '<label>Percentage (approx. 10)<input id="tw_p" type="number" value="10" min="1" max="20"></label></div>')
+    f_anchor = ('<div class="cal-fields"><label>Water depth <span data-uf="m">m</span><input id="an_d" type="number" value="6"></label>'
+                '<label>Bow height <span data-uf="m">m</span><input id="an_b" type="number" value="1.5"></label>'
+                '<label>Scope ratio (e.g., 5:1)<input id="an_s" type="number" value="5" min="2" max="10"></label></div>')
+    f_volt = ('<div class="cal-fields"><label>Run length <span data-uf="m">m</span><input id="vo_l" type="number" value="10"></label>'
+              '<label>Amps<input id="vo_a" type="number" value="15"></label>'
+              '<label>Cable size <span data-uf="mm2">mm²</span><input id="vo_c" type="number" value="2.5" min="0.1"></label></div>')
+    f_oil = ('<div class="cal-fields"><label>Ratio (e.g., 50:1)<input id="oi_r" type="number" value="50" min="20" max="100"></label>'
+             '<label>Fuel <span data-uf="L">L</span><input id="oi_f" type="number" value="20"></label></div>')
+
+    body = (
+        hero("Calculators", "Quick, grounded boating math — the same formulas as the AftLog app.")
+        + imports
+        + card(1, "Fuel burn", "How much fuel an engine uses at a given throttle.",
+               f_fuel, "out-fuel")
+        + card(2, "Prop slip", "How much propeller efficiency you're losing at speed (lower is better).",
+               f_slip, "out-slip")
+        + card(3, "Tongue weight", "The target trailer tongue weight for safe towing.",
+               f_tongue, "out-tongue")
+        + card(4, "Anchor scope", "How much rode (line) you need for a given depth and scope.",
+               f_anchor, "out-anchor")
+        + card(5, "Voltage drop", "Approx. voltage loss over a cable run (keep under 3 V).",
+               f_volt, "out-volt")
+        + card(6, "Oil mix (2-stroke premix)", "How much oil to add for a 2-stroke fuel mix.",
+               f_oil, "out-oil")
+        + '</section>'
+    )
+    # JS appended separately in _calculators_body return
+    global _CALC_JS
+    _CALC_JS = r"""
+<script>
+(function () {
+  var unit = 'metric';
+  function $(id){ return document.getElementById(id); }
+  function n(v){ return (isNaN(v)?0:v); }
+  function setOut(id, txt, level){ var o=$(id); if(o){ o.textContent=txt; o.className='cal-out'+(level?' '+level:''); } }
+  function U(m, im){ return unit==='metric' ? m : im; }
+  // metrics: which span shows m or im
+  function paintUnits(){
+    var map = {kmh:['km/h','mph'], kg:['kg','lb'], m:['m','ft'], mm2:['mm²','AWG'], L:['L','US gal']};
+    document.querySelectorAll('[data-uf]').forEach(function(s){ var k=s.dataset.uf; if(map[k]) s.textContent = unit==='metric'?map[k][0]:map[k][1]; });
+    Array.prototype.forEach.call(document.querySelectorAll('.cal-unit'), function(b){ b.classList.toggle('on', b.dataset.u===unit); });
+  }
+  function compute(){
+    var hp = n($('fu_hp').value), t = Math.min(1, Math.max(0.05, n($('fu_t').value))), two = $('fu_2s').checked;
+    var lhr = hp * (two?0.014:0.010) * t;
+    setOut('out-fuel', (unit==='metric'? lhr.toFixed(1)+' L/hr' : (lhr/3.785).toFixed(1)+' gal/hr'), '');
+
+    var sp = n($('sl_sp').value), rpm = n($('sl_rpm').value), pt = n($('sl_p').value);
+    var tsp = unit==='metric'? sp : sp*1.60934;
+    var theo = rpm*pt*0.000507; var slip = theo<=0?0:Math.max(0,Math.min(100,(1-tsp/theo)*100));
+    setOut('out-slip', slip.toFixed(1)+'%', slip<10?'green':slip<20?'yellow':'red');
+
+    var w = n($('tw_w').value), p = n($('tw_p').value);
+    var tw = w*p/100;
+    setOut('out-tongue', (unit==='metric'? tw.toFixed(0)+' kg':' (metric '+(tw/2.2046).toFixed(0)+')')+' → target ≈ '+(unit==='metric'? (tw).toFixed(0): (tw/2.2046).toFixed(0))+' lb', p<7?'red':p<=15?'green':'yellow');
+
+    var d = n($('an_d').value), bh = n($('an_b').value), s = n($('an_s').value);
+    var rodeM = (d+bh)*s;
+    setOut('out-anchor', U(rodeM.toFixed(1)+' m', (rodeM*3.2808).toFixed(1)+' ft'), s>=5?'green':'yellow');
+
+    var l = n($('vo_l').value), a = n($('vo_a').value), c = n($('vo_c').value);
+    var lm = unit==='metric'? l : l*0.3048;
+    var v = c<=0?0: (2*lm*a*0.017)/c;
+    setOut('out-volt', v.toFixed(2)+' V', v<3?'green':v<10?'yellow':'red');
+
+    var ratio = n($('oi_r').value), fuel = n($('oi_f').value);
+    var oil = ratio>0 ? (unit==='metric'? fuel*1000/ratio : fuel*128/ratio) : 0;
+    var valid = ratio>=20 && ratio<=100;
+    setOut('out-oil', (unit==='metric'? oil.toFixed(0)+' mL' : oil.toFixed(1)+' oz')+' of oil', valid?'green':'red');
+  }
+  ['fu_hp','fu_t','fu_2s','sl_sp','sl_rpm','sl_p','tw_w','tw_p','an_d','an_b','an_s','vo_l','vo_a','vo_c','oi_r','oi_f'].forEach(function(id){
+    var e = $(id); if(e) e.addEventListener('input', compute);
+  });
+  document.querySelectorAll('.cal-unit').forEach(function(b){ b.addEventListener('click', function(){ unit=b.dataset.u; paintUnits(); compute(); }); });
+  paintUnits(); compute();
+})();
+</script>
+"""
+    return body + _CALC_JS
+
+
+CALCS_BODY = _calculators_body()
+
+
+register(
+    "tools/calculators",
+    "AftLog Calculators — Boat Math",
+    "Fuel burn, prop slip, tongue weight, anchor scope, voltage drop, and 2-stroke oil mix — same formulas as the AftLog app.",
+    CALCS_BODY,
+)
+
 # ── Render ──────────────────────────────────────────────────────────────
 def write(path: str, content: str):
     f = ROOT / path
