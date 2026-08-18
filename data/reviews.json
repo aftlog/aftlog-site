@@ -23,12 +23,5 @@
     "rating": 5,
     "text": "Great app. Was very useful while out on the lake troubleshooting and issue. More then my money's worth 1st time using. Thanks",
     "preview": true
-  },
-  {
-    "name": "Proxy Test",
-    "boat": "Test Boat",
-    "rating": 5,
-    "text": "Proxy publish test via server.",
-    "preview": true
   }
 ]
