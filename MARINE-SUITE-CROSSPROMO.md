@@ -39,3 +39,9 @@ Always one line, optional, contextual.
 - Help sidebar Marine Suite block.
 - Inline promo cards on: Trip & Fuel Log, Checklists, Float Plan.
 - All use the Marine Suite description above; copy-lint clean; site_check green.
+
+## 5 · Implementation status (2026-08-17)
+- Web portal: DONE (shipped).
+- In-app hooks: DONE in both apps (AftLog→CatchTales: trip/fuel log, checklists, float plan, ramp; CatchTales→AftLog: launch/ramp, weather, gear prep, spots, + trip screen gated on saved spots).
+- Session-Start hook: gated on boat context (saved fishing spots) per Option 1.
+- About screens in both apps carry the canonical Marine Suite description.
