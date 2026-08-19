@@ -2,6 +2,117 @@
 
 > Read `AFTLOG-CODING-STANDARDS.md` + `DECISIONS.md` first every session.
 
+
+- **🔒 PORTAL BUILD-OUT COMPLETE — CONSOLIDATED (2026-08-18, server head
+  686c67f; all committed + pushed to aftlog/aftlog-server, deployed to
+  portal.aftlog.com).** Today the portal went from "dev-gated, no user-facing
+  manual experience" to a complete, production-ready boat-centric manual
+  platform. Consolidates that day's per-feature entries into one log.
+
+  1) **PORTAL SERVES NORMAL USERS (rate-limit, not dev-gate)**
+     - Summary: the live portal's app-facing routes were dev-key gated (P0
+       posture never replaced by 'real auth at deploy'), so a normal app
+       (default https://portal.aftlog.com, no key) got 403 → 'Portal not
+       reachable'. Fixed by replacing dev-gate with per-IP rate limits on the
+       app-facing routes; dev tools (/admin/licenses, /admin/publish) STAY
+       gated; portal user actions stay login-gated. Secrets set; functions +
+       hosting deployed. Root index (redirect to /portal/) + branded 404 added.
+     - Routes: /, /portal/, /link-code, /link.
+     - Endpoints: un-gated aiProxy, createLinkCode, redeemApp, uploadBoats,
+       manualDraftSync/Pair/Photos; kept licenses+publishReview gated.
+     - Verification: /link-code/create + manual-drafts 200 with no key; pages
+       200. (commit c896bac + bb6a63d + 2d77519 + 632bcfe)
+
+  2) **PORTAL MANUALS SYSTEM — My Manuals (list + detail)**
+     - Summary: manuals browsable/editable/exportable library under a
+       user-scoped `users/{uid}/manuals` store with the spec model (title,
+       status enum, sourceDeviceId, sections[bodyHtml/bodyRaw], photos,
+       pdfUrl). saveManual also writes here so portal-finished drafts appear.
+     - Routes: /portal/manuals, /portal/manuals/{id}.
+     - Endpoints: GET /api/manuals (list+boats/status filters), GET/DELETE
+       /api/manuals/:id, GET+POST /api/manuals/:id/pdf, POST /manuals/create,
+       POST /manuals/upload.
+     - UI: 'My Manuals' sidebar item + table (Title/Boat/Created/Status/PDF/
+       Actions), detail with status badge + TOC + bodyHtml + photo grid.
+     - Verification: authed E2E save→list→detail→pdf→delete. (53e7b0a)
+
+  3) **PORTAL LINK-CODE + DEVICE PAIRING**
+     - Summary: canonical pairing page feeding Finish-on-Computer.
+     - Routes: /portal/link ('Link Your Device').
+     - Endpoints: POST /api/link-code/submit → {paired, deviceId, message}
+       (pairDeviceWithCode refactor); old /link-code/submit kept.
+     - UI: input + 'Pair Device' + success → redirect to /portal/manuals;
+       all 'Link an App' entries (sidebar, home hero, home card, Settings)
+       point here.
+     - Verification: create code → pair → linked_devices maps uid → device's
+       manual appears in the user's list. (708f053)
+
+  4) **MANUAL DETAIL EDITING (photos, sections, reorder)**
+     - Summary: on-portal mirror of the mobile edit flow.
+     - Endpoints: POST /api/manuals/:id/photos, /sections/:id,
+       /sections/reorder, /photos/reorder (all portal-user auth, order field).
+     - UI: Add Photos modal, per-section Edit (title+bodyRaw) modal,
+       drag-drop Reorder Sections/Photos persisting on drop.
+     - Verification: add 2 photos → edit section (3-line bodyHtml) → reorder
+       sections reversed → reorder photos → cleanup. (5d729c6)
+
+  5) **INLINE PDF VIEWER + BOAT-LEVEL NAV**
+     - Summary: view PDF inline + boats→manuals navigation.
+     - Routes: /portal/boats, /portal/boats/{id}; detail page gets View PDF.
+     - Endpoints: GET /api/boats (id/name/type/year/createdAt),
+       GET /api/boats/:id (boat + manuals by boatId).
+     - UI: 'View PDF' toggles a collapsible iframe panel (auth-fetch → blob →
+       object URL), loading/error states, Regenerate inside viewer; boat list +
+       boat→manuals tables; 'View Boat' link per manual row; sidebar
+       'Manuals by Boat'.
+     - Verification: /api/boats probed authed 200; pages serve. (dfbb71f)
+
+  6) **MANUAL EXPORT BUNDLE + VERSION HISTORY**
+     - Summary: offline ZIP archive + undo.
+     - functions/zip.js: hand-rolled store-only ZIP (no deps), verified with
+       Python zipfile.
+     - Endpoints: GET /api/manuals/:id/export (manual.pdf + sections.json +
+       photos/*), GET /api/manuals/:id/versions, POST
+       /api/manuals/:id/versions/:vid/restore (status=draft, clears pdfUrl).
+       snapshots captured before every mutating op; restore is reversible.
+     - UI: 'Export Manual' (download zip), collapsible 'Version History' +
+       Restore.
+     - Verification: 2 snapshots → valid zip → restore to draft/empty pdfUrl.
+       (caac896)
+
+  7) **PORTAL AI ASSISTANT + GLOBAL SEARCH**
+     - Summary: intelligent editing + discovery layer.
+     - Endpoints: /ai/summarize, /ai/sections/:id/summarize + /rewrite
+       (clarify|expand|simplify), /ai/sections/generate, /ai/sections/suggest,
+       /ai/photos/:id/caption; + POST /sections (add) and /photos/:id
+       (caption) used by Apply; GET /api/search?q= (grouped
+       boats/manuals/sections/photos, plain-text 160-char snippets).
+       FIXED latent bug: manualAi referenced buildAiSystemPrompt/askAiWithPrompt/
+       parseAiAnswer that were never destructured — added to the require.
+     - Routes: /portal/search; header global search bar (Enter or 300ms
+       debounce); 'AI Assistant' collapsible panel with inline Apply/Cancel/
+       Add-as-Section/Copy.
+     - Verification: search matches sections/boats/manuals/photos; add-section
+       + caption 200; AI tools return structured JSON (Gemini live). (686c67f)
+
+  8) **HARDENING + CONSOLIDATION PASS (this entry)**
+     - Summary: stability/consistency pass, no new features.
+     - Backend: audited all 40 exported functions — every one wired in
+       firebase.json (no orphans); all pages exist; error codes consistent
+       (401/404/400, {error}/*{ok}* shapes); auth + redirect-to-login uniform.
+     - Performance: cachedFetchJson (sessionStorage, 15s TTL) for boats +
+       manuals list pages.
+     - UI: photo anchors get scroll-margin-top so #section-{id}/#photo-{id}
+       land below the header; all modals/panels/tables use shared .panel/.btn.
+     - Cleanup: canonical /tmp/full_cleanup.js now sweeps EVERY user
+       subcollection incl. 'versions' (the one that leaked 7 orphans) + empty
+       user docs; final audit shows 0 e2e auth users, 0 e2e orphans.
+     - Verification: all 10 portal pages → 200; all 11 API endpoints →
+       401 (auth) without token; cleanup leaves 0 residual test data.
+
+
+---
+
 - **📸 BLOG SERIES — ALL 13/13 DONE 2026-08-17 — IMAGE TRACKER for Louis:**
   Blog articles are being added with `/images/screen-*.<ext>` screenshots. Where
   no real photo exists yet I used an on-brand app diagram as a stand-in. List of
