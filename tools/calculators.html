@@ -37,7 +37,9 @@
       <p>Quick, grounded boating math — the same formulas as the AftLog app.</p>
     </div>
   </div>
-</section><section class="section section--light"><div class="container"><p class="pg-muted">Same formulas as the AftLog app. Metric-first with imperial conversions. Inputs are clamped to safe ranges; results are colour-coded.</p><div class="cal-toggle"><button type="button" class="btn btn-sm cal-unit on" data-u="metric">Metric</button><button type="button" class="btn btn-sm cal-unit" data-u="imperial">Imperial</button></div><article class="cal-card" id="cal-1"><h2>1. Fuel burn</h2><p class="pg-muted">How much fuel an engine uses at a given throttle.</p><div class="cal-fields"><label>Horsepower<input id="fu_hp" type="number" value="150" min="1"></label><label>Throttle fraction (0-1, cruise ~0.7)<input id="fu_t" type="number" value="0.7" step="0.05" min="0.1" max="1"></label><label class="cal-check"><input id="fu_2s" type="checkbox">2-stroke</label></div><div class="cal-out" id="out-fuel">—</div></article><article class="cal-card" id="cal-2"><h2>2. Prop slip</h2><p class="pg-muted">How much propeller efficiency you're losing at speed (lower is better).</p><div class="cal-fields"><label>Speed <span data-uf="kmh">km/h</span><input id="sl_sp" type="number" value="40"></label><label>RPM<input id="sl_rpm" type="number" value="4000"></label><label>Prop pitch (inches)<input id="sl_p" type="number" value="19"></label></div><div class="cal-out" id="out-slip">—</div></article><article class="cal-card" id="cal-3"><h2>3. Tongue weight</h2><p class="pg-muted">The target trailer tongue weight for safe towing.</p><div class="cal-fields"><label>Total weight <span data-uf="kg">kg</span><input id="tw_w" type="number" value="1000"></label><label>Percentage (approx. 10)<input id="tw_p" type="number" value="10" min="1" max="20"></label></div><div class="cal-out" id="out-tongue">—</div></article><article class="cal-card" id="cal-4"><h2>4. Anchor scope</h2><p class="pg-muted">How much rode (line) you need for a given depth and scope.</p><div class="cal-fields"><label>Water depth <span data-uf="m">m</span><input id="an_d" type="number" value="6"></label><label>Bow height <span data-uf="m">m</span><input id="an_b" type="number" value="1.5"></label><label>Scope ratio (e.g., 5:1)<input id="an_s" type="number" value="5" min="2" max="10"></label></div><div class="cal-out" id="out-anchor">—</div></article><article class="cal-card" id="cal-5"><h2>5. Voltage drop</h2><p class="pg-muted">Approx. voltage loss over a cable run (keep under 3 V).</p><div class="cal-fields"><label>Run length <span data-uf="m">m</span><input id="vo_l" type="number" value="10"></label><label>Amps<input id="vo_a" type="number" value="15"></label><label>Cable size <span data-uf="mm2">mm²</span><input id="vo_c" type="number" value="2.5" min="0.1"></label></div><div class="cal-out" id="out-volt">—</div></article><article class="cal-card" id="cal-6"><h2>6. Oil mix (2-stroke premix)</h2><p class="pg-muted">How much oil to add for a 2-stroke fuel mix.</p><div class="cal-fields"><label>Ratio (e.g., 50:1)<input id="oi_r" type="number" value="50" min="20" max="100"></label><label>Fuel <span data-uf="L">L</span><input id="oi_f" type="number" value="20"></label></div><div class="cal-out" id="out-oil">—</div></article></section>
+</section><section class="section section--light"><div class="container"><p class="pg-muted">Same formulas as the AftLog app. Metric-first with imperial conversions. Inputs are clamped to safe ranges; results are colour-coded.</p><div class="cal-toggle"><button type="button" class="btn btn-sm cal-unit on" data-u="metric">Metric</button><button type="button" class="btn btn-sm cal-unit" data-u="imperial">Imperial</button></div><article class="cal-card" id="cal-1"><h2>1. Fuel burn</h2><p class="pg-muted">How much fuel an engine uses at a given throttle.</p><div class="cal-fields"><label>Horsepower<input id="fu_hp" type="number" value="150" min="1"></label><label>Throttle fraction (0-1, cruise ~0.7)<input id="fu_t" type="number" value="0.7" step="0.05" min="0.1" max="1"></label><label class="cal-check"><input id="fu_2s" type="checkbox">2-stroke</label></div><div class="cal-out" id="out-fuel">—</div></article><article class="cal-card" id="cal-2"><h2>2. Prop slip</h2><p class="pg-muted">How much propeller efficiency you're losing at speed (lower is better).</p><div class="cal-fields"><label>Speed <span data-uf="kmh">km/h</span><input id="sl_sp" type="number" value="40"></label><label>RPM<input id="sl_rpm" type="number" value="4000"></label><label>Prop pitch (inches)<input id="sl_p" type="number" value="19"></label></div><div class="cal-out" id="out-slip">—</div></article><article class="cal-card" id="cal-3"><h2>3. Tongue weight</h2><p class="pg-muted">The target trailer tongue weight for safe towing.</p><div class="cal-fields"><label>Total weight <span data-uf="kg">kg</span><input id="tw_w" type="number" value="1000"></label><label>Percentage (approx. 10)<input id="tw_p" type="number" value="10" min="1" max="20"></label></div><div class="cal-out" id="out-tongue">—</div></article><article class="cal-card" id="cal-4"><h2>4. Anchor scope</h2><p class="pg-muted">How much rode (line) you need for a given depth and scope.</p><div class="cal-fields"><label>Water depth <span data-uf="m">m</span><input id="an_d" type="number" value="6"></label><label>Bow height <span data-uf="m">m</span><input id="an_b" type="number" value="1.5"></label><label>Scope ratio (e.g., 5:1)<input id="an_s" type="number" value="5" min="2" max="10"></label></div><div class="cal-out" id="out-anchor">—</div></article><article class="cal-card" id="cal-5"><h2>5. Voltage drop</h2><p class="pg-muted">Approx. voltage loss over a cable run (keep under 3 V).</p><div class="cal-fields"><label>Run length <span data-uf="m">m</span><input id="vo_l" type="number" value="10"></label><label>Amps<input id="vo_a" type="number" value="15"></label><label>Cable size <span data-uf="mm2">mm²</span><input id="vo_c" type="number" value="2.5" min="0.1"></label></div><div class="cal-out" id="out-volt">—</div></article><article class="cal-card" id="cal-6"><h2>6. Oil mix (2-stroke premix)</h2><p class="pg-muted">How much oil to add for a 2-stroke fuel mix.</p><div class="cal-fields"><label>Ratio (e.g., 50:1)<input id="oi_r" type="number" value="50" min="20" max="100"></label><label>Fuel <span data-uf="L">L</span><input id="oi_f" type="number" value="20"></label></div><div class="cal-out" id="out-oil">—</div></article>
+<article class="cal-card" id="cal-7"><h2>7. Fuel range</h2><p class="pg-muted">How far you can go on a tank of fuel, factoring in reserves &amp; conditions.</p><div class="cal-fields"><label>Tank size <span data-uf="L">L</span><input id="fr_t" type="number" value="75" min="1"></label><label>Reserve <span data-uf="percent">%</span><input id="fr_r" type="number" value="10" min="0" max="30"></label><label>Burn rate <span data-uf="Lh">L/hr</span><input id="fr_b" type="number" value="10"></label><label>Cruise speed <span data-uf="kmh">km/h</span><input id="fr_s" type="number" value="32"></label><label>Wind loss (%)<input id="fr_w" type="number" value="0" min="0" max="30"></label><label>Wave loss (%)<input id="fr_wv" type="number" value="0" min="0" max="30"></label></div><div class="cal-out" id="out-range">—</div></article>
+<article class="cal-card" id="cal-8"><h2>8. Battery runtime</h2><p class="pg-muted">How long a battery will last at a given load.</p><div class="cal-fields"><label>Capacity (Ah)<input id="br_c" type="number" value="100" min="1"></label><label>Average load (A)<input id="br_l" type="number" value="5" min="0.1"></label><label>Discharge depth (%)<input id="br_d" type="number" value="50" min="1" max="100"></label><div class="cal-chips" id="br_chips"><button type="button" class="btn btn-sm cal-chip on" data-v="50">Lead-acid</button><button type="button" class="btn btn-sm cal-chip" data-v="50">AGM</button><button type="button" class="btn btn-sm cal-chip" data-v="80">Lithium</button></div></div><div class="cal-out" id="out-battery">—</div></article></section>
 <script>
 (function () {
   var unit = 'metric';
@@ -47,7 +49,7 @@
   function U(m, im){ return unit==='metric' ? m : im; }
   // metrics: which span shows m or im
   function paintUnits(){
-    var map = {kmh:['km/h','mph'], kg:['kg','lb'], m:['m','ft'], mm2:['mm²','AWG'], L:['L','US gal']};
+    var map = {kmh:['km/h','mph'], kg:['kg','lb'], m:['m','ft'], mm2:['mm²','AWG'], L:['L','US gal'], percent:['%','%'], Lh:['L/hr','gal/hr']};
     document.querySelectorAll('[data-uf]').forEach(function(s){ var k=s.dataset.uf; if(map[k]) s.textContent = unit==='metric'?map[k][0]:map[k][1]; });
     Array.prototype.forEach.call(document.querySelectorAll('.cal-unit'), function(b){ b.classList.toggle('on', b.dataset.u===unit); });
   }
@@ -63,7 +65,9 @@
 
     var w = n($('tw_w').value), p = n($('tw_p').value);
     var tw = w*p/100;
-    setOut('out-tongue', (unit==='metric'? tw.toFixed(0)+' kg':' (metric '+(tw/2.2046).toFixed(0)+')')+' → target ≈ '+(unit==='metric'? (tw).toFixed(0): (tw/2.2046).toFixed(0))+' lb', p<7?'red':p<=15?'green':'yellow');
+    var twKg = unit==='metric'? tw : tw/2.2046;
+    var twLb = unit==='metric'? tw*2.2046 : tw;
+    setOut('out-tongue', 'target ≈ '+(unit==='metric'? twKg.toFixed(0)+' kg ('+twLb.toFixed(0)+' lb)' : twLb.toFixed(0)+' lb ('+twKg.toFixed(0)+' kg)'), p<7?'red':p<=15?'green':'yellow');
 
     var d = n($('an_d').value), bh = n($('an_b').value), s = n($('an_s').value);
     var rodeM = (d+bh)*s;
@@ -78,11 +82,49 @@
     var oil = ratio>0 ? (unit==='metric'? fuel*1000/ratio : fuel*128/ratio) : 0;
     var valid = ratio>=20 && ratio<=100;
     setOut('out-oil', (unit==='metric'? oil.toFixed(0)+' mL' : oil.toFixed(1)+' oz')+' of oil', valid?'green':'red');
+
+    var tank = n($('fr_t').value), reserve = n($('fr_r').value), burn = n($('fr_b').value), speed = n($('fr_s').value), wind = n($('fr_w').value), waves = n($('fr_wv').value);
+    var tankL = unit==='metric'? tank : tank*3.78541; // Convert gal to L
+    var burnLh = unit==='metric'? burn : burn*3.78541; // Convert gal/hr to L/hr
+    var speedKmh = unit==='metric'? speed : speed*1.60934; // Convert mph to km/h
+    var cond = (wind/100) + (waves/100);
+
+    var maxRange = burnLh > 0 ? tankL / burnLh * speedKmh : 0.0;
+    var risky = burnLh > 0 ? tankL * (1 - reserve / 100) / burnLh * speedKmh : 0.0;
+    var safe = burnLh > 0 ? risky * (1 - cond) : 0.0;
+
+    var rangeText = '';
+    var rangeColor = '';
+
+    if (burnLh <= 0) {
+      rangeText = 'Enter burn rate';
+      rangeColor = 'yellow';
+    } else {
+      rangeText = U(
+        'Safe: ' + safe.toFixed(0) + ' km (Risky: ' + risky.toFixed(0) + ' km, Max: ' + maxRange.toFixed(0) + ' km)',
+        'Safe: ' + (safe*0.621371).toFixed(0) + ' mi (Risky: ' + (risky*0.621371).toFixed(0) + ' mi, Max: ' + (maxRange*0.621371).toFixed(0) + ' mi)'
+      );
+      rangeColor = safe > 0 ? 'green' : 'red';
+    }
+    setOut('out-range', rangeText, rangeColor);
+
+    var cap = n($('br_c').value), amps = n($('br_l').value), dod = Math.min(100, Math.max(1, n($('br_d').value)));
+    var usable = cap * dod / 100;
+    var hours = amps > 0 ? usable / amps : 0.0;
+    var h = Math.floor(hours), m = Math.round((hours - h) * 60);
+    var runtime = hours <= 0 ? '—' : h > 0 ? h + ' h ' + (m < 10 ? '0' : '') + m + ' m' : m + ' min';
+    var bColor = cap <= 0 || amps <= 0 ? '' : hours >= 8 ? 'green' : hours >= 2 ? 'yellow' : 'red';
+    setOut('out-battery', runtime + ' (' + usable.toFixed(0) + ' Ah usable)', bColor);
   }
-  ['fu_hp','fu_t','fu_2s','sl_sp','sl_rpm','sl_p','tw_w','tw_p','an_d','an_b','an_s','vo_l','vo_a','vo_c','oi_r','oi_f'].forEach(function(id){
+  ['fu_hp','fu_t','fu_2s','sl_sp','sl_rpm','sl_p','tw_w','tw_p','an_d','an_b','an_s','vo_l','vo_a','vo_c','oi_r','oi_f','fr_t','fr_r','fr_b','fr_s','fr_w','fr_wv','br_c','br_l','br_d'].forEach(function(id){
     var e = $(id); if(e) e.addEventListener('input', compute);
   });
   document.querySelectorAll('.cal-unit').forEach(function(b){ b.addEventListener('click', function(){ unit=b.dataset.u; paintUnits(); compute(); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('.cal-chip'), function(b){ b.addEventListener('click', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('.cal-chip'), function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    var d = $('br_d'); if(d){ d.value = b.dataset.v; compute(); }
+  }); });
   paintUnits(); compute();
 })();
 </script>
