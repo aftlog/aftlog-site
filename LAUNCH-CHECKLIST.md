@@ -1,6 +1,6 @@
-# AftLog Platform v1.111 — Launch Checklist + Rollback + Monitoring
+# AftLog Platform v1.112 — Launch Checklist + Rollback + Monitoring
 
-Companion to `RELEASE-MANIFEST-v1.111.md` and `INTEGRATION-SPEC.md`
+Companion to `RELEASE-MANIFEST-v1.112.md` and `INTEGRATION-SPEC.md`
 (single source of truth). Run top to bottom before the public launch.
 
 ## A. Launch checklist (DEEPSEEK Step 10, Section 8)
@@ -18,7 +18,7 @@ Companion to `RELEASE-MANIFEST-v1.111.md` and `INTEGRATION-SPEC.md`
 | 9 | No direct Gemini/GitHub calls — only `ai_proxy.dart` / `github_proxy.dart` | ✅ |
 | 10 | All nav/footer links work — site_check + portal_check | ✅ |
 | 11 | All metadata correct — unique titles/descriptions/canonical per page | ✅ |
-| 12 | All version numbers correct — Portal/Server/Website v1.111; App 1.108.7+154 (internal) | ✅ |
+| 12 | All version numbers correct — Portal/Server/Website v1.112; App 1.109.0+166 (internal) | ✅ |
 | 13 | All tests green — server 141, app 429 (+2 known), site 150+, portal 40+ | ✅ |
 | 14 | All pages 200 OK — live sweep (site + portal) | ✅ |
 | 15 | All proxies online — live sweep | ✅ |
@@ -33,7 +33,7 @@ If production issues occur after launch, in order:
 4. **Revert the server** to the previous tag (`git checkout v1.110 … && ./start-dev-server.sh`).
 5. **Notify users** via the website (banner on `/`) and the portal (hub banner) — one sentence: "AftLog is temporarily degraded; we're rolling back a release."
 6. **Fix** the issue on a branch; verify with the full test matrix.
-7. **Redeploy** as `v1.111.1` (patch) following this same checklist.
+7. **Redeploy** as `v1.112.1` (patch) following this same checklist.
 
 ## C. Post-release monitoring (Section 10)
 
