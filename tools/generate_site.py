@@ -133,6 +133,8 @@ def page(slug: str, title: str, desc: str, body: str, active: str | None = None)
 <script>
   (function(){{ if (location.hash) history.replaceState(null, '', location.pathname + location.search); }})();
 </script>
+<script data-goatcounter="https://aftlog.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 {header(active or f"/{slug.split('/')[0]}")}

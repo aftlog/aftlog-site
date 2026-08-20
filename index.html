@@ -20,6 +20,8 @@
   </script>
   <link rel="stylesheet" href="aftlog.css">
   <link rel="stylesheet" href="aftlog-pages.css">
+<script data-goatcounter="https://aftlog.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -535,6 +537,11 @@
     // form ID from https://forms.formspree.io when you want separate inboxes.
     formspree('initForm', { formElement: '#contact-form', formId: 'xoeaezwv' });
     formspree('initForm', { formElement: '#review-form-el', formId: 'xoeaezwv' });
+    // GoatCounter goal: count waitlist signups as an event, not just a pageview.
+    var wlForm = document.getElementById('waitlist-form');
+    if (wlForm) wlForm.addEventListener('submit', function () {
+      if (window.goatcounter) goatcounter.count({ event: true, title: 'waitlist-signup' });
+    });
   </script>
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
