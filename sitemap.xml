@@ -1,21 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aftlog.com/</loc></url>
-  <url><loc>https://aftlog.com/features.html</loc></url>
   <url><loc>https://aftlog.com/ai.html</loc></url>
+  <url><loc>https://aftlog.com/blog/</loc></url>
+  <url><loc>https://aftlog.com/blog/battery-care-small-boats.html</loc></url>
+  <url><loc>https://aftlog.com/blog/beginner-checklist.html</loc></url>
+  <url><loc>https://aftlog.com/blog/engine-wont-start.html</loc></url>
+  <url><loc>https://aftlog.com/blog/fall-haul-out-checklist.html</loc></url>
+  <url><loc>https://aftlog.com/blog/fuel-storage-best-practices.html</loc></url>
+  <url><loc>https://aftlog.com/blog/how-to-build-a-float-plan.html</loc></url>
+  <url><loc>https://aftlog.com/blog/impeller-replacement.html</loc></url>
+  <url><loc>https://aftlog.com/blog/launch-checklist.html</loc></url>
+  <url><loc>https://aftlog.com/blog/lower-unit-service.html</loc></url>
+  <url><loc>https://aftlog.com/blog/outboard-oil.html</loc></url>
+  <url><loc>https://aftlog.com/blog/overheating-on-the-water.html</loc></url>
+  <url><loc>https://aftlog.com/blog/retrieve-checklist.html</loc></url>
+  <url><loc>https://aftlog.com/blog/safety-equipment.html</loc></url>
+  <url><loc>https://aftlog.com/blog/spark-plug-intervals.html</loc></url>
+  <url><loc>https://aftlog.com/blog/spring-prep-getting-your-boat-ready.html</loc></url>
+  <url><loc>https://aftlog.com/blog/used-boat-inspection.html</loc></url>
+  <url><loc>https://aftlog.com/blog/winterize.html</loc></url>
+  <url><loc>https://aftlog.com/catchtales.html</loc></url>
+  <url><loc>https://aftlog.com/checklists/winterization.html</loc></url>
+  <url><loc>https://aftlog.com/faq.html</loc></url>
+  <url><loc>https://aftlog.com/features.html</loc></url>
+  <url><loc>https://aftlog.com/help/adding-documents.html</loc></url>
+  <url><loc>https://aftlog.com/help/adding-engine-hours.html</loc></url>
+  <url><loc>https://aftlog.com/help/adding-parts.html</loc></url>
+  <url><loc>https://aftlog.com/help/asking-aftlog.html</loc></url>
+  <url><loc>https://aftlog.com/help/backing-up.html</loc></url>
+  <url><loc>https://aftlog.com/help/completing-maintenance-task.html</loc></url>
+  <url><loc>https://aftlog.com/help/creating-boat.html</loc></url>
+  <url><loc>https://aftlog.com/help/editing-boat.html</loc></url>
+  <url><loc>https://aftlog.com/help/emergency.html</loc></url>
+  <url><loc>https://aftlog.com/help/index.html</loc></url>
+  <url><loc>https://aftlog.com/help/logging-fuel.html</loc></url>
+  <url><loc>https://aftlog.com/help/logging-maintenance.html</loc></url>
+  <url><loc>https://aftlog.com/help/logging-trip.html</loc></url>
+  <url><loc>https://aftlog.com/help/restoring-data.html</loc></url>
+  <url><loc>https://aftlog.com/help/spring-prep.html</loc></url>
+  <url><loc>https://aftlog.com/help/understanding-boat-health.html</loc></url>
+  <url><loc>https://aftlog.com/help/understanding-intervals.html</loc></url>
+  <url><loc>https://aftlog.com/help/uploading-manual.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-buying-advisor.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-calculators.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-checks.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-diagnostics.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-float-plan.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-ramp-mode.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-smart-planner.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-vea.html</loc></url>
+  <url><loc>https://aftlog.com/help/using-winterization-planner.html</loc></url>
+  <url><loc>https://aftlog.com/help/viewing-logbook.html</loc></url>
+  <url><loc>https://aftlog.com/help/viewing-predictive-alerts.html</loc></url>
   <url><loc>https://aftlog.com/portal.html</loc></url>
   <url><loc>https://aftlog.com/pricing.html</loc></url>
-  <url><loc>https://aftlog.com/faq.html</loc></url>
-  <url><loc>https://aftlog.com/support.html</loc></url>
   <url><loc>https://aftlog.com/privacy.html</loc></url>
+  <url><loc>https://aftlog.com/support.html</loc></url>
   <url><loc>https://aftlog.com/terms.html</loc></url>
-  <url><loc>https://aftlog.com/catchtales.html</loc></url>
-  <url><loc>https://aftlog.com/updates/</loc></url>
-  <url><loc>https://aftlog.com/blog/</loc></url>
-  <url><loc>https://aftlog.com/blog/winterize.html</loc></url>
-  <url><loc>https://aftlog.com/blog/beginner-checklist.html</loc></url>
-  <url><loc>https://aftlog.com/blog/outboard-oil.html</loc></url>
-  <url><loc>https://aftlog.com/blog/safety-equipment.html</loc></url>
-  <url><loc>https://aftlog.com/tools/</loc></url>
+  <url><loc>https://aftlog.com/tools/ai-diagnostics.html</loc></url>
+  <url><loc>https://aftlog.com/tools/ask-aftlog.html</loc></url>
+  <url><loc>https://aftlog.com/tools/battery-electronics.html</loc></url>
+  <url><loc>https://aftlog.com/tools/buying-advisor.html</loc></url>
+  <url><loc>https://aftlog.com/tools/calculators.html</loc></url>
+  <url><loc>https://aftlog.com/tools/checklists.html</loc></url>
+  <url><loc>https://aftlog.com/tools/compliance.html</loc></url>
+  <url><loc>https://aftlog.com/tools/cost-insights.html</loc></url>
+  <url><loc>https://aftlog.com/tools/diy-library.html</loc></url>
+  <url><loc>https://aftlog.com/tools/emergency.html</loc></url>
+  <url><loc>https://aftlog.com/tools/float-plan.html</loc></url>
+  <url><loc>https://aftlog.com/tools/glossary.html</loc></url>
   <url><loc>https://aftlog.com/tools/index.html</loc></url>
+  <url><loc>https://aftlog.com/tools/manual-finder.html</loc></url>
+  <url><loc>https://aftlog.com/tools/parts-locator.html</loc></url>
+  <url><loc>https://aftlog.com/tools/predictive-planner.html</loc></url>
+  <url><loc>https://aftlog.com/tools/ramp-mode.html</loc></url>
+  <url><loc>https://aftlog.com/tools/trip-log.html</loc></url>
+  <url><loc>https://aftlog.com/tools/trip-patterns.html</loc></url>
+  <url><loc>https://aftlog.com/tools/visual-engine-assist.html</loc></url>
+  <url><loc>https://aftlog.com/tools/winterization-planner.html</loc></url>
+  <url><loc>https://aftlog.com/updates/</loc></url>
 </urlset>
