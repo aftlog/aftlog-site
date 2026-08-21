@@ -53,45 +53,44 @@
 </div>
 <script>
   (function () {
-    var PORTAL = "https://portal.aftlog.com";
-    var DEV_KEY = "aftlog-dev";
+    // Offline-grounded demo (2026-08-21): the proxy is now authenticated
+    // (linked device / portal user), so a public page can't call it — this
+    // widget answers from the same built-in guidance ask-aftlog.js uses.
     var btn = document.getElementById('ai-ask');
     var q = document.getElementById('ai-q');
     var out = document.getElementById('ai-answer');
     var status = document.getElementById('ai-status');
-    btn.addEventListener('click', async function () {
+    function ground(typed) {
+      var l = typed.toLowerCase();
+      if (l.indexOf('overheat') >= 0 || l.indexOf('tell-tale') >= 0 || l.indexOf('temp') >= 0)
+        return 'Likely overheating: impeller first, then thermostat, blocked inlet. Stop if it beeps continuously — run the full check for causes.';
+      if ((l.indexOf('won') >= 0 && l.indexOf('start') >= 0) || l.indexOf('no start') >= 0 || l.indexOf('crank') >= 0)
+        return 'No start: kill switch / lanyard on? Battery 12.6V+? Fuel bulb hard? Spark at the plugs? Start simple, work outward.';
+      if (l.indexOf('battery') >= 0 || l.indexOf('dies') >= 0)
+        return 'Battery dying: 1) age (4-5 yr = replace), 2) parasitic draw, 3) charging system at speed.';
+      if (l.indexOf('winter') >= 0)
+        return 'Winterize before first hard frost: stabilize fuel, fog the engine, drain water systems, change lower-unit oil, remove the battery to a maintainer, then cover.';
+      if (l.indexOf('fuel') >= 0 || l.indexOf('range') >= 0)
+        return 'Log fills + odometer in the app and AftLog learns your real km/L — then it shows how far you can run before the tank is low.';
+      if (l.indexOf('interval') >= 0 || l.indexOf('planner') >= 0 || l.indexOf('due') >= 0)
+        return 'Smart Planner turns intervals and usage into one schedule: oil every 100 hr, impeller every 200 hr or 2-3 seasons; complete a task and it reschedules the next.';
+      if (l.indexOf('launch') >= 0)
+        return 'Launch: drain plug in, straps off, winch unhooked, lights connected, bow rope ready, crew seated and lines clear.';
+      return null;
+    }
+    btn.addEventListener('click', function () {
       var text = (q.value || '').trim();
       if (!text) return;
-      btn.disabled = true;
-      status.textContent = 'Thinking…';
-      out.hidden = true;
-      try {
-        var res = await fetch(PORTAL + '/ai/gemini', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json', 'x-aftlog-dev-key': DEV_KEY },
-          body: JSON.stringify({ prompt: text, mode: 'ask', extra: { continue: false } })
-        });
-        var d = await res.json();
-        if (d.ok) {
-          out.textContent = d.answer;
-          status.textContent = '';
-        } else {
-          out.textContent = 'Ask AftLog is temporarily offline — portal server or AI service unavailable.';
-          status.textContent = '';
-        }
-      } catch (e) {
-        out.textContent = 'Portal server unreachable — check server status.';
-        status.textContent = '';
-      }
+      status.textContent = '';
       out.hidden = false;
-      btn.disabled = false;
+      out.textContent = ground(text) || 'This web demo answers from built-in guidance. The app\'s full Ask AftLog is boat-aware and runs through the portal server — install the app for the complete experience.';
     });
   })();
 </script>
     </div></section><section class="section section--light"><div class="container pg-feature-grid"><div class="pg-feature-col"><h2>Smart Planner</h2><p>The maintenance planner turns intervals, usage, and season into a prioritized plan — what's due now, what's coming up, and what to do before the season starts.</p><ul class="pg-list pg-feature-bullets"><li>Interval-based planning</li><li>Usage-aware adjustments</li><li>Seasonal priorities</li><li>Pro-level insights</li></ul></div><div class="pg-feature-shot"><img src="/images/screen-smp-plan.png" alt="Smart Planner screenshot" loading="lazy"></div></div></section><section class="section section--alt"><div class="container pg-feature-grid"><div class="pg-feature-col"><h2>Diagnostics</h2><p>Describe a symptom — weak tell-tale, hard starting, overheating — and get the likely causes in order, with what to check first and when a mechanic is the right call.</p><ul class="pg-list pg-feature-bullets"><li>Symptom decoding</li><li>Ranked causes</li><li>Step-by-step checks</li><li>Mechanic escalation guidance</li></ul></div></div></section><section class="section section--light"><div class="container pg-feature-grid"><div class="pg-feature-col"><h2>Manual Extraction</h2><p>Attach your engine manual: AftLog indexes it fully offline and can pull service intervals and guidance from it, citing the exact pages.</p><ul class="pg-list pg-feature-bullets"><li>Full offline indexing</li><li>Interval extraction</li><li>Page citations</li><li>Multi-manual support</li></ul></div></div></section><section class="section section--alt"><div class="container pg-feature-grid"><div class="pg-feature-col"><h2>Predictive Alerts</h2><p>Based on your usage patterns and logged services, AftLog predicts what will need attention next — before it strands you.</p><ul class="pg-list pg-feature-bullets"><li>Usage-based predictions</li><li>Early warnings</li><li>Boat Health Score integration</li><li>Seasonal forecasting</li></ul></div></div></section><section class="section section--light"><div class="container pg-feature-grid"><div class="pg-feature-col"><h2>AI Photo Analysis</h2><p>Take a photo of a part, a symptom, or a problem — AftLog analyzes it and tells you what it is, what's wrong, and what to do next. Works for engines, rigging, electrical, pumps, steering, and more.</p><ul class="pg-list pg-feature-bullets"><li>Identify parts from photos</li><li>Spot wear, corrosion, leaks, cracks</li><li>Diagnose visual symptoms</li><li>Suggest next steps</li><li>Works offline (queued until connected)</li></ul></div><div class="pg-feature-shot"><img src="/images/screen-vea-result.png" alt="AI Photo Analysis screenshot" loading="lazy"></div></div></section><section class="section section--light"><div class="container"><h2>What AftLog Can Analyze</h2><div class="pg-card-grid"><div class="pg-feature-card"><div class="pg-feature-icon">⚙️</div><h3>Engine parts</h3><ul class="pg-list"><li>Identify components</li><li>Spot wear</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">⛽</div><h3>Fuel system</h3><ul class="pg-list"><li>Lines & fittings</li><li>Primer bulb, filters</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">❄️</div><h3>Cooling system</h3><ul class="pg-list"><li>Impeller, thermostat</li><li>Inlets & tell-tale</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🔌</div><h3>Electrical system</h3><ul class="pg-list"><li>Batteries, fuses</li><li>Corrosion checks</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🎛️</div><h3>Steering & controls</h3><ul class="pg-list"><li>Cables, helm</li><li>Fluid levels</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">💧</div><h3>Pumps & bilge</h3><ul class="pg-list"><li>Pump condition</li><li>Clogs & leaks</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🌀</div><h3>Prop & lower unit</h3><ul class="pg-list"><li>Damage, fishing line</li><li>Anode wear</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🧷</div><h3>Rigging & hardware</h3><ul class="pg-list"><li>Clamps, bolts</li><li>Rust & movement</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">📟</div><h3>Gauges & instruments</h3><ul class="pg-list"><li>Reading issues</li><li>Wiring signs</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🦺</div><h3>Safety gear</h3><ul class="pg-list"><li>Condition checks</li><li>Expiry dates</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🚤</div><h3>Hull & fittings</h3><ul class="pg-list"><li>Gelcoat, thru-hulls</li><li>Seal condition</li></ul></div><div class="pg-feature-card"><div class="pg-feature-icon">🧴</div><h3>Fluids & filters</h3><ul class="pg-list"><li>Oil, fuel, coolant</li><li>Change intervals</li></ul></div></div></div></section><section class="section section--light ">
   <div class="container">
     <h2>How It Works</h2>
-    <p>The AI features run through the AftLog portal server — no keys in your app or this website. Questions and photos are processed server-side and answered back. If the service is offline, the app uses on-device guidance so you're never stuck.</p>
+    <p>The AI features run through the AftLog portal server — no AI keys are ever in the app. This web demo answers from built-in guidance so it works anywhere; the app's full Ask AftLog is boat-aware (your boat, engine hours, overdue services) and falls back to on-device guidance when you're offline.</p>
       <ul class="pg-list">
         <li>Server-side AI processing</li>
         <li>No keys in app or website</li>

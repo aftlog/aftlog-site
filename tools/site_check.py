@@ -76,14 +76,16 @@ def main():
                 hits.append(f"{f.relative_to(ROOT)}:{token}")
     check("no forbidden tokens", not hits, f"found: {hits[:5]}")
 
-    # 1+2. AI widget + review badge target ONLY the server proxy
-    print("— server proxy integration")
+    # 1+2. AI widget: offline-grounded demo (2026-08-21 — the /ai/gemini
+    # proxy is now authenticated via linked device / portal user, so the
+    # public page must NOT call it; it answers from built-in guidance).
+    print("— AI widget (offline-grounded demo)")
     ai = (ROOT / "ai.html").read_text(encoding="utf-8")
-    check("AI widget posts to /ai/gemini", "'/ai/gemini'" in ai)
-    check("AI widget sends the dev key header", "'x-aftlog-dev-key'" in ai)
-    check("AI widget body uses extra.continue", "extra: { continue: false }" in ai)
-    check("AI widget network message", "Portal server unreachable" in ai)
-    check("AI widget offline message", "temporarily offline" in ai)
+    check("AI widget no longer posts to /ai/gemini", "'/ai/gemini'" not in ai)
+    check("AI widget has no dev key", "x-aftlog-dev-key" not in ai)
+    check("AI widget uses ground()", "function ground" in ai)
+    check("AI widget offline answer", "built-in guidance" in ai)
+    check("AI widget no-start intent", "No start: kill switch" in ai)
     portal = (ROOT / "portal.html").read_text(encoding="utf-8")
     check("review badge GETs /admin/publish", "admin/publish" in portal)
     check("review badge uses result.reviewCount", "reviewCount" in portal)
